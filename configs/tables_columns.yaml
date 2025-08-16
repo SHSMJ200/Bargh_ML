@@ -1,0 +1,100 @@
+bar:
+  bar:
+    date: text
+    hour: int
+    value: varchar(10)
+
+plant_date:
+  plant_data:
+    id: varchar(50)
+    name: varchar(100)
+    type: varchar(10)
+    utm: text
+
+plant_temp:
+  plant_temp:
+    id: varchar(50)
+    name: varchar(100)
+    date: text
+    hour: int
+    temperature: float
+
+energy:
+  energy:
+    id: varchar(50)
+    code: varchar(50)
+    name: varchar(50)
+    date: text
+    hour: int
+    generation: float
+
+selleroffer:
+  selleroffer:
+    id: varchar(50)
+    name: varchar(100)
+    code: varchar(50)
+    date: text
+    hour: int
+    declare: float
+
+factors:
+  factors:
+    id: varchar(50)
+    name: varchar(100)
+    code: varchar(50)
+    date: text
+    a: float
+    b: float
+
+status:
+  status:
+    id: varchar(50)
+    code: varchar(50)
+    date: text
+    hour: int
+    status: varchar(10)
+
+load:
+  load:
+    date: text
+    hour: int
+    forecast: float
+
+commitment:
+  commitment:
+    id: varchar(10)
+    name: varchar(100)
+    code: varchar(10)
+    date: text
+    hour: int
+    require: float
+
+weather:
+  weather:
+    id: varchar(50)
+    date: text
+    hour: int
+    temperature: float
+    humidity: float
+    dew: float
+    apparent_temperature: float
+    precipitation: float
+    rain: float
+    snow: float
+    surface_pressure: float
+    evapotransporation: float
+    wind_speed: float
+    wind_direction: float
+
+declaration_check:
+  declaration_check:
+    id: varchar(50)
+    name: varchar(50)
+    code: varchar(50)
+    date: text
+    hour: int
+    a: float
+    b: float
+    temperature: float
+    declare: float
+    calculated: float

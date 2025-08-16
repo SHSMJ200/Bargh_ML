@@ -1,0 +1,1656 @@
+2025-08-09 15:01:11,783 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 15:01:11,816 | models | INFO | models.py:19 | scale() | X scaled successfully.
+2025-08-09 15:01:11,817 | models | INFO | models.py:22 | scale() | y scaled successfully
+2025-08-09 15:01:11,818 | models | INFO | models.py:23 | scale() | y flattened.
+2025-08-09 15:01:11,837 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 15:02:12,435 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G16 from the original dataset to train on.
+2025-08-09 15:02:12,451 | models | INFO | models.py:19 | scale() | X scaled successfully.
+2025-08-09 15:02:12,453 | models | INFO | models.py:22 | scale() | y scaled successfully
+2025-08-09 15:02:12,453 | models | INFO | models.py:23 | scale() | y flattened.
+2025-08-09 15:02:12,462 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 15:15:07,016 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 15:15:07,021 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-G12 of this dataset. Exception below occurred.
+could not convert string to float: 'P'
+
+2025-08-09 16:16:48,654 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:16:48,670 | models | WARNING | models.py:91 | extract_data() | Length of the dataset is less than 2 and training stopped on it. returning None.
+2025-08-09 16:16:48,671 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-G12 of this dataset. Exception below occurred.
+Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+
+2025-08-09 16:17:44,261 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:17:44,261 | models | WARNING | models.py:91 | extract_data() | Length of the dataset is less than 2 and training stopped on it. returning None.
+2025-08-09 16:17:44,262 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-G12 of this dataset. Exception below occurred.
+Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+
+2025-08-09 16:18:03,870 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:18:03,871 | models | WARNING | models.py:91 | extract_data() | Length of the dataset is less than 2 and training stopped on it. returning None.
+2025-08-09 16:18:03,871 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-G12 of this dataset. Exception below occurred.
+Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+
+2025-08-09 16:18:24,363 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:18:24,384 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-G12 of this dataset. Exception below occurred.
+could not convert string to float: 'P'
+
+2025-08-09 16:19:39,159 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:19:39,163 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-G12 of this dataset. Exception below occurred.
+could not convert string to float: 'P'
+
+2025-08-09 16:19:52,196 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:19:52,201 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-G12 of this dataset. Exception below occurred.
+could not convert string to float: 'P'
+
+2025-08-09 16:20:33,076 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:20:33,080 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-G12 of this dataset. Exception below occurred.
+could not convert string to float: 'P'
+
+2025-08-09 16:20:51,402 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:20:51,415 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-G12 of this dataset. Exception below occurred.
+could not convert string to float: 'L'
+
+2025-08-09 16:21:06,081 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:21:06,091 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-G12 of this dataset. Exception below occurred.
+could not convert string to float: 'L'
+
+2025-08-09 16:21:48,683 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:21:48,683 | models | WARNING | models.py:91 | extract_data() | Length of the dataset is less than 2 and training stopped on it. returning None.
+2025-08-09 16:21:48,683 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-G12 of this dataset. Exception below occurred.
+Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+
+2025-08-09 16:22:54,324 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:22:54,338 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:22:54,339 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:22:54,339 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:22:54,351 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:23:19,426 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:23:19,430 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:23:19,431 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:23:19,431 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:23:19,435 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:23:35,694 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:23:35,698 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:23:35,699 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:23:35,699 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:23:35,702 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:58,632 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:44:58,637 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:58,638 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:58,638 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:58,642 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:58,660 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G16 from the original dataset to train on.
+2025-08-09 16:44:58,664 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:58,665 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:58,665 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:58,668 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:58,686 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-S2 from the original dataset to train on.
+2025-08-09 16:44:58,688 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-S2 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:58,706 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-S1 from the original dataset to train on.
+2025-08-09 16:44:58,708 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:58,727 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G15 from the original dataset to train on.
+2025-08-09 16:44:58,730 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:58,731 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:58,731 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:58,734 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:58,753 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-S2 from the original dataset to train on.
+2025-08-09 16:44:58,755 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-S2 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:58,774 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G11 from the original dataset to train on.
+2025-08-09 16:44:58,776 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G11 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:58,794 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-S1 from the original dataset to train on.
+2025-08-09 16:44:58,795 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:58,814 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G15 from the original dataset to train on.
+2025-08-09 16:44:58,815 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G15 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:58,835 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G16 from the original dataset to train on.
+2025-08-09 16:44:58,837 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G16 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:58,858 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G17 from the original dataset to train on.
+2025-08-09 16:44:58,860 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G17 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:58,882 | models | INFO | models.py:88 | extract_data() | Successfully splitted the قم-G12 from the original dataset to train on.
+2025-08-09 16:44:58,885 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on قم-G12 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:58,906 | models | INFO | models.py:88 | extract_data() | Successfully splitted the قم-G13 from the original dataset to train on.
+2025-08-09 16:44:58,909 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on قم-G13 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:58,933 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-G15 from the original dataset to train on.
+2025-08-09 16:44:58,936 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-G15 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:58,957 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-G13 from the original dataset to train on.
+2025-08-09 16:44:58,960 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-G13 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:58,980 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-G14 from the original dataset to train on.
+2025-08-09 16:44:58,982 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-G14 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,000 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پیروز - بهبهان-S1 from the original dataset to train on.
+2025-08-09 16:44:59,003 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,003 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,003 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,006 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,024 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پیروز - بهبهان-G12 from the original dataset to train on.
+2025-08-09 16:44:59,027 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,027 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,029 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,031 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,050 | models | INFO | models.py:88 | extract_data() | Successfully splitted the جنوب اصفهان - چهلستون-G15 from the original dataset to train on.
+2025-08-09 16:44:59,054 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,054 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,055 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,058 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,080 | models | INFO | models.py:88 | extract_data() | Successfully splitted the جنوب اصفهان - چهلستون-G14 from the original dataset to train on.
+2025-08-09 16:44:59,084 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,085 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,085 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,088 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,108 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S4 from the original dataset to train on.
+2025-08-09 16:44:59,111 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S4 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,129 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S5 from the original dataset to train on.
+2025-08-09 16:44:59,132 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S5 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,151 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S6 from the original dataset to train on.
+2025-08-09 16:44:59,154 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S6 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,173 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-G12 from the original dataset to train on.
+2025-08-09 16:44:59,176 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,177 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,177 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,180 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,198 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-G14 from the original dataset to train on.
+2025-08-09 16:44:59,202 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,202 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,202 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,204 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,222 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-G13 from the original dataset to train on.
+2025-08-09 16:44:59,225 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,226 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,226 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,229 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,247 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-G12 from the original dataset to train on.
+2025-08-09 16:44:59,249 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,250 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,250 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,252 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,273 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-G11 from the original dataset to train on.
+2025-08-09 16:44:59,277 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,279 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,279 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,282 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,303 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-S1 from the original dataset to train on.
+2025-08-09 16:44:59,306 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,307 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,307 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,310 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,329 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-G16 from the original dataset to train on.
+2025-08-09 16:44:59,332 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,333 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,333 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,335 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,355 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-G14 from the original dataset to train on.
+2025-08-09 16:44:59,358 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,359 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,359 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,361 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,380 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-G15 from the original dataset to train on.
+2025-08-09 16:44:59,383 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,384 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,384 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,386 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,405 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-G16 from the original dataset to train on.
+2025-08-09 16:44:59,407 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,408 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,408 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,411 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,429 | models | INFO | models.py:88 | extract_data() | Successfully splitted the حافظ-G16 from the original dataset to train on.
+2025-08-09 16:44:59,432 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,432 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,433 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,435 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,454 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G14 from the original dataset to train on.
+2025-08-09 16:44:59,456 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,457 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,457 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,460 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,480 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-S3 from the original dataset to train on.
+2025-08-09 16:44:59,482 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-S3 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,502 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-S6 from the original dataset to train on.
+2025-08-09 16:44:59,504 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-S6 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,524 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G20 from the original dataset to train on.
+2025-08-09 16:44:59,527 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G20 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,549 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-S5 from the original dataset to train on.
+2025-08-09 16:44:59,552 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-S5 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,573 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G14 from the original dataset to train on.
+2025-08-09 16:44:59,576 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G14 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,596 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G13 from the original dataset to train on.
+2025-08-09 16:44:59,598 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G13 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,616 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G21 from the original dataset to train on.
+2025-08-09 16:44:59,618 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G21 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,636 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G22 from the original dataset to train on.
+2025-08-09 16:44:59,638 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G22 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,656 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G12 from the original dataset to train on.
+2025-08-09 16:44:59,658 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G12 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,678 | models | INFO | models.py:88 | extract_data() | Successfully splitted the قم-G11 from the original dataset to train on.
+2025-08-09 16:44:59,681 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on قم-G11 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,703 | models | INFO | models.py:88 | extract_data() | Successfully splitted the قم-G14 from the original dataset to train on.
+2025-08-09 16:44:59,705 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on قم-G14 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,724 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-S3 from the original dataset to train on.
+2025-08-09 16:44:59,726 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-S3 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,746 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-G12 from the original dataset to train on.
+2025-08-09 16:44:59,748 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-G12 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,768 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پیروز - بهبهان-G11 from the original dataset to train on.
+2025-08-09 16:44:59,773 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,774 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,774 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,779 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,799 | models | INFO | models.py:88 | extract_data() | Successfully splitted the جنوب اصفهان - چهلستون-G16 from the original dataset to train on.
+2025-08-09 16:44:59,802 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,803 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,803 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,805 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,824 | models | INFO | models.py:88 | extract_data() | Successfully splitted the جنوب اصفهان - چهلستون-G11 from the original dataset to train on.
+2025-08-09 16:44:59,828 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,828 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,828 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,832 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,851 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S1 from the original dataset to train on.
+2025-08-09 16:44:59,853 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,870 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S7 from the original dataset to train on.
+2025-08-09 16:44:59,872 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S7 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,890 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S8 from the original dataset to train on.
+2025-08-09 16:44:59,892 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S8 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:44:59,915 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-G11 from the original dataset to train on.
+2025-08-09 16:44:59,921 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,922 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,922 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,926 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,947 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-G15 from the original dataset to train on.
+2025-08-09 16:44:59,951 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,952 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,952 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,957 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:44:59,976 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-G11 from the original dataset to train on.
+2025-08-09 16:44:59,980 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:44:59,982 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:44:59,982 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:44:59,986 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,006 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-G16 from the original dataset to train on.
+2025-08-09 16:45:00,010 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,010 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,011 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,013 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,031 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-G14 from the original dataset to train on.
+2025-08-09 16:45:00,033 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی یزد-G14 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,051 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-G13 from the original dataset to train on.
+2025-08-09 16:45:00,053 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی یزد-G13 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,071 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-G15 from the original dataset to train on.
+2025-08-09 16:45:00,073 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی یزد-G15 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,091 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-G13 from the original dataset to train on.
+2025-08-09 16:45:00,094 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,095 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,095 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,098 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,118 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-S2 from the original dataset to train on.
+2025-08-09 16:45:00,121 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,123 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,123 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,126 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,147 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-G12 from the original dataset to train on.
+2025-08-09 16:45:00,151 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,152 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,152 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,157 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,177 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-G11 from the original dataset to train on.
+2025-08-09 16:45:00,181 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,182 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,182 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,185 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,206 | models | INFO | models.py:88 | extract_data() | Successfully splitted the حافظ-G11 from the original dataset to train on.
+2025-08-09 16:45:00,211 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,211 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,212 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,215 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,235 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-G12 from the original dataset to train on.
+2025-08-09 16:45:00,238 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,239 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,239 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,242 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,260 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G13 from the original dataset to train on.
+2025-08-09 16:45:00,263 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,264 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,264 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,266 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,286 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-G11 from the original dataset to train on.
+2025-08-09 16:45:00,288 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-G11 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,305 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-S2 from the original dataset to train on.
+2025-08-09 16:45:00,307 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی یزد-S2 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,326 | models | INFO | models.py:88 | extract_data() | Successfully splitted the قم-S2 from the original dataset to train on.
+2025-08-09 16:45:00,328 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on قم-S2 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,348 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-G16 from the original dataset to train on.
+2025-08-09 16:45:00,352 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,353 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,353 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,356 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,377 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G11 from the original dataset to train on.
+2025-08-09 16:45:00,382 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,382 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,383 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,388 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,408 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-S1 from the original dataset to train on.
+2025-08-09 16:45:00,410 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,411 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,411 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,414 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,432 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-S1 from the original dataset to train on.
+2025-08-09 16:45:00,435 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,436 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,436 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,438 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,455 | models | INFO | models.py:88 | extract_data() | Successfully splitted the قم-S1 from the original dataset to train on.
+2025-08-09 16:45:00,458 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on قم-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,476 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G18 from the original dataset to train on.
+2025-08-09 16:45:00,478 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G18 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,496 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-S4 from the original dataset to train on.
+2025-08-09 16:45:00,497 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-S4 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,516 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G19 from the original dataset to train on.
+2025-08-09 16:45:00,519 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G19 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,541 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-S3 from the original dataset to train on.
+2025-08-09 16:45:00,544 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-S3 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,563 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-S2 from the original dataset to train on.
+2025-08-09 16:45:00,565 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-S2 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,585 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-S1 from the original dataset to train on.
+2025-08-09 16:45:00,588 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,608 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-G16 from the original dataset to train on.
+2025-08-09 16:45:00,611 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-G16 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,630 | models | INFO | models.py:88 | extract_data() | Successfully splitted the جنوب اصفهان - چهلستون-G12 from the original dataset to train on.
+2025-08-09 16:45:00,634 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,635 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,635 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,637 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,656 | models | INFO | models.py:88 | extract_data() | Successfully splitted the جنوب اصفهان - چهلستون-G13 from the original dataset to train on.
+2025-08-09 16:45:00,658 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,659 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,659 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,661 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,679 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S3 from the original dataset to train on.
+2025-08-09 16:45:00,681 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S3 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,699 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S2 from the original dataset to train on.
+2025-08-09 16:45:00,701 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S2 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,720 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-G13 from the original dataset to train on.
+2025-08-09 16:45:00,723 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,724 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,724 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,728 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,750 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-G15 from the original dataset to train on.
+2025-08-09 16:45:00,754 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,754 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,755 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,758 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,777 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-G14 from the original dataset to train on.
+2025-08-09 16:45:00,782 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,783 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,783 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,786 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,805 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-S1 from the original dataset to train on.
+2025-08-09 16:45:00,807 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی ارومیه-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,827 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-G11 from the original dataset to train on.
+2025-08-09 16:45:00,831 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,832 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,832 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,835 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,854 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-G16 from the original dataset to train on.
+2025-08-09 16:45:00,856 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی یزد-G16 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,874 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-S1 from the original dataset to train on.
+2025-08-09 16:45:00,876 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی یزد-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:45:00,896 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-G14 from the original dataset to train on.
+2025-08-09 16:45:00,899 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,900 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,900 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,902 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,920 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-G15 from the original dataset to train on.
+2025-08-09 16:45:00,923 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,924 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,924 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,926 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,945 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-G13 from the original dataset to train on.
+2025-08-09 16:45:00,949 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,950 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,950 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,954 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:00,973 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-G12 from the original dataset to train on.
+2025-08-09 16:45:00,976 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:00,976 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:00,978 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:00,980 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:01,000 | models | INFO | models.py:88 | extract_data() | Successfully splitted the حافظ-G12 from the original dataset to train on.
+2025-08-09 16:45:01,004 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:01,005 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:01,005 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:01,008 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:01,027 | models | INFO | models.py:88 | extract_data() | Successfully splitted the حافظ-G14 from the original dataset to train on.
+2025-08-09 16:45:01,031 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:01,031 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:01,032 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:01,034 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:01,053 | models | INFO | models.py:88 | extract_data() | Successfully splitted the حافظ-G13 from the original dataset to train on.
+2025-08-09 16:45:01,061 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:01,062 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:01,062 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:01,064 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:01,083 | models | INFO | models.py:88 | extract_data() | Successfully splitted the حافظ-G15 from the original dataset to train on.
+2025-08-09 16:45:01,085 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:45:01,086 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:45:01,086 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:45:01,089 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:45:01,107 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-S3 from the original dataset to train on.
+2025-08-09 16:45:01,107 | models | WARNING | models.py:91 | extract_data() | Length of the dataset is less than 2 and training stopped on it. returning None.
+2025-08-09 16:45:01,107 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی شیروان-S3 of this dataset. Exception below occurred.
+Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+
+2025-08-09 16:45:01,125 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-S2 from the original dataset to train on.
+2025-08-09 16:45:01,125 | models | WARNING | models.py:91 | extract_data() | Length of the dataset is less than 2 and training stopped on it. returning None.
+2025-08-09 16:45:01,125 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on عسلویه-S2 of this dataset. Exception below occurred.
+Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+
+2025-08-09 16:45:01,143 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-S2 from the original dataset to train on.
+2025-08-09 16:45:01,143 | models | WARNING | models.py:91 | extract_data() | Length of the dataset is less than 2 and training stopped on it. returning None.
+2025-08-09 16:45:01,143 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سبلان-S2 of this dataset. Exception below occurred.
+Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+
+2025-08-09 16:45:01,163 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-S3 from the original dataset to train on.
+2025-08-09 16:45:01,163 | models | WARNING | models.py:91 | extract_data() | Length of the dataset is less than 2 and training stopped on it. returning None.
+2025-08-09 16:45:01,164 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سبلان-S3 of this dataset. Exception below occurred.
+Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+
+2025-08-09 16:45:01,184 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-S2 from the original dataset to train on.
+2025-08-09 16:45:01,184 | models | WARNING | models.py:91 | extract_data() | Length of the dataset is less than 2 and training stopped on it. returning None.
+2025-08-09 16:45:01,185 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی ارومیه-S2 of this dataset. Exception below occurred.
+Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+
+2025-08-09 16:45:01,206 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-S3 from the original dataset to train on.
+2025-08-09 16:45:01,210 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی ارومیه-S3 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:37,762 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-S1 from the original dataset to train on.
+2025-08-09 16:47:37,766 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:37,784 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G16 from the original dataset to train on.
+2025-08-09 16:47:37,788 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:37,788 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:37,788 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:37,792 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:37,811 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G15 from the original dataset to train on.
+2025-08-09 16:47:37,813 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G15 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:37,832 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-S2 from the original dataset to train on.
+2025-08-09 16:47:37,834 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-S2 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:37,853 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G16 from the original dataset to train on.
+2025-08-09 16:47:37,854 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G16 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:37,874 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G11 from the original dataset to train on.
+2025-08-09 16:47:37,876 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G11 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:37,894 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G17 from the original dataset to train on.
+2025-08-09 16:47:37,897 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G17 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:37,915 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-S1 from the original dataset to train on.
+2025-08-09 16:47:37,917 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:37,936 | models | INFO | models.py:88 | extract_data() | Successfully splitted the قم-G13 from the original dataset to train on.
+2025-08-09 16:47:37,938 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on قم-G13 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:37,956 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-G15 from the original dataset to train on.
+2025-08-09 16:47:37,958 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-G15 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:37,978 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-G14 from the original dataset to train on.
+2025-08-09 16:47:37,981 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-G14 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,001 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پیروز - بهبهان-G12 from the original dataset to train on.
+2025-08-09 16:47:38,005 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,006 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,007 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,010 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,029 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پیروز - بهبهان-S1 from the original dataset to train on.
+2025-08-09 16:47:38,034 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,035 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,035 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,038 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,059 | models | INFO | models.py:88 | extract_data() | Successfully splitted the جنوب اصفهان - چهلستون-G15 from the original dataset to train on.
+2025-08-09 16:47:38,066 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,067 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,068 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,072 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,094 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S4 from the original dataset to train on.
+2025-08-09 16:47:38,096 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S4 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,115 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S5 from the original dataset to train on.
+2025-08-09 16:47:38,118 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S5 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,136 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S6 from the original dataset to train on.
+2025-08-09 16:47:38,138 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S6 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,156 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-S1 from the original dataset to train on.
+2025-08-09 16:47:38,159 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,159 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,160 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,162 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,181 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-G11 from the original dataset to train on.
+2025-08-09 16:47:38,185 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,186 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,186 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,190 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,210 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-G14 from the original dataset to train on.
+2025-08-09 16:47:38,214 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,215 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,215 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,218 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,239 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-G15 from the original dataset to train on.
+2025-08-09 16:47:38,243 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,243 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,244 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,246 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,266 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-G13 from the original dataset to train on.
+2025-08-09 16:47:38,270 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,271 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,271 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,274 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,294 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-G14 from the original dataset to train on.
+2025-08-09 16:47:38,298 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,299 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,299 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,301 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,320 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-G16 from the original dataset to train on.
+2025-08-09 16:47:38,322 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,323 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,323 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,325 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,344 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G15 from the original dataset to train on.
+2025-08-09 16:47:38,347 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,348 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,348 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,350 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,368 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G14 from the original dataset to train on.
+2025-08-09 16:47:38,371 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,372 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,372 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,374 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,394 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G20 from the original dataset to train on.
+2025-08-09 16:47:38,397 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G20 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,419 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G12 from the original dataset to train on.
+2025-08-09 16:47:38,422 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G12 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,445 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G14 from the original dataset to train on.
+2025-08-09 16:47:38,447 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G14 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,467 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G13 from the original dataset to train on.
+2025-08-09 16:47:38,470 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G13 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,489 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-S5 from the original dataset to train on.
+2025-08-09 16:47:38,491 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-S5 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,511 | models | INFO | models.py:88 | extract_data() | Successfully splitted the قم-G14 from the original dataset to train on.
+2025-08-09 16:47:38,513 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on قم-G14 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,531 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پیروز - بهبهان-G11 from the original dataset to train on.
+2025-08-09 16:47:38,535 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,535 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,536 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,538 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,558 | models | INFO | models.py:88 | extract_data() | Successfully splitted the جنوب اصفهان - چهلستون-G11 from the original dataset to train on.
+2025-08-09 16:47:38,562 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,562 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,563 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,567 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,592 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S8 from the original dataset to train on.
+2025-08-09 16:47:38,595 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S8 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,613 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S7 from the original dataset to train on.
+2025-08-09 16:47:38,616 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S7 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,637 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-G11 from the original dataset to train on.
+2025-08-09 16:47:38,643 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,644 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,644 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,648 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,671 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-G11 from the original dataset to train on.
+2025-08-09 16:47:38,676 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,676 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,677 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,681 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,701 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-G16 from the original dataset to train on.
+2025-08-09 16:47:38,706 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,707 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,707 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,710 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,728 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-G15 from the original dataset to train on.
+2025-08-09 16:47:38,730 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی یزد-G15 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,748 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-S2 from the original dataset to train on.
+2025-08-09 16:47:38,750 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,751 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,751 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,753 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,771 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-G12 from the original dataset to train on.
+2025-08-09 16:47:38,774 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,774 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,775 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,777 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,796 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-G13 from the original dataset to train on.
+2025-08-09 16:47:38,799 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,799 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,800 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,802 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,826 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-G11 from the original dataset to train on.
+2025-08-09 16:47:38,833 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,833 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,834 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,839 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,860 | models | INFO | models.py:88 | extract_data() | Successfully splitted the حافظ-G11 from the original dataset to train on.
+2025-08-09 16:47:38,866 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,866 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,867 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,871 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,893 | models | INFO | models.py:88 | extract_data() | Successfully splitted the جنوب اصفهان - چهلستون-G14 from the original dataset to train on.
+2025-08-09 16:47:38,897 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,897 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,898 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,901 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,921 | models | INFO | models.py:88 | extract_data() | Successfully splitted the جنوب اصفهان - چهلستون-G16 from the original dataset to train on.
+2025-08-09 16:47:38,925 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,926 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,926 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,929 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:38,948 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-S2 from the original dataset to train on.
+2025-08-09 16:47:38,949 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-S2 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,967 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S1 from the original dataset to train on.
+2025-08-09 16:47:38,970 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:38,988 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-G15 from the original dataset to train on.
+2025-08-09 16:47:38,991 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:38,991 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:38,991 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:38,994 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,012 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-G12 from the original dataset to train on.
+2025-08-09 16:47:39,018 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,019 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,019 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,029 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,050 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-G16 from the original dataset to train on.
+2025-08-09 16:47:39,053 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,054 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,054 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,058 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,078 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G22 from the original dataset to train on.
+2025-08-09 16:47:39,080 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G22 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,100 | models | INFO | models.py:88 | extract_data() | Successfully splitted the حافظ-G16 from the original dataset to train on.
+2025-08-09 16:47:39,103 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,104 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,104 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,107 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,127 | models | INFO | models.py:88 | extract_data() | Successfully splitted the قم-G12 from the original dataset to train on.
+2025-08-09 16:47:39,130 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on قم-G12 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,147 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-S3 from the original dataset to train on.
+2025-08-09 16:47:39,149 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-S3 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,180 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-G13 from the original dataset to train on.
+2025-08-09 16:47:39,184 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-G13 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,203 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-G12 from the original dataset to train on.
+2025-08-09 16:47:39,206 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-G12 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,226 | models | INFO | models.py:88 | extract_data() | Successfully splitted the قم-G11 from the original dataset to train on.
+2025-08-09 16:47:39,229 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on قم-G11 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,248 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G13 from the original dataset to train on.
+2025-08-09 16:47:39,252 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,253 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,253 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,256 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,276 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-G11 from the original dataset to train on.
+2025-08-09 16:47:39,279 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-G11 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,299 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-G12 from the original dataset to train on.
+2025-08-09 16:47:39,302 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,303 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,303 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,306 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,326 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-G12 from the original dataset to train on.
+2025-08-09 16:47:39,329 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,329 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,330 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,332 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,349 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-S2 from the original dataset to train on.
+2025-08-09 16:47:39,351 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی یزد-S2 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,369 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G21 from the original dataset to train on.
+2025-08-09 16:47:39,371 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G21 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,389 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-S6 from the original dataset to train on.
+2025-08-09 16:47:39,391 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-S6 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,409 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-G16 from the original dataset to train on.
+2025-08-09 16:47:39,412 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,412 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,413 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,415 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,432 | models | INFO | models.py:88 | extract_data() | Successfully splitted the قم-S2 from the original dataset to train on.
+2025-08-09 16:47:39,434 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on قم-S2 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,460 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-G14 from the original dataset to train on.
+2025-08-09 16:47:39,465 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی یزد-G14 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,484 | models | INFO | models.py:88 | extract_data() | Successfully splitted the قم-S1 from the original dataset to train on.
+2025-08-09 16:47:39,486 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on قم-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,506 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G11 from the original dataset to train on.
+2025-08-09 16:47:39,511 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,512 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,512 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,516 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,538 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-G12 from the original dataset to train on.
+2025-08-09 16:47:39,541 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,542 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,542 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,545 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,564 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G18 from the original dataset to train on.
+2025-08-09 16:47:39,566 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G18 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,584 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-S4 from the original dataset to train on.
+2025-08-09 16:47:39,585 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-S4 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,604 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-G19 from the original dataset to train on.
+2025-08-09 16:47:39,606 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-G19 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,623 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-S3 from the original dataset to train on.
+2025-08-09 16:47:39,625 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-S3 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,644 | models | INFO | models.py:88 | extract_data() | Successfully splitted the جنوب اصفهان - چهلستون-G12 from the original dataset to train on.
+2025-08-09 16:47:39,648 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,649 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,650 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,653 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,676 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S2 from the original dataset to train on.
+2025-08-09 16:47:39,679 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S2 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,698 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-S3 from the original dataset to train on.
+2025-08-09 16:47:39,701 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-S3 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,722 | models | INFO | models.py:88 | extract_data() | Successfully splitted the جنوب اصفهان - چهلستون-G13 from the original dataset to train on.
+2025-08-09 16:47:39,726 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,727 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,728 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,731 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,751 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-G15 from the original dataset to train on.
+2025-08-09 16:47:39,754 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,755 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,755 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,757 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,778 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-G16 from the original dataset to train on.
+2025-08-09 16:47:39,780 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی یزد-G16 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,797 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-S3 from the original dataset to train on.
+2025-08-09 16:47:39,799 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on پرند-S3 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:39,817 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-G14 from the original dataset to train on.
+2025-08-09 16:47:39,819 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,820 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,820 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,822 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,841 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-G12 from the original dataset to train on.
+2025-08-09 16:47:39,843 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,844 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,844 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,847 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,869 | models | INFO | models.py:88 | extract_data() | Successfully splitted the حافظ-G13 from the original dataset to train on.
+2025-08-09 16:47:39,874 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,875 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,875 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,879 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,900 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-G13 from the original dataset to train on.
+2025-08-09 16:47:39,904 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,904 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,905 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,908 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,929 | models | INFO | models.py:88 | extract_data() | Successfully splitted the حافظ-G12 from the original dataset to train on.
+2025-08-09 16:47:39,933 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,933 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,934 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,937 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,957 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-G13 from the original dataset to train on.
+2025-08-09 16:47:39,961 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,961 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,961 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,964 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:39,982 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-G14 from the original dataset to train on.
+2025-08-09 16:47:39,984 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:39,985 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:39,985 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:39,987 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:40,006 | models | INFO | models.py:88 | extract_data() | Successfully splitted the حافظ-G15 from the original dataset to train on.
+2025-08-09 16:47:40,008 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:40,009 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:40,009 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:40,011 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:40,030 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-G15 from the original dataset to train on.
+2025-08-09 16:47:40,032 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:40,033 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:40,033 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:40,035 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:40,056 | models | INFO | models.py:88 | extract_data() | Successfully splitted the حافظ-G14 from the original dataset to train on.
+2025-08-09 16:47:40,060 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:40,060 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:40,061 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:40,064 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:40,085 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-G11 from the original dataset to train on.
+2025-08-09 16:47:40,089 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:40,091 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:40,091 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:40,094 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:40,113 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-S2 from the original dataset to train on.
+2025-08-09 16:47:40,116 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-S2 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:40,135 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-S1 from the original dataset to train on.
+2025-08-09 16:47:40,139 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:40,140 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:40,140 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:40,142 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:40,161 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-S1 from the original dataset to train on.
+2025-08-09 16:47:40,164 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:47:40,165 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:47:40,165 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:47:40,167 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:47:40,187 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-G16 from the original dataset to train on.
+2025-08-09 16:47:40,189 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-G16 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:40,206 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-G13 from the original dataset to train on.
+2025-08-09 16:47:40,209 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی یزد-G13 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:40,229 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-S1 from the original dataset to train on.
+2025-08-09 16:47:40,231 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:40,253 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-S1 from the original dataset to train on.
+2025-08-09 16:47:40,256 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی یزد-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:40,291 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-S1 from the original dataset to train on.
+2025-08-09 16:47:40,296 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی ارومیه-S1 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:47:40,317 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-S3 from the original dataset to train on.
+2025-08-09 16:47:40,319 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on سیکل ترکیبی ارومیه-S3 of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:51:06,220 | models | INFO | models.py:88 | extract_data() | Successfully splitted the پرند-None from the original dataset to train on.
+2025-08-09 16:51:06,229 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:51:06,230 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:51:06,230 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:51:06,237 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:51:06,251 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پاکدشت - دماوند-None from the original dataset to train on.
+2025-08-09 16:51:06,255 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهدای پاکدشت - دماوند-None of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:51:06,265 | models | INFO | models.py:88 | extract_data() | Successfully splitted the قم-None from the original dataset to train on.
+2025-08-09 16:51:06,268 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on قم-None of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:51:06,280 | models | INFO | models.py:88 | extract_data() | Successfully splitted the گیلان-None from the original dataset to train on.
+2025-08-09 16:51:06,283 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on گیلان-None of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:51:06,293 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهدای پیروز - بهبهان-None from the original dataset to train on.
+2025-08-09 16:51:06,298 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:51:06,298 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:51:06,298 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:51:06,303 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:51:06,316 | models | INFO | models.py:88 | extract_data() | Successfully splitted the جنوب اصفهان - چهلستون-None from the original dataset to train on.
+2025-08-09 16:51:06,323 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:51:06,324 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:51:06,324 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:51:06,329 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:51:06,341 | models | INFO | models.py:88 | extract_data() | Successfully splitted the شهید منتظری 1-None from the original dataset to train on.
+2025-08-09 16:51:06,344 | models | ERROR | models.py:79 | fit() | Couldn't train Linear model on شهید منتظری 1-None of this dataset. Exception below occurred.
+Found array with 0 sample(s) (shape=(0, 13)) while a minimum of 1 is required by StandardScaler.
+
+2025-08-09 16:51:06,355 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی شیروان-None from the original dataset to train on.
+2025-08-09 16:51:06,363 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:51:06,363 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:51:06,364 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:51:06,370 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:51:06,381 | models | INFO | models.py:88 | extract_data() | Successfully splitted the عسلویه-None from the original dataset to train on.
+2025-08-09 16:51:06,388 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:51:06,389 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:51:06,389 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:51:06,395 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:51:06,407 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی ارومیه-None from the original dataset to train on.
+2025-08-09 16:51:06,413 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:51:06,414 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:51:06,414 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:51:06,420 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:51:06,432 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سبلان-None from the original dataset to train on.
+2025-08-09 16:51:06,441 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:51:06,442 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:51:06,442 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:51:06,449 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:51:06,463 | models | INFO | models.py:88 | extract_data() | Successfully splitted the سیکل ترکیبی یزد-None from the original dataset to train on.
+2025-08-09 16:51:06,469 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:51:06,470 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:51:06,470 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:51:06,474 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:51:06,488 | models | INFO | models.py:88 | extract_data() | Successfully splitted the حافظ-None from the original dataset to train on.
+2025-08-09 16:51:06,498 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:51:06,500 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:51:06,500 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:51:06,509 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-09 16:53:01,499 | models | INFO | models.py:89 | extract_data() | Successfully split the None-None from the original dataset to train on.
+2025-08-09 16:53:01,544 | models | INFO | models.py:18 | scale() | X scaled successfully.
+2025-08-09 16:53:01,545 | models | INFO | models.py:21 | scale() | y scaled successfully
+2025-08-09 16:53:01,546 | models | INFO | models.py:22 | scale() | y flattened.
+2025-08-09 16:53:01,585 | models | INFO | models.py:73 | fit() | Model trained successfully.
+2025-08-11 16:56:47,116 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 16:56:47,131 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 16:56:47,132 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 16:56:47,361 | models | DEBUG | models.py:69 | fit() | Model trained successfully.
+2025-08-11 16:56:47,361 | models | INFO | models.py:71 | fit() | Train Error: 6.510898960722667%
+2025-08-11 16:56:47,361 | models | INFO | models.py:72 | fit() | Test Error: 6.49808879750572%
+2025-08-11 17:11:23,541 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 17:11:23,543 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 17:11:23,544 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 17:11:23,763 | models | DEBUG | models.py:57 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:11:23,772 | models | INFO | models.py:59 | compute_mse_error() | Train Error: 6.510898960722667%
+2025-08-11 17:11:23,772 | models | INFO | models.py:60 | compute_mse_error() | Test Error: 6.49808879750572%
+2025-08-11 17:26:03,380 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:26:03,382 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:26:03,382 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:26:03,592 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:26:03,593 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 6.510898960722667%
+2025-08-11 17:26:03,593 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 6.49808879750572%
+2025-08-11 17:26:27,008 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:26:27,010 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:26:27,011 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:26:28,199 | models | ERROR | models.py:104 | fit() | Couldn't train Random Forest model. Exception below occurred.
+'NoneType' object has no attribute 'predict'
+
+2025-08-11 17:27:18,655 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:27:18,658 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:27:18,658 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:27:19,827 | models | ERROR | models.py:104 | fit() | Couldn't train Random Forest model. Exception below occurred.
+'NoneType' object has no attribute 'predict'
+
+2025-08-11 17:27:34,208 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:27:34,212 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:27:34,212 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:27:39,293 | models | ERROR | models.py:104 | fit() | Couldn't train Random Forest model. Exception below occurred.
+'NoneType' object has no attribute 'predict'
+
+2025-08-11 17:28:47,877 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:28:47,879 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:28:47,879 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:28:52,770 | models | ERROR | models.py:110 | fit() | Couldn't train Random Forest model. Exception below occurred.
+'NoneType' object has no attribute 'predict'
+
+2025-08-11 17:30:37,932 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:30:37,934 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:30:37,934 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:30:42,760 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:30:42,760 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 6.0489079970603115%
+2025-08-11 17:30:42,761 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 6.017786158697157%
+2025-08-11 17:31:00,952 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:31:00,954 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:31:00,954 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:31:09,281 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:31:09,281 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 5.636928788861421%
+2025-08-11 17:31:09,282 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 5.617927966954126%
+2025-08-11 17:34:23,533 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:34:23,535 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:34:23,535 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:34:27,102 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:34:27,102 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 7.20002771125171%
+2025-08-11 17:34:27,103 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 7.202546059539683%
+2025-08-11 17:34:27,335 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:34:27,338 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:34:27,338 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:34:32,443 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:34:32,444 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 6.0489079970603115%
+2025-08-11 17:34:32,444 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 6.017786158697157%
+2025-08-11 17:34:32,660 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:34:32,662 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:34:32,663 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:34:39,013 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:34:39,014 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 5.333812789950696%
+2025-08-11 17:34:39,014 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 5.334122310303956%
+2025-08-11 17:34:39,266 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:34:39,268 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:34:39,268 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:34:57,138 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:34:57,138 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 1.276019905930617%
+2025-08-11 17:34:57,138 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 3.097219943186931%
+2025-08-11 17:34:57,358 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:34:57,361 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:34:57,361 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:35:03,326 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:35:03,326 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 7.198062862818107%
+2025-08-11 17:35:03,326 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 7.200431239083074%
+2025-08-11 17:35:03,555 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:35:03,557 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:35:03,557 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:35:12,663 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:35:12,663 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 6.042167633049593%
+2025-08-11 17:35:12,664 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 6.011912831606858%
+2025-08-11 17:35:12,895 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:35:12,897 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:35:12,898 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:35:24,725 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:35:24,726 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 5.31702689006117%
+2025-08-11 17:35:24,726 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 5.315672450633403%
+2025-08-11 17:35:24,934 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:35:24,936 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:35:24,937 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:35:57,716 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:35:57,716 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 1.1939231890110622%
+2025-08-11 17:35:57,717 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 3.002715061423158%
+2025-08-11 17:35:57,958 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:35:57,961 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:35:57,961 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:36:11,347 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:36:11,348 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 7.196979442959248%
+2025-08-11 17:36:11,348 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 7.19998211013164%
+2025-08-11 17:36:11,594 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:36:11,596 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:36:11,596 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:36:31,968 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:36:31,968 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 6.035805816987672%
+2025-08-11 17:36:31,969 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 6.003515302171005%
+2025-08-11 17:36:32,178 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:36:32,181 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:36:32,182 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:36:59,963 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:36:59,963 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 5.31152570912208%
+2025-08-11 17:36:59,963 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 5.308419619610603%
+2025-08-11 17:37:00,185 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:37:00,188 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:37:00,188 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:38:22,393 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:38:22,393 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 1.1311474765015963%
+2025-08-11 17:38:22,394 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 2.922016161836845%
+2025-08-11 17:38:22,623 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:38:22,625 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:38:22,626 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:38:48,433 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:38:48,433 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 7.193575879268185%
+2025-08-11 17:38:48,433 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 7.197140585231167%
+2025-08-11 17:38:48,645 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:38:48,648 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:38:48,648 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:39:28,412 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:39:28,412 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 6.03324113091822%
+2025-08-11 17:39:28,412 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 5.999005541556533%
+2025-08-11 17:39:28,644 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:39:28,646 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:39:28,646 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:40:24,740 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:40:24,740 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 5.306855635558981%
+2025-08-11 17:40:24,740 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 5.302756911236388%
+2025-08-11 17:40:24,955 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:40:24,959 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:40:24,959 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:43:08,511 | models | DEBUG | models.py:46 | compute_mse_error() | Model trained successfully.
+2025-08-11 17:43:08,511 | models | INFO | models.py:48 | compute_mse_error() | Train Error: 1.106069330760261%
+2025-08-11 17:43:08,511 | models | INFO | models.py:49 | compute_mse_error() | Test Error: 2.901392997456392%
+2025-08-11 17:49:13,225 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:49:13,227 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:49:13,227 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:49:13,434 | models | DEBUG | models.py:89 | fit() | Model trained successfully.
+2025-08-11 17:52:33,273 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:52:33,275 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:52:33,276 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:52:55,370 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:52:55,372 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:52:55,372 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:53:00,707 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:53:01,029 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:53:01,031 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:53:01,031 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:53:10,732 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:53:11,110 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:53:11,113 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:53:11,113 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:53:24,434 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:53:24,928 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:53:24,930 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:53:24,931 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:53:40,812 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:53:41,294 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:53:41,296 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:53:41,297 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:53:59,892 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:54:00,419 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:54:00,422 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:54:00,422 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:54:21,949 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:54:22,544 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:54:22,547 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:54:22,547 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:54:44,976 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:54:45,500 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:54:45,502 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:54:45,503 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:55:07,777 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:55:08,362 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:55:08,364 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:55:08,364 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:55:33,129 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:55:33,777 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:55:33,779 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:55:33,779 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:56:00,521 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:56:01,209 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:56:01,210 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:56:01,211 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:56:30,092 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:56:30,843 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:56:30,844 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:56:30,845 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:57:02,057 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:57:02,886 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:57:02,888 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:57:02,888 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:57:36,519 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:57:37,408 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:57:37,410 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:57:37,410 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:58:12,566 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:58:13,538 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:58:13,540 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:58:13,540 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:58:50,547 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:58:51,652 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:58:51,653 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:58:51,653 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 17:59:31,200 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 17:59:32,366 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 17:59:32,368 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 17:59:32,368 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:00:15,550 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:00:16,888 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:00:16,891 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:00:16,891 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:01:01,506 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:01:02,967 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:01:02,969 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:01:02,969 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:01:48,804 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:02:19,293 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:02:19,295 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:02:19,296 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:03:14,508 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:03:16,057 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:03:16,060 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:03:16,061 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:04:29,508 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:04:31,251 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:04:31,253 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:04:31,253 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:05:31,455 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:05:32,826 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:05:32,829 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:05:32,829 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:06:18,820 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:06:20,339 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:06:20,341 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:06:20,341 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:07:08,677 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:07:10,259 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:07:10,261 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:07:10,261 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:08:00,401 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:08:02,083 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:08:02,086 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:08:02,086 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:08:53,680 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:08:55,385 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:08:55,386 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:08:55,387 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:09:47,716 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:09:49,903 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:09:49,905 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:09:49,905 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:10:44,720 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:10:46,890 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:10:46,892 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:10:46,892 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:11:42,392 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:11:44,384 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:11:44,386 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:11:44,386 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:12:48,430 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:12:50,411 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:12:50,412 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:12:50,413 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:13:45,625 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:13:47,602 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:13:47,603 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:13:47,604 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:14:42,323 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:14:44,476 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:14:44,477 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:14:44,477 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:15:41,408 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:15:43,593 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:15:43,595 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:15:43,595 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:16:40,371 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:16:42,563 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:16:42,565 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:16:42,566 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:17:39,352 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:17:41,550 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:17:41,552 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:17:41,552 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:18:37,495 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:18:39,787 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:18:39,790 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:18:39,790 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:19:37,459 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:19:39,677 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:19:39,679 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:19:39,679 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:20:36,713 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:20:38,858 | models | DEBUG | models.py:21 | scale() | X scaled successfully.
+2025-08-11 18:20:38,860 | models | DEBUG | models.py:24 | scale() | y scaled successfully
+2025-08-11 18:20:38,860 | models | DEBUG | models.py:25 | scale() | y flattened.
+2025-08-11 18:21:35,602 | models | DEBUG | models.py:115 | fit() | Model trained successfully.
+2025-08-11 18:22:06,537 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 18:22:06,539 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 18:22:06,540 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 18:23:02,292 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 18:23:03,620 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 18:23:03,622 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 18:23:03,622 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 18:24:02,737 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 18:24:04,091 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 18:24:04,093 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 18:24:04,094 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 18:25:07,658 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 18:25:09,249 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 18:25:09,251 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 18:25:09,251 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 18:26:16,722 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 18:26:18,441 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 18:26:18,444 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 18:26:18,444 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 18:27:30,155 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 18:27:32,051 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 18:27:32,053 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 18:27:32,053 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:24:17,660 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:24:19,866 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:24:19,868 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:24:19,868 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:25:52,063 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:25:55,408 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:25:55,412 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:25:55,412 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:27:36,972 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:27:39,551 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:27:39,553 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:27:39,554 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:29:09,688 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:29:12,357 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:29:12,359 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:29:12,359 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:30:43,353 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:30:46,415 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:30:46,417 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:30:46,417 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:32:22,612 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:32:25,797 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:32:25,798 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:32:25,799 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:34:04,667 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:34:07,984 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:34:07,987 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:34:07,987 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:35:49,621 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:35:53,204 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:35:53,207 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:35:53,207 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:37:37,647 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:37:41,241 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:37:41,243 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:37:41,243 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:39:25,489 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:39:29,125 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:39:29,127 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:39:29,128 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:41:14,789 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:41:18,586 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:41:18,588 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:41:18,588 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:43:05,241 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:43:09,299 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:43:09,301 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:43:09,301 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:44:56,672 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:45:00,679 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:45:00,682 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:45:00,682 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:46:50,826 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:46:54,935 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:46:54,937 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:46:54,937 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:48:43,567 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:48:47,978 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:48:47,981 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:48:47,981 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:50:37,041 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:50:41,445 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:50:41,447 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:50:41,448 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:52:30,638 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:52:34,914 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:52:34,917 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:52:34,917 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:54:23,996 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:54:28,436 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:54:28,438 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:54:28,438 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:56:17,871 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:56:21,993 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:56:21,995 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:56:21,995 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 19:58:14,851 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 19:58:19,420 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 19:58:19,422 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 19:58:19,422 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 20:00:16,130 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 20:00:20,849 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 20:00:20,851 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 20:00:20,851 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 20:02:13,879 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 20:02:18,547 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 20:02:18,550 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 20:02:18,550 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 20:04:11,727 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 20:04:16,095 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 20:04:16,096 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 20:04:16,097 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 20:06:08,608 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 20:06:13,398 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 20:06:13,399 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 20:06:13,400 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 20:08:09,210 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 20:15:23,600 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 20:15:23,602 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 20:15:23,602 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 20:15:23,752 | models | DEBUG | models.py:86 | fit() | Model trained successfully.
+2025-08-11 20:18:07,998 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 20:18:08,000 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 20:18:08,000 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 20:19:32,838 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-11 20:19:32,841 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-11 20:19:32,841 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-11 20:20:02,257 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-11 20:21:28,443 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-12 09:34:37,642 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-12 09:34:37,656 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-12 09:34:37,656 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-12 09:34:37,916 | models | DEBUG | models.py:86 | fit() | Model trained successfully.
+2025-08-12 09:35:48,533 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-12 09:35:48,535 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-12 09:35:48,536 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-12 09:38:26,938 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-12 09:48:54,930 | models | DEBUG | models.py:18 | scale() | X scaled successfully.
+2025-08-12 09:48:54,931 | models | DEBUG | models.py:21 | scale() | y scaled successfully
+2025-08-12 09:48:54,932 | models | DEBUG | models.py:22 | scale() | y flattened.
+2025-08-12 09:51:42,983 | models | DEBUG | models.py:108 | fit() | Model trained successfully.
+2025-08-16 10:54:09,998 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 10:54:10,012 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 10:54:10,013 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 10:54:10,284 | models | ERROR | models.py:131 | fit() | Couldn't train Neural Network model. Exception below occurred.
+Exception encountered when calling Sequential.call().
+
+[1mInput 0 of layer "dense" is incompatible with the layer: expected axis -1 of input shape to have value 2, but received input with shape (None, 44)[0m
+
+Arguments received by Sequential.call():
+  • inputs=tf.Tensor(shape=(None, 44), dtype=float32)
+  • training=True
+  • mask=None
+  • kwargs=<class 'inspect._empty'>
+
+2025-08-16 10:59:42,345 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 10:59:42,348 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 10:59:42,348 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 10:59:42,599 | models | ERROR | models.py:137 | fit() | Couldn't train Neural Network model. Exception below occurred.
+Exception encountered when calling Sequential.call().
+
+[1mInput 0 of layer "dense" is incompatible with the layer: expected axis -1 of input shape to have value 2, but received input with shape (None, 44)[0m
+
+Arguments received by Sequential.call():
+  • inputs=tf.Tensor(shape=(None, 44), dtype=float32)
+  • training=True
+  • mask=None
+  • kwargs=<class 'inspect._empty'>
+
+2025-08-16 11:00:13,028 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 11:00:13,030 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 11:00:13,031 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 11:03:02,969 | models | DEBUG | models.py:110 | fit() | Model trained successfully.
+2025-08-16 11:03:26,140 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 11:03:26,143 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 11:03:26,144 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 11:08:26,623 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 11:08:26,625 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 11:08:26,626 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 11:09:02,744 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 11:09:02,746 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 11:09:02,746 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 11:11:24,903 | models | ERROR | models.py:91 | fit() | Couldn't train Linear model. Exception below occurred.
+This LinearRegression estimator requires y to be passed, but the target y is None.
+
+2025-08-16 11:11:54,561 | models | ERROR | models.py:91 | fit() | Couldn't train Linear model. Exception below occurred.
+This LinearRegression estimator requires y to be passed, but the target y is None.
+
+2025-08-16 11:13:14,394 | models | ERROR | models.py:91 | fit() | Couldn't train Linear model. Exception below occurred.
+This LinearRegression estimator requires y to be passed, but the target y is None.
+
+2025-08-16 11:14:48,841 | models | ERROR | models.py:91 | fit() | Couldn't train Linear model. Exception below occurred.
+This LinearRegression estimator requires y to be passed, but the target y is None.
+
+2025-08-16 11:15:39,635 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 11:15:39,637 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 11:15:39,637 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 11:15:39,873 | models | DEBUG | models.py:88 | fit() | Model trained successfully.
+2025-08-16 11:16:31,754 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 11:16:31,756 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 11:16:31,756 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 11:16:31,929 | models | DEBUG | models.py:88 | fit() | Model trained successfully.
+2025-08-16 11:17:53,669 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 11:17:53,671 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 11:17:53,672 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 11:20:07,120 | models | DEBUG | models.py:110 | fit() | Model trained successfully.
+2025-08-16 11:21:09,617 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 11:21:09,619 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 11:21:09,620 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 11:23:25,107 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 11:23:25,109 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 11:23:25,109 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 15:34:29,266 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 15:34:29,268 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 15:34:29,268 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 15:36:45,972 | models | DEBUG | models.py:110 | fit() | Model trained successfully.
+2025-08-16 17:05:23,469 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 17:05:23,472 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 17:05:23,472 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 17:05:23,655 | models | DEBUG | models.py:88 | fit() | Model trained successfully.
+2025-08-16 17:05:44,697 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 17:05:44,699 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 17:05:44,700 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 17:05:44,870 | models | DEBUG | models.py:88 | fit() | Model trained successfully.
+2025-08-16 17:06:38,870 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 17:06:38,872 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 17:06:38,873 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 17:06:39,041 | models | DEBUG | models.py:88 | fit() | Model trained successfully.
+2025-08-16 17:07:10,243 | models | DEBUG | models.py:20 | scale() | X scaled successfully.
+2025-08-16 17:07:10,245 | models | DEBUG | models.py:23 | scale() | y scaled successfully
+2025-08-16 17:07:10,245 | models | DEBUG | models.py:24 | scale() | y flattened.
+2025-08-16 17:07:10,425 | models | DEBUG | models.py:88 | fit() | Model trained successfully.

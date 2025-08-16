@@ -1,0 +1,108 @@
+import os
+
+import matplotlib
+import pandas as pd
+import plotly.graph_objects as go
+
+matplotlib.use('TkAgg')
+
+
+def convert_to_tuple(x: str):
+    elements = x.strip('()').split(', ')
+
+    converted_elements = []
+    for element in elements:
+        try:
+            converted_elements.append(int(element))
+        except ValueError:
+            try:
+                converted_elements.append(float(element))
+            except ValueError:
+                converted_elements.append(element.strip("'"))
+
+    return tuple(converted_elements)
+
+
+def hsv_to_rgb(h, s, v):
+    if s == 0.0:
+        return v, v, v
+
+    i = int(h * 6)
+    f = h * 6 - i
+    p = v * (1 - s)
+    q = v * (1 - f * s)
+    t = v * (1 - (1 - f) * s)
+    i %= 6
+    return {
+        0: (v, t, p),
+        1: (q, v, p),
+        2: (p, v, t),
+        3: (p, q, v),
+        4: (t, p, v),
+        5: (v, p, q),
+    }[i]
+
+
+def golden_ration(n):
+    colors = []
+    phi = (1 + 5 ** 0.5) / 2
+    for i in range(n):
+        hue = (i / phi) % 1
+        color = hsv_to_rgb(hue, 1, 1)
+        colors.append(color)
+    return colors
+
+
+def assign_color(df: pd.DataFrame):
+    statuses = df['status'].unique()
+    status_count = len(statuses)
+    colors = golden_ration(status_count)
+    color_col = {
+        stat: c for stat, c in zip(statuses, colors)
+    }
+    colorized_df = df.copy()
+    colorized_df['color'] = colorized_df['status'].map(color_col)
+    return colorized_df
+
+
+class UnitPlotter:
+
+    def __init__(self, df):
+        self.df = df
+
+    def generation_over_time(self, name, code):
+        self.features_over_time(name, code, ["generation"])
+
+    def prediction_and_generation_over_time(self, name, code):
+        self.features_over_time(name, code, ["prediction", "generation"])
+
+    def temperature_and_generation_over_time(self, name, code):
+        self.features_over_time(name, code, ["temperature", "generation"])
+
+    def features_over_time(self, name, code, features_list):
+        sample = self.df.loc[(self.df['name'] == name) & (self.df['code'] == code)]
+        sample = sample.sort_values(by='datetime')
+        features_string = "_and_".join(features_list)
+
+        fig = go.Figure()
+
+        for feature in features_list:
+            fig.add_trace(go.Scatter(
+                x=sample['datetime'],
+                y=sample[feature],
+                mode="lines",
+                name=f"{feature}",
+                line=dict(dash="solid"),
+                legendgroup=str(name),
+                hovertemplate=f"Label: {name}<br>{feature}: %{{y}}<br>Time: %{{x}}<extra></extra>"
+            ))
+
+        fig.update_layout(
+            title=f'{features_string} over time',
+            xaxis_title='Time',
+            yaxis_title=f'{features_string}',
+            hovermode='x unified'
+        )
+
+        project_root = "U:/ML_project/bargh/"
+        fig.write_html(f"{project_root}src/visualization/unit_figs/{features_string}_over_time/{name}-{code}.html")

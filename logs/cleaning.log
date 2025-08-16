@@ -1,0 +1,97 @@
+2025-08-05 20:21:16,628 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/LowMiddlePeakLoadHours_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:21:16,953 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:21:17,061 | cleaning.data_cleaning | INFO | data_cleaning.py:149 | process() | Table bar created successfully in the database and data copied into it.
+2025-08-05 20:21:17,143 | cleaning.data_cleaning | INFO | data_cleaning.py:171 | process() | Data successfully copied from database into local system.
+2025-08-05 20:21:17,197 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/PlantData.csv successfully saved in pandas dataframe.
+2025-08-05 20:21:17,199 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:21:17,918 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/PlantsTemperature_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:21:24,894 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:21:30,050 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/PowerplantUnitEnergy_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:21:31,728 | cleaning.data_cleaning | INFO | data_cleaning.py:62 | clean() | Successfully expanded the table.
+2025-08-05 20:22:04,638 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:22:24,854 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/SellerOffer_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:23:01,069 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:23:28,980 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/TemperatureFactors_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:23:29,969 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:23:31,979 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/UnitsStatusChangeLastRev_Hourly_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:24:10,927 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:24:40,967 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/LoadPredictionNetwork.csv successfully saved in pandas dataframe.
+2025-08-05 20:24:41,383 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:24:45,750 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/UnitCommitment.csv successfully saved in pandas dataframe.
+2025-08-05 20:25:02,234 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:27:01,116 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/LowMiddlePeakLoadHours_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:27:01,450 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:27:01,567 | cleaning.data_cleaning | INFO | data_cleaning.py:149 | process() | Table bar created successfully in the database and data copied into it.
+2025-08-05 20:27:01,645 | cleaning.data_cleaning | INFO | data_cleaning.py:171 | process() | Data successfully copied from database into local system.
+2025-08-05 20:27:01,699 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/PlantData.csv successfully saved in pandas dataframe.
+2025-08-05 20:27:01,700 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:27:02,393 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/PlantsTemperature_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:27:08,892 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:27:14,014 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/PowerplantUnitEnergy_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:27:15,585 | cleaning.data_cleaning | INFO | data_cleaning.py:62 | clean() | Successfully expanded the table.
+2025-08-05 20:28:12,962 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:28:51,706 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/LowMiddlePeakLoadHours_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:28:52,037 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:28:52,160 | cleaning.data_cleaning | INFO | data_cleaning.py:149 | process() | Table bar created successfully in the database and data copied into it.
+2025-08-05 20:28:52,228 | cleaning.data_cleaning | INFO | data_cleaning.py:171 | process() | Data successfully copied from database into local system.
+2025-08-05 20:28:52,280 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/PlantData.csv successfully saved in pandas dataframe.
+2025-08-05 20:28:52,282 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:28:52,986 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/PlantsTemperature_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:28:59,938 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:29:07,228 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/PowerplantUnitEnergy_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:29:08,982 | cleaning.data_cleaning | INFO | data_cleaning.py:62 | clean() | Successfully expanded the table.
+2025-08-05 20:29:42,978 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:30:17,279 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/SellerOffer_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:30:54,143 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:31:24,613 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/TemperatureFactors_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:31:25,682 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:31:28,008 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/UnitsStatusChangeLastRev_Hourly_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:32:05,028 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:32:28,449 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/LoadPredictionNetwork.csv successfully saved in pandas dataframe.
+2025-08-05 20:32:28,782 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.
+2025-08-05 20:32:33,317 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/UnitCommitment.csv successfully saved in pandas dataframe.
+2025-08-05 20:32:49,278 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
+Dropping Nulls.
+Dropping duplicates.

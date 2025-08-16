@@ -1,0 +1,896 @@
+2025-08-05 20:12:53,412 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:12:53,468 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists weather (id varchar(50), date text, hour int, temperature float, humidity float, dew float, apparent_temperature float, precipitation float, rain float, snow float, surface_pressure float, evapotransporation float, wind_speed float, wind_direction float)
+ on the DB.
+2025-08-05 20:12:53,470 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:12:55,644 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/weather.csv
+2025-08-05 20:12:55,649 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:12:55,649 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:21:16,593 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:21:17,028 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists bar (date text, hour int, value varchar(10))
+ on the DB.
+2025-08-05 20:21:17,030 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:21:17,059 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/bartemp.csv
+2025-08-05 20:21:17,061 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:21:17,061 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:21:17,061 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:21:17,110 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:21:17,110 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:21:17,142 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/bar.csv
+2025-08-05 20:21:17,142 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:21:17,143 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:21:17,143 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:21:17,194 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:21:17,212 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists plant_data (id varchar(50), name varchar(100), type varchar(10), UTM text)
+ on the DB.
+2025-08-05 20:21:17,214 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:21:17,229 | src.data.dbconnection | ERROR | dbconnection.py:49 | copy_expert() | Couldint copy the file with query:
+copy plant_data from stdin with delimiter ',' csv header NULL as 'NULL'
+ because the Exception
+COPY from stdin failed: error in .read() call: UnicodeDecodeError 'charmap' codec can't decode byte 0x81 in position 523: character maps to <undefined>
+CONTEXT:  COPY plant_data, line 1
+
+ occurred.
+2025-08-05 20:21:17,230 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:21:17,230 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:21:17,230 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:21:17,275 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:21:17,276 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:21:17,277 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/plant_data.csv
+2025-08-05 20:21:17,278 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:21:17,278 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:21:17,278 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:21:17,323 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:21:27,617 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists plant_temp (id varchar(50), name varchar(100), date text, hour int, temperature float)
+ on the DB.
+2025-08-05 20:21:27,619 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:21:29,186 | src.data.dbconnection | ERROR | dbconnection.py:49 | copy_expert() | Couldint copy the file with query:
+copy plant_temp from stdin with delimiter ',' csv header NULL as 'NULL'
+ because the Exception
+COPY from stdin failed: error in .read() call: UnicodeDecodeError 'charmap' codec can't decode byte 0x81 in position 6430: character maps to <undefined>
+CONTEXT:  COPY plant_temp, line 291292
+
+ occurred.
+2025-08-05 20:21:29,187 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:21:29,188 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:21:29,188 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:21:29,243 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:21:29,243 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:21:29,323 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table plants_mean_temp as (select id, name, date, hour, avg(temperature) as mean_temp from plant_temp group by id, name, date, hour)
+ on the DB.
+2025-08-05 20:21:29,348 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:21:29,349 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:21:29,349 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:21:29,409 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:22:20,001 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists energy (id varchar(50), code varchar(50), name varchar(100), date text, hour int, generation float);
+ on the DB.
+2025-08-05 20:22:20,003 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:22:20,480 | src.data.dbconnection | ERROR | dbconnection.py:49 | copy_expert() | Couldint copy the file with query:
+copy energy from stdin delimiter ',' csv header NULL as 'NULL'
+ because the Exception
+COPY from stdin failed: error in .read() call: UnicodeDecodeError 'charmap' codec can't decode byte 0x81 in position 1026: character maps to <undefined>
+CONTEXT:  COPY energy, line 66358
+
+ occurred.
+2025-08-05 20:22:20,481 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:22:20,482 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:22:20,483 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:22:20,552 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:22:20,553 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:22:20,566 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/energy.csv
+2025-08-05 20:22:20,566 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:22:20,566 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:22:20,568 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:22:20,714 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:23:18,207 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists selleroffer (id varchar(10), name varchar(100), code varchar(10), date text, hour int, declare float)
+ on the DB.
+2025-08-05 20:23:18,210 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:23:28,361 | src.data.dbconnection | ERROR | dbconnection.py:49 | copy_expert() | Couldint copy the file with query:
+copy selleroffer from stdin delimiter ',' csv header NULL as 'NULL'
+ because the Exception
+COPY from stdin failed: error in .read() call: UnicodeDecodeError 'charmap' codec can't decode byte 0x81 in position 2998: character maps to <undefined>
+CONTEXT:  COPY selleroffer, line 1577395
+
+ occurred.
+2025-08-05 20:23:28,362 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:23:28,363 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:23:28,363 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:23:28,450 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:23:28,450 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:23:28,700 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/selleroffer.csv
+2025-08-05 20:23:28,700 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:23:28,701 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:23:28,701 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:23:28,843 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:23:30,368 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists factors (id varchar(50), name varchar(100), code varchar(50), date text, a float, b float);
+ on the DB.
+2025-08-05 20:23:30,370 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:23:30,454 | src.data.dbconnection | ERROR | dbconnection.py:49 | copy_expert() | Couldint copy the file with query:
+copy factors from stdin delimiter ',' csv header NULL as 'NULL'
+ because the Exception
+COPY from stdin failed: error in .read() call: UnicodeDecodeError 'charmap' codec can't decode byte 0x81 in position 6701: character maps to <undefined>
+CONTEXT:  COPY factors, line 43645
+
+ occurred.
+2025-08-05 20:23:30,454 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:23:30,455 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:23:30,455 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:23:30,501 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:23:30,501 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:23:30,508 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/factors.csv
+2025-08-05 20:23:30,508 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:23:30,508 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:23:30,509 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:23:30,555 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:24:26,123 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists status (id varchar(50), code varchar(50), date text, hour int, status varchar(10));
+ on the DB.
+2025-08-05 20:24:26,124 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:24:32,532 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/status.csv
+2025-08-05 20:24:32,536 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:24:32,536 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:24:32,538 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:24:32,636 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:24:32,637 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:24:40,603 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/status.csv
+2025-08-05 20:24:40,603 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:24:40,604 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:24:40,604 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:24:40,913 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:24:41,492 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists load (date text, hour int, forecast float)
+ on the DB.
+2025-08-05 20:24:41,494 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:24:41,551 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/load.csv
+2025-08-05 20:24:41,593 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:24:41,593 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:24:41,594 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:24:41,678 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:24:41,678 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:24:41,727 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/load.csv
+2025-08-05 20:24:41,727 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:24:41,728 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:24:41,728 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:24:41,804 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:25:16,271 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists commitment (id varchar(10), name varchar(100), code varchar(10), date text, hour int, require float)
+ on the DB.
+2025-08-05 20:25:16,273 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:25:19,039 | src.data.dbconnection | ERROR | dbconnection.py:49 | copy_expert() | Couldint copy the file with query:
+copy commitment from stdin delimiter ',' csv header NULL as 'NULL'
+ because the Exception
+COPY from stdin failed: error in .read() call: UnicodeDecodeError 'charmap' codec can't decode byte 0x81 in position 332: character maps to <undefined>
+CONTEXT:  COPY commitment, line 674413
+
+ occurred.
+2025-08-05 20:25:19,040 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:25:19,041 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:25:19,042 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:25:19,124 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:25:19,124 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:25:19,223 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/commitment.csv
+2025-08-05 20:25:19,224 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:25:19,225 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:25:19,225 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:25:19,383 | dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:25:19,383 | dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:25:19,384 | dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:25:19,485 | dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:25:19,485 | dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:25:19,489 | dbconnection | ERROR | dbconnection.py:40 | execute() | Couldnt execute query: 
+create table if not exists operational as (
+    
+    with table0 as (
+        select b.*, a.name
+        from weather as b join plant_temp as a
+        on a.id = b.id and a.date = b.date and a.hour = b.hour
+    ),
+
+    table1 as (
+        select a.*, b.value
+        from table0 as a join bar as b
+        on a.date = b.date and a.hour = b.hour
+    ),
+
+    table2 as (
+        select t.*, l.forecast
+        from table1 as t join load as l
+        on t.date = l.date and t.hour = l.hour
+    ),
+
+    table3 as (
+        select a.*, b.generation, b.code
+        from table2 as a join energy as b
+        on a.id = b.id and a.date = b.date and a.hour = b.hour 
+    ),
+
+    table4 as (
+        select t.*, d.declare
+        from table3 as t join selleroffer as d
+        on t.id = d.id and t.code = d.code and t.date = d.date and t.hour = d.hour
+    ),
+
+    table5 as (
+        select z.*, v.status
+        from table4 as z join status as v
+        on z.id = v.id and z.code = v.code and z.date = v.date and z.hour = v.hour
+    ),
+    
+    table6 as (
+        select m.*, c.require
+        from table5 as m join commitment as c
+        on m.id = c.id and m.code = c.code and m.date = c.date and m.hour = c.hour
+    )
+
+    select * from table6
+)
+
+
+CREATE TABLE if not exists integrated_data AS
+SELECT
+    c.id,
+    c.name,
+    c.code,
+    c.date,
+    c.hour,
+
+    w.temperature,
+    w.humidity,
+    w.dew,
+    w.apparent_temperature,
+    w.precipitation,
+    w.rain,
+    w.snow,
+    w.surface_pressure,
+    w.evapotransporation,
+    w.wind_speed,
+    w.wind_direction,
+
+    b.value,
+    l.forecast,
+    e.generation,
+    s.declare,
+    st.status,
+    c.require
+
+FROM commitment c
+
+LEFT JOIN weather w 
+    ON c.id = w.id AND c.date = w.date AND c.hour = w.hour
+
+LEFT JOIN bar b 
+    ON c.date = b.date AND c.hour = b.hour
+
+LEFT JOIN load l 
+    ON c.date = l.date AND c.hour = l.hour
+
+LEFT JOIN energy e 
+    ON c.id = e.id AND c.code = e.code AND c.date = e.date AND c.hour = e.hour
+
+LEFT JOIN selleroffer s 
+    ON c.id = s.id AND c.code = s.code AND c.date = s.date AND c.hour = s.hour
+
+LEFT JOIN status st 
+    ON c.id = st.id AND c.code = st.code AND c.date = st.date AND c.hour = st.hour;
+
+ on the DB. Exception 
+syntax error at or near "CREATE"
+LINE 49: CREATE TABLE if not exists integrated_data AS
+         ^
+
+ occurred.
+2025-08-05 20:25:19,490 | dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:25:19,501 | dbconnection | ERROR | dbconnection.py:49 | copy_expert() | Couldint copy the file with query:
+copy operational to stdout with delimiter ',' csv header NULL as 'NULL'
+ because the Exception
+relation "operational" does not exist
+
+ occurred.
+2025-08-05 20:25:19,502 | dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:25:19,503 | dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:25:19,503 | dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:27:01,093 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:27:01,532 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists bar (date text, hour int, value varchar(10))
+ on the DB.
+2025-08-05 20:27:01,533 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:27:01,564 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/bartemp.csv
+2025-08-05 20:27:01,566 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:27:01,567 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:27:01,567 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:27:01,609 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:27:01,609 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:27:01,644 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/bar.csv
+2025-08-05 20:27:01,644 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:27:01,645 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:27:01,645 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:27:01,696 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:27:01,704 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists plant_data (id varchar(50), name varchar(100), type varchar(10), UTM text)
+ on the DB.
+2025-08-05 20:27:01,704 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:27:01,718 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/plantdata.csv
+2025-08-05 20:27:01,720 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:27:01,720 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:27:01,721 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:27:01,766 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:27:01,766 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:27:01,768 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/plant_data.csv
+2025-08-05 20:27:01,768 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:27:01,769 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:27:01,769 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:27:01,813 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:27:11,113 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists plant_temp (id varchar(50), name varchar(100), date text, hour int, temperature float)
+ on the DB.
+2025-08-05 20:27:11,113 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:27:13,254 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/temperature.csv
+2025-08-05 20:27:13,259 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:27:13,259 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:27:13,260 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:27:13,328 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:27:13,328 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:27:13,331 | src.data.dbconnection | ERROR | dbconnection.py:40 | execute() | Couldnt execute query: 
+create table plants_mean_temp as (select id, name, date, hour, avg(temperature) as mean_temp from plant_temp group by id, name, date, hour)
+ on the DB. Exception 
+relation "plants_mean_temp" already exists
+
+ occurred.
+2025-08-05 20:27:13,333 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:27:13,334 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:27:13,334 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:27:13,424 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:28:51,684 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:28:52,119 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists bar (date text, hour int, value varchar(10))
+ on the DB.
+2025-08-05 20:28:52,120 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:28:52,157 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/bartemp.csv
+2025-08-05 20:28:52,159 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:28:52,160 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:28:52,160 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:28:52,207 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:28:52,207 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:28:52,227 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/bar.csv
+2025-08-05 20:28:52,228 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:28:52,228 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:28:52,229 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:28:52,277 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:28:52,316 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists plant_data (id varchar(50), name varchar(100), type varchar(10), UTM text)
+ on the DB.
+2025-08-05 20:28:52,318 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:28:52,334 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/plantdata.csv
+2025-08-05 20:28:52,334 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:28:52,335 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:28:52,335 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:28:52,386 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:28:52,387 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:28:52,390 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/plant_data.csv
+2025-08-05 20:28:52,390 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:28:52,391 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:28:52,391 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:28:52,440 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:29:02,476 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists plant_temp (id varchar(50), name varchar(100), date text, hour int, temperature float)
+ on the DB.
+2025-08-05 20:29:02,477 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:29:04,772 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/temperature.csv
+2025-08-05 20:29:04,778 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:29:04,778 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:29:04,779 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:29:04,860 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:29:04,861 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:29:06,497 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table plants_mean_temp as (select id, name, date, hour, avg(temperature) as mean_temp from plant_temp group by id, name, date, hour)
+ on the DB.
+2025-08-05 20:29:06,502 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:29:06,502 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:29:06,502 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:29:06,565 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:29:56,201 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists energy (id varchar(50), code varchar(50), name varchar(100), date text, hour int, generation float);
+ on the DB.
+2025-08-05 20:29:56,203 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:30:08,687 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/energy.csv
+2025-08-05 20:30:08,726 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:30:08,727 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:30:08,727 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:30:08,814 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:30:08,814 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:30:12,761 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/energy.csv
+2025-08-05 20:30:12,762 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:30:12,762 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:30:12,763 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:30:12,923 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:31:07,976 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists selleroffer (id varchar(10), name varchar(100), code varchar(10), date text, hour int, declare float)
+ on the DB.
+2025-08-05 20:31:07,978 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:31:20,274 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/selleroffer.csv
+2025-08-05 20:31:20,278 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:31:20,278 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:31:20,279 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:31:20,331 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:31:20,331 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:31:24,277 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/selleroffer.csv
+2025-08-05 20:31:24,278 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:31:24,278 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:31:24,279 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:31:24,468 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:31:26,076 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists factors (id varchar(50), name varchar(100), code varchar(50), date text, a float, b float);
+ on the DB.
+2025-08-05 20:31:26,077 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:31:26,356 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/factors.csv
+2025-08-05 20:31:26,360 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:31:26,361 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:31:26,361 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:31:26,402 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:31:26,402 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:31:26,524 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/factors.csv
+2025-08-05 20:31:26,524 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:31:26,525 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:31:26,525 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:31:26,589 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:32:19,351 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists status (id varchar(50), code varchar(50), date text, hour int, status varchar(10));
+ on the DB.
+2025-08-05 20:32:19,353 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:32:25,827 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/status.csv
+2025-08-05 20:32:25,829 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:32:25,830 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:32:25,830 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:32:25,926 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:32:25,928 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:32:28,165 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/status.csv
+2025-08-05 20:32:28,166 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:32:28,166 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:32:28,166 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:32:28,426 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:32:28,887 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists load (date text, hour int, forecast float)
+ on the DB.
+2025-08-05 20:32:28,889 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:32:28,937 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/load.csv
+2025-08-05 20:32:28,938 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:32:28,938 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:32:28,938 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:32:28,986 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:32:28,987 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:32:29,008 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/load.csv
+2025-08-05 20:32:29,009 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:32:29,009 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:32:29,010 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:32:29,061 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:32:55,511 | src.data.dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+create table if not exists commitment (id varchar(10), name varchar(100), code varchar(10), date text, hour int, require float)
+ on the DB.
+2025-08-05 20:32:55,512 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:33:00,614 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/temp/commitment.csv
+2025-08-05 20:33:00,628 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:33:00,629 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:33:00,629 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:33:00,699 | src.data.dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:33:00,700 | src.data.dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:33:02,196 | src.data.dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/interim/commitment.csv
+2025-08-05 20:33:02,196 | src.data.dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:33:02,197 | src.data.dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:33:02,197 | src.data.dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:33:02,307 | dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:33:02,307 | dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:33:02,307 | dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:33:02,404 | dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:33:02,404 | dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:33:02,406 | dbconnection | ERROR | dbconnection.py:40 | execute() | Couldnt execute query: 
+create table if not exists operational as (
+    
+    with table0 as (
+        select b.*, a.name
+        from weather as b join plant_temp as a
+        on a.id = b.id and a.date = b.date and a.hour = b.hour
+    ),
+
+    table1 as (
+        select a.*, b.value
+        from table0 as a join bar as b
+        on a.date = b.date and a.hour = b.hour
+    ),
+
+    table2 as (
+        select t.*, l.forecast
+        from table1 as t join load as l
+        on t.date = l.date and t.hour = l.hour
+    ),
+
+    table3 as (
+        select a.*, b.generation, b.code
+        from table2 as a join energy as b
+        on a.id = b.id and a.date = b.date and a.hour = b.hour 
+    ),
+
+    table4 as (
+        select t.*, d.declare
+        from table3 as t join selleroffer as d
+        on t.id = d.id and t.code = d.code and t.date = d.date and t.hour = d.hour
+    ),
+
+    table5 as (
+        select z.*, v.status
+        from table4 as z join status as v
+        on z.id = v.id and z.code = v.code and z.date = v.date and z.hour = v.hour
+    ),
+    
+    table6 as (
+        select m.*, c.require
+        from table5 as m join commitment as c
+        on m.id = c.id and m.code = c.code and m.date = c.date and m.hour = c.hour
+    )
+
+    select * from table6
+)
+
+
+CREATE TABLE if not exists integrated_data AS
+SELECT
+    c.id,
+    c.name,
+    c.code,
+    c.date,
+    c.hour,
+
+    w.temperature,
+    w.humidity,
+    w.dew,
+    w.apparent_temperature,
+    w.precipitation,
+    w.rain,
+    w.snow,
+    w.surface_pressure,
+    w.evapotransporation,
+    w.wind_speed,
+    w.wind_direction,
+
+    b.value,
+    l.forecast,
+    e.generation,
+    s.declare,
+    st.status,
+    c.require
+
+FROM commitment c
+
+LEFT JOIN weather w 
+    ON c.id = w.id AND c.date = w.date AND c.hour = w.hour
+
+LEFT JOIN bar b 
+    ON c.date = b.date AND c.hour = b.hour
+
+LEFT JOIN load l 
+    ON c.date = l.date AND c.hour = l.hour
+
+LEFT JOIN energy e 
+    ON c.id = e.id AND c.code = e.code AND c.date = e.date AND c.hour = e.hour
+
+LEFT JOIN selleroffer s 
+    ON c.id = s.id AND c.code = s.code AND c.date = s.date AND c.hour = s.hour
+
+LEFT JOIN status st 
+    ON c.id = st.id AND c.code = st.code AND c.date = st.date AND c.hour = st.hour;
+
+ on the DB. Exception 
+syntax error at or near "CREATE"
+LINE 49: CREATE TABLE if not exists integrated_data AS
+         ^
+
+ occurred.
+2025-08-05 20:33:02,407 | dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:33:02,409 | dbconnection | ERROR | dbconnection.py:49 | copy_expert() | Couldn't copy the file with query:
+copy operational to stdout with delimiter ',' csv header NULL as 'NULL'
+ because the Exception
+relation "operational" does not exist
+
+ occurred.
+2025-08-05 20:33:02,409 | dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:33:02,410 | dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:33:02,410 | dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:34:54,912 | dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:34:54,912 | dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:34:54,913 | dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:34:54,957 | dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:34:54,957 | dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:34:54,958 | dbconnection | ERROR | dbconnection.py:40 | execute() | Couldnt execute query: 
+create table if not exists operational as (
+    
+    with table0 as (
+        select b.*, a.name
+        from weather as b join plant_temp as a
+        on a.id = b.id and a.date = b.date and a.hour = b.hour
+    ),
+
+    table1 as (
+        select a.*, b.value
+        from table0 as a join bar as b
+        on a.date = b.date and a.hour = b.hour
+    ),
+
+    table2 as (
+        select t.*, l.forecast
+        from table1 as t join load as l
+        on t.date = l.date and t.hour = l.hour
+    ),
+
+    table3 as (
+        select a.*, b.generation, b.code
+        from table2 as a join energy as b
+        on a.id = b.id and a.date = b.date and a.hour = b.hour 
+    ),
+
+    table4 as (
+        select t.*, d.declare
+        from table3 as t join selleroffer as d
+        on t.id = d.id and t.code = d.code and t.date = d.date and t.hour = d.hour
+    ),
+
+    table5 as (
+        select z.*, v.status
+        from table4 as z join status as v
+        on z.id = v.id and z.code = v.code and z.date = v.date and z.hour = v.hour
+    ),
+    
+    table6 as (
+        select m.*, c.require
+        from table5 as m join commitment as c
+        on m.id = c.id and m.code = c.code and m.date = c.date and m.hour = c.hour
+    )
+
+    select * from table6
+)
+
+
+CREATE TABLE if not exists integrated_data AS
+SELECT
+    c.id,
+    c.name,
+    c.code,
+    c.date,
+    c.hour,
+
+    w.temperature,
+    w.humidity,
+    w.dew,
+    w.apparent_temperature,
+    w.precipitation,
+    w.rain,
+    w.snow,
+    w.surface_pressure,
+    w.evapotransporation,
+    w.wind_speed,
+    w.wind_direction,
+
+    b.value,
+    l.forecast,
+    e.generation,
+    s.declare,
+    st.status,
+    c.require
+
+FROM commitment c
+
+LEFT JOIN weather w 
+    ON c.id = w.id AND c.date = w.date AND c.hour = w.hour
+
+LEFT JOIN bar b 
+    ON c.date = b.date AND c.hour = b.hour
+
+LEFT JOIN load l 
+    ON c.date = l.date AND c.hour = l.hour
+
+LEFT JOIN energy e 
+    ON c.id = e.id AND c.code = e.code AND c.date = e.date AND c.hour = e.hour
+
+LEFT JOIN selleroffer s 
+    ON c.id = s.id AND c.code = s.code AND c.date = s.date AND c.hour = s.hour
+
+LEFT JOIN status st 
+    ON c.id = st.id AND c.code = st.code AND c.date = st.date AND c.hour = st.hour;
+
+ on the DB. Exception 
+syntax error at or near "CREATE"
+LINE 49: CREATE TABLE if not exists integrated_data AS
+         ^
+
+ occurred.
+2025-08-05 20:34:54,959 | dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:34:54,960 | dbconnection | ERROR | dbconnection.py:49 | copy_expert() | Couldn't copy the file with query:
+copy operational to stdout with delimiter ',' csv header NULL as 'NULL'
+ because the Exception
+relation "operational" does not exist
+
+ occurred.
+2025-08-05 20:34:54,961 | dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:34:54,961 | dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:34:54,961 | dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:38:15,968 | dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:38:15,968 | dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:38:15,968 | dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:38:16,013 | dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:38:16,013 | dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:38:16,014 | dbconnection | ERROR | dbconnection.py:40 | execute() | Couldnt execute query: 
+create table if not exists operational as (
+    
+    with table0 as (
+        select b.*, a.name
+        from weather as b join plant_temp as a
+        on a.id = b.id and a.date = b.date and a.hour = b.hour
+    ),
+
+    table1 as (
+        select a.*, b.value
+        from table0 as a join bar as b
+        on a.date = b.date and a.hour = b.hour
+    ),
+
+    table2 as (
+        select t.*, l.forecast
+        from table1 as t join load as l
+        on t.date = l.date and t.hour = l.hour
+    ),
+
+    table3 as (
+        select a.*, b.generation, b.code
+        from table2 as a join energy as b
+        on a.id = b.id and a.date = b.date and a.hour = b.hour 
+    ),
+
+    table4 as (
+        select t.*, d.declare
+        from table3 as t join selleroffer as d
+        on t.id = d.id and t.code = d.code and t.date = d.date and t.hour = d.hour
+    ),
+
+    table5 as (
+        select z.*, v.status
+        from table4 as z join status as v
+        on z.id = v.id and z.code = v.code and z.date = v.date and z.hour = v.hour
+    ),
+    
+    table6 as (
+        select m.*, c.require
+        from table5 as m join commitment as c
+        on m.id = c.id and m.code = c.code and m.date = c.date and m.hour = c.hour
+    )
+
+    select * from table6
+)
+
+
+CREATE TABLE if not exists integrated_data AS
+SELECT
+    c.id,
+    c.name,
+    c.code,
+    c.date,
+    c.hour,
+
+    w.temperature,
+    w.humidity,
+    w.dew,
+    w.apparent_temperature,
+    w.precipitation,
+    w.rain,
+    w.snow,
+    w.surface_pressure,
+    w.evapotransporation,
+    w.wind_speed,
+    w.wind_direction,
+
+    b.value,
+    l.forecast,
+    e.generation,
+    s.declare,
+    st.status,
+    c.require
+
+FROM commitment c
+
+LEFT JOIN weather w 
+    ON c.id = w.id AND c.date = w.date AND c.hour = w.hour
+
+LEFT JOIN bar b 
+    ON c.date = b.date AND c.hour = b.hour
+
+LEFT JOIN load l 
+    ON c.date = l.date AND c.hour = l.hour
+
+LEFT JOIN energy e 
+    ON c.id = e.id AND c.code = e.code AND c.date = e.date AND c.hour = e.hour
+
+LEFT JOIN selleroffer s 
+    ON c.id = s.id AND c.code = s.code AND c.date = s.date AND c.hour = s.hour
+
+LEFT JOIN status st 
+    ON c.id = st.id AND c.code = st.code AND c.date = st.date AND c.hour = st.hour;
+
+ on the DB. Exception 
+syntax error at or near "CREATE"
+LINE 49: CREATE TABLE if not exists integrated_data AS
+         ^
+
+ occurred.
+2025-08-05 20:38:16,015 | dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:38:16,018 | dbconnection | ERROR | dbconnection.py:49 | copy_expert() | Couldn't copy the file with query:
+copy operational to stdout with delimiter ',' csv header NULL as 'NULL'
+ because the Exception
+relation "operational" does not exist
+
+ occurred.
+2025-08-05 20:38:16,018 | dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:38:16,018 | dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:38:16,019 | dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:47:45,744 | dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:47:45,744 | dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:47:45,744 | dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.
+2025-08-05 20:47:45,788 | dbconnection | INFO | dbconnection.py:18 | connect() | a user connected to DB.
+2025-08-05 20:47:45,789 | dbconnection | INFO | dbconnection.py:70 | __enter__() | User reconnected to the DB
+2025-08-05 20:47:45,792 | dbconnection | INFO | dbconnection.py:35 | execute() | Successfully execute the query: 
+CREATE TABLE if not exists integrated_data AS
+SELECT
+    c.id,
+    c.name,
+    c.code,
+    c.date,
+    c.hour,
+
+    w.temperature,
+    w.humidity,
+    w.dew,
+    w.apparent_temperature,
+    w.precipitation,
+    w.rain,
+    w.snow,
+    w.surface_pressure,
+    w.evapotransporation,
+    w.wind_speed,
+    w.wind_direction,
+
+    b.value,
+    l.forecast,
+    e.generation,
+    s.declare,
+    st.status,
+    c.require
+
+FROM commitment c
+
+LEFT JOIN weather w 
+    ON c.id = w.id AND c.date = w.date AND c.hour = w.hour
+
+LEFT JOIN bar b 
+    ON c.date = b.date AND c.hour = b.hour
+
+LEFT JOIN load l 
+    ON c.date = l.date AND c.hour = l.hour
+
+LEFT JOIN energy e 
+    ON c.id = e.id AND c.code = e.code AND c.date = e.date AND c.hour = e.hour
+
+LEFT JOIN selleroffer s 
+    ON c.id = s.id AND c.code = s.code AND c.date = s.date AND c.hour = s.hour
+
+LEFT JOIN status st 
+    ON c.id = st.id AND c.code = st.code AND c.date = st.date AND c.hour = st.hour;
+
+ on the DB.
+2025-08-05 20:47:45,792 | dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:47:51,882 | dbconnection | INFO | dbconnection.py:47 | copy_expert() | Successfully copied file U:/ML_project/bargh/data/processed/operation.csv
+2025-08-05 20:47:51,882 | dbconnection | INFO | dbconnection.py:55 | commit() | Commitment successfully applied.
+2025-08-05 20:47:51,883 | dbconnection | INFO | dbconnection.py:27 | close() | Connection to the DB cloesd.
+2025-08-05 20:47:51,883 | dbconnection | INFO | dbconnection.py:78 | __exit__() | User exited from DB.

@@ -1,0 +1,87 @@
+2025-08-05 20:03:18,603 | Crawler | INFO | crawl.py:108 | crawl() | Plants data successfully read from U:/ML_project/bargh/data/raw/PlantData.csv
+2025-08-05 20:03:18,604 | Crawler | INFO | crawl.py:109 | crawl() | Plants to crawl:
+30                      حافظ
+33                    عسلويه
+53        سيکل ترکيبي شيروان
+68           سيکل ترکيبي يزد
+90        سيکل ترکيبي اروميه
+93                     سبلان
+97             شهيد منتظري 1
+101    جنوب اصفهان - چهلستون
+105     شهداي پيروز - بهبهان
+125                    گيلان
+141                       قم
+151    شهداي پاکدشت - دماوند
+152                     پرند
+Name: PlantName, dtype: object
+2025-08-05 20:05:00,758 | Crawler | INFO | crawl.py:108 | crawl() | Plants data successfully read from U:/ML_project/bargh/data/raw/PlantData.csv
+2025-08-05 20:05:00,760 | Crawler | INFO | crawl.py:109 | crawl() | Plants to crawl:
+30                      حافظ
+33                    عسلويه
+53        سيکل ترکيبي شيروان
+68           سيکل ترکيبي يزد
+90        سيکل ترکيبي اروميه
+93                     سبلان
+97             شهيد منتظري 1
+101    جنوب اصفهان - چهلستون
+105     شهداي پيروز - بهبهان
+125                    گيلان
+141                       قم
+151    شهداي پاکدشت - دماوند
+152                     پرند
+Name: PlantName, dtype: object
+2025-08-05 20:05:20,801 | Crawler | INFO | crawl.py:120 | crawl() | Successfully read data from crawling config file
+2025-08-05 20:05:48,895 | Crawler | INFO | crawl.py:108 | crawl() | Plants data successfully read from U:/ML_project/bargh/data/raw/PlantData.csv
+2025-08-05 20:05:48,896 | Crawler | INFO | crawl.py:109 | crawl() | Plants to crawl:
+30                      حافظ
+33                    عسلويه
+53        سيکل ترکيبي شيروان
+68           سيکل ترکيبي يزد
+90        سيکل ترکيبي اروميه
+93                     سبلان
+97             شهيد منتظري 1
+101    جنوب اصفهان - چهلستون
+105     شهداي پيروز - بهبهان
+125                    گيلان
+141                       قم
+151    شهداي پاکدشت - دماوند
+152                     پرند
+Name: PlantName, dtype: object
+2025-08-05 20:08:24,321 | Crawler | INFO | crawl.py:108 | crawl() | Plants data successfully read from U:/ML_project/bargh/data/raw/PlantData.csv
+2025-08-05 20:08:24,323 | Crawler | INFO | crawl.py:109 | crawl() | Plants to crawl:
+30                      حافظ
+33                    عسلويه
+53        سيکل ترکيبي شيروان
+68           سيکل ترکيبي يزد
+90        سيکل ترکيبي اروميه
+93                     سبلان
+97             شهيد منتظري 1
+101    جنوب اصفهان - چهلستون
+105     شهداي پيروز - بهبهان
+125                    گيلان
+141                       قم
+151    شهداي پاکدشت - دماوند
+152                     پرند
+Name: PlantName, dtype: object
+2025-08-05 20:08:32,066 | Crawler | INFO | crawl.py:120 | crawl() | Successfully read data from crawling config file
+2025-08-05 20:08:59,917 | Crawler | INFO | crawl.py:140 | crawl() | Data with latitude: 29.368207 and longitude: 52.613139 added to the dataframe
+2025-08-05 20:09:17,488 | Crawler | INFO | crawl.py:140 | crawl() | Data with latitude: 27.407021288451556 and longitude: 52.78167197116481 added to the dataframe
+2025-08-05 20:09:48,962 | Crawler | INFO | crawl.py:140 | crawl() | Data with latitude: 37.33886694354433 and longitude:  58.053468876941174 added to the dataframe
+2025-08-05 20:10:51,730 | Crawler | INFO | crawl.py:140 | crawl() | Data with latitude: 31.945503 and longitude: 54.057056 added to the dataframe
+2025-08-05 20:11:02,587 | Crawler | INFO | crawl.py:140 | crawl() | Data with latitude: 37.348352 and longitude: 45.266379 added to the dataframe
+2025-08-05 20:11:15,054 | Crawler | INFO | crawl.py:140 | crawl() | Data with latitude: 38.533747 and longitude: 48.196761 added to the dataframe
+2025-08-05 20:11:25,390 | Crawler | INFO | crawl.py:140 | crawl() | Data with latitude: 32.799953 and longitude: 51.498319 added to the dataframe
+2025-08-05 20:11:33,675 | Crawler | INFO | crawl.py:140 | crawl() | Data with latitude: 32.257282 and longitude: 51.526059 added to the dataframe
+2025-08-05 20:12:00,889 | Crawler | INFO | crawl.py:140 | crawl() | Data with latitude: 30.7200415 and longitude: 50.0750358 added to the dataframe
+2025-08-05 20:12:07,791 | Crawler | INFO | crawl.py:140 | crawl() | Data with latitude: 37.181512 and longitude: 49.411059 added to the dataframe
+2025-08-05 20:12:37,609 | Crawler | INFO | crawl.py:140 | crawl() | Data with latitude: 34.581283 and longitude: 50.754571 added to the dataframe
+2025-08-05 20:12:43,770 | Crawler | INFO | crawl.py:140 | crawl() | Data with latitude: 35.41242609607455 and longitude:  51.85164607724801 added to the dataframe
+2025-08-05 20:12:48,474 | Crawler | INFO | crawl.py:140 | crawl() | Data with latitude: 35.4624348 and longitude: 51.0179973 added to the dataframe
+2025-08-05 20:12:48,486 | Crawler | INFO | crawl.py:40 | prepare_datetime_columns() | Date column converted to datetime type
+2025-08-05 20:12:49,189 | Crawler | INFO | crawl.py:44 | prepare_datetime_columns() | Create the date and time columns from date column
+2025-08-05 20:12:49,328 | Crawler | INFO | crawl.py:47 | prepare_datetime_columns() | Time column corrected
+2025-08-05 20:12:49,353 | Crawler | INFO | crawl.py:49 | prepare_datetime_columns() | Column date deleted
+2025-08-05 20:12:49,353 | Crawler | INFO | crawl.py:50 | prepare_datetime_columns() | Date column converted from Ad to Persian
+2025-08-05 20:12:49,451 | Crawler | INFO | crawl.py:148 | crawl() | 637 number of data removed because of being null.
+2025-08-05 20:12:49,452 | Crawler | INFO | crawl.py:150 | crawl() | Reorder the columns as the id, date and time comes to first.
+2025-08-05 20:12:53,323 | Crawler | INFO | crawl.py:156 | crawl() | Number of columns of dataframe is: 14
