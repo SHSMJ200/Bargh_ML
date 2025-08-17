@@ -4,8 +4,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
+#from tensorflow.keras.models import Sequential
+#from tensorflow.keras.layers import Dense
 
 from logs.logger import CustomLogger
 
@@ -111,7 +111,7 @@ class Random_Forest(Model):
         except Exception as e:
             logger.error(f"Couldn't train Random Forest model. Exception below occurred.\n{e}\n")
 
-
+'''
 class Neural_network(Model):
     def __init__(self):
         super().__init__()
@@ -135,3 +135,4 @@ class Neural_network(Model):
 
         except Exception as e:
             logger.error(f"Couldn't train Neural Network model. Exception below occurred.\n{e}\n")
+'''

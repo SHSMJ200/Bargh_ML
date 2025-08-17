@@ -8,12 +8,12 @@ import pandas as pd
 from data_selector import Data_selector
 from feature_selector import Feature_selector
 from logs.logger import CustomLogger
-from models import Random_Forest, Linear, Neural_network
+from models import Random_Forest, Linear
 
 logger = CustomLogger(name="model_main", log_file_name='model_main.log').get_logger()
 
 if __name__ == "__main__":
-    csv_path = os.path.join(project_root, "data", "processed", "with_prediction.csv")
+    csv_path = os.path.join(project_root, "data", "processed", "integrated.csv")
     df = pd.read_csv(csv_path, encoding='utf-8')
 
     data_selector = Data_selector(df)
@@ -27,13 +27,13 @@ if __name__ == "__main__":
     depth = 37
 
     # model = Neural_network()
-    # model = Random_Forest()
-    model = Linear()
+    model = Random_Forest()
+    #model = Linear()
 
     model.scale_and_split_data(X, y)
 
-    # model.fit(n_estimators=n_est, max_depth=depth)
-    model.fit()
+    model.fit(n_estimators=n_est, max_depth=depth)
+    #model.fit()
 
     mse_train_actual, mse_test_actual = model.compute_mse_error()
     print(f"Train Error: {mse_train_actual}%")

@@ -12,6 +12,8 @@ class Data_selector:
         df = self.df
         df = df[((df['status'] == 'SO') | (df['status'] == 'LF1'))]
         df = df[(df['value'] == 'P')]
+        
+        
 
         logger.debug(f"Rows of data selected successfully!")
 
