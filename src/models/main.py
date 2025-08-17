@@ -23,7 +23,7 @@ if __name__ == "__main__":
     data_selector.create_delay("temperature", 2)
     data_selector.create_delay("temperature", 3)
     df_modified = data_selector.select()
-
+    
     feature_selector = Feature_selector(df_modified, "generation")
     feature_to_be_dropped = ['id', 'hour', 'date', 'status', 'declare']
     X, y = feature_selector.select(feature_to_be_dropped)
@@ -35,7 +35,6 @@ if __name__ == "__main__":
     # model.scale_and_split_data(X, y)
     # model.fit()
 
-    model = Random_Forest()
     # model = Neural_network()
     model = Random_Forest()
     #model = Linear()
