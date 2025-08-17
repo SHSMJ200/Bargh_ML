@@ -8,7 +8,7 @@ class Data_selector:
     def __init__(self, df: pd.DataFrame):
         self.df = df
 
-    def select(self, m_in_summer):
+    def select(self, m_in_summer=True):
         df = self.df
         df = df[((df['status'] == 'SO') | (df['status'] == 'LF1'))]
 

@@ -97,7 +97,7 @@ class UnitPlotter:
             fig.add_trace(go.Scatter(
                 x=sample['datetime'],
                 y=sample[feature],
-                mode='markers+lines',
+                mode='lines',
                 name=f"{feature}-{name}-{code}",
                 marker=color_marker,
                 line=dict(color=color, dash="solid"),

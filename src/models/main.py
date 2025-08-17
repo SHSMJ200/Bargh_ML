@@ -38,25 +38,14 @@ if __name__ == "__main__":
     n_est = 100
     depth = 45
 
-    model = Random_Forest()
+    #model = Random_Forest()
+    #model.scale_and_split_data(X, y)
+    #model.fit(n_estimators=n_est, max_depth=depth)
+    model = Linear()
     model.scale_and_split_data(X, y)
-    model.fit(n_estimators=n_est, max_depth=depth)
-
-
-    # model = Linear()
-    # model.scale_and_split_data(X, y)
-    # model.fit()
-
+    model.fit()
+    
     logger.info(f"Model has been trained successfully")
-    # model = Neural_network()
-    model = Random_Forest()
-    #model = Linear()
-
-    model.scale_and_split_data(X, y)
-    model.fit(n_estimators=n_est, max_depth=depth)
-
-    model.fit(n_estimators=n_est, max_depth=depth)
-    #model.fit()
 
     mse_train_actual, mse_test_actual = model.compute_mse_error()
     print(f"Train Error: {mse_train_actual}%")
