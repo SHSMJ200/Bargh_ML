@@ -8,16 +8,15 @@ class Data_selector:
     def __init__(self, df: pd.DataFrame):
         self.df = df
 
-    def create_delay(self, feature, n_delay):
-        new_feature = f"{feature}_with_{n_delay}_delay"
-        self.df[new_feature] = self.df[feature].shift(n_delay)
-
-    def select(self):
+    def select(self, m_in_summer):
         df = self.df
         df = df[((df['status'] == 'SO') | (df['status'] == 'LF1'))]
-        df = df[(df['value'] == 'P')]
-        
-        
+
+        if m_in_summer:
+            peak_condition = (df['value'] == 'P') | (df['value'] == 'M') & (df['season'] == 'summer')
+            df = df[peak_condition]
+        else:
+            df = df[df['value'] == 'P']
 
         logger.debug(f"Rows of data selected successfully!")
 
