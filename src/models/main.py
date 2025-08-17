@@ -27,7 +27,7 @@ if __name__ == "__main__":
     data_selector = Data_selector(feature_adder.df)
     df_modified = data_selector.select(m_in_summer=True)
     logger.info(f"Rows have been selected successfully")
-
+    
     feature_selector = Feature_selector(df_modified, "generation")
     # feature_to_be_dropped = ['id', 'hour', 'date', 'status', 'declare']
     feature_to_be_dropped = ['id', 'date', 'declare', 'dew', 'apparent_temperature', 'rain', 'snow',
@@ -56,6 +56,15 @@ if __name__ == "__main__":
     # model.fit(n_estimators=n_est, max_depth=depth)
 
     logger.info(f"Model has been trained successfully")
+    # model = Neural_network()
+    model = Random_Forest()
+    #model = Linear()
+
+    model.scale_and_split_data(X, y)
+    model.fit(n_estimators=n_est, max_depth=depth)
+
+    model.fit(n_estimators=n_est, max_depth=depth)
+    #model.fit()
 
     mse_train_actual, mse_test_actual = model.compute_mse_error()
     print(f"Train Error: {mse_train_actual}%")
