@@ -19,9 +19,9 @@ if __name__ == "__main__":
 
     feature_adder = Feature_adder(df)
     feature_adder.add_season()
-    feature_adder.create_feature_with_delay("temperature", 1)
-    feature_adder.create_feature_with_delay("temperature", 2)
-    feature_adder.create_feature_with_delay("temperature", 3)
+    # feature_adder.create_feature_with_delay("temperature", 1)
+    # feature_adder.create_feature_with_delay("temperature", 2)
+    # feature_adder.create_feature_with_delay("temperature", 3)
     logger.info(f"Some features have been added successfully")
 
     data_selector = Data_selector(feature_adder.df)
@@ -29,9 +29,9 @@ if __name__ == "__main__":
     logger.info(f"Rows have been selected successfully")
     
     feature_selector = Feature_selector(df_modified, "generation")
-    # feature_to_be_dropped = ['id', 'hour', 'date', 'status', 'declare']
-    feature_to_be_dropped = ['id', 'date', 'declare', 'dew', 'apparent_temperature', 'rain', 'snow',
-                             'evapotransporation', 'wind_direction', 'require']
+    feature_to_be_dropped = ['id', 'date', 'declare', 'require', 'dew', 'apparent_temperature', 'rain', 'snow',
+                             'evapotransporation', 'wind_direction']
+
     X, y = feature_selector.select(feature_to_be_dropped)
     logger.info(f"Some features have been dropped successfully")
 
@@ -56,15 +56,6 @@ if __name__ == "__main__":
     # model.fit(n_estimators=n_est, max_depth=depth)
 
     logger.info(f"Model has been trained successfully")
-    # model = Neural_network()
-    model = Random_Forest()
-    #model = Linear()
-
-    model.scale_and_split_data(X, y)
-    model.fit(n_estimators=n_est, max_depth=depth)
-
-    model.fit(n_estimators=n_est, max_depth=depth)
-    #model.fit()
 
     mse_train_actual, mse_test_actual = model.compute_mse_error()
     print(f"Train Error: {mse_train_actual}%")
