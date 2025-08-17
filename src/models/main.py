@@ -38,4 +38,3 @@ if __name__ == "__main__":
     mse_train_actual, mse_test_actual = model.compute_mse_error()
     print(f"Train Error: {mse_train_actual}%")
     print(f"Test Error: {mse_test_actual}%")
-
