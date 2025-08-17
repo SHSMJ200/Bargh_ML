@@ -11,6 +11,7 @@
 * Add column color to plot better
 * Training one model for all plants or one for each plant??
 * Run Neural Network
+* what is "require"?
 
   🟨 Doing
   ==========================

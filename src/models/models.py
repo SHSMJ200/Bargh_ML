@@ -4,9 +4,10 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-#from tensorflow.keras.models import Sequential
-#from tensorflow.keras.layers import Dense
-
+'''
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+'''
 from logs.logger import CustomLogger
 
 logger = CustomLogger(name="models", log_file_name='models.log').get_logger()
