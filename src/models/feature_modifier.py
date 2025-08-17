@@ -1,3 +1,4 @@
+from src.root import get_root
 import pandas as pd
 from logs.logger import CustomLogger
 
@@ -33,7 +34,10 @@ class Feature_adder:
 
     def create_feature_with_delay(self, feature, n_delay):
         new_feature = f"{feature}_with_{n_delay}_delay"
-        self.df[new_feature] = self.df[feature].shift(n_delay)
+        self.df = self.df.sort_values(by=['code', 'name', 'date', 'hour'])
+        self.df[new_feature] = self.df.groupby(['code', 'name'])[feature].shift(n_delay)
+        # self.df.to_csv(get_root() +'/data/processed/with_temp_delay.csv', index=False)
+
         logger.debug(f"A new column created: {feature} with {n_delay} hours delay")
 
     def add_season(self):

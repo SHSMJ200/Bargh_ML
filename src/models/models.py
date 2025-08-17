@@ -1,9 +1,14 @@
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
 from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+import xgboost as xgb
+
+
 '''
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
@@ -91,6 +96,22 @@ class Linear(Model):
             logger.error(f"Couldn't train Linear model. Exception below occurred.\n{e}\n")
 
 
+class Polynomial(Model):
+    def __init__(self):
+        super().__init__()
+
+    def fit(self, degree=2):
+        try:
+            model = make_pipeline(PolynomialFeatures(degree), LinearRegression())
+            model.fit(self.X_train, self.y_train)
+            self.model_info = dict(model.get_params().items())
+            self.model = model
+            logger.debug(msg=f"Model trained successfully.")
+
+        except Exception as e:
+            logger.error(f"Couldn't train Polynomial(d={degree}) model. Exception below occurred.\n{e}\n")
+
+
 class Random_Forest(Model):
     def __init__(self):
         super().__init__()
@@ -111,6 +132,31 @@ class Random_Forest(Model):
 
         except Exception as e:
             logger.error(f"Couldn't train Random Forest model. Exception below occurred.\n{e}\n")
+
+
+class XGBoost(Model):
+    def __init__(self):
+        super().__init__()
+
+    def fit(self, n_estimators=100, lr=0.1, max_depth=3):
+        try:
+            model = (xgb.XGBRegressor
+                     (objective='reg:squarederror', n_estimators=n_estimators, learning_rate=lr, max_depth=max_depth))
+
+            model.fit(self.X_train, self.y_train)
+
+            self.model_info = {
+                "n_estimator": n_estimators,
+                "depth": max_depth,
+                "learning_rate": lr
+            }
+            self.model = model
+
+            logger.debug(msg=f"Model trained successfully.")
+
+        except Exception as e:
+            logger.error(f"Couldn't train XGBoost model. Exception below occurred.\n{e}\n")
+
 
 '''
 class Neural_network(Model):

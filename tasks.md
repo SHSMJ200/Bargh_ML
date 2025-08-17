@@ -15,6 +15,7 @@
 * Add change point detection and choose the training data better
 * Pay attention to affecting with delay. For example: temperature.
 * Check mse_computer
+* how about generation with delay
 
   🟥 Done
   ==========================

@@ -8,7 +8,7 @@ import pandas as pd
 from data_selector import Data_selector
 from feature_modifier import Feature_selector, Feature_adder
 from logs.logger import CustomLogger
-from models import Random_Forest, Linear
+from models import Random_Forest, Linear, Polynomial, XGBoost
 
 logger = CustomLogger(name="model_main", log_file_name='model_main.log').get_logger()
 
@@ -33,19 +33,27 @@ if __name__ == "__main__":
     feature_to_be_dropped = ['id', 'date', 'declare', 'dew', 'apparent_temperature', 'rain', 'snow',
                              'evapotransporation', 'wind_direction', 'require']
     X, y = feature_selector.select(feature_to_be_dropped)
-    logger.info(f"Features have been dropped successfully")
+    logger.info(f"Some features have been dropped successfully")
 
     n_est = 100
-    depth = 45
-
+    depth = 30
     model = Random_Forest()
     model.scale_and_split_data(X, y)
     model.fit(n_estimators=n_est, max_depth=depth)
 
-
     # model = Linear()
     # model.scale_and_split_data(X, y)
     # model.fit()
+
+    # model = Polynomial()
+    # model.scale_and_split_data(X, y)
+    # model.fit()
+
+    # n_est = 200
+    # depth = 15
+    # model = XGBoost()
+    # model.scale_and_split_data(X, y)
+    # model.fit(n_estimators=n_est, max_depth=depth)
 
     logger.info(f"Model has been trained successfully")
 
