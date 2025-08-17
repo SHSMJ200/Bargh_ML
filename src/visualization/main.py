@@ -1,6 +1,7 @@
-import sys,os
+import sys, os
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = current_dir[:current_dir.find("src")-1]
+project_root = current_dir[:current_dir.find("src") - 1]
 sys.path.insert(0, project_root)
 
 import pandas as pd
@@ -22,4 +23,3 @@ if __name__ == "__main__":
         up.temperature_and_generation_over_time(name=row["name"], code=row["code"])
         up.generation_over_time(name=row["name"], code=row["code"])
         up.prediction_and_generation_over_time(name=row["name"], code=row["code"])
-
