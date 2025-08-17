@@ -1,3 +1,4 @@
+from src.root import get_root
 import yaml
 import psycopg2
 from logs.logger import CustomLogger
@@ -7,7 +8,7 @@ logger = CustomLogger(__name__, log_file_name='database.log').get_logger()
 class Database:
     def __init__(self):
         self.connection_parameters = {
-            key: value for key, value in yaml.load(open('U:/ML_project/bargh/configs/database.yaml'), Loader=yaml.SafeLoader).items()
+            key: value for key, value in yaml.load(open(get_root()  + '/configs/database.yaml'), Loader=yaml.SafeLoader).items()
             }
         self.connection = None
     

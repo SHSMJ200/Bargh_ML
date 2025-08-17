@@ -1,3 +1,4 @@
+from src.root import get_root
 import openmeteo_requests
 import pandas as pd
 import requests_cache
@@ -11,7 +12,7 @@ logger = CustomLogger('Crawler', log_file_name='crawler.log').get_logger()
 
 db = Database()
 
-feature_dict = yaml.load(open('U:/ML_project/bargh/configs/tables_columns.yaml'), Loader=yaml.SafeLoader)
+feature_dict = yaml.load(open(get_root()  + '/configs/tables_columns.yaml'), Loader=yaml.SafeLoader)
 
 
 def get_innermost_dict(nested_dict: dict):
@@ -30,7 +31,7 @@ def get_innermost_dict(nested_dict: dict):
 
 
 def get_plants():
-    data = pd.read_csv('U:/ML_project/bargh/data/raw/PlantsTemperature_View.csv')
+    data = pd.read_csv(get_root()  + '/data/raw/PlantsTemperature_View.csv')
     plants = list(map(str, list(data['PowerPlantCode'].drop_duplicates())))
     return plants
 
@@ -112,7 +113,7 @@ class HistoryCrawler(Crawler):
             if do_continue == "no":
                 return None
 
-            with open('U:/ML_project/bargh/configs/crawling.yaml', 'r') as file:
+            with open(get_root()  + '/configs/crawling.yaml', 'r') as file:
                 data = yaml.safe_load(file)
                 url = data['url-historical']
                 hourly_features = data['hourly']
@@ -149,7 +150,7 @@ class HistoryCrawler(Crawler):
 
             logger.debug(msg=f"Reorder the columns as the id, date and time comes to first.")
 
-            file_path = 'U:/ML_project/bargh/data/interim/weather.csv'
+            file_path = get_root()  + '/data/interim/weather.csv'
 
             data.to_csv(file_path, index=False)
 
@@ -185,7 +186,7 @@ class ForecastCrawler(Crawler):
 
             logger.debug(msg=f'Plants data successfully read from {self.file}')
 
-            with open('U:/ML_project/bargh/configs/crawling.yaml', 'r') as file:
+            with open(get_root()  + '/configs/crawling.yaml', 'r') as file:
                 data = yaml.safe_load(file)
                 url = data['url-forecast']
                 hourly_features = data['hourly']
@@ -219,7 +220,7 @@ class ForecastCrawler(Crawler):
 
             logger.debug(msg=f"Reorder the columns as the id, date and time comes to first.")
 
-            file_path = 'U:/ML_project/bargh/data/interim/weather-forecast.csv'
+            file_path = get_root()  + '/data/interim/weather-forecast.csv'
 
             data.to_csv(file_path, index=False)
 

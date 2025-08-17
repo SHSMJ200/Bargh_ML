@@ -1,3 +1,4 @@
+import os
 import logging
 from logging.handlers import RotatingFileHandler
 import coloredlogs
@@ -9,7 +10,8 @@ class CustomLogger:
         self.logger.setLevel(logging.DEBUG)
         self.logger.propagate = False
 
-        log_file_path = "U:/ML_project/bargh/logs/" + log_file_name
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        log_file_path = current_dir + log_file_name
 
         if not self.logger.handlers:
             file_handler = RotatingFileHandler(log_file_path, mode='a', maxBytes=5 * 1024 * 1024, backupCount=3,

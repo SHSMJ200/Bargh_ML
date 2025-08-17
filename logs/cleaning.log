@@ -1,4 +1,4 @@
-2025-08-05 20:21:16,628 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project/bargh/data/raw/LowMiddlePeakLoadHours_View.csv successfully saved in pandas dataframe.
+2025-08-05 20:21:16,628 | cleaning.data_cleaning | INFO | data_cleaning.py:46 | clean() | U:/ML_project//data/raw/LowMiddlePeakLoadHours_View.csv successfully saved in pandas dataframe.
 2025-08-05 20:21:16,953 | cleaning.data_cleaning | INFO | data_cleaning.py:78 | clean() | Actions below applied successfully:
 Dropping Nulls.
 Dropping duplicates.

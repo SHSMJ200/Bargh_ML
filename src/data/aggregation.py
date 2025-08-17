@@ -1,3 +1,4 @@
+from src.root import get_root
 import yaml
 from psycopg2 import Error as Error
 
@@ -16,7 +17,7 @@ class Aggregator:
         db.connect()
         db.__exit__()
         self.logger = CustomLogger(__name__, log_file_name=f'aggregation({name}).log').get_logger()
-        self.query_path = 'U:/ML_project/bargh/src/data/queries/'
+        self.query_path = get_root()  + '/src/data/queries/'
 
     def integrated_aggregation(self):
         try:

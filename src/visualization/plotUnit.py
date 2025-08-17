@@ -1,3 +1,4 @@
+from src.root import get_root
 import os
 
 import matplotlib
@@ -71,30 +72,37 @@ class UnitPlotter:
         self.df = df
 
     def generation_over_time(self, name, code):
-        self.features_over_time(name, code, ["generation"])
+        self.features_over_time(name, code, ["generation"], ["red"])
 
     def prediction_and_generation_over_time(self, name, code):
-        self.features_over_time(name, code, ["prediction", "generation"])
+        self.features_over_time(name, code, ["prediction", "generation"], ["blue", "red"])
 
     def temperature_and_generation_over_time(self, name, code):
-        self.features_over_time(name, code, ["temperature", "generation"])
+        self.features_over_time(name, code, ["temperature", "generation"], ["blue", "red"])
 
-    def features_over_time(self, name, code, features_list):
+    def features_over_time(self, name, code, features, colors,flag_marker=False):
+        
         sample = self.df.loc[(self.df['name'] == name) & (self.df['code'] == code)]
         sample = sample.sort_values(by='datetime')
-        features_string = "_and_".join(features_list)
+        features_string = "_and_".join(features)
 
         fig = go.Figure()
-
-        for feature in features_list:
+        
+        for color,feature in zip(colors, features):
+            
+            color_marker = None
+            if feature == "generation" and flag_marker:      
+                color_marker=dict(color=['black' if is_good_pick else 'red' for is_good_pick in sample["is_good_pick"]], size=5)     
+               
             fig.add_trace(go.Scatter(
                 x=sample['datetime'],
-                y=sample[feature],
-                mode="lines",
-                name=f"{feature}",
-                line=dict(dash="solid"),
+                y=sample[feature], #generation
+                mode='markers+lines',
+                name=f"{feature}-{name}-{code}",
+                marker=color_marker,
+                line=dict(color=color, dash="solid"),
                 legendgroup=str(name),
-                hovertemplate=f"Label: {name}<br>{feature}: %{{y}}<br>Time: %{{x}}<extra></extra>"
+                hovertemplate=f"Label: {name}<br> feature : %{{y}}<br>Time: %{{x}}<extra></extra>"
             ))
 
         fig.update_layout(
@@ -104,5 +112,5 @@ class UnitPlotter:
             hovermode='x unified'
         )
 
-        project_root = "U:/ML_project/bargh/"
-        fig.write_html(f"{project_root}src/visualization/unit_figs/{features_string}_over_time/{name}-{code}.html")
+        project_root = get_root()
+        fig.write_html(f"{project_root}/src/visualization/unit_figs/{features_string}_over_time/{name}-{code}.html")
