@@ -1,6 +1,7 @@
-import sys,os
+import sys, os
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = current_dir[:current_dir.find("src")-1]
+project_root = current_dir[:current_dir.find("src") - 1]
 sys.path.insert(0, project_root)
 
 import pandas as pd
@@ -8,7 +9,6 @@ from data_selector import Data_selector
 from feature_selector import Feature_selector
 from logs.logger import CustomLogger
 from models import Random_Forest, Linear, Neural_network
-
 
 logger = CustomLogger(name="model_main", log_file_name='model_main.log').get_logger()
 

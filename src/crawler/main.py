@@ -1,6 +1,7 @@
-import sys,os
+import sys, os
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = current_dir[:current_dir.find("src")-1]
+project_root = current_dir[:current_dir.find("src") - 1]
 sys.path.insert(0, project_root)
 
 from crawl import HistoryCrawler, ForecastCrawler
