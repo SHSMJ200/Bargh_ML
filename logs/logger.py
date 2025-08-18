@@ -11,7 +11,8 @@ class CustomLogger:
         self.logger.propagate = False
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        log_file_path = current_dir + log_file_name
+        log_file_path = os.path.join(current_dir,log_file_name)
+        print(log_file_path)
 
         if not self.logger.handlers:
             file_handler = RotatingFileHandler(log_file_path, mode='a', maxBytes=5 * 1024 * 1024, backupCount=3,
