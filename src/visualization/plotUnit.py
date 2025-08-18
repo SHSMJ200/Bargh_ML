@@ -82,24 +82,24 @@ class UnitPlotter:
 
     def temperature_and_generation_by_dot_over_time(self, name, code):
         self.features_over_time(name, code, ["temperature", "generation"], ["blue", "red"], flag_marker=True)
-    
-    def features_over_time(self, name, code, features, colors,flag_marker=False):
-        
+
+    def features_over_time(self, name, code, features, colors, flag_marker=False):
+
         sample = self.df.loc[(self.df['name'] == name) & (self.df['code'] == code)]
         sample = sample.sort_values(by='datetime')
         features_string = "_and_".join(features)
 
         fig = go.Figure()
-        
-        for color,feature in zip(colors, features):
-            
+
+        for color, feature in zip(colors, features):
+
             color_marker = None
             mode = 'lines'
             if feature == "generation" and flag_marker:
-                color_pick = {0:"red",1:"black",2:"blue"}      
-                color_marker=dict(color=[color_pick[value] for value in sample["is_good_pick"]], size=5)     
+                color_pick = {0: "red", 1: "black", 2: "blue"}
+                color_marker = dict(color=[color_pick[value] for value in sample["is_good_pick"]], size=5)
                 mode = 'lines+markers'
-            
+
             fig.add_trace(go.Scatter(
                 x=sample['datetime'],
                 y=sample[feature],
@@ -119,6 +119,5 @@ class UnitPlotter:
         )
 
         project_root = get_root()
-        folder = f"{features_string}_over_time"
-        if flag_marker : folder = f"{features_string}_flag_marker_over_time"
+        folder = f"{features_string}_flag_marker_over_time" if flag_marker else f"{features_string}_over_time"
         fig.write_html(f"{project_root}/src/visualization/unit_figs/{folder}/{name}-{code}.html")

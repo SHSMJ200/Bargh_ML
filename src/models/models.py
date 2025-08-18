@@ -1,13 +1,11 @@
-import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import make_pipeline
-from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import xgboost as xgb
-
 
 '''
 from tensorflow.keras.models import Sequential
@@ -42,17 +40,17 @@ class Model:
         self.y_train = None
         self.X_train = None
 
-    def compute_mse_error(self):
+    def compute_r2_score(self):
         y_pred_test = self.model.predict(self.X_test)
         y_pred_train = self.model.predict(self.X_train)
         y_pred_test_actual = self.scaler_y.inverse_transform(y_pred_test.reshape(-1, 1)).ravel()
         y_pred_train_actual = self.scaler_y.inverse_transform(y_pred_train.reshape(-1, 1)).ravel()
         y_test_actual = self.scaler_y.inverse_transform(self.y_test.reshape(-1, 1)).ravel()
         y_train_actual = self.scaler_y.inverse_transform(self.y_train.reshape(-1, 1)).ravel()
-        mse_test_actual = (mean_absolute_error(y_test_actual, y_pred_test_actual) / np.mean(y_test_actual)) * 100
-        mse_train_actual = (mean_absolute_error(y_train_actual, y_pred_train_actual) / np.mean(y_train_actual)) * 100
+        r2_score_test = r2_score(y_test_actual, y_pred_test_actual) * 100
+        r2_score_train = r2_score(y_train_actual, y_pred_train_actual) * 100
 
-        return mse_train_actual, mse_test_actual
+        return r2_score_train, r2_score_test
 
     def scale_and_split_data(self, X, y, test_size=0.2, random_state=42):
         x_scaled, scaler_x = scale(X)
@@ -138,12 +136,18 @@ class XGBoost(Model):
     def __init__(self):
         super().__init__()
 
-    def fit(self, n_estimators=100, lr=0.1, max_depth=3):
+    def fit(self, n_estimators=100, max_depth=3, lr=0.1):
         try:
             model = (xgb.XGBRegressor
                      (objective='reg:squarederror', n_estimators=n_estimators, learning_rate=lr, max_depth=max_depth))
 
             model.fit(self.X_train, self.y_train)
+
+            # explainer = shap.Explainer(model)
+            #
+            # shap_values = explainer(self.X_test)
+            #
+            # shap.summary_plot(shap_values, self.X_test)
 
             self.model_info = {
                 "n_estimator": n_estimators,

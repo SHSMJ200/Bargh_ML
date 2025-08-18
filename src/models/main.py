@@ -19,27 +19,26 @@ if __name__ == "__main__":
 
     feature_adder = Feature_adder(df)
     feature_adder.add_season()
-    # feature_adder.create_feature_with_delay("temperature", 1)
-    # feature_adder.create_feature_with_delay("temperature", 2)
-    # feature_adder.create_feature_with_delay("temperature", 3)
+    feature_adder.create_feature_with_delay("temperature", 3)
+    feature_adder.create_feature_with_delay("generation", 1)
     logger.info(f"Some features have been added successfully")
 
     data_selector = Data_selector(feature_adder.df)
     df_modified = data_selector.select(m_in_summer=True)
     logger.info(f"Rows have been selected successfully")
-    
-    feature_selector = Feature_selector(df_modified, "generation")
-    feature_to_be_dropped = ['id', 'date', 'declare', 'require', 'dew', 'apparent_temperature', 'rain', 'snow',
-                             'evapotransporation', 'wind_direction']
 
-    X, y = feature_selector.select(feature_to_be_dropped)
+    feature_selector = Feature_selector(df_modified, "generation")
+    feature_to_be_dropped = ['id', 'date', 'declare', 'require']
+    less_important_feature = ['dew', 'apparent_temperature', 'precipitation', 'rain', 'snow',
+                              'evapotransporation', 'wind_speed', 'wind_direction']
+    X, y = feature_selector.select(feature_to_be_dropped + less_important_feature)
     logger.info(f"Some features have been dropped successfully")
 
-    n_est = 100
-    depth = 30
-    model = Random_Forest()
-    model.scale_and_split_data(X, y)
-    model.fit(n_estimators=n_est, max_depth=depth)
+    # n_est = 100
+    # depth = 30
+    # model = Random_Forest()
+    # model.scale_and_split_data(X, y)
+    # model.fit(n_estimators=n_est, max_depth=depth)
 
     # model = Linear()
     # model.scale_and_split_data(X, y)
@@ -49,14 +48,13 @@ if __name__ == "__main__":
     # model.scale_and_split_data(X, y)
     # model.fit()
 
-    # n_est = 200
-    # depth = 15
-    # model = XGBoost()
-    # model.scale_and_split_data(X, y)
-    # model.fit(n_estimators=n_est, max_depth=depth)
+    n_est = 100
+    depth = 3
+    model = XGBoost()
+    model.scale_and_split_data(X, y)
+    model.fit(n_estimators=n_est, max_depth=depth)
 
     logger.info(f"Model has been trained successfully")
 
-    mse_train_actual, mse_test_actual = model.compute_mse_error()
-    print(f"Train Error: {mse_train_actual}%")
-    print(f"Test Error: {mse_test_actual}%")
+    r2_score_train, r2_score_test = model.compute_r2_score()
+    print(f"Train Score: {r2_score_train:0.2f}%, Test Score: {r2_score_test:0.2f}%")
