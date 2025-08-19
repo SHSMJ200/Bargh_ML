@@ -20,7 +20,7 @@ if __name__ == "__main__":
     feature_adder = Feature_adder(df)
     feature_adder.add_season()
     feature_adder.create_feature_with_delay("temperature", 3)
-    feature_adder.create_feature_with_delay("generation", 1)
+    feature_adder.create_feature_with_delay("generation", 24)
     logger.info(f"Some features have been added successfully")
 
     data_selector = Data_selector(feature_adder.df)
@@ -48,13 +48,13 @@ if __name__ == "__main__":
     # model.scale_and_split_data(X, y)
     # model.fit()
 
-    n_est = 100
-    depth = 3
+    n_est = 1000
+    depth = 10
     model = XGBoost()
     model.scale_and_split_data(X, y)
     model.fit(n_estimators=n_est, max_depth=depth)
 
     logger.info(f"Model has been trained successfully")
 
-    r2_score_train, r2_score_test = model.compute_r2_score()
-    print(f"Train Score: {r2_score_train:0.2f}%, Test Score: {r2_score_test:0.2f}%")
+    rmse_error_train, rmse_error_test = model.compute_rmse_error()
+    print(f"Train Error: {rmse_error_train:0.2f}%, Test Error: {rmse_error_test:0.2f}%")

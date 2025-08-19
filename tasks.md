@@ -10,10 +10,15 @@
 * Training one model for all plants or one for each plant??
 * Add change point detection and choose the training data better
 * LF1 is correct or LO????
-
+* Why null data in temperature??
 
   🟨 Doing
   ==========================
+* Predict all 24 hours simultaneously. A problem: We should interpolate non-peak generations
+* 
+* Package Prophet for time series
+* 
+*
 
 
   🟥 Done
