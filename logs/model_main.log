@@ -38,3 +38,321 @@
 2025-08-11 18:01:02,782 | model_main | INFO | main.py:42 | <module>() | Test Error: 3.480357512518064%
 2025-08-11 18:01:50,121 | model_main | INFO | main.py:41 | <module>() | Train Error: 2.209832970959447%
 2025-08-11 18:01:50,122 | model_main | INFO | main.py:42 | <module>() | Test Error: 3.3753038265608284%
+2025-08-18 15:50:16,089 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-18 15:50:16,120 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-18 15:50:16,120 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-18 15:50:16,139 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-18 15:50:20,237 | model_main | INFO | logger.py:49 | info() | Model has been trained successfully
+2025-08-18 16:10:08,324 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-18 16:10:08,340 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-18 16:10:08,355 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-18 16:10:08,355 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-18 16:10:12,519 | model_main | INFO | logger.py:49 | info() | Model has been trained successfully
+2025-08-18 16:12:15,129 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-18 16:12:15,145 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-18 16:12:15,145 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-18 16:12:15,166 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-18 16:12:19,191 | model_main | INFO | logger.py:49 | info() | Model has been trained successfully
+2025-08-18 16:14:30,083 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-18 16:14:30,114 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-18 16:14:30,125 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-18 16:14:30,133 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-18 16:14:34,114 | model_main | INFO | logger.py:49 | info() | Model has been trained successfully
+2025-08-18 16:15:53,823 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-18 16:15:53,845 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-18 16:15:53,845 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-18 16:15:53,866 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-18 16:15:57,833 | model_main | INFO | logger.py:49 | info() | Model has been trained successfully
+2025-08-18 16:16:23,837 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-18 16:16:25,116 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-18 16:16:25,402 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-18 16:16:25,625 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-18 16:18:35,456 | model_main | INFO | logger.py:49 | info() | Model has been trained successfully
+2025-08-18 16:37:09,053 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:37:28,140 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:38:50,088 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:35,013 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:35,313 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:35,724 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:36,058 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:36,378 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:36,807 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:37,626 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:38,008 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:38,321 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:38,652 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:39,089 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:39,431 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:39,778 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:41:40,124 | model_main | INFO | logger.py:49 | info() | first phase
+2025-08-18 16:42:21,396 | model_main | INFO | logger.py:49 | info() | 81
+2025-08-18 16:42:21,694 | model_main | INFO | logger.py:49 | info() | 84
+2025-08-18 16:42:22,035 | model_main | INFO | logger.py:49 | info() | 217
+2025-08-18 16:42:22,352 | model_main | INFO | logger.py:49 | info() | 218
+2025-08-18 16:42:22,639 | model_main | INFO | logger.py:49 | info() | 219
+2025-08-18 16:42:22,978 | model_main | INFO | logger.py:49 | info() | 220
+2025-08-18 16:42:23,845 | model_main | INFO | logger.py:49 | info() | 221
+2025-08-18 16:42:24,170 | model_main | INFO | logger.py:49 | info() | 222
+2025-08-18 16:42:24,532 | model_main | INFO | logger.py:49 | info() | 282
+2025-08-18 16:42:24,881 | model_main | INFO | logger.py:49 | info() | 350
+2025-08-18 16:42:25,235 | model_main | INFO | logger.py:49 | info() | 351
+2025-08-18 16:42:25,584 | model_main | INFO | logger.py:49 | info() | 401
+2025-08-18 16:42:25,943 | model_main | INFO | logger.py:49 | info() | 402
+2025-08-18 16:42:42,171 | model_main | INFO | logger.py:49 | info() | 81
+2025-08-18 16:42:42,472 | model_main | INFO | logger.py:49 | info() | 84
+2025-08-18 16:42:42,816 | model_main | INFO | logger.py:49 | info() | 217
+2025-08-18 16:42:43,187 | model_main | INFO | logger.py:49 | info() | 218
+2025-08-18 16:42:43,516 | model_main | INFO | logger.py:49 | info() | 219
+2025-08-18 16:42:43,857 | model_main | INFO | logger.py:49 | info() | 220
+2025-08-18 16:42:44,793 | model_main | INFO | logger.py:49 | info() | 221
+2025-08-18 16:42:45,124 | model_main | INFO | logger.py:49 | info() | 222
+2025-08-18 16:42:45,530 | model_main | INFO | logger.py:49 | info() | 282
+2025-08-18 16:42:45,897 | model_main | INFO | logger.py:49 | info() | 350
+2025-08-18 16:42:53,745 | model_main | INFO | logger.py:49 | info() | 1
+2025-08-18 16:42:54,042 | model_main | INFO | logger.py:49 | info() | 2
+2025-08-18 16:42:54,433 | model_main | INFO | logger.py:49 | info() | 3
+2025-08-18 16:42:54,746 | model_main | INFO | logger.py:49 | info() | 4
+2025-08-18 16:42:55,051 | model_main | INFO | logger.py:49 | info() | 5
+2025-08-18 16:42:55,384 | model_main | INFO | logger.py:49 | info() | 6
+2025-08-18 16:42:56,260 | model_main | INFO | logger.py:49 | info() | 7
+2025-08-18 16:42:56,599 | model_main | INFO | logger.py:49 | info() | 8
+2025-08-18 16:42:56,928 | model_main | INFO | logger.py:49 | info() | 9
+2025-08-18 16:42:57,273 | model_main | INFO | logger.py:49 | info() | 10
+2025-08-18 16:42:57,664 | model_main | INFO | logger.py:49 | info() | 11
+2025-08-18 16:42:58,004 | model_main | INFO | logger.py:49 | info() | 12
+2025-08-18 16:42:58,332 | model_main | INFO | logger.py:49 | info() | 13
+2025-08-18 16:42:58,661 | model_main | INFO | logger.py:49 | info() | 14
+2025-08-18 16:42:58,997 | model_main | INFO | logger.py:49 | info() | 15
+2025-08-18 16:42:59,316 | model_main | INFO | logger.py:49 | info() | 16
+2025-08-18 16:42:59,642 | model_main | INFO | logger.py:49 | info() | 17
+2025-08-18 16:42:59,959 | model_main | INFO | logger.py:49 | info() | 18
+2025-08-18 16:43:00,272 | model_main | INFO | logger.py:49 | info() | 19
+2025-08-18 16:43:01,058 | model_main | INFO | logger.py:49 | info() | 20
+2025-08-18 16:43:01,418 | model_main | INFO | logger.py:49 | info() | 21
+2025-08-18 16:43:01,821 | model_main | INFO | logger.py:49 | info() | 22
+2025-08-18 16:43:02,199 | model_main | INFO | logger.py:49 | info() | 23
+2025-08-18 16:43:02,564 | model_main | INFO | logger.py:49 | info() | 24
+2025-08-18 16:43:02,967 | model_main | INFO | logger.py:49 | info() | 25
+2025-08-18 16:43:03,299 | model_main | INFO | logger.py:49 | info() | 26
+2025-08-18 16:43:03,633 | model_main | INFO | logger.py:49 | info() | 27
+2025-08-18 16:43:03,994 | model_main | INFO | logger.py:49 | info() | 28
+2025-08-18 16:43:04,334 | model_main | INFO | logger.py:49 | info() | 29
+2025-08-18 16:43:04,647 | model_main | INFO | logger.py:49 | info() | 30
+2025-08-18 16:43:04,984 | model_main | INFO | logger.py:49 | info() | 31
+2025-08-18 16:43:05,323 | model_main | INFO | logger.py:49 | info() | 32
+2025-08-18 16:43:05,667 | model_main | INFO | logger.py:49 | info() | 33
+2025-08-18 16:43:06,558 | model_main | INFO | logger.py:49 | info() | 34
+2025-08-18 16:43:07,400 | model_main | INFO | logger.py:49 | info() | 35
+2025-08-18 16:43:07,713 | model_main | INFO | logger.py:49 | info() | 36
+2025-08-18 16:43:08,037 | model_main | INFO | logger.py:49 | info() | 37
+2025-08-18 16:43:08,836 | model_main | INFO | logger.py:49 | info() | 38
+2025-08-18 16:43:09,564 | model_main | INFO | logger.py:49 | info() | 39
+2025-08-18 16:43:09,894 | model_main | INFO | logger.py:49 | info() | 40
+2025-08-18 16:43:10,176 | model_main | INFO | logger.py:49 | info() | 41
+2025-08-18 16:43:10,504 | model_main | INFO | logger.py:49 | info() | 42
+2025-08-18 16:43:10,849 | model_main | INFO | logger.py:49 | info() | 43
+2025-08-18 16:43:11,176 | model_main | INFO | logger.py:49 | info() | 44
+2025-08-18 16:43:12,021 | model_main | INFO | logger.py:49 | info() | 45
+2025-08-18 16:43:12,868 | model_main | INFO | logger.py:49 | info() | 46
+2025-08-18 16:43:13,180 | model_main | INFO | logger.py:49 | info() | 47
+2025-08-18 16:43:13,525 | model_main | INFO | logger.py:49 | info() | 48
+2025-08-18 16:43:13,853 | model_main | INFO | logger.py:49 | info() | 49
+2025-08-18 16:43:14,596 | model_main | INFO | logger.py:49 | info() | 50
+2025-08-18 16:43:14,916 | model_main | INFO | logger.py:49 | info() | 51
+2025-08-18 16:43:15,263 | model_main | INFO | logger.py:49 | info() | 52
+2025-08-18 16:43:15,555 | model_main | INFO | logger.py:49 | info() | 53
+2025-08-18 16:43:15,846 | model_main | INFO | logger.py:49 | info() | 54
+2025-08-18 16:43:16,180 | model_main | INFO | logger.py:49 | info() | 55
+2025-08-18 16:43:16,464 | model_main | INFO | logger.py:49 | info() | 56
+2025-08-18 16:43:16,773 | model_main | INFO | logger.py:49 | info() | 57
+2025-08-18 16:43:17,107 | model_main | INFO | logger.py:49 | info() | 58
+2025-08-18 16:43:17,436 | model_main | INFO | logger.py:49 | info() | 59
+2025-08-18 16:43:18,213 | model_main | INFO | logger.py:49 | info() | 60
+2025-08-18 16:43:18,548 | model_main | INFO | logger.py:49 | info() | 61
+2025-08-18 16:43:19,366 | model_main | INFO | logger.py:49 | info() | 62
+2025-08-18 16:43:19,708 | model_main | INFO | logger.py:49 | info() | 63
+2025-08-18 16:43:19,984 | model_main | INFO | logger.py:49 | info() | 64
+2025-08-18 16:43:20,269 | model_main | INFO | logger.py:49 | info() | 65
+2025-08-18 16:43:20,613 | model_main | INFO | logger.py:49 | info() | 66
+2025-08-18 16:43:20,927 | model_main | INFO | logger.py:49 | info() | 67
+2025-08-18 16:43:21,223 | model_main | INFO | logger.py:49 | info() | 68
+2025-08-18 16:43:21,554 | model_main | INFO | logger.py:49 | info() | 69
+2025-08-18 16:43:21,680 | model_main | INFO | logger.py:49 | info() | 70
+2025-08-18 16:43:21,969 | model_main | INFO | logger.py:49 | info() | 71
+2025-08-18 16:43:22,816 | model_main | INFO | logger.py:49 | info() | 72
+2025-08-18 16:43:23,151 | model_main | INFO | logger.py:49 | info() | 73
+2025-08-18 16:43:23,495 | model_main | INFO | logger.py:49 | info() | 74
+2025-08-18 16:43:23,838 | model_main | INFO | logger.py:49 | info() | 75
+2025-08-18 16:43:24,176 | model_main | INFO | logger.py:49 | info() | 76
+2025-08-18 16:43:24,471 | model_main | INFO | logger.py:49 | info() | 77
+2025-08-18 16:43:24,814 | model_main | INFO | logger.py:49 | info() | 78
+2025-08-18 16:43:25,102 | model_main | INFO | logger.py:49 | info() | 79
+2025-08-18 16:43:25,380 | model_main | INFO | logger.py:49 | info() | 80
+2025-08-18 16:43:25,690 | model_main | INFO | logger.py:49 | info() | 81
+2025-08-18 16:43:25,995 | model_main | INFO | logger.py:49 | info() | 82
+2025-08-18 16:43:26,317 | model_main | INFO | logger.py:49 | info() | 83
+2025-08-18 16:43:26,515 | model_main | INFO | logger.py:49 | info() | 84
+2025-08-18 16:43:26,831 | model_main | INFO | logger.py:49 | info() | 85
+2025-08-18 16:43:27,129 | model_main | INFO | logger.py:49 | info() | 86
+2025-08-18 16:43:27,456 | model_main | INFO | logger.py:49 | info() | 87
+2025-08-18 16:43:27,792 | model_main | INFO | logger.py:49 | info() | 88
+2025-08-18 16:43:28,136 | model_main | INFO | logger.py:49 | info() | 89
+2025-08-18 16:43:28,379 | model_main | INFO | logger.py:49 | info() | 90
+2025-08-18 16:43:28,664 | model_main | INFO | logger.py:49 | info() | 91
+2025-08-18 16:43:29,004 | model_main | INFO | logger.py:49 | info() | 92
+2025-08-18 16:43:29,275 | model_main | INFO | logger.py:49 | info() | 93
+2025-08-18 16:43:29,608 | model_main | INFO | logger.py:49 | info() | 94
+2025-08-18 16:43:30,209 | model_main | INFO | logger.py:49 | info() | 95
+2025-08-18 16:43:30,497 | model_main | INFO | logger.py:49 | info() | 96
+2025-08-18 16:43:30,629 | model_main | INFO | logger.py:49 | info() | 97
+2025-08-18 16:43:30,767 | model_main | INFO | logger.py:49 | info() | 98
+2025-08-18 16:43:31,122 | model_main | INFO | logger.py:49 | info() | 99
+2025-08-18 16:44:48,182 | model_main | INFO | logger.py:49 | info() | 1
+2025-08-18 16:44:48,509 | model_main | INFO | logger.py:49 | info() | 2
+2025-08-18 16:44:48,855 | model_main | INFO | logger.py:49 | info() | 3
+2025-08-18 16:44:49,168 | model_main | INFO | logger.py:49 | info() | 4
+2025-08-18 16:44:49,474 | model_main | INFO | logger.py:49 | info() | 5
+2025-08-18 16:44:49,810 | model_main | INFO | logger.py:49 | info() | 6
+2025-08-18 16:44:50,666 | model_main | INFO | logger.py:49 | info() | 7
+2025-08-18 16:44:50,999 | model_main | INFO | logger.py:49 | info() | 8
+2025-08-18 16:44:51,334 | model_main | INFO | logger.py:49 | info() | 9
+2025-08-18 16:44:51,685 | model_main | INFO | logger.py:49 | info() | 10
+2025-08-18 16:44:52,038 | model_main | INFO | logger.py:49 | info() | 11
+2025-08-18 16:44:52,369 | model_main | INFO | logger.py:49 | info() | 12
+2025-08-18 16:44:52,713 | model_main | INFO | logger.py:49 | info() | 13
+2025-08-18 16:44:53,056 | model_main | INFO | logger.py:49 | info() | 14
+2025-08-18 16:44:53,436 | model_main | INFO | logger.py:49 | info() | 15
+2025-08-18 16:44:53,820 | model_main | INFO | logger.py:49 | info() | 16
+2025-08-18 16:44:54,140 | model_main | INFO | logger.py:49 | info() | 17
+2025-08-18 16:44:54,486 | model_main | INFO | logger.py:49 | info() | 18
+2025-08-18 16:44:54,871 | model_main | INFO | logger.py:49 | info() | 19
+2025-08-18 16:44:55,681 | model_main | INFO | logger.py:49 | info() | 20
+2025-08-18 16:44:56,098 | model_main | INFO | logger.py:49 | info() | 21
+2025-08-18 16:44:56,447 | model_main | INFO | logger.py:49 | info() | 22
+2025-08-18 16:44:56,768 | model_main | INFO | logger.py:49 | info() | 23
+2025-08-18 16:44:57,189 | model_main | INFO | logger.py:49 | info() | 24
+2025-08-18 16:44:57,533 | model_main | INFO | logger.py:49 | info() | 25
+2025-08-18 16:44:57,853 | model_main | INFO | logger.py:49 | info() | 26
+2025-08-18 16:44:58,268 | model_main | INFO | logger.py:49 | info() | 27
+2025-08-18 16:44:58,574 | model_main | INFO | logger.py:49 | info() | 28
+2025-08-18 16:44:58,906 | model_main | INFO | logger.py:49 | info() | 29
+2025-08-18 16:44:59,206 | model_main | INFO | logger.py:49 | info() | 30
+2025-08-18 16:44:59,532 | model_main | INFO | logger.py:49 | info() | 31
+2025-08-18 16:44:59,824 | model_main | INFO | logger.py:49 | info() | 32
+2025-08-18 16:45:00,161 | model_main | INFO | logger.py:49 | info() | 33
+2025-08-18 16:45:00,991 | model_main | INFO | logger.py:49 | info() | 34
+2025-08-18 16:45:01,833 | model_main | INFO | logger.py:49 | info() | 35
+2025-08-18 16:45:02,136 | model_main | INFO | logger.py:49 | info() | 36
+2025-08-18 16:45:02,463 | model_main | INFO | logger.py:49 | info() | 37
+2025-08-18 16:45:03,240 | model_main | INFO | logger.py:49 | info() | 38
+2025-08-18 16:45:03,962 | model_main | INFO | logger.py:49 | info() | 39
+2025-08-18 16:45:04,283 | model_main | INFO | logger.py:49 | info() | 40
+2025-08-18 16:45:04,566 | model_main | INFO | logger.py:49 | info() | 41
+2025-08-18 16:45:04,886 | model_main | INFO | logger.py:49 | info() | 42
+2025-08-18 16:45:05,228 | model_main | INFO | logger.py:49 | info() | 43
+2025-08-18 16:45:05,554 | model_main | INFO | logger.py:49 | info() | 44
+2025-08-18 16:45:06,416 | model_main | INFO | logger.py:49 | info() | 45
+2025-08-18 16:45:07,268 | model_main | INFO | logger.py:49 | info() | 46
+2025-08-18 16:45:07,574 | model_main | INFO | logger.py:49 | info() | 47
+2025-08-18 16:45:07,915 | model_main | INFO | logger.py:49 | info() | 48
+2025-08-18 16:45:08,240 | model_main | INFO | logger.py:49 | info() | 49
+2025-08-18 16:45:08,982 | model_main | INFO | logger.py:49 | info() | 50
+2025-08-18 16:45:09,303 | model_main | INFO | logger.py:49 | info() | 51
+2025-08-18 16:45:09,642 | model_main | INFO | logger.py:49 | info() | 52
+2025-08-18 16:45:09,926 | model_main | INFO | logger.py:49 | info() | 53
+2025-08-18 16:45:10,225 | model_main | INFO | logger.py:49 | info() | 54
+2025-08-18 16:45:10,556 | model_main | INFO | logger.py:49 | info() | 55
+2025-08-18 16:45:10,836 | model_main | INFO | logger.py:49 | info() | 56
+2025-08-18 16:45:11,135 | model_main | INFO | logger.py:49 | info() | 57
+2025-08-18 16:45:11,457 | model_main | INFO | logger.py:49 | info() | 58
+2025-08-18 16:45:11,794 | model_main | INFO | logger.py:49 | info() | 59
+2025-08-18 16:45:12,561 | model_main | INFO | logger.py:49 | info() | 60
+2025-08-18 16:45:12,899 | model_main | INFO | logger.py:49 | info() | 61
+2025-08-18 16:45:13,712 | model_main | INFO | logger.py:49 | info() | 62
+2025-08-18 16:45:14,052 | model_main | INFO | logger.py:49 | info() | 63
+2025-08-18 16:45:14,328 | model_main | INFO | logger.py:49 | info() | 64
+2025-08-18 16:45:14,683 | model_main | INFO | logger.py:49 | info() | 65
+2025-08-18 16:45:15,019 | model_main | INFO | logger.py:49 | info() | 66
+2025-08-18 16:45:15,328 | model_main | INFO | logger.py:49 | info() | 67
+2025-08-18 16:45:15,704 | model_main | INFO | logger.py:49 | info() | 68
+2025-08-18 16:45:16,037 | model_main | INFO | logger.py:49 | info() | 69
+2025-08-18 16:45:16,177 | model_main | INFO | logger.py:49 | info() | 70
+2025-08-18 16:45:16,461 | model_main | INFO | logger.py:49 | info() | 71
+2025-08-18 16:45:17,372 | model_main | INFO | logger.py:49 | info() | 72
+2025-08-18 16:45:17,703 | model_main | INFO | logger.py:49 | info() | 73
+2025-08-18 16:45:18,121 | model_main | INFO | logger.py:49 | info() | 74
+2025-08-18 16:45:18,426 | model_main | INFO | logger.py:49 | info() | 75
+2025-08-18 16:45:18,756 | model_main | INFO | logger.py:49 | info() | 76
+2025-08-18 16:45:19,077 | model_main | INFO | logger.py:49 | info() | 77
+2025-08-18 16:45:19,463 | model_main | INFO | logger.py:49 | info() | 78
+2025-08-18 16:45:19,764 | model_main | INFO | logger.py:49 | info() | 79
+2025-08-18 16:45:20,036 | model_main | INFO | logger.py:49 | info() | 80
+2025-08-18 16:45:20,349 | model_main | INFO | logger.py:49 | info() | 81
+2025-08-18 16:45:20,647 | model_main | INFO | logger.py:49 | info() | 82
+2025-08-18 16:45:20,976 | model_main | INFO | logger.py:49 | info() | 83
+2025-08-18 16:45:21,168 | model_main | INFO | logger.py:49 | info() | 84
+2025-08-18 16:45:21,482 | model_main | INFO | logger.py:49 | info() | 85
+2025-08-18 16:45:21,784 | model_main | INFO | logger.py:49 | info() | 86
+2025-08-18 16:45:22,105 | model_main | INFO | logger.py:49 | info() | 87
+2025-08-18 16:45:22,446 | model_main | INFO | logger.py:49 | info() | 88
+2025-08-18 16:45:22,782 | model_main | INFO | logger.py:49 | info() | 89
+2025-08-18 16:45:23,022 | model_main | INFO | logger.py:49 | info() | 90
+2025-08-18 16:45:23,301 | model_main | INFO | logger.py:49 | info() | 91
+2025-08-18 16:45:23,640 | model_main | INFO | logger.py:49 | info() | 92
+2025-08-18 16:45:23,917 | model_main | INFO | logger.py:49 | info() | 93
+2025-08-18 16:45:24,239 | model_main | INFO | logger.py:49 | info() | 94
+2025-08-18 16:45:24,834 | model_main | INFO | logger.py:49 | info() | 95
+2025-08-18 16:45:25,127 | model_main | INFO | logger.py:49 | info() | 96
+2025-08-18 16:45:25,258 | model_main | INFO | logger.py:49 | info() | 97
+2025-08-18 16:45:25,383 | model_main | INFO | logger.py:49 | info() | 98
+2025-08-18 16:45:25,696 | model_main | INFO | logger.py:49 | info() | 99
+2025-08-18 16:45:25,724 | model_main | INFO | logger.py:49 | info() | 100
+2025-08-18 16:45:26,021 | model_main | INFO | logger.py:49 | info() | 101
+2025-08-18 16:45:26,105 | model_main | INFO | logger.py:49 | info() | 102
+2025-08-18 16:45:26,244 | model_main | INFO | logger.py:49 | info() | 103
+2025-08-18 16:46:46,438 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-18 16:46:48,173 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-18 16:46:48,187 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-18 16:46:48,203 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-19 05:10:42,933 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-19 05:10:44,387 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-19 05:10:44,403 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-19 05:10:44,463 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-19 05:13:54,953 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-19 05:13:56,882 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-19 05:13:56,917 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-19 05:13:57,071 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-19 05:14:35,367 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-19 05:14:37,043 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-19 05:14:37,059 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-19 05:14:37,112 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-19 05:27:26,684 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-19 05:28:19,997 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-19 05:30:35,491 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-19 05:30:37,167 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-19 05:30:37,167 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-19 05:30:38,140 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-19 05:31:22,151 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-19 05:37:09,461 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-19 05:37:10,978 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-19 05:37:10,978 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-19 05:37:11,695 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-19 05:37:49,466 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-19 05:40:32,112 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-19 05:40:33,844 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-19 05:40:33,844 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-20 16:12:38,850 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-20 16:12:40,121 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-20 16:12:40,404 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-20 16:12:40,598 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-20 16:12:41,276 | model_main | INFO | logger.py:49 | info() | Model has been trained successfully
+2025-08-20 16:13:02,892 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-20 16:13:04,188 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-20 16:13:04,458 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-20 16:13:04,641 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-20 16:13:05,271 | model_main | INFO | logger.py:49 | info() | Model has been trained successfully
+2025-08-20 16:42:33,894 | model_main | INFO | logger.py:49 | info() | Csv file has bean read successfully
+2025-08-20 16:42:35,183 | model_main | INFO | logger.py:49 | info() | Some features have been added successfully
+2025-08-20 16:42:35,460 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
+2025-08-20 16:42:35,642 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
+2025-08-20 16:42:36,284 | model_main | INFO | logger.py:49 | info() | Model has been trained successfully

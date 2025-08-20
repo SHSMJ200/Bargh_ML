@@ -19,7 +19,7 @@ class Feature_selector:
         df = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
 
         df = df.dropna()
-
+        
         logger.debug(f"Features training is applied on: {df.columns}")
 
         X = df.drop(columns=[self.target])
@@ -36,7 +36,7 @@ class Feature_adder:
         new_feature = f"{feature}_with_{n_delay}_delay"
         self.df = self.df.sort_values(by=['code', 'name', 'date', 'hour'])
         self.df[new_feature] = self.df.groupby(['code', 'name'])[feature].shift(n_delay)
-
+        return self.df
         logger.debug(f"A new column created: {feature} with {n_delay} hours delay")
 
     def add_season(self):

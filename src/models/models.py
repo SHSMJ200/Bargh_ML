@@ -3,7 +3,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import make_pipeline
-from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_absolute_error,mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import xgboost as xgb
@@ -49,11 +49,24 @@ class Model:
         y_pred_train_actual = self.scaler_y.inverse_transform(y_pred_train.reshape(-1, 1)).ravel()
         y_test_actual = self.scaler_y.inverse_transform(self.y_test.reshape(-1, 1)).ravel()
         y_train_actual = self.scaler_y.inverse_transform(self.y_train.reshape(-1, 1)).ravel()
-        mse_test_actual = (mean_absolute_error(y_test_actual, y_pred_test_actual) / np.mean(y_test_actual)) * 100
-        mse_train_actual = (mean_absolute_error(y_train_actual, y_pred_train_actual) / np.mean(y_train_actual)) * 100
+        
+        mse_test_actual  = (mean_squared_error(y_test_actual, y_pred_test_actual)**0.5 / np.mean(y_test_actual)) * 100
+        mse_train_actual = (mean_squared_error(y_train_actual, y_pred_train_actual)**0.5 / np.mean(y_train_actual)) * 100
 
         return mse_train_actual, mse_test_actual
 
+    def compute_mse_error_simple(self):
+        y_pred_test = self.model.predict(self.X_test)
+        y_pred_train = self.model.predict(self.X_train)
+        y_pred_test_actual = self.scaler_y.inverse_transform(y_pred_test.reshape(-1, 1)).ravel()
+        y_pred_train_actual = self.scaler_y.inverse_transform(y_pred_train.reshape(-1, 1)).ravel()
+        y_test_actual = self.scaler_y.inverse_transform(self.y_test.reshape(-1, 1)).ravel()
+        y_train_actual = self.scaler_y.inverse_transform(self.y_train.reshape(-1, 1)).ravel()
+        
+        mse_test_actual  = (mean_squared_error(y_test_actual, y_pred_test_actual))
+        mse_train_actual = (mean_squared_error(y_train_actual, y_pred_train_actual))
+        return mse_train_actual, mse_test_actual
+    
     def scale_and_split_data(self, X, y, test_size=0.2, random_state=42):
         x_scaled, scaler_x = scale(X)
         y_scaled, scaler_y = scale(y.values.reshape(-1, 1), do_flat=True)

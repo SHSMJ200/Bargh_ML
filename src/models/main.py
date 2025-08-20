@@ -15,6 +15,7 @@ logger = CustomLogger(name="model_main", log_file_name='model_main.log').get_log
 if __name__ == "__main__":
     csv_path = os.path.join(project_root, "data", "processed", "integrated.csv")
     df = pd.read_csv(csv_path, encoding='utf-8')
+    #df = df[(df["name"] == "پرند") & (df["code"] == "G11")]
     logger.info(f"Csv file has bean read successfully")
 
     feature_adder = Feature_adder(df)
@@ -34,16 +35,16 @@ if __name__ == "__main__":
 
     X, y = feature_selector.select(feature_to_be_dropped)
     logger.info(f"Some features have been dropped successfully")
-
+    print(len(y))
     n_est = 100
     depth = 30
-    model = Random_Forest()
-    model.scale_and_split_data(X, y)
-    model.fit(n_estimators=n_est, max_depth=depth)
+    #model = Random_Forest()
+    #model.scale_and_split_data(X, y)
+    #model.fit(n_estimators=n_est, max_depth=depth)
 
-    # model = Linear()
-    # model.scale_and_split_data(X, y)
-    # model.fit()
+    model = Linear()
+    model.scale_and_split_data(X, y)
+    model.fit()
 
     # model = Polynomial()
     # model.scale_and_split_data(X, y)

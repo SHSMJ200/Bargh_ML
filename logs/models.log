@@ -1654,3 +1654,139 @@ This LinearRegression estimator requires y to be passed, but the target y is Non
 2025-08-16 17:07:10,245 | models | DEBUG | models.py:23 | scale() | y scaled successfully
 2025-08-16 17:07:10,245 | models | DEBUG | models.py:24 | scale() | y flattened.
 2025-08-16 17:07:10,425 | models | DEBUG | models.py:88 | fit() | Model trained successfully.
+2025-08-18 15:50:16,144 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-18 15:50:16,144 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-18 15:50:16,144 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-18 15:50:20,237 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-18 16:10:08,374 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-18 16:10:08,374 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-18 16:10:08,374 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-18 16:10:12,519 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-18 16:12:15,166 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-18 16:12:15,166 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-18 16:12:15,166 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-18 16:12:19,191 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-18 16:14:30,138 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-18 16:14:30,139 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-18 16:14:30,139 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-18 16:14:34,114 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-18 16:15:53,870 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-18 16:15:53,872 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-18 16:15:53,872 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-18 16:15:57,833 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-18 16:16:25,925 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-18 16:16:25,925 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-18 16:16:25,925 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-18 16:18:35,456 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-19 05:10:54,986 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-19 05:10:54,995 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-19 05:10:54,995 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-19 05:11:09,560 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-19 05:13:34,855 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-19 05:13:34,855 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-19 05:13:34,855 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-19 05:13:41,552 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-19 05:14:42,719 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-19 05:14:42,719 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-19 05:14:42,719 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-19 05:14:49,529 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-19 05:30:50,061 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-19 05:30:50,061 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-19 05:30:50,061 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-19 05:30:58,940 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-19 05:37:36,900 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-19 05:37:36,900 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-19 05:37:36,900 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-19 05:37:43,843 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 16:12:40,870 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 16:12:40,870 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 16:12:40,886 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 16:12:41,276 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 16:13:04,921 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 16:13:04,921 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 16:13:04,921 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 16:13:05,271 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 16:38:06,387 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 16:38:06,387 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 16:38:06,387 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 16:38:06,569 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 16:41:25,840 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 16:41:25,840 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 16:41:25,840 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 16:41:26,014 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 16:42:13,156 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 16:42:13,156 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 16:42:13,162 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 16:42:13,232 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 16:42:35,923 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 16:42:35,923 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 16:42:35,923 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 16:42:36,284 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 17:30:54,400 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 17:30:54,408 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 17:30:54,408 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 17:30:54,416 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 17:38:16,032 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 17:38:16,041 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 17:38:16,041 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 17:38:16,076 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 17:38:30,653 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 17:38:30,653 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 17:38:30,653 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 17:38:30,685 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 17:41:39,080 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 17:41:39,089 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 17:41:39,090 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 17:41:39,124 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 17:42:13,287 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 17:42:13,288 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 17:42:13,288 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 17:42:13,300 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 17:45:07,448 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 17:45:07,450 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 17:45:07,450 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 17:45:07,450 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 17:46:21,991 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 17:46:21,991 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 17:46:21,991 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 17:46:21,991 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 17:47:54,053 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 17:47:54,061 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 17:47:54,061 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 17:47:54,067 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 17:55:17,216 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 17:55:17,216 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 17:55:17,216 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 17:55:17,216 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 18:01:02,166 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 18:01:02,166 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 18:01:02,166 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 18:01:02,166 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 18:06:56,267 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 18:06:56,267 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 18:06:56,267 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 18:06:56,269 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 18:17:36,007 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 18:17:36,007 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 18:17:36,007 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 18:17:36,007 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 18:20:25,337 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 18:20:25,342 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 18:20:25,343 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 18:20:25,343 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 18:39:20,668 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 18:39:20,668 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 18:39:20,668 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 18:39:20,668 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 18:41:10,838 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 18:41:10,842 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 18:41:10,842 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 18:41:10,844 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 18:42:41,472 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 18:42:41,472 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 18:42:41,472 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 18:42:41,483 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-20 18:50:24,963 | models | DEBUG | logger.py:46 | debug() | X scaled successfully.
+2025-08-20 18:50:24,963 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
+2025-08-20 18:50:24,963 | models | DEBUG | logger.py:46 | debug() | y flattened.
+2025-08-20 18:50:24,963 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.

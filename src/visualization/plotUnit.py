@@ -83,6 +83,9 @@ class UnitPlotter:
     def temperature_and_generation_by_dot_over_time(self, name, code):
         self.features_over_time(name, code, ["temperature", "generation"], ["blue", "red"], flag_marker=True)
     
+    def temperature_change_and_generation_change_flag_marker_over_time(self, name, code):
+        self.features_over_time(name, code, ["temperature_change", "generation_change"], ["blue", "red"], flag_marker=True)
+    
     def features_over_time(self, name, code, features, colors,flag_marker=False):
         
         sample = self.df.loc[(self.df['name'] == name) & (self.df['code'] == code)]
@@ -95,7 +98,7 @@ class UnitPlotter:
             
             color_marker = None
             mode = 'lines'
-            if feature == "generation" and flag_marker:
+            if feature in ["generation","generation_change"] and flag_marker:
                 color_pick = {0:"red",1:"black",2:"blue"}      
                 color_marker=dict(color=[color_pick[value] for value in sample["is_good_pick"]], size=5)     
                 mode = 'lines+markers'
