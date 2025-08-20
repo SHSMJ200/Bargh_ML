@@ -8,7 +8,7 @@ class Data_selector:
     def __init__(self, df: pd.DataFrame):
         self.df = df
 
-    def select(self, m_in_summer=True):
+    def select_peaks(self, m_in_summer=True):
         df = self.df
         df = df[((df['status'] == 'SO') | (df['status'] == 'LF1'))]
 
@@ -18,6 +18,14 @@ class Data_selector:
         else:
             df = df[df['value'] == 'P']
 
-        logger.debug(f"Rows of data selected successfully!")
+        logger.debug(f"Rows of data has been selected successfully!")
 
+        self.df = df
+        return df
+
+    def select_name_and_code(self, name, code):
+        df = self.df
+        df = df[((df['name'] == name) & (df['code'] == code))]
+        logger.debug(f"Data related to {name}_{code}  has been selected successfully!")
+        self.df = df
         return df

@@ -24,7 +24,8 @@ if __name__ == "__main__":
     logger.info(f"Some features have been added successfully")
 
     data_selector = Data_selector(feature_adder.df)
-    df_modified = data_selector.select(m_in_summer=True)
+    data_selector.select_name_and_code("پرند", "G13")
+    df_modified = data_selector.select_peaks(m_in_summer=True)
     logger.info(f"Rows have been selected successfully")
 
     feature_selector = Feature_selector(df_modified, "generation")
@@ -48,8 +49,8 @@ if __name__ == "__main__":
     # model.scale_and_split_data(X, y)
     # model.fit()
 
-    n_est = 1000
-    depth = 10
+    n_est = 500
+    depth = 3
     model = XGBoost()
     model.scale_and_split_data(X, y)
     model.fit(n_estimators=n_est, max_depth=depth)

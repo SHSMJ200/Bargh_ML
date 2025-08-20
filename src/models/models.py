@@ -148,12 +148,6 @@ class XGBoost(Model):
 
             model.fit(self.X_train, self.y_train)
 
-            # explainer = shap.Explainer(model)
-            #
-            # shap_values = explainer(self.X_test)
-            #
-            # shap.summary_plot(shap_values, self.X_test)
-
             self.model_info = {
                 "n_estimator": n_estimators,
                 "depth": max_depth,
@@ -165,7 +159,6 @@ class XGBoost(Model):
 
         except Exception as e:
             logger.error(f"Couldn't train XGBoost model. Exception below occurred.\n{e}\n")
-
 
 '''
 class Neural_network(Model):
