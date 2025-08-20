@@ -8,7 +8,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import xgboost as xgb
 
-
 '''
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
@@ -42,18 +41,16 @@ class Model:
         self.y_train = None
         self.X_train = None
 
-    def compute_mse_error(self):
+    def compute_rmse_error(self):
         y_pred_test = self.model.predict(self.X_test)
         y_pred_train = self.model.predict(self.X_train)
         y_pred_test_actual = self.scaler_y.inverse_transform(y_pred_test.reshape(-1, 1)).ravel()
         y_pred_train_actual = self.scaler_y.inverse_transform(y_pred_train.reshape(-1, 1)).ravel()
         y_test_actual = self.scaler_y.inverse_transform(self.y_test.reshape(-1, 1)).ravel()
         y_train_actual = self.scaler_y.inverse_transform(self.y_train.reshape(-1, 1)).ravel()
-        
-        mse_test_actual  = (mean_squared_error(y_test_actual, y_pred_test_actual)**0.5 / np.mean(y_test_actual)) * 100
-        mse_train_actual = (mean_squared_error(y_train_actual, y_pred_train_actual)**0.5 / np.mean(y_train_actual)) * 100
 
-        return mse_train_actual, mse_test_actual
+        rmse_test_actual = (mean_squared_error(y_test_actual, y_pred_test_actual) ** 0.5 / np.mean(y_test_actual)) * 100
+        rmse_train_actual = (mean_squared_error(y_train_actual, y_pred_train_actual) ** 0.5 / np.mean(y_train_actual)) * 100
 
     def compute_mse_error_simple(self):
         y_pred_test = self.model.predict(self.X_test)
@@ -69,7 +66,10 @@ class Model:
     
     def scale_and_split_data(self, X, y, test_size=0.2, random_state=42):
         x_scaled, scaler_x = scale(X)
-        y_scaled, scaler_y = scale(y.values.reshape(-1, 1), do_flat=True)
+        if y_is_flat:
+            y_scaled, scaler_y = scale(y.values.reshape(-1, 1), do_flat=True)
+        else:
+            y_scaled, scaler_y = scale(y)
 
         self.scaler_x = scaler_x
         self.scaler_y = scaler_y
@@ -151,7 +151,7 @@ class XGBoost(Model):
     def __init__(self):
         super().__init__()
 
-    def fit(self, n_estimators=100, lr=0.1, max_depth=3):
+    def fit(self, n_estimators=100, max_depth=3, lr=0.1):
         try:
             model = (xgb.XGBRegressor
                      (objective='reg:squarederror', n_estimators=n_estimators, learning_rate=lr, max_depth=max_depth))
@@ -169,7 +169,6 @@ class XGBoost(Model):
 
         except Exception as e:
             logger.error(f"Couldn't train XGBoost model. Exception below occurred.\n{e}\n")
-
 
 '''
 class Neural_network(Model):

@@ -24,6 +24,7 @@ class Feature_selector:
 
         X = df.drop(columns=[self.target])
         y = df[self.target]
+        self.df = df
 
         return X, y
 

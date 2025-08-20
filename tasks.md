@@ -6,16 +6,20 @@
 * Edit "tables_columns.yaml" file. Why each name is repeated twice?
 * Edit the method "fit" of the model Neural Network
 *
-* Add column color to plot better
-* Training one model for all plants or one for each plant??
 * Run Neural Network
+* Training one model for all plants or one for each plant??
+* Add change point detection and choose the training data better
+* LF1 is correct or LO????
+* Why null data in temperature??
 
   🟨 Doing
   ==========================
-* Add change point detection and choose the training data better
-* Pay attention to affecting with delay. For example: temperature.
-* Check mse_computer
-* how about generation with delay
+* Predict all 24 hours simultaneously. A problem: We should interpolate non-peak generations
+* 
+* Package Prophet for time series
+* 
+*
+
 
   🟥 Done
   ==========================
@@ -32,7 +36,12 @@
 * Review/study the visualization files
 * Divide into 3 separate module: 1. data selecting 2. feature selecting 3. train and fit the model
 * Clean the codes in folders: models & visualization
-* Connect to github
+* Connect to GitHub
 * Edit function feature_over_time to plot more beautiful
 * Choose the training data better. not just peak, but also M in summer and ...
 * what is "require"?
+* Add column color to plot better
+* Check mse_computer
+* Choose which features should be in the model training.
+* Pay attention to affecting with delay. For example: temperature.
+* how about generation with delay

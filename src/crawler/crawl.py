@@ -106,8 +106,8 @@ class HistoryCrawler(Crawler):
             my_plants = get_plants()
             plants = plants[plants['DispPlantCode'].isin(my_plants)]
 
-            logger.debug(msg=f'Plants data successfully read from {self.file}')
-            logger.debug(msg=f"Plants to crawl:\n{plants['PlantName'].drop_duplicates()}")
+            logger.info(msg=f'Plants data successfully read from {self.file}')
+            logger.info(msg=f"Plants to crawl:\n{plants['PlantName'].drop_duplicates()}")
 
             do_continue = input("\nContinue with these plants?\n")
             if do_continue == "no":
@@ -118,7 +118,7 @@ class HistoryCrawler(Crawler):
                 url = data['url-historical']
                 hourly_features = data['hourly']
 
-            logger.debug(msg=f'Successfully read data from crawling config file')
+            logger.info(msg=f'Successfully read data from crawling config file')
 
             cache_session = requests_cache.CachedSession('.cache', expire_after=3600)
             retry_session = retry(cache_session, retries=5, backoff_factor=0.2)
@@ -154,7 +154,7 @@ class HistoryCrawler(Crawler):
 
             data.to_csv(file_path, index=False)
 
-            logger.debug(msg=f"Number of columns of dataframe is: {len(data.columns)}")
+            logger.info(msg=f"Number of columns of dataframe is: {len(data.columns)}")
 
             db.connect()
 
@@ -184,14 +184,14 @@ class ForecastCrawler(Crawler):
 
             plants = pd.read_csv(self.file)
 
-            logger.debug(msg=f'Plants data successfully read from {self.file}')
+            logger.info(msg=f'Plants data successfully read from {self.file}')
 
             with open(get_root()  + '/configs/crawling.yaml', 'r') as file:
                 data = yaml.safe_load(file)
                 url = data['url-forecast']
                 hourly_features = data['hourly']
 
-            logger.debug(msg=f'Successfully read data from crawling config file')
+            logger.info(msg=f'Successfully read data from crawling config file')
 
             cache_session = requests_cache.CachedSession('.cache', expire_after=3600)
             retry_session = retry(cache_session, retries=5, backoff_factor=0.2)
@@ -224,7 +224,7 @@ class ForecastCrawler(Crawler):
 
             data.to_csv(file_path, index=False)
 
-            logger.debug(msg=f"Number of columns of dataframe is: {len(data.columns)}")
+            logger.info(msg=f"Number of columns of dataframe is: {len(data.columns)}")
 
             db.connect()
 
