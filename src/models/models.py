@@ -64,7 +64,7 @@ class Model:
         mse_train_actual = (mean_squared_error(y_train_actual, y_pred_train_actual))
         return mse_train_actual, mse_test_actual
     
-    def scale_and_split_data(self, X, y, test_size=0.2, random_state=42):
+    def scale_and_split_data(self, X, y, test_size=0.2, random_state=42, y_is_flat=True):
         x_scaled, scaler_x = scale(X)
         if y_is_flat:
             y_scaled, scaler_y = scale(y.values.reshape(-1, 1), do_flat=True)
