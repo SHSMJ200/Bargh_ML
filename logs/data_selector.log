@@ -97,3 +97,22 @@
 2025-08-20 18:12:43,254 | data_selector | DEBUG | logger.py:46 | debug() | Rows of data selected successfully!
 2025-08-20 18:19:55,315 | data_selector | DEBUG | logger.py:46 | debug() | Rows of data selected successfully!
 2025-08-20 18:49:42,712 | data_selector | DEBUG | logger.py:46 | debug() | Rows of data selected successfully!
+2025-08-23 09:45:28,869 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 09:46:32,313 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 09:55:08,073 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 09:55:14,655 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 09:55:59,347 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 10:04:37,802 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 10:32:36,245 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 10:33:51,946 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 10:34:03,196 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 10:41:27,734 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 10:42:04,893 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 10:53:42,854 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 10:54:34,262 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 10:55:51,908 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 10:56:53,995 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 10:59:32,252 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 11:03:27,781 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 11:06:43,219 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-23 11:07:58,216 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!

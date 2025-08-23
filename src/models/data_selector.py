@@ -20,12 +20,26 @@ class Data_selector:
 
         logger.debug(f"Rows of data has been selected successfully!")
 
-        self.df = df
         return df
 
     def select_name_and_code(self, name, code):
         df = self.df
         df = df[((df['name'] == name) & (df['code'] == code))]
         logger.debug(f"Data related to {name}_{code}  has been selected successfully!")
-        self.df = df
+        
         return df
+    
+    def filter_name_code(self,name,code,get_bool=False):
+        df = self.df
+        mask = (df["name"] == name) & (df["code"] == code)
+        if get_bool:
+            return mask
+        return df[mask]
+
+    def filter_time(self,date1,date2,get_bool=False):
+        df = self.df
+        mask = (df['datetime'] >= date1) & (df['datetime'] <= date2)
+        if get_bool:
+            return mask
+        return df[mask]
+

@@ -21,12 +21,10 @@ if __name__ == "__main__":
     
     power_plants = df[['name', 'code']].drop_duplicates()
     for _, row in power_plants.iterrows():
-        up.temperature_change_and_generation_change_flag_marker_over_time(name = row["name"], code = row["code"])
-    '''
+        #up.temperature_change_and_generation_change_flag_marker_over_time(name = row["name"], code = row["code"])
         up.temperature_and_generation_by_dot_over_time(name = row["name"], code = row["code"])
-        up.temperature_and_generation_over_time(name=row["name"], code=row["code"])
-        up.generation_over_time(name=row["name"], code=row["code"])
-        up.prediction_and_generation_over_time(name=row["name"], code=row["code"])
-    '''
+        #up.temperature_and_generation_over_time(name=row["name"], code=row["code"])
+        #up.generation_over_time(name=row["name"], code=row["code"])
+        #up.prediction_and_generation_over_time(name=row["name"], code=row["code"])
         
     

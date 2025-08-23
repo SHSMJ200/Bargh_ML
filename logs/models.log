@@ -1790,3 +1790,27 @@ This LinearRegression estimator requires y to be passed, but the target y is Non
 2025-08-20 18:50:24,963 | models | DEBUG | logger.py:46 | debug() | y scaled successfully
 2025-08-20 18:50:24,963 | models | DEBUG | logger.py:46 | debug() | y flattened.
 2025-08-20 18:50:24,963 | models | DEBUG | logger.py:46 | debug() | Model trained successfully.
+2025-08-23 11:10:41,532 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-23 11:10:41,533 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-23 11:10:41,533 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-23 11:10:41,545 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-23 11:10:49,908 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-23 11:10:49,908 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-23 11:10:49,908 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-23 11:10:49,908 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-23 11:15:41,011 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-23 11:15:41,011 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-23 11:15:41,011 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-23 11:15:41,011 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-23 11:16:33,694 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-23 11:16:33,694 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-23 11:16:33,694 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-23 11:16:33,694 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-23 11:16:39,068 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-23 11:16:39,068 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-23 11:16:39,068 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-23 11:16:39,068 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-23 11:17:03,130 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-23 11:17:03,130 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-23 11:17:03,130 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-23 11:17:03,130 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.

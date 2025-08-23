@@ -100,7 +100,7 @@ class UnitPlotter:
             mode = 'lines'
             if feature in ["generation","generation_change"] and flag_marker:
                 color_pick = {0:"red",1:"black",2:"blue"}      
-                color_marker=dict(color=[color_pick[value] for value in sample["is_good_pick"]], size=5)     
+                color_marker=dict(color=[color_pick[value] for value in sample["is_good_peak"]], size=5)     
                 mode = 'lines+markers'
 
             fig.add_trace(go.Scatter(
