@@ -15,7 +15,6 @@ logger = CustomLogger(name="model_main", log_file_name='model_main.log').get_log
 if __name__ == "__main__":
     csv_path = os.path.join(project_root, "data", "processed", "integrated.csv")
     df = pd.read_csv(csv_path, encoding='utf-8')
-    #df = df[(df["name"] == "پرند") & (df["code"] == "G11")]
     logger.info(f"Csv file has bean read successfully")
 
     feature_adder = Feature_adder(df)
@@ -25,33 +24,32 @@ if __name__ == "__main__":
     logger.info(f"Some features have been added successfully")
 
     data_selector = Data_selector(feature_adder.df)
-    data_selector.select_name_and_code("پرند", "G13")
-    df_modified = data_selector.select_peaks(m_in_summer=True)
+    data_selector.select_peaks(m_in_summer=True)
     logger.info(f"Rows have been selected successfully")
 
-    feature_selector = Feature_selector(df_modified, "generation")
+    feature_selector = Feature_selector(data_selector.df, "generation")
     feature_to_be_dropped = ['id', 'date', 'declare', 'require']
     less_important_feature = ['dew', 'apparent_temperature', 'precipitation', 'rain', 'snow',
                               'evapotransporation', 'wind_speed', 'wind_direction']
     X, y = feature_selector.select(feature_to_be_dropped + less_important_feature)
     logger.info(f"Some features have been dropped successfully")
-    print(len(y))
-    n_est = 100
-    depth = 30
-    #model = Random_Forest()
-    #model.scale_and_split_data(X, y)
-    #model.fit(n_estimators=n_est, max_depth=depth)
 
-    model = Linear()
-    model.scale_and_split_data(X, y)
-    model.fit()
+    # n_est = 100
+    # depth = 30
+    # model = Random_Forest()
+    # model.scale_and_split_data(X, y)
+    # model.fit(n_estimators=n_est, max_depth=depth)
+
+    # model = Linear()
+    # model.scale_and_split_data(X, y)
+    # model.fit()
 
     # model = Polynomial()
     # model.scale_and_split_data(X, y)
     # model.fit()
 
     n_est = 500
-    depth = 3
+    depth = 10
     model = XGBoost()
     model.scale_and_split_data(X, y)
     model.fit(n_estimators=n_est, max_depth=depth)

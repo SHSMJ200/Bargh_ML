@@ -52,18 +52,8 @@ class Model:
         rmse_test_actual = (mean_squared_error(y_test_actual, y_pred_test_actual) ** 0.5 / np.mean(y_test_actual)) * 100
         rmse_train_actual = (mean_squared_error(y_train_actual, y_pred_train_actual) ** 0.5 / np.mean(y_train_actual)) * 100
 
-    def compute_mse_error_simple(self):
-        y_pred_test = self.model.predict(self.X_test)
-        y_pred_train = self.model.predict(self.X_train)
-        y_pred_test_actual = self.scaler_y.inverse_transform(y_pred_test.reshape(-1, 1)).ravel()
-        y_pred_train_actual = self.scaler_y.inverse_transform(y_pred_train.reshape(-1, 1)).ravel()
-        y_test_actual = self.scaler_y.inverse_transform(self.y_test.reshape(-1, 1)).ravel()
-        y_train_actual = self.scaler_y.inverse_transform(self.y_train.reshape(-1, 1)).ravel()
-        
-        mse_test_actual  = (mean_squared_error(y_test_actual, y_pred_test_actual))
-        mse_train_actual = (mean_squared_error(y_train_actual, y_pred_train_actual))
-        return mse_train_actual, mse_test_actual
-    
+        return rmse_train_actual, rmse_test_actual
+
     def scale_and_split_data(self, X, y, test_size=0.2, random_state=42, y_is_flat=True):
         x_scaled, scaler_x = scale(X)
         if y_is_flat:

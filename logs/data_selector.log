@@ -116,3 +116,17 @@
 2025-08-23 11:03:27,781 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
 2025-08-23 11:06:43,219 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
 2025-08-23 11:07:58,216 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-30 15:54:21,235 | data_selector | DEBUG | data_selector.py:24 | select_name_and_code() | Data related to پرند_G13  has been selected successfully!
+2025-08-30 15:54:21,244 | data_selector | DEBUG | data_selector.py:20 | select_peaks() | Rows of data has been selected successfully!
+2025-08-30 15:55:09,739 | data_selector | DEBUG | data_selector.py:24 | select_name_and_code() | Data related to پرند_G13  has been selected successfully!
+2025-08-30 15:55:09,747 | data_selector | DEBUG | data_selector.py:20 | select_peaks() | Rows of data has been selected successfully!
+2025-08-30 15:55:44,702 | data_selector | DEBUG | data_selector.py:20 | select_peaks() | Rows of data has been selected successfully!
+2025-08-30 15:56:03,049 | data_selector | DEBUG | data_selector.py:20 | select_peaks() | Rows of data has been selected successfully!
+2025-08-30 15:56:21,879 | data_selector | DEBUG | data_selector.py:20 | select_peaks() | Rows of data has been selected successfully!
+2025-08-30 15:59:03,577 | data_selector | DEBUG | data_selector.py:21 | select_peaks() | Rows of data has been selected successfully!
+2025-08-30 16:02:26,033 | data_selector | DEBUG | data_selector.py:20 | select_peaks() | Rows of data has been selected successfully!
+2025-08-30 16:03:42,846 | data_selector | DEBUG | data_selector.py:20 | select_peaks() | Rows of data has been selected successfully!
+2025-08-30 16:21:28,011 | data_selector | DEBUG | data_selector.py:24 | select_name_and_code() | Data related to سبلان_G11  has been selected successfully!
+2025-08-30 16:21:28,029 | data_selector | DEBUG | data_selector.py:20 | select_peaks() | Rows of data has been selected successfully!
+2025-08-30 16:34:07,169 | data_selector | DEBUG | data_selector.py:20 | select_peaks() | Rows of data has been selected successfully!
+2025-08-30 16:34:28,242 | data_selector | DEBUG | data_selector.py:20 | select_peaks() | Rows of data has been selected successfully!
