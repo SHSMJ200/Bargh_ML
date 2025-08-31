@@ -8,35 +8,26 @@ class Data_selector:
     def __init__(self, df: pd.DataFrame):
         self.df = df
 
-    def select_good_peaks(self):
-        return self.df[self.df["is_good_peak"] == 2]
+    def select_good_peaks(self, goodness):
+        return self.df[self.df["is_good_peak"] == goodness]
 
-    def select_peaks(self, m_in_summer=True, inplace = False):
-        
-        peak_condition = (self.df['value'] == 'P')
-        if m_in_summer:
-            peak_condition = peak_condition | (self.df['value'] == 'M') & (self.df['season'] == 'summer')    
-        peak_condition = peak_condition & ((self.df['status'] == 'SO') | (self.df['status'] == 'LF1'))
-            
-        if inplace:
-            self.df = self.df[peak_condition]
-            logger.debug(f"Rows of data has been selected successfully!")
-            return
-        else:
-            logger.debug(f"Rows of data has been selected successfully!")
-            return self.df[peak_condition]
+    def select_peaks(self, goodness):
+        peak_condition = (self.df['is_good_peak'] >= goodness)
+        logger.debug(f"Rows of data has been selected successfully!")
+        return self.df[peak_condition]
 
-    def filter_name_code(self, name, code, get_bool=False):
+    def filter_name_code(self, name, code, get_mask=False):
         df = self.df
         mask = (df["name"] == name) & (df["code"] == code)
-        if get_bool:
+        if get_mask:
             return mask
         logger.debug(f"Data related to {name}_{code}  has been selected successfully!")
         return df[mask]
 
-    def filter_time(self, date1, date2, get_bool=False):
+    def filter_time(self, date1, date2, get_mask=False):
         df = self.df
         mask = (df['datetime'] >= date1) & (df['datetime'] <= date2)
-        if get_bool:
+        if get_mask:
             return mask
+        logger.debug(f"Data related to {date1}_{date2} has been selected successfully!")
         return df[mask]

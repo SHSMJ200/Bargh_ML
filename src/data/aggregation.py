@@ -17,7 +17,7 @@ class Aggregator:
         db.connect()
         db.__exit__()
         self.logger = CustomLogger(__name__, log_file_name=f'aggregation({name}).log').get_logger()
-        self.query_path = get_root()  + '/src/data/queries/'
+        self.query_path = get_root() + '/src/data/queries/'
 
     def integrated_aggregation(self):
         try:

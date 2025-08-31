@@ -14,9 +14,9 @@ import yaml
 
 logger = CustomLogger(__name__, log_file_name='cleaning.log').get_logger()
 
-feature_dict = yaml.load(open(get_root()  + '/configs/tables_columns.yaml'), Loader=yaml.SafeLoader)
+feature_dict = yaml.load(open(get_root() + '/configs/tables_columns.yaml'), Loader=yaml.SafeLoader)
 
-RAW_DATA_PATH = get_root()  + '/data/raw/'
+RAW_DATA_PATH = get_root() + '/data/raw/'
 
 
 class RawData(Enum):
@@ -124,7 +124,7 @@ class CsvfileManipulation:
                 df = self.clean(input_file=file.value, is_xlsx=False)
                 try:
 
-                    df.to_csv(path_or_buf=get_root()  + '/temp/bartemp.csv', sep=',', header=True, index=False,
+                    df.to_csv(path_or_buf=get_root() + '/temp/bartemp.csv', sep=',', header=True, index=False,
                               na_rep='NULL')
 
                     db.create_table(
@@ -134,7 +134,7 @@ class CsvfileManipulation:
 
                     db.commit()
 
-                    path_file = get_root()  + '/temp/bartemp.csv'
+                    path_file = get_root() + '/temp/bartemp.csv'
 
                     db.lazy_copy_expert(
                         table_name=table_name,
@@ -145,7 +145,8 @@ class CsvfileManipulation:
 
                     db.commit()
 
-                    logger.debug(msg=f'Table {table_name} created successfully in the database and data copied into it.')
+                    logger.debug(
+                        msg=f'Table {table_name} created successfully in the database and data copied into it.')
 
                     db.__exit__()
                 except psyError as e:
@@ -156,7 +157,7 @@ class CsvfileManipulation:
                 try:
                     db.__enter__()
 
-                    path_file = get_root()  + '/data/interim/bar.csv'
+                    path_file = get_root() + '/data/interim/bar.csv'
 
                     db.lazy_copy_expert(
                         table_name=table_name,
@@ -175,7 +176,7 @@ class CsvfileManipulation:
                     if db.connection:
                         db.rollback()
 
-                os.remove(get_root()  + '/temp/bartemp.csv')
+                os.remove(get_root() + '/temp/bartemp.csv')
 
             case RawData.PLANT:
                 table_name = 'plant_data'
@@ -184,7 +185,7 @@ class CsvfileManipulation:
 
                 try:
 
-                    df.to_csv(path_or_buf=get_root()  + '/temp/plantdata.csv', sep=',', header=True, index=False,
+                    df.to_csv(path_or_buf=get_root() + '/temp/plantdata.csv', sep=',', header=True, index=False,
                               na_rep='NULL')
                     db.execute(
                         query=f'create table if not exists {table_name} (id varchar(50), name varchar(100), type varchar(10), UTM text)',
@@ -194,7 +195,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} from stdin with delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/temp/plantdata.csv',
+                        file=get_root() + '/temp/plantdata.csv',
                         mode='r'
                     )
                     db.commit()
@@ -210,7 +211,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} to stdout with delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/data/interim/plant_data.csv',
+                        file=get_root() + '/data/interim/plant_data.csv',
                         mode='w'
                     )
                     db.commit()
@@ -221,7 +222,7 @@ class CsvfileManipulation:
                     if db.gconnection:
                         db.rollback()
 
-                os.remove(get_root()  + '/temp/plantdata.csv')
+                os.remove(get_root() + '/temp/plantdata.csv')
 
             case RawData.TEMPERATURE:
                 table_name = 'plant_temp'
@@ -229,7 +230,7 @@ class CsvfileManipulation:
                 df = self.clean(input_file=file.value, is_xlsx=False)
 
                 try:
-                    df.to_csv(path_or_buf=get_root()  + '/temp/temperature.csv', sep=',', header=True, index=False,
+                    df.to_csv(path_or_buf=get_root() + '/temp/temperature.csv', sep=',', header=True, index=False,
                               na_rep='NULL')
                     db.execute(
                         query=f'create table if not exists {table_name} (id varchar(50), name varchar(100), date text, hour int, temperature float)',
@@ -239,7 +240,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} from stdin with delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/temp/temperature.csv',
+                        file=get_root() + '/temp/temperature.csv',
                         mode='r'
                     )
                     db.commit()
@@ -263,14 +264,14 @@ class CsvfileManipulation:
                     if db.connection:
                         db.rollback()
 
-                os.remove(get_root()  + '/temp/temperature.csv')
+                os.remove(get_root() + '/temp/temperature.csv')
 
             case RawData.ENERGY:
                 table_name = 'energy'
                 df = self.clean(input_file=file.value, is_xlsx=False, melt=True)
 
                 try:
-                    df.to_csv(path_or_buf=get_root()  + '/temp/energy.csv', sep=',', header=True, index=False,
+                    df.to_csv(path_or_buf=get_root() + '/temp/energy.csv', sep=',', header=True, index=False,
                               na_rep='NULL')
                     db.execute(
                         query=f'create table if not exists {table_name} (id varchar(50), code varchar(50), name varchar(100), date text, hour int, generation float);',
@@ -280,7 +281,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} from stdin delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/temp/energy.csv',
+                        file=get_root() + '/temp/energy.csv',
                         mode='r'
                     )
                     db.commit()
@@ -296,7 +297,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} to stdout with delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/data/interim/energy.csv',
+                        file=get_root() + '/data/interim/energy.csv',
                         mode='w'
                     )
 
@@ -309,7 +310,7 @@ class CsvfileManipulation:
                     if db.connection:
                         db.rollback()
 
-                os.remove(get_root()  + '/temp/energy.csv')
+                os.remove(get_root() + '/temp/energy.csv')
 
             case RawData.SELLEROFFER:
                 table_name = 'selleroffer'
@@ -320,7 +321,7 @@ class CsvfileManipulation:
                         'Revision'].idxmax()
                     result = df.loc[max_indices]
                     result.drop(columns=['Revision'], axis=1, inplace=True)
-                    result.to_csv(path_or_buf=get_root()  + '/temp/selleroffer.csv', sep=',', header=True,
+                    result.to_csv(path_or_buf=get_root() + '/temp/selleroffer.csv', sep=',', header=True,
                                   index=False, na_rep='NULL')
 
                     db.execute(
@@ -331,7 +332,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} from stdin delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/temp/selleroffer.csv',
+                        file=get_root() + '/temp/selleroffer.csv',
                         mode='r'
                     )
                     db.commit()
@@ -347,7 +348,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} to stdout with delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/data/interim/selleroffer.csv',
+                        file=get_root() + '/data/interim/selleroffer.csv',
                         mode='w'
                     )
 
@@ -360,14 +361,14 @@ class CsvfileManipulation:
                     if db.connection:
                         db.rollback()
 
-                os.remove(get_root()  + '/temp/selleroffer.csv')
+                os.remove(get_root() + '/temp/selleroffer.csv')
 
             case RawData.FACTORS:
                 table_name = 'factors'
                 df = self.clean(input_file=file.value, is_xlsx=False)
 
                 try:
-                    df.to_csv(path_or_buf=get_root()  + '/temp/factors.csv', sep=',', header=True, index=False,
+                    df.to_csv(path_or_buf=get_root() + '/temp/factors.csv', sep=',', header=True, index=False,
                               na_rep='NULL')
                     db.execute(
                         query=f'create table if not exists {table_name} (id varchar(50), name varchar(100), code varchar(50), date text, a float, b float);',
@@ -377,7 +378,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} from stdin delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/temp/factors.csv',
+                        file=get_root() + '/temp/factors.csv',
                         mode='r'
                     )
                     db.commit()
@@ -393,7 +394,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} to stdout with delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/data/interim/factors.csv',
+                        file=get_root() + '/data/interim/factors.csv',
                         mode='w'
                     )
 
@@ -406,7 +407,7 @@ class CsvfileManipulation:
                     if db.connection:
                         db.rollback()
 
-                os.remove(get_root()  + '/temp/factors.csv')
+                os.remove(get_root() + '/temp/factors.csv')
 
             case RawData.STATUS:
                 table_name = 'status'
@@ -417,7 +418,7 @@ class CsvfileManipulation:
                     df.drop(columns=['FullUnitCode'], axis=1, inplace=True)
                     df = df[['id', 'code'] + [col for col in df.columns if col not in ['id', 'code']]]
                     df['Hour'] = df['Hour'].astype(int)
-                    df.to_csv(path_or_buf=get_root()  + '/temp/status.csv', sep=',', header=True, index=False,
+                    df.to_csv(path_or_buf=get_root() + '/temp/status.csv', sep=',', header=True, index=False,
                               na_rep='NULL')
 
                     db.execute(
@@ -428,7 +429,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} from stdin delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/temp/status.csv',
+                        file=get_root() + '/temp/status.csv',
                         mode='r'
                     )
                     db.commit()
@@ -448,7 +449,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} to stdout with delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/data/interim/status.csv',
+                        file=get_root() + '/data/interim/status.csv',
                         mode='w'
                     )
 
@@ -461,7 +462,7 @@ class CsvfileManipulation:
                     if db.connection:
                         db.rollback()
 
-                os.remove(get_root()  + '/temp/status.csv')
+                os.remove(get_root() + '/temp/status.csv')
 
             case RawData.LOAD:
                 table_name = 'load'
@@ -471,7 +472,7 @@ class CsvfileManipulation:
                     max_indices = df.groupby(['Date', 'HourNo', 'ForcastedValue'])['Revision'].idxmax()
                     result = df.loc[max_indices]
                     result.drop(columns=['Revision'], axis=1, inplace=True)
-                    result.to_csv(path_or_buf=get_root()  + '/temp/load.csv', sep=',', header=True, index=False,
+                    result.to_csv(path_or_buf=get_root() + '/temp/load.csv', sep=',', header=True, index=False,
                                   na_rep='NULL')
 
                     db.execute(
@@ -482,7 +483,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} from stdin delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/temp/load.csv',
+                        file=get_root() + '/temp/load.csv',
                         mode='r'
                     )
                     db.commit()
@@ -498,7 +499,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} to stdout with delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/data/interim/load.csv',
+                        file=get_root() + '/data/interim/load.csv',
                         mode='w'
                     )
 
@@ -511,7 +512,7 @@ class CsvfileManipulation:
                     if db.connection:
                         db.rollback()
 
-                os.remove(get_root()  + '/temp/load.csv')
+                os.remove(get_root() + '/temp/load.csv')
 
             case RawData.COMMITMENT:
                 table_name = 'commitment'
@@ -519,11 +520,11 @@ class CsvfileManipulation:
 
                 try:
                     max_indices = \
-                    df.groupby(['PowerPlantCode', 'PowerPlantName', 'UnitCode', 'Date', 'HourNo', 'Required'])[
-                        'Revision'].idxmax()
+                        df.groupby(['PowerPlantCode', 'PowerPlantName', 'UnitCode', 'Date', 'HourNo', 'Required'])[
+                            'Revision'].idxmax()
                     result = df.loc[max_indices]
                     result.drop(columns=['Revision'], axis=1, inplace=True)
-                    result.to_csv(path_or_buf=get_root()  + '/temp/commitment.csv', sep=',', header=True,
+                    result.to_csv(path_or_buf=get_root() + '/temp/commitment.csv', sep=',', header=True,
                                   index=False, na_rep='NULL')
 
                     db.execute(
@@ -534,7 +535,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} from stdin delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/temp/commitment.csv',
+                        file=get_root() + '/temp/commitment.csv',
                         mode='r'
                     )
                     db.commit()
@@ -550,7 +551,7 @@ class CsvfileManipulation:
 
                     db.copy_expert(
                         query=f"copy {table_name} to stdout with delimiter ',' csv header NULL as 'NULL'",
-                        file=get_root()  + '/data/interim/commitment.csv',
+                        file=get_root() + '/data/interim/commitment.csv',
                         mode='w'
                     )
 
@@ -563,4 +564,4 @@ class CsvfileManipulation:
                     if db.connection:
                         db.rollback()
 
-                os.remove(get_root()  + '/temp/commitment.csv')
+                os.remove(get_root() + '/temp/commitment.csv')

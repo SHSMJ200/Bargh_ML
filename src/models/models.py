@@ -3,7 +3,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import make_pipeline
-from sklearn.metrics import mean_absolute_error,mean_squared_error
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from src.models.LinearRegressionNorm1 import CustomLinearRegression
@@ -51,9 +51,10 @@ class Model:
         y_train_actual = self.scaler_y.inverse_transform(self.y_train.reshape(-1, 1)).ravel()
 
         rmse_test_actual = (mean_squared_error(y_test_actual, y_pred_test_actual) ** 0.5 / np.mean(y_test_actual)) * 100
-        rmse_train_actual = (mean_squared_error(y_train_actual, y_pred_train_actual) ** 0.5 / np.mean(y_train_actual)) * 100
-        
-        return rmse_train_actual,rmse_test_actual
+        rmse_train_actual = (mean_squared_error(y_train_actual, y_pred_train_actual) ** 0.5 / np.mean(
+            y_train_actual)) * 100
+
+        return rmse_train_actual, rmse_test_actual
 
     def scale_and_split_data(self, X, y, test_size=0.2, random_state=42, y_is_flat=True):
         x_scaled, scaler_x = scale(X)
@@ -83,6 +84,7 @@ class Model:
         y_pred = self.scaler_y.inverse_transform(y_pred_scaled)
         return y_pred
 
+
 class LinearL1(Model):  # inherits your Model class
     def __init__(self, learning_rate=0.01, epochs=1000):
         super().__init__()
@@ -110,6 +112,7 @@ class LinearL1(Model):  # inherits your Model class
         y_pred = self.scaler_y.inverse_transform(y_pred_scaled)
         return y_pred
 
+
 class Linear(Model):
     def __init__(self):
         super().__init__()
@@ -127,10 +130,12 @@ class Linear(Model):
 
 
 class Polynomial(Model):
-    def __init__(self):
+    def __init__(self, degree=2):
         super().__init__()
+        self.degree = degree
 
-    def fit(self, degree=2):
+    def fit(self):
+        degree = self.degree
         try:
             model = make_pipeline(PolynomialFeatures(degree), LinearRegression())
             model.fit(self.X_train, self.y_train)
@@ -143,10 +148,14 @@ class Polynomial(Model):
 
 
 class Random_Forest(Model):
-    def __init__(self):
+    def __init__(self, n_estimators=10, max_depth=5):
         super().__init__()
+        self.n_estimators = n_estimators
+        self.max_depth = max_depth
 
-    def fit(self, n_estimators=10, max_depth=5):
+    def fit(self):
+        n_estimators = self.n_estimators
+        max_depth = self.max_depth
         try:
             rf_model = RandomForestRegressor(n_estimators=n_estimators, max_depth=max_depth, random_state=42)
 
@@ -165,10 +174,16 @@ class Random_Forest(Model):
 
 
 class XGBoost(Model):
-    def __init__(self):
+    def __init__(self, n_estimators=100, max_depth=3, lr=0.1):
         super().__init__()
+        self.n_estimators = n_estimators
+        self.max_depth = max_depth
+        self.lr = lr
 
-    def fit(self, n_estimators=100, max_depth=3, lr=0.1):
+    def fit(self):
+        n_estimators = self.n_estimators
+        max_depth = self.max_depth
+        lr = self.lr
         try:
             model = (xgb.XGBRegressor
                      (objective='reg:squarederror', n_estimators=n_estimators, learning_rate=lr, max_depth=max_depth))
@@ -186,6 +201,7 @@ class XGBoost(Model):
 
         except Exception as e:
             logger.error(f"Couldn't train XGBoost model. Exception below occurred.\n{e}\n")
+
 
 '''
 class Neural_network(Model):
