@@ -8,6 +8,9 @@ class Data_selector:
     def __init__(self, df: pd.DataFrame):
         self.df = df
 
+    def select_good_peaks(self):
+        return self.df[self.df["is_good_peak"] == 2]
+
     def select_peaks(self, m_in_summer=True):
         df = self.df
         df = df[((df['status'] == 'SO') | (df['status'] == 'LF1'))]

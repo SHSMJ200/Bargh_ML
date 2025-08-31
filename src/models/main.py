@@ -15,33 +15,37 @@ logger = CustomLogger(name="model_main", log_file_name='model_main.log').get_log
 if __name__ == "__main__":
     csv_path = os.path.join(project_root, "data", "processed", "integrated.csv")
     df = pd.read_csv(csv_path, encoding='utf-8')
-    #df = df[(df["name"] == "پرند") & (df["code"] == "G11")]
     logger.info(f"Csv file has bean read successfully")
 
     feature_adder = Feature_adder(df)
     feature_adder.add_season()
+    feature_adder.add_date_time()
+    feature_adder.add_is_good_peak(4,3)
     feature_adder.create_feature_with_delay("temperature", 3)
     feature_adder.create_feature_with_delay("generation", 24)
     logger.info(f"Some features have been added successfully")
 
     data_selector = Data_selector(feature_adder.df)
-    data_selector.select_name_and_code("پرند", "G13")
-    df_modified = data_selector.select_peaks(m_in_summer=True)
+    #data_selector.select_name_and_code("پرند", "G13")
+    #df_modified = data_selector.select_peaks(m_in_summer=True)
+    df_modified = data_selector.select_good_peaks()
+    
     logger.info(f"Rows have been selected successfully")
-
+    # print(df_modified.columns)
     feature_selector = Feature_selector(df_modified, "generation")
-    feature_to_be_dropped = ['id', 'date', 'declare', 'require']
+    feature_to_be_dropped = ['id','datetime', 'date', 'declare', 'require']
     less_important_feature = ['dew', 'apparent_temperature', 'precipitation', 'rain', 'snow',
                               'evapotransporation', 'wind_speed', 'wind_direction']
     X, y = feature_selector.select(feature_to_be_dropped + less_important_feature)
+    # print(X.columns)
     logger.info(f"Some features have been dropped successfully")
-    print(len(y))
+    # print(len(y))
     n_est = 100
     depth = 30
     #model = Random_Forest()
     #model.scale_and_split_data(X, y)
     #model.fit(n_estimators=n_est, max_depth=depth)
-
+    '''
     model = Linear()
     model.scale_and_split_data(X, y)
     model.fit()
@@ -50,12 +54,14 @@ if __name__ == "__main__":
     # model.scale_and_split_data(X, y)
     # model.fit()
 
+    '''
     n_est = 500
-    depth = 3
+    depth = 7
     model = XGBoost()
     model.scale_and_split_data(X, y)
     model.fit(n_estimators=n_est, max_depth=depth)
-
+    
+    
     logger.info(f"Model has been trained successfully")
 
     rmse_error_train, rmse_error_test = model.compute_rmse_error()
