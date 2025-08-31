@@ -24,6 +24,11 @@ if __name__ == "__main__":
     feature_adder.add_is_good_peak(l_min=4,max_diff=3)
     feature_adder.create_feature_with_delay("temperature", 5)
     #feature_adder.create_feature_with_delay("generation", 24)
+    feature_adder.create_feature_with_delay("temperature", 5)
+    # feature_adder.create_feature_with_delay("generation", 24)
+    c_t = 0.9
+    feature_adder.add_is_good_peak(l_min=4, max_diff=3, consistency_threshold=c_t)
+    logger.info(f"peaks were selected with threshold {c_t}")
     logger.info(f"Some features have been added successfully")
 
     data_selector = Data_selector(feature_adder.df)
@@ -38,7 +43,7 @@ if __name__ == "__main__":
     less_important_feature = ['dew', 'apparent_temperature', 'precipitation', 'rain', 'snow',
                               'evapotransporation', 'wind_speed', 'wind_direction']
     X, y = feature_selector.select(feature_to_be_dropped + less_important_feature)
-    print(X.columns)
+    # print(X.columns)
     logger.info(f"Some features have been dropped successfully")
     # print(len(y))
     # n_est = 100
@@ -46,18 +51,29 @@ if __name__ == "__main__":
     #model = Random_Forest()
     #model.scale_and_split_data(X, y)
     #model.fit(n_estimators=n_est, max_depth=depth)
-    
+
     '''
     model = Linear()
     model.scale_and_split_data(X, y)
     model.fit()
     '''
     '''
+    n_est = 100
+    depth = 30
+    # model = Random_Forest()
+    # model.scale_and_split_data(X, y)
+    # model.fit(n_estimators=n_est, max_depth=depth)
+
+    # model = Linear()
+    # model.scale_and_split_data(X, y)
+    # model.fit()
+
     # model = Polynomial()
     # model.scale_and_split_data(X, y)
     # model.fit()
     '''
-    
+
+
     n_est = 500
     depth = 7
     model = XGBoost()
@@ -69,11 +85,12 @@ if __name__ == "__main__":
     model.scale_and_split_data(X,y)
     model.fit()
     '''
-    
+
+
     logger.info(f"Model has been trained successfully")
 
     rmse_error_train, rmse_error_test = model.compute_rmse_error()
     print(f"Train Error: {rmse_error_train:0.2f}%, Test Error: {rmse_error_test:0.2f}%")
-    
+
     #df.loc[X.index,"prediction"] = model.pred(X)
     #df.to_csv(csv_write_path, index=False)
