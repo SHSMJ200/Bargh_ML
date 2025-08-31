@@ -11,9 +11,11 @@
 * Add change point detection and choose the training data better
 * LF1 is correct or LO????
 * Why null data in temperature??
+* 
 
-  🟨 Doing
-  ==========================
+
+🟨 Doing
+==========================
 * Predict all 24 hours simultaneously. A problem: We should interpolate non-peak generations
 * 
 * Package Prophet for time series
@@ -21,8 +23,8 @@
 *
 
 
-  🟥 Done
-  ==========================
+🟥 Done
+==========================
 
 * installing postgres
 * connecting postgres to my project
@@ -45,3 +47,4 @@
 * Choose which features should be in the model training.
 * Pay attention to affecting with delay. For example: temperature.
 * how about generation with delay
+
