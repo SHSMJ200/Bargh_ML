@@ -6,6 +6,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.metrics import mean_absolute_error,mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from src.models.LinearRegressionNorm1 import CustomLinearRegression
 import xgboost as xgb
 
 '''
@@ -54,8 +55,6 @@ class Model:
         
         return rmse_train_actual,rmse_test_actual
 
-        return rmse_train_actual, rmse_test_actual
-
     def scale_and_split_data(self, X, y, test_size=0.2, random_state=42, y_is_flat=True):
         x_scaled, scaler_x = scale(X)
         if y_is_flat:
@@ -84,6 +83,32 @@ class Model:
         y_pred = self.scaler_y.inverse_transform(y_pred_scaled)
         return y_pred
 
+class LinearL1(Model):  # inherits your Model class
+    def __init__(self, learning_rate=0.01, epochs=1000):
+        super().__init__()
+        self.learning_rate = learning_rate
+        self.epochs = epochs
+
+    def fit(self):
+        try:
+            model = CustomLinearRegression(learning_rate=self.learning_rate, epochs=self.epochs)
+            model.fit(self.X_train, self.y_train.flatten())
+            self.model = model
+            self.model_info = {
+                "learning_rate": self.learning_rate,
+                "epochs": self.epochs,
+                "weights": model.w,
+                "bias": model.b
+            }
+            print("Model trained successfully.")
+        except Exception as e:
+            print(f"Couldn't train LinearL1 model. Exception: {e}")
+
+    def predict(self, X):
+        x_scaled = self.scaler_x.transform(X)
+        y_pred_scaled = self.model.predict(x_scaled).reshape(-1, 1)
+        y_pred = self.scaler_y.inverse_transform(y_pred_scaled)
+        return y_pred
 
 class Linear(Model):
     def __init__(self):

@@ -11,22 +11,23 @@ logger = CustomLogger(name="feature_modifier", log_file_name='feature_modifier.l
 class Feature_selector:
     def __init__(self, df: pd.DataFrame, target):
         self.df = df
-        self.df.reset_index(drop=True,inplace=True)
         self.target = target
 
     def select(self, features_to_drop=None):
+        df = self.df.copy(deep=True)
+        
         if features_to_drop is not None:
-            self.df.drop(columns=features_to_drop, axis=1, inplace=True)
+            df = df.drop(columns=features_to_drop, axis=1)
 
-        categorical_cols = self.df.select_dtypes(include=['object', 'category']).columns
-        self.df = pd.get_dummies(self.df, columns=categorical_cols, drop_first=True)
+        categorical_cols = df.select_dtypes(include=['object', 'category']).columns
+        df = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
 
-        self.df = self.df.dropna()
+        df = df.dropna()
 
-        logger.debug(f"Features training is applied on: {self.df.columns}")
+        logger.debug(f"Features training is applied on: {df.columns}")
 
-        X = self.df.drop(columns=[self.target])
-        y = self.df[self.target]
+        X = df.drop(columns=[self.target])
+        y = df[self.target]
 
         return X, y
 

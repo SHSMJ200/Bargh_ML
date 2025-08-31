@@ -8,7 +8,7 @@ import pandas as pd
 from data_selector import Data_selector
 from feature_modifier import Feature_selector, Feature_adder
 from logs.logger import CustomLogger
-from models import Random_Forest, Linear, Polynomial, XGBoost
+from models import Random_Forest, Linear, Polynomial, XGBoost,LinearL1
 
 logger = CustomLogger(name="model_main", log_file_name='model_main.log').get_logger()
 
@@ -37,11 +37,11 @@ if __name__ == "__main__":
     less_important_feature = ['dew', 'apparent_temperature', 'precipitation', 'rain', 'snow',
                               'evapotransporation', 'wind_speed', 'wind_direction']
     X, y = feature_selector.select(feature_to_be_dropped + less_important_feature)
-    # print(X.columns)
+    print(X.columns)
     logger.info(f"Some features have been dropped successfully")
     # print(len(y))
-    n_est = 100
-    depth = 30
+    # n_est = 100
+    # depth = 30
     #model = Random_Forest()
     #model.scale_and_split_data(X, y)
     #model.fit(n_estimators=n_est, max_depth=depth)
@@ -54,15 +54,21 @@ if __name__ == "__main__":
     # model.scale_and_split_data(X, y)
     # model.fit()
 
-    '''
+    
     n_est = 500
     depth = 7
     model = XGBoost()
     model.scale_and_split_data(X, y)
     model.fit(n_estimators=n_est, max_depth=depth)
-    
+    '''
+    model = LinearL1()
+    model.scale_and_split_data(X,y)
+    model.fit()
     
     logger.info(f"Model has been trained successfully")
 
     rmse_error_train, rmse_error_test = model.compute_rmse_error()
     print(f"Train Error: {rmse_error_train:0.2f}%, Test Error: {rmse_error_test:0.2f}%")
+    
+    #df_modified['prediction'] = model.predict(X)
+    #df_modified.to_csv('U:/ML_project/bargh/data/processed/with_prediction.csv', index=False)
