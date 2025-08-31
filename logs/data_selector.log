@@ -1369,3 +1369,315 @@
 2025-08-31 10:49:08,329 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_S1  has been selected successfully!
 2025-08-31 10:49:08,360 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_S1  has been selected successfully!
 2025-08-31 10:49:08,422 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_S3  has been selected successfully!
+2025-08-31 14:26:07,108 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-31 14:26:07,216 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_S1  has been selected successfully!
+2025-08-31 14:26:07,341 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G16  has been selected successfully!
+2025-08-31 14:26:07,466 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G15  has been selected successfully!
+2025-08-31 14:26:07,591 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S2  has been selected successfully!
+2025-08-31 14:26:07,705 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G16  has been selected successfully!
+2025-08-31 14:26:07,830 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G11  has been selected successfully!
+2025-08-31 14:26:08,191 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G17  has been selected successfully!
+2025-08-31 14:26:08,319 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S1  has been selected successfully!
+2025-08-31 14:26:08,447 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_G13  has been selected successfully!
+2025-08-31 14:26:08,575 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G15  has been selected successfully!
+2025-08-31 14:26:08,734 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G14  has been selected successfully!
+2025-08-31 14:26:08,863 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پیروز - بهبهان_G12  has been selected successfully!
+2025-08-31 14:26:09,004 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پیروز - بهبهان_S1  has been selected successfully!
+2025-08-31 14:26:09,160 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G15  has been selected successfully!
+2025-08-31 14:26:09,257 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S4  has been selected successfully!
+2025-08-31 14:26:09,397 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S5  has been selected successfully!
+2025-08-31 14:26:09,514 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S6  has been selected successfully!
+2025-08-31 14:26:09,639 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_S1  has been selected successfully!
+2025-08-31 14:26:09,777 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G11  has been selected successfully!
+2025-08-31 14:26:10,083 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G14  has been selected successfully!
+2025-08-31 14:26:10,208 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G15  has been selected successfully!
+2025-08-31 14:26:10,350 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G13  has been selected successfully!
+2025-08-31 14:26:10,474 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G14  has been selected successfully!
+2025-08-31 14:26:10,583 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G16  has been selected successfully!
+2025-08-31 14:26:10,708 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G15  has been selected successfully!
+2025-08-31 14:26:10,834 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G14  has been selected successfully!
+2025-08-31 14:26:10,952 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G20  has been selected successfully!
+2025-08-31 14:26:11,061 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G12  has been selected successfully!
+2025-08-31 14:26:11,202 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G14  has been selected successfully!
+2025-08-31 14:26:11,327 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G13  has been selected successfully!
+2025-08-31 14:26:11,458 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S5  has been selected successfully!
+2025-08-31 14:26:11,567 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_G14  has been selected successfully!
+2025-08-31 14:26:11,708 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پیروز - بهبهان_G11  has been selected successfully!
+2025-08-31 14:26:12,075 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G11  has been selected successfully!
+2025-08-31 14:26:12,356 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S8  has been selected successfully!
+2025-08-31 14:26:12,489 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S7  has been selected successfully!
+2025-08-31 14:26:12,614 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G11  has been selected successfully!
+2025-08-31 14:26:12,951 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G11  has been selected successfully!
+2025-08-31 14:26:13,253 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G16  has been selected successfully!
+2025-08-31 14:26:13,363 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G15  has been selected successfully!
+2025-08-31 14:26:13,489 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_S2  has been selected successfully!
+2025-08-31 14:26:13,617 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G12  has been selected successfully!
+2025-08-31 14:26:13,758 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G13  has been selected successfully!
+2025-08-31 14:26:13,883 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G11  has been selected successfully!
+2025-08-31 14:26:14,220 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G11  has been selected successfully!
+2025-08-31 14:26:14,489 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G14  has been selected successfully!
+2025-08-31 14:26:14,601 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G16  has been selected successfully!
+2025-08-31 14:26:14,710 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_S2  has been selected successfully!
+2025-08-31 14:26:14,835 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S1  has been selected successfully!
+2025-08-31 14:26:15,164 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G15  has been selected successfully!
+2025-08-31 14:26:15,286 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G12  has been selected successfully!
+2025-08-31 14:26:15,411 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G16  has been selected successfully!
+2025-08-31 14:26:15,529 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G22  has been selected successfully!
+2025-08-31 14:26:15,655 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G16  has been selected successfully!
+2025-08-31 14:26:15,765 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_G12  has been selected successfully!
+2025-08-31 14:26:15,874 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_S3  has been selected successfully!
+2025-08-31 14:26:15,988 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G13  has been selected successfully!
+2025-08-31 14:26:16,113 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G12  has been selected successfully!
+2025-08-31 14:26:16,237 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_G11  has been selected successfully!
+2025-08-31 14:26:16,558 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G13  has been selected successfully!
+2025-08-31 14:26:16,686 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G11  has been selected successfully!
+2025-08-31 14:26:17,034 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G12  has been selected successfully!
+2025-08-31 14:26:17,175 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G12  has been selected successfully!
+2025-08-31 14:26:17,269 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_S2  has been selected successfully!
+2025-08-31 14:26:17,380 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G21  has been selected successfully!
+2025-08-31 14:26:17,512 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S6  has been selected successfully!
+2025-08-31 14:26:17,637 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G16  has been selected successfully!
+2025-08-31 14:26:17,750 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_S2  has been selected successfully!
+2025-08-31 14:26:17,875 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G14  has been selected successfully!
+2025-08-31 14:26:17,922 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_S1  has been selected successfully!
+2025-08-31 14:26:18,051 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G11  has been selected successfully!
+2025-08-31 14:26:18,377 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G12  has been selected successfully!
+2025-08-31 14:26:18,504 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G18  has been selected successfully!
+2025-08-31 14:26:18,644 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S4  has been selected successfully!
+2025-08-31 14:26:18,769 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G19  has been selected successfully!
+2025-08-31 14:26:18,913 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S3  has been selected successfully!
+2025-08-31 14:26:19,043 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G12  has been selected successfully!
+2025-08-31 14:26:19,153 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S2  has been selected successfully!
+2025-08-31 14:26:19,262 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S3  has been selected successfully!
+2025-08-31 14:26:19,371 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G13  has been selected successfully!
+2025-08-31 14:26:19,473 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G15  has been selected successfully!
+2025-08-31 14:26:19,583 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G16  has been selected successfully!
+2025-08-31 14:26:19,708 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_S3  has been selected successfully!
+2025-08-31 14:26:19,802 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G14  has been selected successfully!
+2025-08-31 14:26:19,936 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G12  has been selected successfully!
+2025-08-31 14:26:20,050 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G13  has been selected successfully!
+2025-08-31 14:26:20,160 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G13  has been selected successfully!
+2025-08-31 14:26:20,285 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G12  has been selected successfully!
+2025-08-31 14:26:20,396 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G13  has been selected successfully!
+2025-08-31 14:26:20,502 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G14  has been selected successfully!
+2025-08-31 14:26:20,596 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G15  has been selected successfully!
+2025-08-31 14:26:20,705 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G15  has been selected successfully!
+2025-08-31 14:26:20,814 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G14  has been selected successfully!
+2025-08-31 14:26:20,941 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G11  has been selected successfully!
+2025-08-31 14:26:21,152 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_S2  has been selected successfully!
+2025-08-31 14:26:21,262 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_S1  has been selected successfully!
+2025-08-31 14:26:21,309 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_S1  has been selected successfully!
+2025-08-31 14:26:21,371 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G16  has been selected successfully!
+2025-08-31 14:26:21,502 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G13  has been selected successfully!
+2025-08-31 14:26:21,518 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_S1  has been selected successfully!
+2025-08-31 14:26:21,642 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_S1  has been selected successfully!
+2025-08-31 14:26:21,689 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_S1  has been selected successfully!
+2025-08-31 14:26:21,737 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_S3  has been selected successfully!
+2025-08-31 14:30:19,531 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-31 14:30:19,656 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_S1  has been selected successfully!
+2025-08-31 14:30:19,810 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G16  has been selected successfully!
+2025-08-31 14:30:19,962 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G15  has been selected successfully!
+2025-08-31 14:30:20,115 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S2  has been selected successfully!
+2025-08-31 14:30:20,260 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G16  has been selected successfully!
+2025-08-31 14:30:20,395 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G11  has been selected successfully!
+2025-08-31 14:30:20,750 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G17  has been selected successfully!
+2025-08-31 14:30:20,915 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S1  has been selected successfully!
+2025-08-31 14:30:21,073 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_G13  has been selected successfully!
+2025-08-31 14:30:21,252 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G15  has been selected successfully!
+2025-08-31 14:30:21,422 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G14  has been selected successfully!
+2025-08-31 14:30:21,559 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پیروز - بهبهان_G12  has been selected successfully!
+2025-08-31 14:30:21,688 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پیروز - بهبهان_S1  has been selected successfully!
+2025-08-31 14:30:21,844 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G15  has been selected successfully!
+2025-08-31 14:30:21,965 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S4  has been selected successfully!
+2025-08-31 14:30:22,111 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S5  has been selected successfully!
+2025-08-31 14:30:22,248 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S6  has been selected successfully!
+2025-08-31 14:30:22,385 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_S1  has been selected successfully!
+2025-08-31 14:30:22,524 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G11  has been selected successfully!
+2025-08-31 14:30:22,878 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G14  has been selected successfully!
+2025-08-31 14:30:23,010 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G15  has been selected successfully!
+2025-08-31 14:30:23,163 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G13  has been selected successfully!
+2025-08-31 14:30:23,289 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G14  has been selected successfully!
+2025-08-31 14:30:23,418 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G16  has been selected successfully!
+2025-08-31 14:30:23,544 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G15  has been selected successfully!
+2025-08-31 14:30:23,663 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G14  has been selected successfully!
+2025-08-31 14:30:23,794 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G20  has been selected successfully!
+2025-08-31 14:30:23,906 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G12  has been selected successfully!
+2025-08-31 14:30:24,058 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G14  has been selected successfully!
+2025-08-31 14:30:24,183 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G13  has been selected successfully!
+2025-08-31 14:30:24,326 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S5  has been selected successfully!
+2025-08-31 14:30:24,419 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_G14  has been selected successfully!
+2025-08-31 14:30:24,568 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پیروز - بهبهان_G11  has been selected successfully!
+2025-08-31 14:30:24,932 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G11  has been selected successfully!
+2025-08-31 14:30:25,207 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S8  has been selected successfully!
+2025-08-31 14:30:25,337 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S7  has been selected successfully!
+2025-08-31 14:30:25,459 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G11  has been selected successfully!
+2025-08-31 14:30:25,801 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G11  has been selected successfully!
+2025-08-31 14:30:26,108 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G16  has been selected successfully!
+2025-08-31 14:30:26,232 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G15  has been selected successfully!
+2025-08-31 14:30:26,359 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_S2  has been selected successfully!
+2025-08-31 14:30:26,533 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G12  has been selected successfully!
+2025-08-31 14:30:26,706 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G13  has been selected successfully!
+2025-08-31 14:30:26,884 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G11  has been selected successfully!
+2025-08-31 14:30:27,231 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G11  has been selected successfully!
+2025-08-31 14:30:27,521 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G14  has been selected successfully!
+2025-08-31 14:30:27,630 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G16  has been selected successfully!
+2025-08-31 14:30:27,739 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_S2  has been selected successfully!
+2025-08-31 14:30:27,864 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S1  has been selected successfully!
+2025-08-31 14:30:28,181 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G15  has been selected successfully!
+2025-08-31 14:30:28,306 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G12  has been selected successfully!
+2025-08-31 14:30:28,448 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G16  has been selected successfully!
+2025-08-31 14:30:28,581 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G22  has been selected successfully!
+2025-08-31 14:30:28,712 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G16  has been selected successfully!
+2025-08-31 14:30:28,842 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_G12  has been selected successfully!
+2025-08-31 14:30:28,931 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_S3  has been selected successfully!
+2025-08-31 14:30:29,058 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G13  has been selected successfully!
+2025-08-31 14:30:29,228 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G12  has been selected successfully!
+2025-08-31 14:30:29,359 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_G11  has been selected successfully!
+2025-08-31 14:30:29,708 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G13  has been selected successfully!
+2025-08-31 14:30:29,833 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G11  has been selected successfully!
+2025-08-31 14:30:30,205 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G12  has been selected successfully!
+2025-08-31 14:30:30,346 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G12  has been selected successfully!
+2025-08-31 14:30:30,439 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_S2  has been selected successfully!
+2025-08-31 14:30:30,557 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G21  has been selected successfully!
+2025-08-31 14:30:30,686 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S6  has been selected successfully!
+2025-08-31 14:30:30,811 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G16  has been selected successfully!
+2025-08-31 14:30:30,921 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_S2  has been selected successfully!
+2025-08-31 14:30:31,051 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G14  has been selected successfully!
+2025-08-31 14:30:31,098 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_S1  has been selected successfully!
+2025-08-31 14:30:31,212 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G11  has been selected successfully!
+2025-08-31 14:30:31,533 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G12  has been selected successfully!
+2025-08-31 14:30:31,658 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G18  has been selected successfully!
+2025-08-31 14:30:31,787 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S4  has been selected successfully!
+2025-08-31 14:30:31,912 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G19  has been selected successfully!
+2025-08-31 14:30:32,042 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S3  has been selected successfully!
+2025-08-31 14:30:32,151 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G12  has been selected successfully!
+2025-08-31 14:30:32,267 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S2  has been selected successfully!
+2025-08-31 14:30:32,392 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S3  has been selected successfully!
+2025-08-31 14:30:32,495 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G13  has been selected successfully!
+2025-08-31 14:30:32,589 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G15  has been selected successfully!
+2025-08-31 14:30:32,698 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G16  has been selected successfully!
+2025-08-31 14:30:32,842 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_S3  has been selected successfully!
+2025-08-31 14:30:32,920 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G14  has been selected successfully!
+2025-08-31 14:30:33,050 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G12  has been selected successfully!
+2025-08-31 14:30:33,175 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G13  has been selected successfully!
+2025-08-31 14:30:33,294 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G13  has been selected successfully!
+2025-08-31 14:30:33,408 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G12  has been selected successfully!
+2025-08-31 14:30:33,526 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G13  has been selected successfully!
+2025-08-31 14:30:33,604 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G14  has been selected successfully!
+2025-08-31 14:30:33,698 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G15  has been selected successfully!
+2025-08-31 14:30:33,830 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G15  has been selected successfully!
+2025-08-31 14:30:33,936 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G14  has been selected successfully!
+2025-08-31 14:30:34,050 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G11  has been selected successfully!
+2025-08-31 14:30:34,269 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_S2  has been selected successfully!
+2025-08-31 14:30:34,385 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_S1  has been selected successfully!
+2025-08-31 14:30:34,448 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_S1  has been selected successfully!
+2025-08-31 14:30:34,509 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G16  has been selected successfully!
+2025-08-31 14:30:34,634 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G13  has been selected successfully!
+2025-08-31 14:30:34,650 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_S1  has been selected successfully!
+2025-08-31 14:30:34,775 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_S1  has been selected successfully!
+2025-08-31 14:30:34,822 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_S1  has been selected successfully!
+2025-08-31 14:30:34,872 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_S3  has been selected successfully!
+2025-08-31 14:31:30,821 | data_selector | DEBUG | logger.py:45 | debug() | Rows of data has been selected successfully!
+2025-08-31 14:31:30,923 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_S1  has been selected successfully!
+2025-08-31 14:31:31,044 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G16  has been selected successfully!
+2025-08-31 14:31:31,185 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G15  has been selected successfully!
+2025-08-31 14:31:31,314 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S2  has been selected successfully!
+2025-08-31 14:31:31,437 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G16  has been selected successfully!
+2025-08-31 14:31:31,576 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G11  has been selected successfully!
+2025-08-31 14:31:31,965 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G17  has been selected successfully!
+2025-08-31 14:31:32,097 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S1  has been selected successfully!
+2025-08-31 14:31:32,231 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_G13  has been selected successfully!
+2025-08-31 14:31:32,368 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G15  has been selected successfully!
+2025-08-31 14:31:32,494 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G14  has been selected successfully!
+2025-08-31 14:31:32,634 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پیروز - بهبهان_G12  has been selected successfully!
+2025-08-31 14:31:32,776 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پیروز - بهبهان_S1  has been selected successfully!
+2025-08-31 14:31:32,939 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G15  has been selected successfully!
+2025-08-31 14:31:33,048 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S4  has been selected successfully!
+2025-08-31 14:31:33,188 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S5  has been selected successfully!
+2025-08-31 14:31:33,324 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S6  has been selected successfully!
+2025-08-31 14:31:33,464 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_S1  has been selected successfully!
+2025-08-31 14:31:33,589 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G11  has been selected successfully!
+2025-08-31 14:31:33,914 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G14  has been selected successfully!
+2025-08-31 14:31:34,039 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G15  has been selected successfully!
+2025-08-31 14:31:34,179 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G13  has been selected successfully!
+2025-08-31 14:31:34,298 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G14  has been selected successfully!
+2025-08-31 14:31:34,423 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G16  has been selected successfully!
+2025-08-31 14:31:34,532 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G15  has been selected successfully!
+2025-08-31 14:31:34,657 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G14  has been selected successfully!
+2025-08-31 14:31:34,789 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G20  has been selected successfully!
+2025-08-31 14:31:34,901 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G12  has been selected successfully!
+2025-08-31 14:31:35,041 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G14  has been selected successfully!
+2025-08-31 14:31:35,151 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G13  has been selected successfully!
+2025-08-31 14:31:35,306 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S5  has been selected successfully!
+2025-08-31 14:31:35,429 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_G14  has been selected successfully!
+2025-08-31 14:31:35,569 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پیروز - بهبهان_G11  has been selected successfully!
+2025-08-31 14:31:35,949 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G11  has been selected successfully!
+2025-08-31 14:31:36,230 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S8  has been selected successfully!
+2025-08-31 14:31:36,365 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S7  has been selected successfully!
+2025-08-31 14:31:36,500 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G11  has been selected successfully!
+2025-08-31 14:31:36,836 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G11  has been selected successfully!
+2025-08-31 14:31:37,136 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G16  has been selected successfully!
+2025-08-31 14:31:37,246 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G15  has been selected successfully!
+2025-08-31 14:31:37,375 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_S2  has been selected successfully!
+2025-08-31 14:31:37,506 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G12  has been selected successfully!
+2025-08-31 14:31:37,663 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G13  has been selected successfully!
+2025-08-31 14:31:37,798 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G11  has been selected successfully!
+2025-08-31 14:31:38,143 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G11  has been selected successfully!
+2025-08-31 14:31:38,454 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G14  has been selected successfully!
+2025-08-31 14:31:38,553 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G16  has been selected successfully!
+2025-08-31 14:31:38,678 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_S2  has been selected successfully!
+2025-08-31 14:31:38,806 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S1  has been selected successfully!
+2025-08-31 14:31:39,119 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G15  has been selected successfully!
+2025-08-31 14:31:39,244 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_G12  has been selected successfully!
+2025-08-31 14:31:39,375 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G16  has been selected successfully!
+2025-08-31 14:31:39,516 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G22  has been selected successfully!
+2025-08-31 14:31:39,632 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G16  has been selected successfully!
+2025-08-31 14:31:39,780 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_G12  has been selected successfully!
+2025-08-31 14:31:39,876 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_S3  has been selected successfully!
+2025-08-31 14:31:40,001 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G13  has been selected successfully!
+2025-08-31 14:31:40,129 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G12  has been selected successfully!
+2025-08-31 14:31:40,272 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_G11  has been selected successfully!
+2025-08-31 14:31:40,609 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G13  has been selected successfully!
+2025-08-31 14:31:40,726 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G11  has been selected successfully!
+2025-08-31 14:31:41,086 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G12  has been selected successfully!
+2025-08-31 14:31:41,214 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G12  has been selected successfully!
+2025-08-31 14:31:41,328 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_S2  has been selected successfully!
+2025-08-31 14:31:41,438 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G21  has been selected successfully!
+2025-08-31 14:31:41,578 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S6  has been selected successfully!
+2025-08-31 14:31:41,710 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G16  has been selected successfully!
+2025-08-31 14:31:41,828 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_S2  has been selected successfully!
+2025-08-31 14:31:41,969 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G14  has been selected successfully!
+2025-08-31 14:31:42,017 | data_selector | DEBUG | logger.py:45 | debug() | Data related to قم_S1  has been selected successfully!
+2025-08-31 14:31:42,126 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G11  has been selected successfully!
+2025-08-31 14:31:42,478 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_G12  has been selected successfully!
+2025-08-31 14:31:42,603 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G18  has been selected successfully!
+2025-08-31 14:31:42,741 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S4  has been selected successfully!
+2025-08-31 14:31:42,859 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_G19  has been selected successfully!
+2025-08-31 14:31:43,000 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهدای پاکدشت - دماوند_S3  has been selected successfully!
+2025-08-31 14:31:43,125 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G12  has been selected successfully!
+2025-08-31 14:31:43,234 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S2  has been selected successfully!
+2025-08-31 14:31:43,351 | data_selector | DEBUG | logger.py:45 | debug() | Data related to شهید منتظری 1_S3  has been selected successfully!
+2025-08-31 14:31:43,460 | data_selector | DEBUG | logger.py:45 | debug() | Data related to جنوب اصفهان - چهلستون_G13  has been selected successfully!
+2025-08-31 14:31:43,570 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G15  has been selected successfully!
+2025-08-31 14:31:43,663 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G16  has been selected successfully!
+2025-08-31 14:31:43,797 | data_selector | DEBUG | logger.py:45 | debug() | Data related to پرند_S3  has been selected successfully!
+2025-08-31 14:31:43,891 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G14  has been selected successfully!
+2025-08-31 14:31:44,031 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G12  has been selected successfully!
+2025-08-31 14:31:44,157 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G13  has been selected successfully!
+2025-08-31 14:31:44,284 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_G13  has been selected successfully!
+2025-08-31 14:31:44,401 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G12  has been selected successfully!
+2025-08-31 14:31:44,511 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G13  has been selected successfully!
+2025-08-31 14:31:44,604 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_G14  has been selected successfully!
+2025-08-31 14:31:44,714 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G15  has been selected successfully!
+2025-08-31 14:31:44,843 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی شیروان_G15  has been selected successfully!
+2025-08-31 14:31:44,945 | data_selector | DEBUG | logger.py:45 | debug() | Data related to حافظ_G14  has been selected successfully!
+2025-08-31 14:31:45,071 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G11  has been selected successfully!
+2025-08-31 14:31:45,296 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_S2  has been selected successfully!
+2025-08-31 14:31:45,409 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سبلان_S1  has been selected successfully!
+2025-08-31 14:31:45,471 | data_selector | DEBUG | logger.py:45 | debug() | Data related to عسلویه_S1  has been selected successfully!
+2025-08-31 14:31:45,549 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_G16  has been selected successfully!
+2025-08-31 14:31:45,674 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_G13  has been selected successfully!
+2025-08-31 14:31:45,690 | data_selector | DEBUG | logger.py:45 | debug() | Data related to گیلان_S1  has been selected successfully!
+2025-08-31 14:31:45,821 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی یزد_S1  has been selected successfully!
+2025-08-31 14:31:45,852 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_S1  has been selected successfully!
+2025-08-31 14:31:45,921 | data_selector | DEBUG | logger.py:45 | debug() | Data related to سیکل ترکیبی ارومیه_S3  has been selected successfully!

@@ -57,7 +57,7 @@ if __name__ == "__main__":
     # model.scale_and_split_data(X, y)
     # model.fit()
     '''
-    
+    '''
     n_est = 500
     depth = 7
     model = XGBoost()
@@ -65,15 +65,15 @@ if __name__ == "__main__":
     model.fit(n_estimators=n_est, max_depth=depth)
     
     '''
-    model = LinearL1()
+    model = LinearL1(learning_rate=0.02,epochs=2000)
     model.scale_and_split_data(X,y)
     model.fit()
-    '''
+    
     
     logger.info(f"Model has been trained successfully")
 
     rmse_error_train, rmse_error_test = model.compute_rmse_error()
     print(f"Train Error: {rmse_error_train:0.2f}%, Test Error: {rmse_error_test:0.2f}%")
     
-    #df.loc[X.index,"prediction"] = model.pred(X)
-    #df.to_csv(csv_write_path, index=False)
+    df.loc[X.index,"prediction"] = model.pred(X)
+    df.to_csv(csv_write_path, index=False)
