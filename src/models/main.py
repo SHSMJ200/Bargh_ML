@@ -20,7 +20,7 @@ if __name__ == "__main__":
     feature_adder = Feature_adder(df)
     feature_adder.add_season()
     feature_adder.add_date_time()
-    feature_adder.add_is_good_peak(4,3)
+    feature_adder.add_is_good_peak(l_min=4,max_diff=3)
     feature_adder.create_feature_with_delay("temperature", 3)
     feature_adder.create_feature_with_delay("generation", 24)
     logger.info(f"Some features have been added successfully")

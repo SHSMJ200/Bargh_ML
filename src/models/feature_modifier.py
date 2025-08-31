@@ -54,18 +54,17 @@ class Feature_adder:
         self.df['date'] = pd.to_datetime(self.df['date'])
         self.df['datetime'] = self.df['date'] + pd.to_timedelta(self.df['hour'], unit='h')
 
-    def add_is_good_peak(self,threshold,add_col = True):
-        df_modified = self.df[["name","code","date","hour","status",'value',"generation",'season']].copy(deep=True)
+    def add_is_good_peak(self,l_min,max_diff,add_col = True):
+        df_modified = self.df[["name","code","datetime","hour","status",'value',"generation",'season']].copy(deep=True)
         df_modified = Data_selector(df_modified).select_peaks(m_in_summer=True)
-        Feature_adder(df_modified).add_date_time()
-
+        print(df_modified.head())
         if add_col: self.df["is_good_peak"] = 0
 
         time_ranges_by_name_code = {}
         power_plants = df_modified[['name', 'code']].drop_duplicates()
         for _, row in power_plants.iterrows():
             df_name_code_smooth = Data_selector(df_modified).filter_name_code(row["name"],row["code"])
-            time_ranges = get_interval(df_name_code_smooth,l_min=threshold)
+            time_ranges = get_interval(df_name_code_smooth,l_min=l_min,max_diff=max_diff)
             
             time_ranges_by_name_code[(row["name"],row["code"])] = time_ranges
             if add_col : self.labeling_point(df_name_code_smooth,time_ranges,label=2)
@@ -103,10 +102,10 @@ def get_season(date):
     else:
         return 'fall'
 
-def get_interval(df,l_min):
+def get_interval(df,l_min,max_diff):
     df_s = df.reset_index(drop=True)
     gap_mask_time = df_s['datetime'].diff() != pd.Timedelta(hours=1)  # هر جایی اختلاف دقیقاً 1 ساعت نیست، مرز بازه جدید است
-    gap_mask_generatiion = df_s['generation'].diff().abs() > 4
+    gap_mask_generatiion = df_s['generation'].diff().abs() > max_diff
     gap_mask = gap_mask_time | gap_mask_generatiion
     # ایندکس شروع بازه‌ها
     start_indices = df_s.index[gap_mask].tolist()

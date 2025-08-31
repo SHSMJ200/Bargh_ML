@@ -1814,3 +1814,11 @@ This LinearRegression estimator requires y to be passed, but the target y is Non
 2025-08-23 11:17:03,130 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
 2025-08-23 11:17:03,130 | models | DEBUG | logger.py:45 | debug() | y flattened.
 2025-08-23 11:17:03,130 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-31 09:13:14,371 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-31 09:13:14,373 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-31 09:13:14,373 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-31 09:13:17,749 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-31 09:15:29,712 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-31 09:15:29,712 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-31 09:15:29,712 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-31 09:15:32,985 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
