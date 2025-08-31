@@ -59,7 +59,7 @@ if __name__ == "__main__":
     l_min = 4
     max_diff = 3
     c_thresh = 0.9
-    df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False, write_on_csv=False)
+    df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=True, write_on_csv=False)
     logger.info(f"Csv file has bean labeled successfully")
 
     ds = Data_selector(df)
