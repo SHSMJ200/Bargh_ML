@@ -76,7 +76,10 @@ class UnitPlotter:
 
     def prediction_and_generation_over_time(self, name, code):
         self.features_over_time(name, code, ["prediction", "generation"], ["blue", "red"])
-
+        
+    def prediction_and_generation_flag_marker_over_time(self, name, code):
+        self.features_over_time(name, code, ["prediction", "generation"], ["blue", "red"], flag_marker=True)
+        
     def temperature_and_generation_over_time(self, name, code):
         self.features_over_time(name, code, ["temperature", "generation"], ["blue", "red"])
 
@@ -100,7 +103,7 @@ class UnitPlotter:
             color_marker = None
             mode = 'lines'
             if feature in ["generation", "generation_change"] and flag_marker:
-                color_pick = {0: "red", 1: "black", 2: "blue"}
+                color_pick = {0: "red", 1: "blue", 2: "black"}
                 color_marker = dict(color=[color_pick[value] for value in sample["is_good_peak"]], size=5)
                 mode = 'lines+markers'
 

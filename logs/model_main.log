@@ -375,3 +375,43 @@
 2025-08-31 09:15:29,487 | model_main | INFO | logger.py:48 | info() | Rows have been selected successfully
 2025-08-31 09:15:29,578 | model_main | INFO | logger.py:48 | info() | Some features have been dropped successfully
 2025-08-31 09:15:32,985 | model_main | INFO | logger.py:48 | info() | Model has been trained successfully
+2025-08-31 10:04:19,380 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
+2025-08-31 10:04:37,033 | model_main | INFO | logger.py:48 | info() | Some features have been added successfully
+2025-08-31 10:04:37,069 | model_main | INFO | logger.py:48 | info() | Rows have been selected successfully
+2025-08-31 10:04:37,194 | model_main | INFO | logger.py:48 | info() | Some features have been dropped successfully
+2025-08-31 10:04:52,210 | model_main | INFO | logger.py:48 | info() | Model has been trained successfully
+2025-08-31 10:05:49,714 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
+2025-08-31 10:06:08,035 | model_main | INFO | logger.py:48 | info() | Some features have been added successfully
+2025-08-31 10:06:08,062 | model_main | INFO | logger.py:48 | info() | Rows have been selected successfully
+2025-08-31 10:06:08,171 | model_main | INFO | logger.py:48 | info() | Some features have been dropped successfully
+2025-08-31 10:06:23,066 | model_main | INFO | logger.py:48 | info() | Model has been trained successfully
+2025-08-31 10:30:14,932 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
+2025-08-31 10:30:33,325 | model_main | INFO | logger.py:48 | info() | Some features have been added successfully
+2025-08-31 10:30:33,340 | model_main | INFO | logger.py:48 | info() | Rows have been selected successfully
+2025-08-31 10:30:33,455 | model_main | INFO | logger.py:48 | info() | Some features have been dropped successfully
+2025-08-31 10:30:33,731 | model_main | INFO | logger.py:48 | info() | Model has been trained successfully
+2025-08-31 10:33:10,049 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
+2025-08-31 10:33:27,697 | model_main | INFO | logger.py:48 | info() | Some features have been added successfully
+2025-08-31 10:33:27,726 | model_main | INFO | logger.py:48 | info() | Rows have been selected successfully
+2025-08-31 10:33:27,839 | model_main | INFO | logger.py:48 | info() | Some features have been dropped successfully
+2025-08-31 10:33:28,117 | model_main | INFO | logger.py:48 | info() | Model has been trained successfully
+2025-08-31 10:33:56,373 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
+2025-08-31 10:34:15,264 | model_main | INFO | logger.py:48 | info() | Some features have been added successfully
+2025-08-31 10:34:15,293 | model_main | INFO | logger.py:48 | info() | Rows have been selected successfully
+2025-08-31 10:34:15,404 | model_main | INFO | logger.py:48 | info() | Some features have been dropped successfully
+2025-08-31 10:34:15,682 | model_main | INFO | logger.py:48 | info() | Model has been trained successfully
+2025-08-31 10:38:17,262 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
+2025-08-31 10:38:36,276 | model_main | INFO | logger.py:48 | info() | Some features have been added successfully
+2025-08-31 10:38:36,308 | model_main | INFO | logger.py:48 | info() | Rows have been selected successfully
+2025-08-31 10:38:36,423 | model_main | INFO | logger.py:48 | info() | Some features have been dropped successfully
+2025-08-31 10:38:36,702 | model_main | INFO | logger.py:48 | info() | Model has been trained successfully
+2025-08-31 10:47:35,961 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
+2025-08-31 10:47:55,629 | model_main | INFO | logger.py:48 | info() | Some features have been added successfully
+2025-08-31 10:47:55,644 | model_main | INFO | logger.py:48 | info() | Rows have been selected successfully
+2025-08-31 10:47:55,748 | model_main | INFO | logger.py:48 | info() | Some features have been dropped successfully
+2025-08-31 10:47:59,564 | model_main | INFO | logger.py:48 | info() | Model has been trained successfully
+2025-08-31 10:48:50,494 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
+2025-08-31 10:49:09,312 | model_main | INFO | logger.py:48 | info() | Some features have been added successfully
+2025-08-31 10:49:09,348 | model_main | INFO | logger.py:48 | info() | Rows have been selected successfully
+2025-08-31 10:49:09,483 | model_main | INFO | logger.py:48 | info() | Some features have been dropped successfully
+2025-08-31 10:49:12,942 | model_main | INFO | logger.py:48 | info() | Model has been trained successfully

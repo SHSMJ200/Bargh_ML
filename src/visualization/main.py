@@ -9,7 +9,7 @@ from plotUnit import UnitPlotter
 
 if __name__ == "__main__":
 
-    csv_path = os.path.join(project_root, "data", "processed", "prediction_only.csv")
+    csv_path = os.path.join(project_root, "data", "processed", "Data_for_plot.csv")
     df = pd.read_csv(csv_path, encoding='utf-8')
 
     # Modify date column and create datetime column:
@@ -21,8 +21,8 @@ if __name__ == "__main__":
 
     power_plants = df[['name', 'code']].drop_duplicates()
     for _, row in power_plants.iterrows():
-        up.temperature_and_generation_flag_marker_over_time(name=row["name"], code=row["code"])
+        #up.temperature_and_generation_flag_marker_over_time(name=row["name"], code=row["code"])
         # up.temperature_change_and_generation_change_flag_marker_over_time(name = row["name"], code = row["code"])
         # up.temperature_and_generation_over_time(name=row["name"], code=row["code"])
         # up.generation_over_time(name=row["name"], code=row["code"])
-        # up.prediction_and_generation_over_time(name=row["name"], code=row["code"])
+        up.prediction_and_generation_flag_marker_over_time(name=row["name"], code=row["code"])

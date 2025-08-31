@@ -13,16 +13,17 @@ from models import Random_Forest, Linear, Polynomial, XGBoost,LinearL1
 logger = CustomLogger(name="model_main", log_file_name='model_main.log').get_logger()
 
 if __name__ == "__main__":
-    csv_path = os.path.join(project_root, "data", "processed", "integrated.csv")
-    df = pd.read_csv(csv_path, encoding='utf-8')
+    csv_read_path = os.path.join(project_root, "data", "processed", "integrated.csv")
+    csv_write_path = os.path.join(project_root, "data", "processed", "Data_for_plot.csv")
+    df = pd.read_csv(csv_read_path, encoding='utf-8')
     logger.info(f"Csv file has bean read successfully")
 
     feature_adder = Feature_adder(df)
     feature_adder.add_season()
     feature_adder.add_date_time()
     feature_adder.add_is_good_peak(l_min=4,max_diff=3)
-    feature_adder.create_feature_with_delay("temperature", 3)
-    feature_adder.create_feature_with_delay("generation", 24)
+    feature_adder.create_feature_with_delay("temperature", 5)
+    #feature_adder.create_feature_with_delay("generation", 24)
     logger.info(f"Some features have been added successfully")
 
     data_selector = Data_selector(feature_adder.df)
@@ -45,30 +46,34 @@ if __name__ == "__main__":
     #model = Random_Forest()
     #model.scale_and_split_data(X, y)
     #model.fit(n_estimators=n_est, max_depth=depth)
+    
     '''
     model = Linear()
     model.scale_and_split_data(X, y)
     model.fit()
-
+    '''
+    '''
     # model = Polynomial()
     # model.scale_and_split_data(X, y)
     # model.fit()
-
+    '''
     
     n_est = 500
     depth = 7
     model = XGBoost()
     model.scale_and_split_data(X, y)
     model.fit(n_estimators=n_est, max_depth=depth)
+    
     '''
     model = LinearL1()
     model.scale_and_split_data(X,y)
     model.fit()
+    '''
     
     logger.info(f"Model has been trained successfully")
 
     rmse_error_train, rmse_error_test = model.compute_rmse_error()
     print(f"Train Error: {rmse_error_train:0.2f}%, Test Error: {rmse_error_test:0.2f}%")
     
-    #df_modified['prediction'] = model.predict(X)
-    #df_modified.to_csv('U:/ML_project/bargh/data/processed/with_prediction.csv', index=False)
+    #df.loc[X.index,"prediction"] = model.pred(X)
+    #df.to_csv(csv_write_path, index=False)

@@ -1822,3 +1822,33 @@ This LinearRegression estimator requires y to be passed, but the target y is Non
 2025-08-31 09:15:29,712 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
 2025-08-31 09:15:29,712 | models | DEBUG | logger.py:45 | debug() | y flattened.
 2025-08-31 09:15:32,985 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-31 10:04:37,332 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-31 10:04:37,332 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-31 10:04:37,332 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-31 10:06:08,305 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-31 10:06:08,305 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-31 10:06:08,305 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-31 10:30:33,597 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-31 10:30:33,597 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-31 10:30:33,597 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-31 10:30:33,731 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-31 10:33:27,977 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-31 10:33:27,977 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-31 10:33:27,992 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-31 10:33:28,117 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-31 10:34:15,541 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-31 10:34:15,541 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-31 10:34:15,541 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-31 10:34:15,682 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-31 10:38:36,561 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-31 10:38:36,561 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-31 10:38:36,561 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-31 10:38:36,702 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-31 10:47:55,947 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-31 10:47:55,962 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-31 10:47:55,962 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-31 10:47:59,564 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-31 10:49:09,624 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
+2025-08-31 10:49:09,624 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
+2025-08-31 10:49:09,624 | models | DEBUG | logger.py:45 | debug() | y flattened.
+2025-08-31 10:49:12,941 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
