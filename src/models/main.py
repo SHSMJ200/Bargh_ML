@@ -20,20 +20,21 @@ if __name__ == "__main__":
     feature_adder = Feature_adder(df)
     feature_adder.add_season()
     feature_adder.add_date_time()
-    feature_adder.add_is_good_peak(l_min=4,max_diff=3)
-    feature_adder.create_feature_with_delay("temperature", 3)
-    feature_adder.create_feature_with_delay("generation", 24)
+    feature_adder.create_feature_with_delay("temperature", 5)
+    # feature_adder.create_feature_with_delay("generation", 24)
+    c_t = 0.9
+    feature_adder.add_is_good_peak(l_min=4, max_diff=3, consistency_threshold=c_t)
+    logger.info(f"peaks were selected with threshold {c_t}")
     logger.info(f"Some features have been added successfully")
 
     data_selector = Data_selector(feature_adder.df)
-    #data_selector.select_name_and_code("پرند", "G13")
-    #df_modified = data_selector.select_peaks(m_in_summer=True)
+    # data_selector.select_name_and_code("پرند", "G13")
+    # df_modified = data_selector.select_peaks(m_in_summer=True)
     df_modified = data_selector.select_good_peaks()
-    
+
     logger.info(f"Rows have been selected successfully")
-    # print(df_modified.columns)
     feature_selector = Feature_selector(df_modified, "generation")
-    feature_to_be_dropped = ['id','datetime', 'date', 'declare', 'require']
+    feature_to_be_dropped = ['id', 'datetime', 'date', 'declare', 'require']
     less_important_feature = ['dew', 'apparent_temperature', 'precipitation', 'rain', 'snow',
                               'evapotransporation', 'wind_speed', 'wind_direction']
     X, y = feature_selector.select(feature_to_be_dropped + less_important_feature)
@@ -42,26 +43,24 @@ if __name__ == "__main__":
     # print(len(y))
     n_est = 100
     depth = 30
-    #model = Random_Forest()
-    #model.scale_and_split_data(X, y)
-    #model.fit(n_estimators=n_est, max_depth=depth)
-    '''
-    model = Linear()
-    model.scale_and_split_data(X, y)
-    model.fit()
+    # model = Random_Forest()
+    # model.scale_and_split_data(X, y)
+    # model.fit(n_estimators=n_est, max_depth=depth)
+
+    # model = Linear()
+    # model.scale_and_split_data(X, y)
+    # model.fit()
 
     # model = Polynomial()
     # model.scale_and_split_data(X, y)
     # model.fit()
 
-    '''
     n_est = 500
     depth = 7
     model = XGBoost()
     model.scale_and_split_data(X, y)
     model.fit(n_estimators=n_est, max_depth=depth)
-    
-    
+
     logger.info(f"Model has been trained successfully")
 
     rmse_error_train, rmse_error_test = model.compute_rmse_error()

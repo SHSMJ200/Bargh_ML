@@ -356,22 +356,241 @@
 2025-08-20 16:42:35,460 | model_main | INFO | logger.py:49 | info() | Rows have been selected successfully
 2025-08-20 16:42:35,642 | model_main | INFO | logger.py:49 | info() | Some features have been dropped successfully
 2025-08-20 16:42:36,284 | model_main | INFO | logger.py:49 | info() | Model has been trained successfully
-2025-08-31 09:00:19,628 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
-2025-08-31 09:01:38,597 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
-2025-08-31 09:02:52,864 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
-2025-08-31 09:11:44,737 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
-2025-08-31 09:12:56,144 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
-2025-08-31 09:13:14,098 | model_main | INFO | logger.py:48 | info() | Some features have been added successfully
-2025-08-31 09:13:14,128 | model_main | INFO | logger.py:48 | info() | Rows have been selected successfully
-2025-08-31 09:13:14,225 | model_main | INFO | logger.py:48 | info() | Some features have been dropped successfully
-2025-08-31 09:13:17,749 | model_main | INFO | logger.py:48 | info() | Model has been trained successfully
-2025-08-31 09:13:30,777 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
-2025-08-31 09:14:18,890 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
-2025-08-31 09:14:24,791 | model_main | INFO | logger.py:48 | info() | Some features have been added successfully
-2025-08-31 09:14:33,133 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
-2025-08-31 09:14:39,069 | model_main | INFO | logger.py:48 | info() | Some features have been added successfully
-2025-08-31 09:15:11,989 | model_main | INFO | logger.py:48 | info() | Csv file has bean read successfully
-2025-08-31 09:15:29,464 | model_main | INFO | logger.py:48 | info() | Some features have been added successfully
-2025-08-31 09:15:29,487 | model_main | INFO | logger.py:48 | info() | Rows have been selected successfully
-2025-08-31 09:15:29,578 | model_main | INFO | logger.py:48 | info() | Some features have been dropped successfully
-2025-08-31 09:15:32,985 | model_main | INFO | logger.py:48 | info() | Model has been trained successfully
+2025-08-30 15:37:14,519 | model_main | INFO | 2021578904.py:17 | <module>() | Csv file has bean read successfully
+2025-08-30 15:37:21,469 | model_main | INFO | 2021578904.py:29 | <module>() | Some features have been added successfully
+2025-08-30 15:54:17,896 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-30 15:54:21,157 | model_main | INFO | main.py:24 | <module>() | Some features have been added successfully
+2025-08-30 15:54:21,245 | model_main | INFO | main.py:29 | <module>() | Rows have been selected successfully
+2025-08-30 15:54:21,269 | model_main | INFO | main.py:36 | <module>() | Some features have been dropped successfully
+2025-08-30 15:54:21,286 | model_main | INFO | main.py:58 | <module>() | Model has been trained successfully
+2025-08-30 15:55:06,639 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-30 15:55:09,666 | model_main | INFO | main.py:24 | <module>() | Some features have been added successfully
+2025-08-30 15:55:09,747 | model_main | INFO | main.py:29 | <module>() | Rows have been selected successfully
+2025-08-30 15:55:09,754 | model_main | INFO | main.py:36 | <module>() | Some features have been dropped successfully
+2025-08-30 15:55:09,761 | model_main | INFO | main.py:58 | <module>() | Model has been trained successfully
+2025-08-30 15:55:41,594 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-30 15:55:44,453 | model_main | INFO | main.py:24 | <module>() | Some features have been added successfully
+2025-08-30 15:55:44,703 | model_main | INFO | main.py:29 | <module>() | Rows have been selected successfully
+2025-08-30 15:55:44,884 | model_main | INFO | main.py:36 | <module>() | Some features have been dropped successfully
+2025-08-30 15:55:45,374 | model_main | INFO | main.py:58 | <module>() | Model has been trained successfully
+2025-08-30 15:55:59,623 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-30 15:56:02,784 | model_main | INFO | main.py:24 | <module>() | Some features have been added successfully
+2025-08-30 15:56:03,050 | model_main | INFO | main.py:29 | <module>() | Rows have been selected successfully
+2025-08-30 15:56:03,208 | model_main | INFO | main.py:36 | <module>() | Some features have been dropped successfully
+2025-08-30 15:56:06,562 | model_main | INFO | main.py:58 | <module>() | Model has been trained successfully
+2025-08-30 15:56:18,690 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-30 15:56:21,604 | model_main | INFO | main.py:24 | <module>() | Some features have been added successfully
+2025-08-30 15:56:21,880 | model_main | INFO | main.py:29 | <module>() | Rows have been selected successfully
+2025-08-30 15:56:22,026 | model_main | INFO | main.py:36 | <module>() | Some features have been dropped successfully
+2025-08-30 15:56:27,417 | model_main | INFO | main.py:58 | <module>() | Model has been trained successfully
+2025-08-30 16:03:26,831 | model_main | INFO | 557048284.py:18 | <module>() | Csv file has bean read successfully
+2025-08-30 16:03:30,146 | model_main | INFO | 557048284.py:24 | <module>() | Some features have been added successfully
+2025-08-30 16:03:39,162 | model_main | INFO | 510327862.py:18 | <module>() | Csv file has bean read successfully
+2025-08-30 16:03:42,491 | model_main | INFO | 510327862.py:24 | <module>() | Some features have been added successfully
+2025-08-30 16:03:42,847 | model_main | INFO | 510327862.py:28 | <module>() | Rows have been selected successfully
+2025-08-30 16:03:43,042 | model_main | INFO | 510327862.py:35 | <module>() | Some features have been dropped successfully
+2025-08-30 16:03:43,703 | model_main | INFO | 510327862.py:43 | <module>() | Model has been trained successfully
+2025-08-30 16:34:03,820 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-30 16:34:06,921 | model_main | INFO | main.py:24 | <module>() | Some features have been added successfully
+2025-08-30 16:34:07,170 | model_main | INFO | main.py:28 | <module>() | Rows have been selected successfully
+2025-08-30 16:34:24,882 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-30 16:34:27,969 | model_main | INFO | main.py:24 | <module>() | Some features have been added successfully
+2025-08-30 16:34:28,243 | model_main | INFO | main.py:28 | <module>() | Rows have been selected successfully
+2025-08-30 16:34:28,385 | model_main | INFO | main.py:35 | <module>() | Some features have been dropped successfully
+2025-08-30 16:34:32,234 | model_main | INFO | main.py:57 | <module>() | Model has been trained successfully
+2025-08-31 09:40:45,345 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 09:41:14,057 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 09:41:37,676 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 09:41:37,704 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 09:41:37,815 | model_main | INFO | main.py:41 | <module>() | Some features have been dropped successfully
+2025-08-31 09:41:41,413 | model_main | INFO | main.py:64 | <module>() | Model has been trained successfully
+2025-08-31 09:42:46,179 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 09:43:28,845 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 09:43:28,850 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 09:43:28,860 | model_main | INFO | main.py:41 | <module>() | Some features have been dropped successfully
+2025-08-31 09:43:31,103 | model_main | INFO | main.py:64 | <module>() | Model has been trained successfully
+2025-08-31 09:44:54,537 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 09:46:24,740 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 09:46:58,544 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 09:46:58,548 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 09:46:58,557 | model_main | INFO | main.py:40 | <module>() | Some features have been dropped successfully
+2025-08-31 09:47:01,113 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 09:49:19,361 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 09:51:01,711 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 09:54:29,687 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 09:55:10,407 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 09:55:10,415 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 09:55:10,432 | model_main | INFO | main.py:40 | <module>() | Some features have been dropped successfully
+2025-08-31 09:55:13,298 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 09:56:58,896 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 09:57:35,926 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 09:57:35,934 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 09:57:35,954 | model_main | INFO | main.py:40 | <module>() | Some features have been dropped successfully
+2025-08-31 09:57:38,560 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 09:58:01,162 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 09:58:36,556 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 09:58:36,567 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 09:58:36,586 | model_main | INFO | main.py:40 | <module>() | Some features have been dropped successfully
+2025-08-31 09:58:39,193 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 10:01:34,033 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:03:27,406 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:03:51,996 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:05:03,972 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:05:56,807 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:07:48,698 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:08:38,328 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 10:08:38,335 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 10:08:38,352 | model_main | INFO | main.py:40 | <module>() | Some features have been dropped successfully
+2025-08-31 10:08:40,969 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 10:09:18,554 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:09:57,192 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 10:09:57,199 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 10:09:57,214 | model_main | INFO | main.py:40 | <module>() | Some features have been dropped successfully
+2025-08-31 10:09:59,815 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 10:10:05,459 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:10:41,439 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 10:10:41,446 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 10:10:41,463 | model_main | INFO | main.py:40 | <module>() | Some features have been dropped successfully
+2025-08-31 10:10:44,049 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 10:12:53,650 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:13:14,076 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:13:37,388 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 10:13:37,397 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 10:13:37,422 | model_main | INFO | main.py:40 | <module>() | Some features have been dropped successfully
+2025-08-31 10:13:40,089 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 10:15:06,328 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:15:29,963 | model_main | INFO | main.py:29 | <module>() | Some features have been added successfully
+2025-08-31 10:15:29,970 | model_main | INFO | main.py:36 | <module>() | Rows have been selected successfully
+2025-08-31 10:15:29,989 | model_main | INFO | main.py:43 | <module>() | Some features have been dropped successfully
+2025-08-31 10:15:32,663 | model_main | INFO | main.py:66 | <module>() | Model has been trained successfully
+2025-08-31 10:15:40,530 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:16:03,861 | model_main | INFO | main.py:29 | <module>() | Some features have been added successfully
+2025-08-31 10:16:03,869 | model_main | INFO | main.py:36 | <module>() | Rows have been selected successfully
+2025-08-31 10:16:03,893 | model_main | INFO | main.py:43 | <module>() | Some features have been dropped successfully
+2025-08-31 10:16:06,584 | model_main | INFO | main.py:66 | <module>() | Model has been trained successfully
+2025-08-31 10:16:18,499 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:16:40,970 | model_main | INFO | main.py:29 | <module>() | Some features have been added successfully
+2025-08-31 10:16:40,979 | model_main | INFO | main.py:36 | <module>() | Rows have been selected successfully
+2025-08-31 10:16:41,001 | model_main | INFO | main.py:43 | <module>() | Some features have been dropped successfully
+2025-08-31 10:16:43,729 | model_main | INFO | main.py:66 | <module>() | Model has been trained successfully
+2025-08-31 10:16:50,171 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:17:12,880 | model_main | INFO | main.py:29 | <module>() | Some features have been added successfully
+2025-08-31 10:17:12,891 | model_main | INFO | main.py:36 | <module>() | Rows have been selected successfully
+2025-08-31 10:17:12,918 | model_main | INFO | main.py:43 | <module>() | Some features have been dropped successfully
+2025-08-31 10:17:15,656 | model_main | INFO | main.py:66 | <module>() | Model has been trained successfully
+2025-08-31 10:17:22,118 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:17:45,489 | model_main | INFO | main.py:29 | <module>() | Some features have been added successfully
+2025-08-31 10:17:45,508 | model_main | INFO | main.py:36 | <module>() | Rows have been selected successfully
+2025-08-31 10:17:45,559 | model_main | INFO | main.py:43 | <module>() | Some features have been dropped successfully
+2025-08-31 10:17:48,510 | model_main | INFO | main.py:66 | <module>() | Model has been trained successfully
+2025-08-31 10:19:50,220 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:20:24,481 | model_main | INFO | main.py:34 | <module>() | Some features have been added successfully
+2025-08-31 10:20:24,514 | model_main | INFO | main.py:41 | <module>() | Rows have been selected successfully
+2025-08-31 10:20:24,630 | model_main | INFO | main.py:48 | <module>() | Some features have been dropped successfully
+2025-08-31 10:20:30,862 | model_main | INFO | main.py:71 | <module>() | Model has been trained successfully
+2025-08-31 10:21:00,864 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:21:28,990 | model_main | INFO | main.py:34 | <module>() | Some features have been added successfully
+2025-08-31 10:21:29,012 | model_main | INFO | main.py:41 | <module>() | Rows have been selected successfully
+2025-08-31 10:21:29,096 | model_main | INFO | main.py:48 | <module>() | Some features have been dropped successfully
+2025-08-31 10:21:32,393 | model_main | INFO | main.py:71 | <module>() | Model has been trained successfully
+2025-08-31 10:21:39,326 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:22:05,922 | model_main | INFO | main.py:34 | <module>() | Some features have been added successfully
+2025-08-31 10:22:05,940 | model_main | INFO | main.py:41 | <module>() | Rows have been selected successfully
+2025-08-31 10:22:05,993 | model_main | INFO | main.py:48 | <module>() | Some features have been dropped successfully
+2025-08-31 10:22:09,064 | model_main | INFO | main.py:71 | <module>() | Model has been trained successfully
+2025-08-31 10:22:18,878 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:22:44,876 | model_main | INFO | main.py:34 | <module>() | Some features have been added successfully
+2025-08-31 10:22:44,888 | model_main | INFO | main.py:41 | <module>() | Rows have been selected successfully
+2025-08-31 10:22:44,923 | model_main | INFO | main.py:48 | <module>() | Some features have been dropped successfully
+2025-08-31 10:22:47,792 | model_main | INFO | main.py:71 | <module>() | Model has been trained successfully
+2025-08-31 10:23:12,412 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:23:38,090 | model_main | INFO | main.py:34 | <module>() | Some features have been added successfully
+2025-08-31 10:23:38,100 | model_main | INFO | main.py:41 | <module>() | Rows have been selected successfully
+2025-08-31 10:23:38,125 | model_main | INFO | main.py:48 | <module>() | Some features have been dropped successfully
+2025-08-31 10:23:40,922 | model_main | INFO | main.py:71 | <module>() | Model has been trained successfully
+2025-08-31 10:25:56,577 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:26:19,780 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 10:26:19,800 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 10:26:19,862 | model_main | INFO | main.py:40 | <module>() | Some features have been dropped successfully
+2025-08-31 10:26:22,886 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 10:28:00,100 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:28:22,433 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 10:28:22,448 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 10:28:22,503 | model_main | INFO | main.py:40 | <module>() | Some features have been dropped successfully
+2025-08-31 10:28:22,664 | model_main | INFO | main.py:61 | <module>() | Model has been trained successfully
+2025-08-31 10:30:58,734 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:31:23,260 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 10:31:23,282 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 10:31:23,375 | model_main | INFO | main.py:40 | <module>() | Some features have been dropped successfully
+2025-08-31 10:31:23,667 | model_main | INFO | main.py:61 | <module>() | Model has been trained successfully
+2025-08-31 10:32:41,721 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:33:06,083 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 10:33:06,103 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 10:33:06,186 | model_main | INFO | main.py:40 | <module>() | Some features have been dropped successfully
+2025-08-31 10:33:06,419 | model_main | INFO | main.py:61 | <module>() | Model has been trained successfully
+2025-08-31 10:33:49,780 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:34:10,028 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:34:37,052 | model_main | INFO | main.py:26 | <module>() | Some features have been added successfully
+2025-08-31 10:34:37,075 | model_main | INFO | main.py:33 | <module>() | Rows have been selected successfully
+2025-08-31 10:34:37,180 | model_main | INFO | main.py:40 | <module>() | Some features have been dropped successfully
+2025-08-31 10:34:37,446 | model_main | INFO | main.py:61 | <module>() | Model has been trained successfully
+2025-08-31 10:35:16,516 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:35:42,956 | model_main | INFO | main.py:27 | <module>() | peaks were selected with threshold f0.5
+2025-08-31 10:35:42,956 | model_main | INFO | main.py:28 | <module>() | Some features have been added successfully
+2025-08-31 10:35:42,980 | model_main | INFO | main.py:35 | <module>() | Rows have been selected successfully
+2025-08-31 10:35:43,081 | model_main | INFO | main.py:42 | <module>() | Some features have been dropped successfully
+2025-08-31 10:35:43,365 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 10:35:50,701 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:36:15,643 | model_main | INFO | main.py:27 | <module>() | peaks were selected with threshold f0.75
+2025-08-31 10:36:15,644 | model_main | INFO | main.py:28 | <module>() | Some features have been added successfully
+2025-08-31 10:36:15,663 | model_main | INFO | main.py:35 | <module>() | Rows have been selected successfully
+2025-08-31 10:36:15,750 | model_main | INFO | main.py:42 | <module>() | Some features have been dropped successfully
+2025-08-31 10:36:15,991 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 10:36:38,178 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:37:00,815 | model_main | INFO | main.py:27 | <module>() | peaks were selected with threshold f0.9
+2025-08-31 10:37:00,817 | model_main | INFO | main.py:28 | <module>() | Some features have been added successfully
+2025-08-31 10:37:00,834 | model_main | INFO | main.py:35 | <module>() | Rows have been selected successfully
+2025-08-31 10:37:00,899 | model_main | INFO | main.py:42 | <module>() | Some features have been dropped successfully
+2025-08-31 10:37:01,104 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 10:37:17,332 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:37:39,733 | model_main | INFO | main.py:27 | <module>() | peaks were selected with threshold f0.95
+2025-08-31 10:37:39,735 | model_main | INFO | main.py:28 | <module>() | Some features have been added successfully
+2025-08-31 10:37:39,749 | model_main | INFO | main.py:35 | <module>() | Rows have been selected successfully
+2025-08-31 10:37:39,792 | model_main | INFO | main.py:42 | <module>() | Some features have been dropped successfully
+2025-08-31 10:37:39,894 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 10:38:13,807 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:38:34,212 | model_main | INFO | main.py:27 | <module>() | peaks were selected with threshold 0.99
+2025-08-31 10:38:34,212 | model_main | INFO | main.py:28 | <module>() | Some features have been added successfully
+2025-08-31 10:38:34,216 | model_main | INFO | main.py:35 | <module>() | Rows have been selected successfully
+2025-08-31 10:38:34,226 | model_main | INFO | main.py:42 | <module>() | Some features have been dropped successfully
+2025-08-31 10:38:34,249 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 10:40:06,950 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:40:27,867 | model_main | INFO | main.py:27 | <module>() | peaks were selected with threshold 0.99
+2025-08-31 10:40:27,868 | model_main | INFO | main.py:28 | <module>() | Some features have been added successfully
+2025-08-31 10:40:27,872 | model_main | INFO | main.py:35 | <module>() | Rows have been selected successfully
+2025-08-31 10:40:27,881 | model_main | INFO | main.py:42 | <module>() | Some features have been dropped successfully
+2025-08-31 10:40:27,901 | model_main | INFO | main.py:63 | <module>() | Model has been trained successfully
+2025-08-31 10:42:41,960 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:43:05,356 | model_main | INFO | main.py:27 | <module>() | peaks were selected with threshold 0.9
+2025-08-31 10:43:05,357 | model_main | INFO | main.py:28 | <module>() | Some features have been added successfully
+2025-08-31 10:43:05,372 | model_main | INFO | main.py:35 | <module>() | Rows have been selected successfully
+2025-08-31 10:43:05,429 | model_main | INFO | main.py:42 | <module>() | Some features have been dropped successfully
+2025-08-31 10:43:08,490 | model_main | INFO | main.py:64 | <module>() | Model has been trained successfully
+2025-08-31 10:43:31,448 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:43:34,443 | model_main | INFO | main.py:27 | <module>() | peaks were selected with threshold 0.9
+2025-08-31 10:43:34,443 | model_main | INFO | main.py:28 | <module>() | Some features have been added successfully
+2025-08-31 10:43:34,642 | model_main | INFO | main.py:35 | <module>() | Rows have been selected successfully
+2025-08-31 10:43:34,792 | model_main | INFO | main.py:42 | <module>() | Some features have been dropped successfully
+2025-08-31 10:43:38,600 | model_main | INFO | main.py:64 | <module>() | Model has been trained successfully
+2025-08-31 10:47:15,132 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:47:17,589 | model_main | INFO | main.py:27 | <module>() | peaks were selected with threshold 0.9
+2025-08-31 10:47:17,590 | model_main | INFO | main.py:28 | <module>() | Some features have been added successfully
+2025-08-31 10:47:17,790 | model_main | INFO | main.py:35 | <module>() | Rows have been selected successfully
+2025-08-31 10:47:17,928 | model_main | INFO | main.py:42 | <module>() | Some features have been dropped successfully
+2025-08-31 10:47:21,629 | model_main | INFO | main.py:64 | <module>() | Model has been trained successfully
+2025-08-31 10:48:04,851 | model_main | INFO | main.py:18 | <module>() | Csv file has bean read successfully
+2025-08-31 10:48:27,128 | model_main | INFO | main.py:27 | <module>() | peaks were selected with threshold 0.9
+2025-08-31 10:48:27,128 | model_main | INFO | main.py:28 | <module>() | Some features have been added successfully
+2025-08-31 10:48:27,145 | model_main | INFO | main.py:35 | <module>() | Rows have been selected successfully
+2025-08-31 10:48:27,205 | model_main | INFO | main.py:42 | <module>() | Some features have been dropped successfully
+2025-08-31 10:48:30,184 | model_main | INFO | main.py:64 | <module>() | Model has been trained successfully

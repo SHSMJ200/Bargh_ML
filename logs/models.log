@@ -1814,11 +1814,179 @@ This LinearRegression estimator requires y to be passed, but the target y is Non
 2025-08-23 11:17:03,130 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
 2025-08-23 11:17:03,130 | models | DEBUG | logger.py:45 | debug() | y flattened.
 2025-08-23 11:17:03,130 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
-2025-08-31 09:13:14,371 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
-2025-08-31 09:13:14,373 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
-2025-08-31 09:13:14,373 | models | DEBUG | logger.py:45 | debug() | y flattened.
-2025-08-31 09:13:17,749 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
-2025-08-31 09:15:29,712 | models | DEBUG | logger.py:45 | debug() | X scaled successfully.
-2025-08-31 09:15:29,712 | models | DEBUG | logger.py:45 | debug() | y scaled successfully
-2025-08-31 09:15:29,712 | models | DEBUG | logger.py:45 | debug() | y flattened.
-2025-08-31 09:15:32,985 | models | DEBUG | logger.py:45 | debug() | Model trained successfully.
+2025-08-30 15:54:21,275 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-30 15:54:21,276 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-30 15:54:21,277 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-30 15:54:21,285 | models | DEBUG | models.py:94 | fit() | Model trained successfully.
+2025-08-30 15:55:09,758 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-30 15:55:09,758 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-30 15:55:09,759 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-30 15:55:09,761 | models | DEBUG | models.py:96 | fit() | Model trained successfully.
+2025-08-30 15:55:45,128 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-30 15:55:45,132 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-30 15:55:45,132 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-30 15:55:45,374 | models | DEBUG | models.py:96 | fit() | Model trained successfully.
+2025-08-30 15:56:03,451 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-30 15:56:03,454 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-30 15:56:03,454 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-30 15:56:06,562 | models | DEBUG | models.py:158 | fit() | Model trained successfully.
+2025-08-30 15:56:22,245 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-30 15:56:22,249 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-30 15:56:22,249 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-30 15:56:27,416 | models | DEBUG | models.py:158 | fit() | Model trained successfully.
+2025-08-30 15:59:46,828 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-30 15:59:46,846 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-30 15:59:46,847 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-30 16:02:37,942 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-30 16:02:37,945 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-30 16:02:37,945 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-30 16:03:43,281 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-30 16:03:43,284 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-30 16:03:43,284 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-30 16:03:43,703 | models | DEBUG | models.py:158 | fit() | Model trained successfully.
+2025-08-30 16:04:24,426 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-30 16:04:24,489 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-30 16:34:28,624 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-30 16:34:28,628 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-30 16:34:28,628 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-30 16:34:32,234 | models | DEBUG | models.py:158 | fit() | Model trained successfully.
+2025-08-31 09:41:37,990 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 09:41:37,992 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 09:41:37,993 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 09:41:41,413 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 09:43:28,868 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 09:43:28,870 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 09:43:28,870 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 09:43:31,102 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 09:46:58,567 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 09:46:58,568 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 09:46:58,568 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 09:47:01,112 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 09:55:10,452 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 09:55:10,453 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 09:55:10,454 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 09:55:13,298 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 09:57:35,976 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 09:57:35,977 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 09:57:35,977 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 09:57:38,559 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 09:58:36,603 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 09:58:36,603 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 09:58:36,604 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 09:58:39,192 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:08:38,373 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:08:38,374 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:08:38,374 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:08:40,969 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:09:57,233 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:09:57,234 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:09:57,234 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:09:59,815 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:10:41,481 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:10:41,482 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:10:41,482 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:10:44,048 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:13:37,454 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:13:37,455 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:13:37,456 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:13:40,089 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:15:30,014 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:15:30,015 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:15:30,015 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:15:32,663 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:16:03,927 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:16:03,928 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:16:03,928 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:16:06,583 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:16:41,030 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:16:41,031 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:16:41,032 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:16:43,728 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:17:12,960 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:17:12,961 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:17:12,961 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:17:15,656 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:17:45,630 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:17:45,632 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:17:45,632 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:17:48,510 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:20:24,866 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:20:24,868 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:20:24,869 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:20:30,861 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:21:29,210 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:21:29,212 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:21:29,212 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:21:32,392 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:22:06,072 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:22:06,074 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:22:06,074 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:22:09,063 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:22:44,974 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:22:44,975 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:22:44,975 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:22:47,792 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:23:38,156 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:23:38,157 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:23:38,158 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:23:40,922 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:26:19,956 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:26:19,957 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:26:19,958 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:26:22,885 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:28:22,587 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:28:22,589 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:28:22,589 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:28:22,664 | models | DEBUG | models.py:98 | fit() | Model trained successfully.
+2025-08-31 10:31:23,525 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:31:23,528 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:31:23,528 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:31:23,666 | models | DEBUG | models.py:98 | fit() | Model trained successfully.
+2025-08-31 10:33:06,314 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:33:06,316 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:33:06,317 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:33:06,418 | models | DEBUG | models.py:98 | fit() | Model trained successfully.
+2025-08-31 10:34:37,321 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:34:37,323 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:34:37,323 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:34:37,445 | models | DEBUG | models.py:98 | fit() | Model trained successfully.
+2025-08-31 10:35:43,234 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:35:43,236 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:35:43,236 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:35:43,364 | models | DEBUG | models.py:98 | fit() | Model trained successfully.
+2025-08-31 10:36:15,879 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:36:15,881 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:36:15,881 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:36:15,991 | models | DEBUG | models.py:98 | fit() | Model trained successfully.
+2025-08-31 10:37:01,008 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:37:01,010 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:37:01,010 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:37:01,103 | models | DEBUG | models.py:98 | fit() | Model trained successfully.
+2025-08-31 10:37:39,849 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:37:39,850 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:37:39,851 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:37:39,893 | models | DEBUG | models.py:98 | fit() | Model trained successfully.
+2025-08-31 10:38:34,237 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:38:34,238 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:38:34,238 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:38:34,249 | models | DEBUG | models.py:98 | fit() | Model trained successfully.
+2025-08-31 10:40:27,891 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:40:27,892 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:40:27,892 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:40:27,901 | models | DEBUG | models.py:98 | fit() | Model trained successfully.
+2025-08-31 10:43:05,510 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:43:05,512 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:43:05,512 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:43:08,489 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:43:35,010 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:43:35,013 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:43:35,013 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:43:38,600 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:47:18,169 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:47:18,173 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:47:18,173 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:47:21,629 | models | DEBUG | models.py:160 | fit() | Model trained successfully.
+2025-08-31 10:48:27,290 | models | DEBUG | models.py:25 | scale() | X scaled successfully.
+2025-08-31 10:48:27,291 | models | DEBUG | models.py:28 | scale() | y scaled successfully
+2025-08-31 10:48:27,292 | models | DEBUG | models.py:29 | scale() | y flattened.
+2025-08-31 10:48:30,184 | models | DEBUG | models.py:160 | fit() | Model trained successfully.

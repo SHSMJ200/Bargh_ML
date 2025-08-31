@@ -11,6 +11,9 @@
 * Add change point detection and choose the training data better
 * LF1 is correct or LO????
 * Why null data in temperature??
+* Our model shouldn't fit to outlying data
+* Why we have a lot of null values in temperature column?
+* filter 3: filter by norm-1 linear model
 * 
 
 
