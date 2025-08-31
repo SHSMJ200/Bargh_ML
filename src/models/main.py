@@ -63,8 +63,6 @@ if __name__ == "__main__":
     logger.info(f"Csv file has bean labeled successfully")
 
     ds = Data_selector(df)
-    # dfc = ds.filter_name_code(name="پرند", code="G11")
-    # ds = Data_selector(dfc)
     df_modified = ds.select_peaks(goodness=3)
     logger.info(f"Rows have been selected successfully")
 

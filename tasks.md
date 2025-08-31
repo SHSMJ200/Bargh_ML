@@ -7,7 +7,6 @@
 *
 * Run Neural Network
 * Training one model for all plants or one for each plant??
-* LF1 is correct or LO????
 * Why null data in temperature??
 * Our model shouldn't fit to outlying data
 * filter 3: filter by norm-1 linear model
