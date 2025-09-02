@@ -254,7 +254,7 @@ class CsvfileManipulation:
                 try:
                     db.__enter__()
                     db.execute(
-                        query=f'create table plants_mean_temp as (select id, name, date, hour, avg(temperature) as mean_temp from plant_temp group by id, name, date, hour)',
+                        query=f'create table if not exists plants_mean_temp as (select id, name, date, hour, avg(temperature) as mean_temp from plant_temp group by id, name, date, hour)',
                         do_return=False
                     )
                     db.commit()

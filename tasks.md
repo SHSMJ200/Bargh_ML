@@ -7,23 +7,22 @@
 *
 * Run Neural Network
 * Training one model for all plants or one for each plant??
-* Why null data in temperature??
 * Our model shouldn't fit to outlying data
-* filter 3: filter by norm-1 linear model
 * Predict all 24 hours simultaneously. A problem: We should interpolate non-peak generations
 * Package Prophet for time series
-* any more filter for choose "peaks"
 * give interval to model and get interval
 * fine tune for each name-code
-* 
+* status file error
+* accuracy of base model
 
-  🟨 Doing
-  ==========================
+🟨 Doing
+==========================
 
 *
+* 
 
-  🟥 Done
-  ==========================
+🟥 Done
+==========================
 
 * installing postgres
 * connecting postgres to my project
@@ -47,4 +46,5 @@
 * Pay attention to affecting with delay. For example: temperature.
 * how about generation with delay
 * Add change point detection and choose the training data better
+* Why null data in temperature??
 * 

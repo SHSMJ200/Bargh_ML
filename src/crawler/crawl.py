@@ -60,10 +60,11 @@ def fetch_hourly_weather_data(openmeteo, params, unitid, url):
     responses = openmeteo.weather_api(url, params=params)
     # Process first location. Add a for-loop for multiple locations or weather models
     response = responses[0]
-    print(f"Coordinates {response.Latitude()}°N {response.Longitude()}°E")
-    print(f"Elevation {response.Elevation()} m asl")
-    print(f"Timezone {response.Timezone()} {response.TimezoneAbbreviation()}")
-    print(f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
+    logger.debug(f"\nCoordinates {response.Latitude()}°N {response.Longitude()}°E\n"
+                f"Elevation {response.Elevation()} m asl\n"
+                f"Timezone {response.Timezone()} {response.TimezoneAbbreviation()}\n"
+                f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
+
     # Process hourly data. The order of variables needs to be the same as requested.
     hourly = response.Hourly()
     hourly_temperature_2m = hourly.Variables(0).ValuesAsNumpy()
@@ -109,10 +110,6 @@ class HistoryCrawler(Crawler):
             logger.info(msg=f'Plants data successfully read from {self.file}')
             logger.info(msg=f"Plants to crawl:\n{plants['PlantName'].drop_duplicates()}")
 
-            do_continue = input("\nContinue with these plants?\n")
-            if do_continue == "no":
-                return None
-
             with open(get_root() + '/configs/crawling.yaml', 'r') as file:
                 data = yaml.safe_load(file)
                 url = data['url-historical']
@@ -138,7 +135,7 @@ class HistoryCrawler(Crawler):
                 hourly_dataframe = fetch_hourly_weather_data(openmeteo, params, unitid, url)
 
                 data = pd.concat([data, hourly_dataframe], ignore_index=True)
-                logger.debug(msg=f'Data with latitude: {lat} and longitude: {longit} added to the dataframe')
+                logger.info(msg=f'Data with latitude: {lat: 0.2f} and longitude: {longit: 0.2f} added to the dataframe')
 
             data = prepare_datetime_columns(data)
 
@@ -214,7 +211,7 @@ class ForecastCrawler(Crawler):
                 logger.debug(msg=f"Split the last 24 rows.")
 
                 data = pd.concat([data, hourly_dataframe], ignore_index=True)
-                logger.debug(msg=f'Data with latitude: {lat} and longitude: {longit} added to the dataframe')
+                logger.info(msg=f'Data with latitude: {lat: 0.2f} and longitude: {longit: 0.2f} added to the dataframe')
 
             data = prepare_datetime_columns(data)
 

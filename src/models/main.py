@@ -24,7 +24,7 @@ def add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=Fals
         feature_adder.create_feature_with_delay("temperature", 5)
         feature_adder.filter1()
         feature_adder.filter2(l_min=l_min, max_diff=max_diff)
-        feature_adder.filter3("temperature_with_5_delay", c_thresh=c_thresh)
+        feature_adder.filter3("temperature_with_5_delay", c_thresh=c_thresh, plot_pearsons_hist=True)
         df = feature_adder.df
         if write_on_csv:
             df.to_csv(csv_semi_write_path, index=False)
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     l_min = 4
     max_diff = 3
     c_thresh = 0.9
-    df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=True, write_on_csv=False)
+    df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False, write_on_csv=False)
     logger.info(f"Csv file has bean labeled successfully")
 
     ds = Data_selector(df)
@@ -70,9 +70,9 @@ if __name__ == "__main__":
     logger.info(f"Some features have been dropped successfully")
 
     # model = Random_Forest(n_estimators=100, max_depth=30)
-    model = Linear()
+    # model = Linear()
     # model = Polynomial()
-    # model = XGBoost(n_estimators=1000, max_depth=3)
+    model = XGBoost(n_estimators=1000, max_depth=3)
     model.scale_and_split_data(X, y)
     model.fit()
     logger.info(f"Model has been trained successfully")
