@@ -71,10 +71,10 @@ if __name__ == "__main__":
     X, y = select_features_and_get_X_and_y(df_modified)
     logger.info(f"Some features have been dropped successfully")
 
-    # model = Random_Forest(n_estimators=100, max_depth=30)
+    # model = Random_Forest(n_estimators=100, max_depth=20)
     # model = Linear()
-    # model = Polynomial()
-    model = XGBoost(n_estimators=1000, max_depth=3)
+    # model = Polynomial(degree=2)
+    model = XGBoost(n_estimators=2000, max_depth=5)
     model.scale_and_split_data(X, y)
     model.fit()
     logger.info(f"Model has been trained successfully")
