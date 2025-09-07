@@ -1,28 +1,18 @@
 🟩 To-Do
 ==========================
 
-* Edit "seasonality.yaml" file. It's very bad structured!
-* Edit "tables_columns.yaml" file. Why each name is repeated twice?
-* Edit the method "fit" of the model Neural Network
-*
 * Run Neural Network
-* Training one model for all plants or one for each plant??
-* Our model shouldn't fit to outlying data
-* Predict all 24 hours simultaneously. A problem: We should interpolate non-peak generations
-* Package Prophet for time series
-* give interval to model and get interval
 * fine tune for each name-code
-* status file error
-* accuracy of base model
+* interpolation instead of removing null rows!!
 
-🟨 Doing
-==========================
+  🟨 Doing
+  ==========================
 
-*
+* give interval to model and get interval
 * 
 
-🟥 Done
-==========================
+  🟥 Done
+  ==========================
 
 * installing postgres
 * connecting postgres to my project
@@ -47,4 +37,8 @@
 * how about generation with delay
 * Add change point detection and choose the training data better
 * Why null data in temperature??
+* Edit "seasonality.yaml" file. It's very bad structured!
+* Edit "tables_columns.yaml" file. Why each name is repeated twice?
+* accuracy of base model
+* pred or predict???
 * 

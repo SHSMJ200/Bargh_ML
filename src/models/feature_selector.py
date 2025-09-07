@@ -10,19 +10,21 @@ class Feature_selector:
         self.df = df
         self.target = target
 
-    def select(self, feature_to_select=None, features_to_drop=None):
+    def select(self, features_to_select=None, features_to_drop=None):
 
         if features_to_drop is not None:
             self.df = self.df.drop(columns=features_to_drop, axis=1)
-        if feature_to_select is not None:
-            self.df = self.df[feature_to_select]
+        if features_to_select is not None:
+            self.df = self.df[features_to_select + ["generation"]]
 
         logger.debug(f"Selected features : {self.df.columns}")
-    def get_X_and_y(self):
+
+    def get_X_and_y(self, do_onehot=True):
         df = self.df.copy(deep=True)
 
-        categorical_cols = df.select_dtypes(include=['object', 'category']).columns
-        df = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
+        if do_onehot:
+            categorical_cols = df.select_dtypes(include=['object', 'category']).columns
+            df = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
 
         df = df.dropna()
 

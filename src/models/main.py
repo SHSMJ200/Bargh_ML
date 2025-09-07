@@ -22,6 +22,7 @@ def add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=Fals
         df = pd.read_csv(csv_read_path, encoding='utf-8')
         feature_adder = Feature_adder(df)
         feature_adder.create_feature_with_delay("temperature", 5)
+        feature_adder.create_feature_with_delay("generation", 24)
         feature_adder.filter1()
         feature_adder.filter2(l_min=l_min, max_diff=max_diff)
         feature_adder.filter3("temperature_with_5_delay", c_thresh=c_thresh, plot_pearsons_hist=True)
@@ -34,9 +35,9 @@ def add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=Fals
     return df
 
 
-def test_model(model):
-    rmse_error_train, rmse_error_test = model.compute_rmse_error()
-    print(f"Train Error: {rmse_error_train:0.2f}%, Test Error: {rmse_error_test:0.2f}%")
+def test_model(model, do_inverse_scale=True):
+    rmse_error_train, rmse_error_test = model.compute_rmse_error(do_inverse_scale)
+    logger.info(f"Train Error: {rmse_error_train:0.2f}%, Test Error: {rmse_error_test:0.2f}%")
 
 
 def write_result(df, model, X):
@@ -46,10 +47,10 @@ def write_result(df, model, X):
 
 
 def select_features_and_get_X_and_y(df):
-    feature_selector = Feature_selector(df, "generation")
-    feature_to_be_select = ["name", "code", "temperature", "humidity", "surface_pressure", "value", "forecast",
-                            "generation", "status"]
-    feature_selector.select(feature_to_select=feature_to_be_select)
+    feature_selector = Feature_selector(df, target="generation")
+    features_to_be_select = ["name", "code", "temperature", "humidity", "surface_pressure", "value", "forecast",
+                             "status"]
+    feature_selector.select(features_to_select=features_to_be_select)
     X, y = feature_selector.get_X_and_y()
     return X, y
 
@@ -59,6 +60,7 @@ if __name__ == "__main__":
     l_min = 4
     max_diff = 3
     c_thresh = 0.9
+
     df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False, write_on_csv=False)
     logger.info(f"Csv file has bean labeled successfully")
 
@@ -76,6 +78,7 @@ if __name__ == "__main__":
     model.scale_and_split_data(X, y)
     model.fit()
     logger.info(f"Model has been trained successfully")
+
     test_model(model)
 
     if write_predictions:

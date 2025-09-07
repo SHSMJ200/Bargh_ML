@@ -3,10 +3,13 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import make_pipeline
-from sklearn.metrics import mean_absolute_error, mean_squared_error
+from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from src.models.LinearRegressionNorm1 import CustomLinearRegression
+
+from src.models.customized_ML_models.DelayModel import DelayModel
+from src.models.customized_ML_models.LinearRegressionNorm1 import CustomLinearRegression
+from src.models.customized_ML_models.SampleMeanModel import SampleMeanModel
 import xgboost as xgb
 
 '''
@@ -42,13 +45,21 @@ class Model:
         self.y_train = None
         self.X_train = None
 
-    def compute_rmse_error(self):
+    def compute_rmse_error(self, do_inverse_scale=True):
         y_pred_test = self.model.predict(self.X_test)
         y_pred_train = self.model.predict(self.X_train)
-        y_pred_test_actual = self.scaler_y.inverse_transform(y_pred_test.reshape(-1, 1)).ravel()
-        y_pred_train_actual = self.scaler_y.inverse_transform(y_pred_train.reshape(-1, 1)).ravel()
-        y_test_actual = self.scaler_y.inverse_transform(self.y_test.reshape(-1, 1)).ravel()
-        y_train_actual = self.scaler_y.inverse_transform(self.y_train.reshape(-1, 1)).ravel()
+
+        if do_inverse_scale:
+            y_pred_test_actual = self.scaler_y.inverse_transform(y_pred_test.reshape(-1, 1)).ravel()
+            y_pred_train_actual = self.scaler_y.inverse_transform(y_pred_train.reshape(-1, 1)).ravel()
+            y_test_actual = self.scaler_y.inverse_transform(self.y_test.reshape(-1, 1)).ravel()
+            y_train_actual = self.scaler_y.inverse_transform(self.y_train.reshape(-1, 1)).ravel()
+
+        else:
+            y_pred_test_actual = y_pred_test
+            y_pred_train_actual = y_pred_train
+            y_test_actual = self.y_test
+            y_train_actual = self.y_train
 
         rmse_test_actual = (mean_squared_error(y_test_actual, y_pred_test_actual) ** 0.5 / np.mean(y_test_actual)) * 100
         rmse_train_actual = (mean_squared_error(y_train_actual, y_pred_train_actual) ** 0.5 / np.mean(
@@ -56,22 +67,27 @@ class Model:
 
         return rmse_train_actual, rmse_test_actual
 
-    def scale_and_split_data(self, X, y, test_size=0.2, random_state=42, y_is_flat=True):
-        x_scaled, scaler_x = scale(X)
-        if y_is_flat:
-            y_scaled, scaler_y = scale(y.values.reshape(-1, 1), do_flat=True)
-        else:
-            y_scaled, scaler_y = scale(y)
+    def scale_and_split_data(self, X, y, test_size=0.2, random_state=42, do_scale=True, y_is_flat=True):
+        if do_scale:
+            x_scaled, scaler_x = scale(X)
+            if y_is_flat:
+                y_scaled, scaler_y = scale(y.values.reshape(-1, 1), do_flat=True)
+            else:
+                y_scaled, scaler_y = scale(y)
 
-        self.scaler_x = scaler_x
-        self.scaler_y = scaler_y
+            self.scaler_x = scaler_x
+            self.scaler_y = scaler_y
 
-        if len(X) < 5:
-            (X_train, y_train) = x_scaled, y_scaled
-            X_test, y_test = x_scaled, y_scaled
+            if len(X) < 5:
+                (X_train, y_train) = x_scaled, y_scaled
+                X_test, y_test = x_scaled, y_scaled
+            else:
+                X_train, X_test, y_train, y_test = (
+                    train_test_split(x_scaled, y_scaled, test_size=test_size, random_state=random_state))
+
         else:
             X_train, X_test, y_train, y_test = (
-                train_test_split(x_scaled, y_scaled, test_size=test_size, random_state=random_state))
+                train_test_split(X, y, test_size=test_size, random_state=random_state))
 
         self.X_train = X_train
         self.y_train = y_train
@@ -81,34 +97,6 @@ class Model:
     def pred(self, X):
         x_scaled = self.scaler_x.transform(X)
         y_pred_scaled = (self.model.predict(x_scaled)).reshape(-1, 1)
-        y_pred = self.scaler_y.inverse_transform(y_pred_scaled)
-        return y_pred
-
-
-class LinearL1(Model):  # inherits your Model class
-    def __init__(self, learning_rate=0.01, epochs=1000):
-        super().__init__()
-        self.learning_rate = learning_rate
-        self.epochs = epochs
-
-    def fit(self):
-        try:
-            model = CustomLinearRegression(learning_rate=self.learning_rate, epochs=self.epochs)
-            model.fit(self.X_train, self.y_train.flatten())
-            self.model = model
-            self.model_info = {
-                "learning_rate": self.learning_rate,
-                "epochs": self.epochs,
-                "weights": model.w,
-                "bias": model.b
-            }
-            print("Model trained successfully.")
-        except Exception as e:
-            print(f"Couldn't train LinearL1 model. Exception: {e}")
-
-    def predict(self, X):
-        x_scaled = self.scaler_x.transform(X)
-        y_pred_scaled = self.model.predict(x_scaled).reshape(-1, 1)
         y_pred = self.scaler_y.inverse_transform(y_pred_scaled)
         return y_pred
 
@@ -201,6 +189,71 @@ class XGBoost(Model):
 
         except Exception as e:
             logger.error(f"Couldn't train XGBoost model. Exception below occurred.\n{e}\n")
+
+
+class LinearL1(Model):
+    def __init__(self, learning_rate=0.01, epochs=1000):
+        super().__init__()
+        self.learning_rate = learning_rate
+        self.epochs = epochs
+
+    def fit(self):
+        try:
+            model = CustomLinearRegression(learning_rate=self.learning_rate, epochs=self.epochs)
+            model.fit(self.X_train, self.y_train.flatten())
+            self.model = model
+            self.model_info = {
+                "learning_rate": self.learning_rate,
+                "epochs": self.epochs,
+                "weights": model.w,
+                "bias": model.b
+            }
+            logger.debug("Model trained successfully.")
+
+        except Exception as e:
+            logger.error(f"Couldn't train LinearL1 model. Exception below occurred.\n{e}")
+
+
+class SampleMean(Model):
+    def __init__(self, clustering_features=None):
+        super().__init__()
+        if clustering_features is None:
+            clustering_features = ['name', 'code']
+        self.clustering_features = clustering_features
+
+    def fit(self):
+        try:
+            model = SampleMeanModel(clustering_features=self.clustering_features)
+            model.fit(self.X_train, self.y_train)
+            self.model = model
+            self.model_info = {
+                "clustering features": self.clustering_features
+            }
+            logger.debug("Model trained successfully.")
+
+        except Exception as e:
+            logger.error(f"Couldn't train Sample Mean model. Exception below occurred.\n{e}")
+
+
+class Delay(Model):
+    def __init__(self, feature="generation", delay=24):
+        super().__init__()
+        self.feature = feature
+        self.delay = delay
+
+    def fit(self):
+        try:
+            model = DelayModel(self.feature, self.delay)
+            model.fit(self.X_train, self.y_train)
+            self.model = model
+            self.model_info = {
+                "feature": self.feature,
+                "delay": self.delay
+            }
+            logger.debug("Model trained successfully.")
+
+        except Exception as e:
+            logger.error(f"Couldn't train Sample Mean model. Exception below occurred.\n{e}")
 
 
 '''

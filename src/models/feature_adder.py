@@ -79,7 +79,7 @@ class Feature_adder:
         count_new_label = len(self.df[self.df["is_good_peak"] == label])
         count_old_label = len(self.df[self.df["is_good_peak"] >= label - 1])
         consistency_percentage = count_new_label / count_old_label * 100
-        logger.info(f"{consistency_percentage}% of rows have been chosen by filter{label}")
+        logger.info(f"{consistency_percentage:0.2f}% of rows have been chosen by filter{label}")
 
     def label_points(self, df_n_c, dates, label):
         for date1, date2 in dates:
