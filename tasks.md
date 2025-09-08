@@ -1,26 +1,25 @@
 🟩 To-Do
 ==========================
 
-* Run Neural Network
-* fine tune for each name-code
-* interpolation instead of removing null rows!!
+* Fine tune for each name-code
+* 
 
   🟨 Doing
   ==========================
 
-* give interval to model and get interval
+* Give interval to model and get interval
 * 
 
   🟥 Done
   ==========================
 
-* installing postgres
-* connecting postgres to my project
-* connect Database to Superset
-* edit superset_guide file
+* Installing postgres
+* Connecting postgres to my project
+* Connect Database to Superset
+* Edit superset_guide file
 * Understanding the code in Logger
 * Cleaning the codes in crawler
-* understanding and running the code in data
+* Understanding and running the code in data
 * Train a simple model on data
 * Delete unnecessary files in the model folder
 * Review/study the visualization files
@@ -29,16 +28,18 @@
 * Connect to GitHub
 * Edit function feature_over_time to plot more beautiful
 * Choose the training data better. not just peak, but also M in summer and ...
-* what is "require"?
+* What is "require"?
 * Add column color to plot better
 * Check mse_computer
 * Choose which features should be in the model training.
 * Pay attention to affecting with delay. For example: temperature.
-* how about generation with delay
+* How about generation with delay
 * Add change point detection and choose the training data better
 * Why null data in temperature??
 * Edit "seasonality.yaml" file. It's very bad structured!
 * Edit "tables_columns.yaml" file. Why each name is repeated twice?
-* accuracy of base model
-* pred or predict???
+* Accuracy of base model
+* Pred or predict???
+* Run Neural Network
+* Why different loss between Neural Net error and our manual RMSE error
 * 

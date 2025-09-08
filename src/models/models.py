@@ -1,22 +1,23 @@
+import os
+
 import numpy as np
+import xgboost as xgb
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.pipeline import make_pipeline
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import PolynomialFeatures
 from sklearn.preprocessing import StandardScaler
 
+os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.models import Sequential
+
+from logs.logger import CustomLogger
 from src.models.customized_ML_models.DelayModel import DelayModel
 from src.models.customized_ML_models.LinearRegressionNorm1 import CustomLinearRegression
 from src.models.customized_ML_models.SampleMeanModel import SampleMeanModel
-import xgboost as xgb
-
-'''
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
-'''
-from logs.logger import CustomLogger
 
 logger = CustomLogger(name="models", log_file_name='models.log').get_logger()
 
@@ -256,28 +257,30 @@ class Delay(Model):
             logger.error(f"Couldn't train Sample Mean model. Exception below occurred.\n{e}")
 
 
-'''
 class Neural_network(Model):
-    def __init__(self):
+    def __init__(self, input_dim, epochs=500, verbose=0):
         super().__init__()
+        self.input_dim = input_dim
+        self.epochs = epochs
+        self.verbose = verbose
 
-    def fit(self, epochs=500, verbose=0):
+    def fit(self):
         try:
             model = Sequential()
-            # TODO: The layer should be set correctly!
-            model.add(Dense(4, input_dim=44, activation='relu'))
+            model.add(Input(shape=(self.input_dim,)))
+            model.add(Dense(64, activation='relu'))
+            model.add(Dense(32, activation='relu'))
             model.add(Dense(1, activation='linear'))
 
             model.compile(loss='mean_squared_error', optimizer='adam')
 
-            model.fit(self.X_train, self.y_train, epochs=epochs, verbose=verbose)
+            model.fit(self.X_train, self.y_train, epochs=self.epochs, verbose=self.verbose)
 
             self.model_info = {
-                "epochs": epochs,
-                "verbose": verbose,
+                "epochs": self.epochs,
             }
             self.model = model
+            logger.debug("Model trained successfully.")
 
         except Exception as e:
             logger.error(f"Couldn't train Neural Network model. Exception below occurred.\n{e}\n")
-'''

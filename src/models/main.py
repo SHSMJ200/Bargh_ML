@@ -9,7 +9,7 @@ from data_selector import Data_selector
 from feature_adder import Feature_adder
 from feature_selector import Feature_selector
 from logs.logger import CustomLogger
-from models import Random_Forest, Linear, Polynomial, XGBoost, LinearL1
+from models import Random_Forest, Linear, Polynomial, XGBoost, LinearL1, Neural_network
 
 logger = CustomLogger(name="model_main", log_file_name='model_main.log').get_logger()
 
@@ -48,8 +48,8 @@ def write_result(df, model, X):
 
 def select_features_and_get_X_and_y(df):
     feature_selector = Feature_selector(df, target="generation")
-    features_to_be_select = ["name", "code", "temperature", "humidity", "surface_pressure", "value", "forecast",
-                             "status"]
+    features_to_be_select = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "value", "forecast",
+                             "status", "season"]
     feature_selector.select(features_to_select=features_to_be_select)
     X, y = feature_selector.get_X_and_y()
     return X, y
@@ -74,7 +74,10 @@ if __name__ == "__main__":
     # model = Random_Forest(n_estimators=100, max_depth=20)
     # model = Linear()
     # model = Polynomial(degree=2)
-    model = XGBoost(n_estimators=2000, max_depth=5)
+    # model = XGBoost(n_estimators=1000, max_depth=5)
+    # model = Neural_network(input_dim=X.shape[1], epochs=100, verbose=1)
+
+    model = Linear()
     model.scale_and_split_data(X, y)
     model.fit()
     logger.info(f"Model has been trained successfully")
