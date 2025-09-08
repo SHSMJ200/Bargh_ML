@@ -79,6 +79,9 @@ class UnitPlotter:
 
     def prediction_and_generation_flag_marker_over_time(self, name, code):
         self.features_over_time(name, code, ["prediction", "generation"], ["blue", "red"], flag_marker=True)
+        
+    def temperature_and_prediction_and_generation_flag_marker_over_time(self, name, code):
+        self.features_over_time(name, code, ["temperature","prediction", "generation"], ["yellow","blue", "red"], flag_marker=True)
 
     def temperature_and_generation_over_time(self, name, code):
         self.features_over_time(name, code, ["temperature", "generation"], ["blue", "red"])

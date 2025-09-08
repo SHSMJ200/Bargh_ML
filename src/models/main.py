@@ -59,26 +59,25 @@ if __name__ == "__main__":
     l_min = 4
     max_diff = 3
     c_thresh = 0.9
-    df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=True, write_on_csv=False)
+    df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False, write_on_csv=False)
     logger.info(f"Csv file has bean labeled successfully")
 
-    ds = Data_selector(df)
-    # dfc = ds.filter_name_code(name="پرند", code="G11")
-    # ds = Data_selector(dfc)
-    df_modified = ds.select_peaks(goodness=3)
-    logger.info(f"Rows have been selected successfully")
+    for k in range(1,4):
+        ds = Data_selector(df)
+        df_modified = ds.select_peaks(goodness=k)
+        logger.info(f"Rows have been selected successfully")
 
-    X, y = select_features_and_get_X_and_y(df_modified)
-    logger.info(f"Some features have been dropped successfully")
+        X, y = select_features_and_get_X_and_y(df_modified)
+        logger.info(f"Some features have been dropped successfully")
 
-    # model = Random_Forest(n_estimators=100, max_depth=30)
-    model = Linear()
-    # model = Polynomial()
-    # model = XGBoost(n_estimators=1000, max_depth=3)
-    model.scale_and_split_data(X, y)
-    model.fit()
-    logger.info(f"Model has been trained successfully")
-    test_model(model)
+        # model = Random_Forest(n_estimators=100, max_depth=30)
+        # model = Polynomial()
+        model = XGBoost(n_estimators=1000, max_depth=3)
+        #model = Linear()
+        model.scale_and_split_data(X, y)
+        model.fit()
+        logger.info(f"Model has been trained successfully")
+        test_model(model)
 
-    if write_predictions:
-        write_result(df, model, X)
+        if write_predictions:
+            write_result(df, model, X)

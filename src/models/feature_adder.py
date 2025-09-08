@@ -10,11 +10,11 @@ logger = CustomLogger(name="feature_adder", log_file_name='feature_adder.log').g
 
 
 class Feature_adder:
-    def __init__(self, df: pd.DataFrame):
+    def __init__(self, df: pd.DataFrame,add_label_column=True):
         self.df = df
         self.add_season()
         self.add_date_time()
-        self.df["is_good_peak"] = 0
+        if add_label_column : self.df["is_good_peak"] = 0
         self.time_ranges_by_name_code = {}
 
     def create_feature_with_delay(self, feature, n_delay, drop_null=True):
@@ -45,7 +45,7 @@ class Feature_adder:
 
     def filter2(self, l_min, max_diff):
         df_modified = self.df[["name", "code", "datetime", "generation", "is_good_peak"]].copy(deep=True)
-        df_modified = df_modified[df_modified["is_good_peak"] == 1]
+        df_modified = df_modified[df_modified["is_good_peak"] >= 1]
         power_plants = df_modified[['name', 'code']].drop_duplicates()
         ds = Data_selector(df_modified)
         for _, row in power_plants.iterrows():
@@ -59,7 +59,7 @@ class Feature_adder:
     def filter3(self, feature1, c_thresh=0.9, plot_pearsons_hist=False):
         features = ["name", "code", "datetime", "generation", "is_good_peak"] + [feature1]
         df_modified = self.df[features].copy(deep=True)
-        df_modified = df_modified[df_modified["is_good_peak"] == 2]
+        df_modified = df_modified[df_modified["is_good_peak"] >= 2]
 
         corr_pearsons = []
         power_plants = df_modified[['name', 'code']].drop_duplicates()
@@ -79,7 +79,7 @@ class Feature_adder:
         count_new_label = len(self.df[self.df["is_good_peak"] == label])
         count_old_label = len(self.df[self.df["is_good_peak"] >= label - 1])
         consistency_percentage = count_new_label / count_old_label * 100
-        logger.info(f"{consistency_percentage}% of rows have been chosen by filter{label}")
+        logger.info(f"{consistency_percentage:0.2f}% of rows have been chosen by filter{label}")
 
     def label_points(self, df_n_c, dates, label):
         for date1, date2 in dates:
