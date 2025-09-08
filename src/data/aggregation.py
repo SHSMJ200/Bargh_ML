@@ -21,8 +21,8 @@ class Aggregator:
 
     def integrated_aggregation(self):
         try:
-            sql_query = self.load_sql_query('/src/data/queries/integrated.sql')
-            logger.debug(msg=f'Successfully loaded table configs and sql template.')
+            sql_query = self.load_sql_query(get_root() + '/src/data/queries/integrated.sql')
+            logger.info(msg=f'Successfully loaded table configs and sql template.')
 
             db.__enter__()
             db.execute(
@@ -31,13 +31,13 @@ class Aggregator:
             )
             db.commit()
 
-            logger.debug(msg=f'Successfully applied the query:\n{sql_query}\n on database.')
+            logger.info(msg=f'Successfully applied the query:\n{sql_query}\n on database.')
 
             target_table = 'integrated_data'
 
             db.lazy_copy_expert(
                 table_name=target_table,
-                file='/data/processed/integrated.csv',
+                file=get_root() + '/data/processed/integrated.csv',
                 mode='w',
                 into_local=True
             )
