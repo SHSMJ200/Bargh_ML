@@ -1,12 +1,12 @@
 🟩 To-Do
 ==========================
 
-* Fine tune for each name-code
 * 
 
   🟨 Doing
   ==========================
 
+* Fine tune for each name-code
 * Give interval to model and get interval
 * 
 

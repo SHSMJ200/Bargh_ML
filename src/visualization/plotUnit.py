@@ -106,7 +106,7 @@ class UnitPlotter:
             color_marker = None
             mode = 'lines'
             if feature in ["generation", "generation_change"] and flag_marker:
-                color_pick = {0: "red", 1: "blue", 2: "black"}
+                color_pick = {0: "red", 1: "blue", 2: "black", 3: "green"}
                 color_marker = dict(color=[color_pick[value] for value in sample["is_good_peak"]], size=5)
                 mode = 'lines+markers'
 

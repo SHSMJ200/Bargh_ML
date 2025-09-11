@@ -36,7 +36,7 @@ def add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=Fals
 
 
 def test_model(model, do_inverse_scale=True):
-    rmse_error_train, rmse_error_test = model.compute_rmse_error(do_inverse_scale)
+    rmse_error_train, rmse_error_test = model.rescale_and_compute_error(do_inverse_scale)
     logger.info(f"Train Error: {rmse_error_train:0.2f}%, Test Error: {rmse_error_test:0.2f}%")
 
 
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     # model = XGBoost(n_estimators=1000, max_depth=5)
     # model = Neural_network(input_dim=X.shape[1], epochs=100, verbose=1)
 
-    model = Linear()
+    model = XGBoost(n_estimators=1000, max_depth=5)
     model.scale_and_split_data(X, y)
     model.fit()
     logger.info(f"Model has been trained successfully")
