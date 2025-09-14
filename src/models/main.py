@@ -14,7 +14,9 @@ from models import Random_Forest, Linear, Polynomial, XGBoost, LinearL1, Neural_
 logger = CustomLogger(name="model_main", log_file_name='model_main.log').get_logger()
 
 
-def add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False, write_on_csv=False):
+def add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False, write_on_csv=None):
+    if write_on_csv == None : write_on_csv = read_from_integrated
+
     csv_read_path = os.path.join(project_root, "data", "processed", "integrated.csv")
     csv_semi_write_path = os.path.join(project_root, "data", "processed", "semi_processed.csv")
 
@@ -46,29 +48,34 @@ def write_result(df, model, X):
     df.to_csv(csv_write_path, index=False)
 
 
-def select_features_and_get_X_and_y(df):
+def select_features_and_get_X_and_y(df,is_mimo=False,number_mimo=None):
     feature_selector = Feature_selector(df, target="generation")
     features_to_be_select = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "value", "forecast",
-                             "status", "season"]
+                             "status", "season"] + ["datetime"]
     feature_selector.select(features_to_select=features_to_be_select)
-    X, y = feature_selector.get_X_and_y()
+    X, y = feature_selector.get_X_and_y(is_mimo=is_mimo,number_mimo=number_mimo)
     return X, y
 
 
 if __name__ == "__main__":
     write_predictions = False
+
+    number_mimo = 2
+    is_mimo = number_mimo > 1
+    y_is_flat = not is_mimo
+
     l_min = 4
     max_diff = 4
     c_thresh = 0.9
 
-    df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False, write_on_csv=False)
+    df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False)
     logger.info(f"Csv file has bean labeled successfully")
 
     ds = Data_selector(df)
     df_modified = ds.select_peaks(goodness=3)
     logger.info(f"Rows have been selected successfully")
 
-    X, y = select_features_and_get_X_and_y(df_modified)
+    X, y = select_features_and_get_X_and_y(df_modified,is_mimo=is_mimo,number_mimo=number_mimo)
     logger.info(f"Some features have been dropped successfully")
 
     # model = Random_Forest(n_estimators=100, max_depth=20)
@@ -78,7 +85,7 @@ if __name__ == "__main__":
     # model = Neural_network(input_dim=X.shape[1], epochs=100, verbose=1)
 
     model = XGBoost(n_estimators=1000, max_depth=5)
-    model.scale_and_split_data(X, y)
+    model.scale_and_split_data(X, y,y_is_flat=y_is_flat)
     model.fit()
     logger.info(f"Model has been trained successfully")
 
