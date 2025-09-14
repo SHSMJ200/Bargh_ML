@@ -58,7 +58,7 @@ def select_features_and_get_X_and_y(df):
 if __name__ == "__main__":
     write_predictions = False
     l_min = 4
-    max_diff = 3
+    max_diff = 4
     c_thresh = 0.9
 
     df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False, write_on_csv=False)
