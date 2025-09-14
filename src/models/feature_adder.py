@@ -114,15 +114,21 @@ def get_season(date):
 def get_interval(df, l_min, max_diff):
     df_s = df.reset_index(drop=True)
     gap_mask_time = df_s['datetime'].diff() != pd.Timedelta(hours=1)
-    gap_mask_generation = df_s['generation'].diff().abs() > max_diff
-    gap_mask = gap_mask_time | gap_mask_generation
+    gap_mask_generation_up      = (df_s['generation'].diff() > max_diff) & (~gap_mask_time)
+    gap_mask_generation_down    = (df_s['generation'].diff() < -max_diff) & (~gap_mask_time)
+    gap_mask = gap_mask_time | gap_mask_generation_up | gap_mask_generation_down
 
     start_indices = df_s.index[gap_mask].tolist()
     if 0 not in start_indices: start_indices = [0] + start_indices
-    end_indices = [i - 1 for i in start_indices[1:]] + [df_s.index[-1]]
+    end_indices = [i for i in start_indices[1:]] + [df_s.index[-1]]
 
-    index_ranges = [(start_indices[i], end_indices[i]) for i in range(len(start_indices)) if
-                    end_indices[i] - start_indices[i] >= l_min - 1]
+    index_ranges = []
+    for i in range(len(start_indices)):
+        if end_indices[i] - start_indices[i] >= l_min:
+            if not gap_mask_generation_down[start_indices[i]] and not gap_mask_generation_up[end_indices[i]]:
+                index_ranges.append((start_indices[i], end_indices[i] - 1))
+                    
+                    
     time_ranges = [(df_s.loc[i1, 'datetime'], df_s.loc[i2, 'datetime']) for i1, i2 in index_ranges]
 
     return time_ranges
