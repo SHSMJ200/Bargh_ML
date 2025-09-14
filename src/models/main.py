@@ -28,9 +28,7 @@ def add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=Fals
         feature_adder.filter3("temperature_with_5_delay", c_thresh=c_thresh, plot_pearsons_hist=True)
         df = feature_adder.df
         if write_on_csv:
-            print(12)
             df.to_csv(csv_semi_write_path, index=False)
-            print(12)
     else:
         df = pd.read_csv(csv_semi_write_path, encoding='utf-8')
 
@@ -58,12 +56,12 @@ def select_features_and_get_X_and_y(df):
 
 
 if __name__ == "__main__":
-    write_predictions = True
+    write_predictions = False
     l_min = 4
     max_diff = 4
     c_thresh = 0.9
 
-    df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=True, write_on_csv=True)
+    df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False, write_on_csv=False)
     logger.info(f"Csv file has bean labeled successfully")
 
     ds = Data_selector(df)

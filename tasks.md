@@ -5,12 +5,12 @@
 * Two power plants have very low accuracy.
 * What exactly does 0.1% accuracy mean?
 * Tune hyperparameters.
+* Fine-tune for each name-code.
 * 
 
-🟨 Doing
-==========================
+  🟨 Doing
+  ==========================
 
-* Fine-tune for each name-code. 
 * Give interval to the model and get interval.
 * 
 

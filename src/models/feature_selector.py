@@ -15,7 +15,7 @@ class Feature_selector:
         if features_to_drop is not None:
             self.df = self.df.drop(columns=features_to_drop, axis=1)
         if features_to_select is not None:
-            self.df = self.df[features_to_select + ["generation"]]
+            self.df = self.df[features_to_select + [self.target]]
 
         logger.debug(f"Selected features : {self.df.columns}")
 
