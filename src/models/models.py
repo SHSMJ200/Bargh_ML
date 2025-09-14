@@ -27,11 +27,6 @@ def compute_relative_rmse(y_pred, y):
     return rmse_train_actual
 
 
-def inverse_scale_1d_array(scaler, scaled_arr):
-    arr_actual = scaler.inverse_transform(scaled_arr.reshape(-1, 1)).ravel()
-    return arr_actual
-
-
 class Model:
     def __init__(self):
         self.model = None
@@ -42,31 +37,42 @@ class Model:
         self.X_test = None
         self.y_train = None
         self.X_train = None
+        self.y_is_flat = None
 
     def rescale_and_compute_error(self, do_inverse_scale=True):
         y_pred_test = self.model.predict(self.X_test)
         y_pred_train = self.model.predict(self.X_train)
 
-        y_pred_test_actual = inverse_scale_1d_array(self.scaler_y, y_pred_test) if do_inverse_scale else y_pred_test
-        y_pred_train_actual = inverse_scale_1d_array(self.scaler_y, y_pred_train) if do_inverse_scale else y_pred_train
-        y_test_actual = inverse_scale_1d_array(self.scaler_y, self.y_test) if do_inverse_scale else self.y_test
-        y_train_actual = inverse_scale_1d_array(self.scaler_y, self.y_train) if do_inverse_scale else self.y_train
+        y_pred_test_actual  = self.inverse_scale_array(self.scaler_y, y_pred_test)  if do_inverse_scale else y_pred_test
+        y_pred_train_actual = self.inverse_scale_array(self.scaler_y, y_pred_train) if do_inverse_scale else y_pred_train
+        y_test_actual       = self.inverse_scale_array(self.scaler_y, self.y_test)  if do_inverse_scale else self.y_test
+        y_train_actual      = self.inverse_scale_array(self.scaler_y, self.y_train) if do_inverse_scale else self.y_train
 
         rmse_test_actual = compute_relative_rmse(y_pred_test_actual, y_test_actual)
         rmse_train_actual = compute_relative_rmse(y_pred_train_actual, y_train_actual)
 
         return rmse_train_actual, rmse_test_actual
 
-    def scale_and_split_data(self, X, y, test_size=0.2, random_state=42, do_scale=True, y_is_flat=True):
-        if do_scale:
-            x_scaled, y_scaled = self.scale_data(X, y, y_is_flat)
+    def inverse_scale_array(self,scaler, scaled_arr):
+        if self.y_is_flat:
+            arr_actual = scaler.inverse_transform(scaled_arr.reshape(-1, 1)).ravel()
+        else:
+            arr_actual = scaler.inverse_transform(scaled_arr)
+        return arr_actual
 
+    def scale_and_split_data(self, X, y, test_size=0.2, random_state=42, do_scale=True, y_is_flat=True):
+        self.y_is_flat = y_is_flat
+        if do_scale:
+            print(X.shape,y.shape)
+            x_scaled, y_scaled = self.scale_data(X, y)
+            print(x_scaled.shape,y_scaled.shape)
             self.split_data(x_scaled, y_scaled, random_state, test_size)
 
         else:
             self.split_data(X, y, random_state, test_size)
 
     def split_data(self, X, y, random_state=42, test_size=0.2):
+        print(X.shape,y.shape)
         if len(X) < 5:
             (X_train, y_train) = X, y
             X_test, y_test = X, y
@@ -79,12 +85,12 @@ class Model:
         self.X_test = X_test
         self.y_test = y_test
 
-    def scale_data(self, X, y, y_is_flat=True):
+    def scale_data(self, X, y):
         scaler_x = StandardScaler()
         x_scaled = scaler_x.fit_transform(X)
-
+        print(self.y_is_flat)
         scaler_y = StandardScaler()
-        if y_is_flat:
+        if self.y_is_flat:
             y_scaled = scaler_y.fit_transform(y.values.reshape(-1, 1))
             y_scaled = y_scaled.flatten()
 
@@ -100,6 +106,8 @@ class Model:
         y_pred_scaled = (self.model.predict(x_scaled)).reshape(-1, 1)
         y_pred = self.scaler_y.inverse_transform(y_pred_scaled)
         return y_pred
+    
+
 
 
 class Linear(Model):
