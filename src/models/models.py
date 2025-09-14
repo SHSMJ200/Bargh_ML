@@ -62,8 +62,7 @@ class Model:
             y_train_actual = self.y_train
 
         rmse_test_actual = (mean_squared_error(y_test_actual, y_pred_test_actual) ** 0.5 / np.mean(y_test_actual)) * 100
-        rmse_train_actual = (mean_squared_error(y_train_actual, y_pred_train_actual) ** 0.5 / np.mean(
-            y_train_actual)) * 100
+        rmse_train_actual = (mean_squared_error(y_train_actual, y_pred_train_actual) ** 0.5 / np.mean(y_train_actual)) * 100
 
         return rmse_train_actual, rmse_test_actual
 

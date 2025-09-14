@@ -28,7 +28,9 @@ def add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=Fals
         feature_adder.filter3("temperature_with_5_delay", c_thresh=c_thresh, plot_pearsons_hist=True)
         df = feature_adder.df
         if write_on_csv:
+            print(12)
             df.to_csv(csv_semi_write_path, index=False)
+            print(12)
     else:
         df = pd.read_csv(csv_semi_write_path, encoding='utf-8')
 
@@ -61,7 +63,7 @@ if __name__ == "__main__":
     max_diff = 3
     c_thresh = 0.9
 
-    df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False, write_on_csv=False)
+    df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False, write_on_csv=True)
     logger.info(f"Csv file has bean labeled successfully")
 
     ds = Data_selector(df)
@@ -74,6 +76,8 @@ if __name__ == "__main__":
     # model = Random_Forest(n_estimators=100, max_depth=20)
     # model = Linear()
     # model = Polynomial(degree=2)
+    # model = XGBoost(n_estimators=2000, max_depth=5)
+    
     model = XGBoost(n_estimators=2000, max_depth=5)
     model.scale_and_split_data(X, y)
     model.fit()
