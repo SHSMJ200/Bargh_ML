@@ -10,11 +10,11 @@ logger = CustomLogger(name="feature_adder", log_file_name='feature_adder.log').g
 
 
 class Feature_adder:
-    def __init__(self, df: pd.DataFrame,add_label_column=True):
+    def __init__(self, df: pd.DataFrame, add_label_column=True):
         self.df = df
         self.add_season()
         self.add_date_time()
-        if add_label_column : self.df["is_good_peak"] = 0
+        if add_label_column: self.df["is_good_peak"] = 0
         self.time_ranges_by_name_code = {}
 
     def create_feature_with_delay(self, feature, n_delay, drop_null=True):
@@ -37,7 +37,13 @@ class Feature_adder:
         self.df['datetime'] = self.df['date'] + pd.to_timedelta(self.df['hour'], unit='h')
 
     def filter1(self):
-        peak_condition = (self.df['value'] == 'P') | (self.df['value'] == 'M') & (self.df['season'] == 'summer')
+        start_md = "05-22"
+        end_md = "09-22"
+        # We assume that start_md < end_md
+        statusM_mask = (self.df['datetime'].dt.strftime('%m-%d') >= start_md) & (
+                    self.df['datetime'].dt.strftime('%m-%d') <= end_md)
+
+        peak_condition = (self.df['value'] == 'P') | (self.df['value'] == 'M') & statusM_mask
         peak_condition = peak_condition & ((self.df['status'] == 'SO') | (self.df['status'] == 'LF1'))
         self.df.loc[peak_condition, "is_good_peak"] = 1
 

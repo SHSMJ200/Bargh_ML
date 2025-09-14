@@ -1,21 +1,17 @@
 🟩 To-Do
 ==========================
 
+* I feel we’re still selecting some outlier data.
+* Two power plants have very low accuracy.
+* What exactly does 0.1% accuracy mean?
+* Tune hyperparameters.
 * 
 
-  🟨 Doing
-  ==========================
+🟨 Doing
+==========================
 
-* احساس می‌کنم هنوز یه سری داده‌ی پرت رو داریم انتخاب می‌کنیم.
-* دو تا نیروگاه خیلی دقتشون پایینه
-* 
-* Fine tune for each name-code
-* Give interval to model and get interval
-* tune hyperparameters
-* 
-* از ابتدای خرداد می‌شود میان باری را در نظر گرفت
-* تفاوت تغییرات تولید ما و آن‌چه که در جلسه گفته شد
-* دقت ۰.۱ درصد دقیقا یعنی چی؟
+* Fine-tune for each name-code. 
+* Give interval to the model and get interval.
 * 
 
   🟥 Done
@@ -50,4 +46,6 @@
 * Pred or predict???
 * Run Neural Network
 * Why different loss between Neural Net error and our manual RMSE error
+* From the beginning of Khordad, mid-load can be considered.
+* The difference between our production changes and what was mentioned in the meeting.
 * 
