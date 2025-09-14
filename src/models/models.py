@@ -1,37 +1,35 @@
+import os
+
 import numpy as np
+import xgboost as xgb
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.pipeline import make_pipeline
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import PolynomialFeatures
 from sklearn.preprocessing import StandardScaler
 
+os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.models import Sequential
+
+from logs.logger import CustomLogger
 from src.models.customized_ML_models.DelayModel import DelayModel
 from src.models.customized_ML_models.LinearRegressionNorm1 import CustomLinearRegression
 from src.models.customized_ML_models.SampleMeanModel import SampleMeanModel
-import xgboost as xgb
-
-'''
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
-'''
-from logs.logger import CustomLogger
 
 logger = CustomLogger(name="models", log_file_name='models.log').get_logger()
 
 
-def scale(x, do_flat=False):
-    scaler = StandardScaler()
-    scaled_x = scaler.fit_transform(x)
+def compute_relative_rmse(y_pred, y):
+    rmse_train_actual = (mean_squared_error(y, y_pred) ** 0.5 / np.mean(y)) * 100
+    return rmse_train_actual
 
-    if not do_flat:
-        logger.debug(f"X scaled successfully.")
-        return scaled_x, scaler
-    else:
-        logger.debug(f"y scaled successfully")
-        logger.debug(f"y flattened.")
-        return scaled_x.flatten(), scaler
+
+def inverse_scale_1d_array(scaler, scaled_arr):
+    arr_actual = scaler.inverse_transform(scaled_arr.reshape(-1, 1)).ravel()
+    return arr_actual
 
 
 class Model:
@@ -45,45 +43,33 @@ class Model:
         self.y_train = None
         self.X_train = None
 
-    def compute_rmse_error(self, do_inverse_scale=True):
+    def rescale_and_compute_error(self, do_inverse_scale=True):
         y_pred_test = self.model.predict(self.X_test)
         y_pred_train = self.model.predict(self.X_train)
 
-        if do_inverse_scale:
-            y_pred_test_actual = self.scaler_y.inverse_transform(y_pred_test.reshape(-1, 1)).ravel()
-            y_pred_train_actual = self.scaler_y.inverse_transform(y_pred_train.reshape(-1, 1)).ravel()
-            y_test_actual = self.scaler_y.inverse_transform(self.y_test.reshape(-1, 1)).ravel()
-            y_train_actual = self.scaler_y.inverse_transform(self.y_train.reshape(-1, 1)).ravel()
+        y_pred_test_actual = inverse_scale_1d_array(self.scaler_y, y_pred_test) if do_inverse_scale else y_pred_test
+        y_pred_train_actual = inverse_scale_1d_array(self.scaler_y, y_pred_train) if do_inverse_scale else y_pred_train
+        y_test_actual = inverse_scale_1d_array(self.scaler_y, self.y_test) if do_inverse_scale else self.y_test
+        y_train_actual = inverse_scale_1d_array(self.scaler_y, self.y_train) if do_inverse_scale else self.y_train
 
-        else:
-            y_pred_test_actual = y_pred_test
-            y_pred_train_actual = y_pred_train
-            y_test_actual = self.y_test
-            y_train_actual = self.y_train
-
-        rmse_test_actual = (mean_squared_error(y_test_actual, y_pred_test_actual) ** 0.5 / np.mean(y_test_actual)) * 100
-        rmse_train_actual = (mean_squared_error(y_train_actual, y_pred_train_actual) ** 0.5 / np.mean(y_train_actual)) * 100
+        rmse_test_actual = compute_relative_rmse(y_pred_test_actual, y_test_actual)
+        rmse_train_actual = compute_relative_rmse(y_pred_train_actual, y_train_actual)
 
         return rmse_train_actual, rmse_test_actual
 
     def scale_and_split_data(self, X, y, test_size=0.2, random_state=42, do_scale=True, y_is_flat=True):
         if do_scale:
-            x_scaled, scaler_x = scale(X)
-            if y_is_flat:
-                y_scaled, scaler_y = scale(y.values.reshape(-1, 1), do_flat=True)
-            else:
-                y_scaled, scaler_y = scale(y)
+            x_scaled, y_scaled = self.scale_data(X, y, y_is_flat)
 
-            self.scaler_x = scaler_x
-            self.scaler_y = scaler_y
+            self.split_data(x_scaled, y_scaled, random_state, test_size)
 
-            if len(X) < 5:
-                (X_train, y_train) = x_scaled, y_scaled
-                X_test, y_test = x_scaled, y_scaled
-            else:
-                X_train, X_test, y_train, y_test = (
-                    train_test_split(x_scaled, y_scaled, test_size=test_size, random_state=random_state))
+        else:
+            self.split_data(X, y, random_state, test_size)
 
+    def split_data(self, X, y, random_state=42, test_size=0.2):
+        if len(X) < 5:
+            (X_train, y_train) = X, y
+            X_test, y_test = X, y
         else:
             X_train, X_test, y_train, y_test = (
                 train_test_split(X, y, test_size=test_size, random_state=random_state))
@@ -92,6 +78,22 @@ class Model:
         self.y_train = y_train
         self.X_test = X_test
         self.y_test = y_test
+
+    def scale_data(self, X, y, y_is_flat=True):
+        scaler_x = StandardScaler()
+        x_scaled = scaler_x.fit_transform(X)
+
+        scaler_y = StandardScaler()
+        if y_is_flat:
+            y_scaled = scaler_y.fit_transform(y.values.reshape(-1, 1))
+            y_scaled = y_scaled.flatten()
+
+        else:
+            y_scaled = scaler_y.fit_transform(y)
+
+        self.scaler_x = scaler_x
+        self.scaler_y = scaler_y
+        return x_scaled, y_scaled
 
     def pred(self, X):
         x_scaled = self.scaler_x.transform(X)
@@ -213,6 +215,37 @@ class LinearL1(Model):
             logger.error(f"Couldn't train LinearL1 model. Exception below occurred.\n{e}")
 
 
+class Neural_network(Model):
+    def __init__(self, input_dim, epochs=500, verbose=0):
+        super().__init__()
+        self.input_dim = input_dim
+        self.epochs = epochs
+        self.verbose = verbose
+
+    def fit(self):
+        try:
+            model = Sequential()
+            model.add(Input(shape=(self.input_dim,)))
+            model.add(Dense(64, activation='relu'))
+            model.add(Dense(32, activation='relu'))
+            model.add(Dense(16, activation='relu'))
+            model.add(Dense(8, activation='relu'))
+            model.add(Dense(1, activation='linear'))
+
+            model.compile(loss='mean_squared_error', optimizer='adam')
+
+            model.fit(self.X_train, self.y_train, epochs=self.epochs, verbose=self.verbose)
+
+            self.model_info = {
+                "epochs": self.epochs,
+            }
+            self.model = model
+            logger.debug("Model trained successfully.")
+
+        except Exception as e:
+            logger.error(f"Couldn't train Neural Network model. Exception below occurred.\n{e}\n")
+
+
 class SampleMean(Model):
     def __init__(self, clustering_features=None):
         super().__init__()
@@ -253,30 +286,3 @@ class Delay(Model):
 
         except Exception as e:
             logger.error(f"Couldn't train Sample Mean model. Exception below occurred.\n{e}")
-
-
-'''
-class Neural_network(Model):
-    def __init__(self):
-        super().__init__()
-
-    def fit(self, epochs=500, verbose=0):
-        try:
-            model = Sequential()
-            # TODO: The layer should be set correctly!
-            model.add(Dense(4, input_dim=44, activation='relu'))
-            model.add(Dense(1, activation='linear'))
-
-            model.compile(loss='mean_squared_error', optimizer='adam')
-
-            model.fit(self.X_train, self.y_train, epochs=epochs, verbose=verbose)
-
-            self.model_info = {
-                "epochs": epochs,
-                "verbose": verbose,
-            }
-            self.model = model
-
-        except Exception as e:
-            logger.error(f"Couldn't train Neural Network model. Exception below occurred.\n{e}\n")
-'''
