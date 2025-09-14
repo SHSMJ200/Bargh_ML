@@ -92,7 +92,15 @@ class UnitPlotter:
     def temperature_change_and_generation_change_flag_marker_over_time(self, name, code):
         self.features_over_time(name, code, ["temperature_change", "generation_change"], ["blue", "red"],
                                 flag_marker=True)
-
+        
+    def generation_and_generation_with_24_delay_flag_marker_over_time(self, name, code):
+        self.features_over_time(name, code, ["generation", "generation_with_24_delay"], ["red", "blue"],
+                                flag_marker=True)
+    
+    def generation_and_mean_generation_and_generation_with_24_delay_flag_marker_over_time(self, name, code):
+        self.features_over_time(name, code, ["generation", "mean_generation", "generation_with_24_delay"], ["red", "green","blue"],
+                                flag_marker=True)
+    
     def features_over_time(self, name, code, features, colors, flag_marker=False):
 
         sample = self.df.loc[(self.df['name'] == name) & (self.df['code'] == code)]

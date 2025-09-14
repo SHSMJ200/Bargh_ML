@@ -26,6 +26,6 @@ if __name__ == "__main__":
         # up.temperature_and_generation_over_time(name=row["name"], code=row["code"])
         # up.generation_over_time(name=row["name"], code=row["code"])
         # up.prediction_and_generation_flag_marker_over_time(name=row["name"], code=row["code"])
-        up.temperature_and_prediction_and_generation_flag_marker_over_time(name=row["name"], code=row["code"])
-
-
+        # up.generation_and_generation_with_24_delay_flag_marker_over_time(name=row["name"], code=row["code"])
+        up.generation_and_mean_generation_and_generation_with_24_delay_flag_marker_over_time(name=row["name"], code=row["code"])
+        
