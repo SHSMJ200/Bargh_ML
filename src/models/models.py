@@ -63,16 +63,13 @@ class Model:
     def scale_and_split_data(self, X, y, test_size=0.2, random_state=42, do_scale=True, y_is_flat=True):
         self.y_is_flat = y_is_flat
         if do_scale:
-            print(X.shape,y.shape)
             x_scaled, y_scaled = self.scale_data(X, y)
-            print(x_scaled.shape,y_scaled.shape)
             self.split_data(x_scaled, y_scaled, random_state, test_size)
 
         else:
             self.split_data(X, y, random_state, test_size)
 
     def split_data(self, X, y, random_state=42, test_size=0.2):
-        print(X.shape,y.shape)
         if len(X) < 5:
             (X_train, y_train) = X, y
             X_test, y_test = X, y
@@ -88,7 +85,6 @@ class Model:
     def scale_data(self, X, y):
         scaler_x = StandardScaler()
         x_scaled = scaler_x.fit_transform(X)
-        print(self.y_is_flat)
         scaler_y = StandardScaler()
         if self.y_is_flat:
             y_scaled = scaler_y.fit_transform(y.values.reshape(-1, 1))
