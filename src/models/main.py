@@ -52,9 +52,9 @@ def write_result(df, model, X):
 def select_features_and_get_X_and_y(df, is_mimo=False, number_mimo=None):
     feature_selector = Feature_selector(df, target="generation")
     features_to_be_select = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "value", "forecast",
-                             "status", "season", "temperature_with_5_delay"] + ["datetime"]
-    for hour in range(1, 4):
-        features_to_be_select.append(f"generation_with_{hour}_delay")
+                             "status", "season"] + ["datetime"]
+    # for hour in range(1, 4):
+    #     features_to_be_select.append(f"generation_with_{hour}_delay")
     features_to_be_select.append(f"generation_with_{24}_delay")
     feature_selector.select(features_to_select=features_to_be_select)
     X, y = feature_selector.get_X_and_y(is_mimo=is_mimo, number_mimo=number_mimo)
@@ -65,7 +65,7 @@ if __name__ == "__main__":
     # TODO: for mimo > 1 doesn't work
     write_predictions = False
 
-    number_mimo = 4
+    number_mimo = 1
     is_mimo = number_mimo > 1
     y_is_flat = not is_mimo
 
@@ -90,11 +90,11 @@ if __name__ == "__main__":
     # model = Neural_network(input_dim=X.shape[1], epochs=100, verbose=1)
 
     model = XGBoost(n_estimators=1000, max_depth=5)
-    model.scale_and_split_data(X, y, y_is_flat=y_is_flat)
+    model.scale_and_split_data(X, y, y_is_flat=y_is_flat, do_scale=False)
     model.fit()
     logger.info(f"Model has been trained successfully")
 
-    test_model(model)
+    test_model(model, do_inverse_scale=False)
 
     if write_predictions:
         write_result(df, model, X)
