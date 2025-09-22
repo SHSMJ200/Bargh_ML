@@ -5,17 +5,17 @@
 * Two power plants have very low accuracy.
 * What exactly does 0.1% accuracy mean?
 * Tune hyperparameters.
+* 
+
+🟨 Doing
+==========================
+
 * Fine-tune for each name-code.
 * more than 24 rows of data in one day
 * 
 
-  🟨 Doing
-  ==========================
-
-* 
-
-  🟥 Done
-  ==========================
+🟥 Done
+==========================
 
 * Installing postgres
 * Connecting postgres to my project
