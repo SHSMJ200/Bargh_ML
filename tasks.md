@@ -5,17 +5,17 @@
 * Two power plants have very low accuracy.
 * What exactly does 0.1% accuracy mean?
 * Tune hyperparameters.
+* 
+
+🟨 Doing
+==========================
+
 * Fine-tune for each name-code.
+* more than 24 rows of data in one day
 * 
 
-  🟨 Doing
-  ==========================
-
-* Give interval to the model and get interval.
-* 
-
-  🟥 Done
-  ==========================
+🟥 Done
+==========================
 
 * Installing postgres
 * Connecting postgres to my project
@@ -48,4 +48,5 @@
 * Why different loss between Neural Net error and our manual RMSE error
 * From the beginning of Khordad, mid-load can be considered.
 * The difference between our production changes and what was mentioned in the meeting.
+* Give interval to the model and get interval.
 * 
