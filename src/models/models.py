@@ -225,25 +225,24 @@ class Neural_network(Model):
         self.input_dim = input_dim
         self.epochs = epochs
         self.verbose = verbose
+        '''
+        model = Sequential()
+        model.add(Input(shape=(self.input_dim,)))
+        model.add(Dense(64, activation='relu'))
+        model.add(Dense(32, activation='relu'))
+        model.add(Dense(16, activation='relu'))
+        model.add(Dense(8, activation='relu'))
+        model.add(Dense(1, activation='linear'))
+        model.compile(loss='mean_squared_error', optimizer='adam')
+        '''
+        self.model = None
 
     def fit(self):
         try:
-            model = Sequential()
-            model.add(Input(shape=(self.input_dim,)))
-            model.add(Dense(64, activation='relu'))
-            model.add(Dense(32, activation='relu'))
-            model.add(Dense(16, activation='relu'))
-            model.add(Dense(8, activation='relu'))
-            model.add(Dense(1, activation='linear'))
-
-            model.compile(loss='mean_squared_error', optimizer='adam')
-
-            model.fit(self.X_train, self.y_train, epochs=self.epochs, verbose=self.verbose)
-
+            self.model.fit(self.X_train, self.y_train, epochs=self.epochs, verbose=self.verbose)
             self.model_info = {
                 "epochs": self.epochs,
             }
-            self.model = model
             logger.debug("Model trained successfully.")
 
         except Exception as e:
