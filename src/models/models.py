@@ -11,8 +11,8 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.preprocessing import StandardScaler
 
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
-from tensorflow.keras.layers import Dense, Input
-from tensorflow.keras.models import Sequential
+#from tensorflow.keras.layers import Dense, Input
+#from tensorflow.keras.models import Sequential
 
 from logs.logger import CustomLogger
 from src.models.customized_ML_models.DelayModel import DelayModel
@@ -112,9 +112,8 @@ class Model:
     def pred(self, X, do_scale=True):
         if do_scale:
             x_scaled = self.scaler_x.transform(X)
-            y_pred_scaled = (self.model.predict(x_scaled)).reshape(-1, 1)
-            y_pred = self.scaler_y.inverse_transform(y_pred_scaled)
-
+            y_pred_scaled = (self.model.predict(x_scaled))
+            y_pred = self.inverse_scale_array(self.scaler_y, y_pred_scaled)
         else:
             y_pred = self.model.predict(X)
         return y_pred
@@ -239,25 +238,24 @@ class Neural_network(Model):
         self.input_dim = input_dim
         self.epochs = epochs
         self.verbose = verbose
+        '''
+        model = Sequential()
+        model.add(Input(shape=(self.input_dim,)))
+        model.add(Dense(64, activation='relu'))
+        model.add(Dense(32, activation='relu'))
+        model.add(Dense(16, activation='relu'))
+        model.add(Dense(8, activation='relu'))
+        model.add(Dense(1, activation='linear'))
+        model.compile(loss='mean_squared_error', optimizer='adam')
+        '''
+        self.model = None
 
     def fit(self):
         try:
-            model = Sequential()
-            model.add(Input(shape=(self.input_dim,)))
-            model.add(Dense(64, activation='relu'))
-            model.add(Dense(32, activation='relu'))
-            model.add(Dense(16, activation='relu'))
-            model.add(Dense(8, activation='relu'))
-            model.add(Dense(1, activation='linear'))
-
-            model.compile(loss='mean_squared_error', optimizer='adam')
-
-            model.fit(self.X_train, self.y_train, epochs=self.epochs, verbose=self.verbose)
-
+            self.model.fit(self.X_train, self.y_train, epochs=self.epochs, verbose=self.verbose)
             self.model_info = {
                 "epochs": self.epochs,
             }
-            self.model = model
             logger.debug("Model trained successfully.")
 
         except Exception as e:

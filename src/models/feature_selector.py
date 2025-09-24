@@ -21,9 +21,8 @@ class Feature_selector:
 
     def get_X_and_y(self, do_onehot=True, is_mimo=False, number_mimo=1):
         df = self.df.copy(deep=True)
-        df = df.dropna()
         if is_mimo:
-            dff = get_dataframe_block(df, number_mimo)
+            dff,self.name_code_dictionary_index = get_dataframe_block(df, number_mimo)
             dic_col = get_index_dictionary(df, number_mimo)
             X = dff.drop(columns=dic_col[self.target])
             y = dff[dic_col[self.target]]
@@ -32,26 +31,38 @@ class Feature_selector:
             y = df[self.target]
             X.drop(columns=['datetime'], inplace=True)
 
+        if is_mimo :
+                name_code_df = X[[0,1]]
+        else :
+            name_code_df = X[["name","code"]]
+                
         if do_onehot:
+            
             categorical_cols = X.select_dtypes(include=['object', 'category']).columns
             X = pd.get_dummies(X, columns=categorical_cols, drop_first=True)
             X.columns = X.columns.astype(str)
 
-        return X, y
+        return X, y,name_code_df
 
-    import pandas as pd
+import pandas as pd
 
 
 def get_df_rep(df, name, code, n, index_ranges):
     df1 = df.drop(columns=["name", "code", "datetime"])
     rows = []
+    index = []
+    k1 = 0
+    k2 = 0
     for i1, i2 in index_ranges:
         for i in range(i1, i2 - n + 1):
             part = df1.iloc[i:i + n].reset_index(drop=True)
             row = pd.Series(part.values.flatten()).to_list()
             row = [name, code] + row
             rows.append(row)
-    return rows
+        k2 += i2-i1-n+1
+        index.append((k1,k2))
+        k1 = k2
+    return rows,index
 
 
 def get_interval(df, l_min):
@@ -75,14 +86,18 @@ def get_dataframe_block(df, n):
 
     rows = []
     power_plants = df_modified[['name', 'code']].drop_duplicates()
+    name_code_dictionary_index = {}
     for _, row in power_plants.iterrows():
         # logger.info("df.columns " + str("datetime" in list(df.columns)))
         df_name_code = ds.filter_name_code(row["name"], row["code"])
         df_name_code.reset_index(drop=True, inplace=True)
         index_range = get_interval(df_name_code, l_min=n)
-        rows += get_df_rep(df_name_code, row["name"], row["code"], n, index_range)
+        rowss,indexes = get_df_rep(df_name_code, row["name"], row["code"], n, index_range)
+        #print(type(name_code_dictionary_index),(row["name"], row["code"]),len(indexes))
+        name_code_dictionary_index[(row["name"], row["code"])] = indexes
+        rows += rowss
     df_new = pd.DataFrame(rows)
-    return df_new
+    return df_new,name_code_dictionary_index
 
 
 def get_index_dictionary(df, rep):
