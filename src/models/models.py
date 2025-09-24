@@ -100,9 +100,8 @@ class Model:
     def pred(self, X, do_scale=True):
         if do_scale:
             x_scaled = self.scaler_x.transform(X)
-            y_pred_scaled = (self.model.predict(x_scaled)).reshape(-1, 1)
-            y_pred = self.scaler_y.inverse_transform(y_pred_scaled)
-
+            y_pred_scaled = (self.model.predict(x_scaled))
+            y_pred = self.inverse_scale_array(self.scaler_y, y_pred_scaled)
         else:
             y_pred = self.model.predict(X)
         return y_pred
