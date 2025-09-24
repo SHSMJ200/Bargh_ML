@@ -2,13 +2,16 @@
 ==========================
 
 * Check accuracy for each (name, code).
-* Define two different accuracy.
-* Tune hyperparameters.
 * Fine-tune for each name-code.
+* 
+* kTune hyperparameters.
+* 
 * clean the code
-* check residual 'y' for new model
+* 
 * how to use model for prediction
 * make product
+* 
+* correct accuracy on flat y
 * 
 
   🟨 Doing
@@ -54,4 +57,6 @@
 * transfer new model from jupyter to python
 * more than 24 rows of data in one day
 * write predictions with mimo > 1
+* check residual 'y' for new model
+* Define two different accuracy.
 * 

@@ -29,7 +29,7 @@ def compute_relative_rmse(y_pred, y):
 
 def compute_threshold_error(y_pred, y, threshold=0.01):
     y_diff_abs = abs(y_pred - y)
-    bad_pred = y_diff_abs <= y * threshold
+    bad_pred = y_diff_abs > y * threshold
     return np.sum(bad_pred) / len(bad_pred)
 
 
