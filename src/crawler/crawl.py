@@ -125,9 +125,10 @@ class HistoryCrawler(Crawler):
 
             for utm, unitid in zip(plants['UTM'], plants['DispPlantCode']):
                 lat, longit = utm.split(',')
+                f_lat, f_longit = float(lat), float(longit)
                 params = {
-                    "latitude": float(lat),
-                    "longitude": float(longit),
+                    "latitude": f_lat,
+                    "longitude": f_longit,
                     "start_date": start_date,
                     "end_date": end_date,
                     "hourly": hourly_features
@@ -135,7 +136,7 @@ class HistoryCrawler(Crawler):
                 hourly_dataframe = fetch_hourly_weather_data(openmeteo, params, unitid, url)
 
                 data = pd.concat([data, hourly_dataframe], ignore_index=True)
-                logger.info(msg=f'Data with latitude: {lat: 0.2f} and longitude: {longit: 0.2f} added to the dataframe')
+                logger.info(f'Data with latitude: {f_lat: 0.2f} and longitude: {f_longit: 0.2f} added to the dataframe')
 
             data = prepare_datetime_columns(data)
 

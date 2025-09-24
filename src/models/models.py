@@ -27,6 +27,12 @@ def compute_relative_rmse(y_pred, y):
     return rmse_train_actual
 
 
+def compute_threshold_error(y_pred, y, threshold=0.01):
+    y_diff_abs = abs(y_pred - y)
+    bad_pred = y_diff_abs <= y * threshold
+    return np.sum(bad_pred) / len(bad_pred)
+
+
 class Model:
     def __init__(self):
         self.model = None
@@ -39,21 +45,27 @@ class Model:
         self.X_train = None
         self.y_is_flat = None
 
-    def rescale_and_compute_error(self, do_inverse_scale=True):
+    def rescale_and_compute_error(self, do_inverse_scale=True, is_relative_rmse=True):
         y_pred_test = self.model.predict(self.X_test)
         y_pred_train = self.model.predict(self.X_train)
 
-        y_pred_test_actual  = self.inverse_scale_array(self.scaler_y, y_pred_test)  if do_inverse_scale else y_pred_test
+        y_pred_test_actual = self.inverse_scale_array(self.scaler_y, y_pred_test) if do_inverse_scale else y_pred_test
         y_pred_train_actual = self.inverse_scale_array(self.scaler_y, y_pred_train) if do_inverse_scale else y_pred_train
-        y_test_actual       = self.inverse_scale_array(self.scaler_y, self.y_test)  if do_inverse_scale else self.y_test
-        y_train_actual      = self.inverse_scale_array(self.scaler_y, self.y_train) if do_inverse_scale else self.y_train
+        y_test_actual = self.inverse_scale_array(self.scaler_y, self.y_test) if do_inverse_scale else self.y_test
+        y_train_actual = self.inverse_scale_array(self.scaler_y, self.y_train) if do_inverse_scale else self.y_train
 
-        rmse_test_actual = compute_relative_rmse(y_pred_test_actual, y_test_actual)
-        rmse_train_actual = compute_relative_rmse(y_pred_train_actual, y_train_actual)
+        if is_relative_rmse:
+            rmse_test_actual = compute_relative_rmse(y_pred_test_actual, y_test_actual)
+            rmse_train_actual = compute_relative_rmse(y_pred_train_actual, y_train_actual)
+            return rmse_train_actual, rmse_test_actual
 
-        return rmse_train_actual, rmse_test_actual
+        else:
+            threshold_error_test = compute_threshold_error(y_pred_test_actual, y_test_actual)
+            threshold_error_train = compute_threshold_error(y_pred_train_actual, y_train_actual)
+            return threshold_error_train, threshold_error_test
 
-    def inverse_scale_array(self,scaler, scaled_arr):
+
+    def inverse_scale_array(self, scaler, scaled_arr):
         if self.y_is_flat:
             arr_actual = scaler.inverse_transform(scaled_arr.reshape(-1, 1)).ravel()
         else:
@@ -106,8 +118,6 @@ class Model:
         else:
             y_pred = self.model.predict(X)
         return y_pred
-    
-
 
 
 class Linear(Model):

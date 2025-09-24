@@ -8,14 +8,14 @@ from logs.logger import CustomLogger
 from cleaning.data_cleaning import CsvfileManipulation, RawData
 from aggregation import Aggregator
 
-logger = CustomLogger(name="model_main", log_file_name='model_main.log').get_logger()
+logger = CustomLogger(name="data_main", log_file_name='data_main.log').get_logger()
 
 
 def process_all_csv_files():
     manipulator = CsvfileManipulation()
     for raw in RawData:
-        logger.info(f"Manipulation relating to {raw} has been done")
         manipulator.process(file=raw)
+        logger.info(f"Manipulation relating to {raw} has been done")
 
 
 if __name__ == "__main__":

@@ -1,21 +1,23 @@
 🟩 To-Do
 ==========================
 
-* I feel we’re still selecting some outlier data.
-* Two power plants have very low accuracy.
-* What exactly does 0.1% accuracy mean?
+* Check accuracy for each (name, code).
+* Define two different accuracy.
 * Tune hyperparameters.
-* 
-
-🟨 Doing
-==========================
-
 * Fine-tune for each name-code.
-* more than 24 rows of data in one day
+* clean the code
+* check residual 'y' for new model
+* how to use model for prediction
+* make product
 * 
 
-🟥 Done
-==========================
+  🟨 Doing
+  ==========================
+
+* 
+
+  🟥 Done
+  ==========================
 
 * Installing postgres
 * Connecting postgres to my project
@@ -49,4 +51,7 @@
 * From the beginning of Khordad, mid-load can be considered.
 * The difference between our production changes and what was mentioned in the meeting.
 * Give interval to the model and get interval.
+* transfer new model from jupyter to python
+* more than 24 rows of data in one day
+* write predictions with mimo > 1
 * 

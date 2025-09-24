@@ -35,7 +35,7 @@ class CsvfileManipulation:
     def __init__(self):
         pass
 
-    def clean(self, input_file: str, is_xlsx=False, melt=False) -> pd.DataFrame:
+    def clean(self, input_file: str, is_xlsx=False, melt=False, target_col=None) -> pd.DataFrame:
         try:
             if is_xlsx:
                 df = pd.read_excel(input_file)
@@ -65,6 +65,12 @@ class CsvfileManipulation:
             # df = df[columns]
             df.dropna(axis=0, inplace=True)
             df.drop_duplicates(inplace=True)
+
+            if target_col is not None:
+                unique_cols = df.columns.tolist()
+                unique_cols.remove('Revision')
+                unique_cols.remove(target_col)
+                df = df.loc[df.groupby(unique_cols)['Revision'].idxmax()]
 
             if "date" in df.columns:
                 df['date'] = df['date'].apply(self.jalali_to_gregorian_fast)
@@ -314,7 +320,7 @@ class CsvfileManipulation:
 
             case RawData.SELLEROFFER:
                 table_name = 'selleroffer'
-                df = self.clean(input_file=file.value, is_xlsx=False)
+                df = self.clean(input_file=file.value, is_xlsx=False, target_col="Declared")
 
                 try:
                     max_indices = df.groupby(['PowerPlantCode', 'PowerPlantName', 'UnitCode', 'Date', 'HourNo'])[
@@ -466,7 +472,7 @@ class CsvfileManipulation:
 
             case RawData.LOAD:
                 table_name = 'load'
-                df = self.clean(input_file=file.value, is_xlsx=False)
+                df = self.clean(input_file=file.value, is_xlsx=False, target_col="ForcastedValue")
 
                 try:
                     max_indices = df.groupby(['Date', 'HourNo', 'ForcastedValue'])['Revision'].idxmax()
@@ -516,7 +522,7 @@ class CsvfileManipulation:
 
             case RawData.COMMITMENT:
                 table_name = 'commitment'
-                df = self.clean(input_file=file.value, is_xlsx=False)
+                df = self.clean(input_file=file.value, is_xlsx=False, target_col="Required")
 
                 try:
                     max_indices = \
