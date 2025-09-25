@@ -19,15 +19,16 @@ class Feature_selector:
 
         logger.debug(f"Selected features : {self.df.columns}")
 
-    def get_X_and_y(self, do_onehot=True, number_mimo=1):
-        is_mimo = number_mimo > 1
+    def get_X_and_y(self, do_onehot=True, n_mimo=1):
+        is_mimo = n_mimo > 1
         df = self.df.copy(deep=True)
         if is_mimo:
-            dff, self.name_code_dictionary_index = get_dataframe_block(df, number_mimo)
-            dic_col = get_index_dictionary(df, number_mimo)
+            dff, self.name_code_dictionary_index = get_dataframe_block(df, n_mimo)
+            dic_col = get_index_dictionary(df, n_mimo)
             X = dff.drop(columns=dic_col[self.target])
             y = dff[dic_col[self.target]]
         else:
+            dic_col = None
             X = df.drop(columns=[self.target])
             y = df[self.target]
             X.drop(columns=['datetime'], inplace=True)
@@ -42,7 +43,7 @@ class Feature_selector:
             X = pd.get_dummies(X, columns=categorical_cols, drop_first=True)
             X.columns = X.columns.astype(str)
 
-        return X, y, name_code_df,dic_col
+        return X, y, name_code_df, dic_col
 
 
 import pandas as pd
@@ -99,6 +100,7 @@ def get_dataframe_block(df, n):
         rows += rowss
     df_new = pd.DataFrame(rows)
     return df_new, name_code_dictionary_index
+
 
 def get_index_dictionary(df, rep):
     cols = df.drop(columns=["name", "code", "datetime"]).columns

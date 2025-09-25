@@ -1,20 +1,20 @@
-import sys, os
+import os
+import sys
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = current_dir[:current_dir.find("src") - 1]
 sys.path.insert(0, project_root)
 
 import pandas as pd
-import numpy as np
 import xgboost as xgb
 from src.models.data_selector import Data_selector
-from src.models.filter_data.feature_adder import Feature_adder
 from src.models.feature_selector import Feature_selector
 from logs.logger import CustomLogger
 from joblib import dump, load
 from src.models.utils import *
 
 logger = CustomLogger(name="model_main").get_logger()
+
 
 def get_y_inverse_mimo(df, number_mimo, name_code_df, y, dic):
     y = np.array(y)
@@ -64,45 +64,89 @@ def add_is_test_column(df, test_fraction=0.2, random_state=42):
     df["is_test"] = pd.Series(rand_values[group_ids] < test_fraction, index=df_selected.index)
 
 
-def update_feature(Xs_train, feature, ys_pred, dictionary_columns):
-    columns = [str(col) for col in dictionary_columns[feature]]
-    Xs_train.loc[:, columns] = ys_pred
+def update_feature_value(X_df, feature, new_values, dictionary_columns, n_mimo):
+    if n_mimo > 1:
+        columns = [str(col) for col in dictionary_columns[feature]]
+        X_df.loc[:, columns] = new_values
+    else:
+        X_df.loc[:, feature] = new_values
 
 
-def train_model(df, n_recursive, n_mimo, save_model=False):
-    df_train_modified = Data_selector(Data_selector(df).select_peaks(goodness=3)).select_train_test(is_test=True)
+def train_model(df_train, n_simple_rec, n_mimo_final, save_model=False, save_model_folder=None):
     base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "value",
                      "forecast", "status", "season", "datetime", "generation_with_24_delay"]
-    base_feature_selector = Feature_selector(df_train_modified, target="generation")
+    base_feature_selector = Feature_selector(df_train, target="generation")
     base_feature_selector.select(features_to_select=base_features)
     df_selected = base_feature_selector.df.copy()
     df_selected.loc[:, "semi_prediction"] = np.float64(0)
 
-    logger.info(f"Some features have been dropped successfully")
+    logger.info(f"Train model: Some features have been dropped successfully")
 
     models = []
     feature_selector = Feature_selector(df_selected, target="generation")
-    Xs_train, ys_train, name_code_df, dictionary_columns = feature_selector.get_X_and_y(number_mimo=4)
+    X_train, y_train, _, _ = feature_selector.get_X_and_y(n_mimo=1)
 
-    for i in range(1, n_recursive + 1):
+    for i in range(1, n_simple_rec + 1):
         model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=2000, max_depth=7, learning_rate=0.1)
-        model.fit(Xs_train, ys_train)
+        model.fit(X_train, y_train)
         models.append(model)
         logger.info(f"Partial model {i} has been trained successfully")
 
-        ys_pred = model.predict(Xs_train)
-        update_feature(Xs_train, "semi_prediction", ys_pred, dictionary_columns)
+        y_pred = model.predict(X_train)
+        update_feature_value(X_train, "semi_prediction", y_pred, _, n_mimo=1)
 
-    if save_model:
-        save_model_folder = os.path.join(project_root, "src", "models","fitted_models")
+    new_df_selected = df_selected.copy()
+    new_df_selected.loc[:, "semi_prediction"] = X_train["semi_prediction"]
+    new_feature_selector = Feature_selector(new_df_selected, target="generation")
+    Xs_train, ys_train, name_code_df, dic_col = new_feature_selector.get_X_and_y(n_mimo=n_mimo_final)
+
+    model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=2000, max_depth=7, learning_rate=0.1)
+    model.fit(Xs_train, ys_train)
+    models.append(model)
+    logger.info(f"Final model has been trained successfully")
+
+    ys_pred = model.predict(Xs_train)
+
+    if save_model and save_model_folder is not None:
         for i in range(len(models)):
             model = models[i]
             dump(model, f"{save_model_folder}/model{i}.joblib")
     else:
-        y_pred = make_y_flatten(df_train_modified, feature_selector, name_code_df, n_mimo, ys_pred)
-        y_train = make_y_flatten(df_train_modified, feature_selector, name_code_df, n_mimo, ys_train)
+        y_pred = make_y_flatten(df_train, new_feature_selector, name_code_df, n_mimo_final, ys_pred)
         rmse_error_train = compute_relative_rmse(y_pred, y_train)
         logger.info(f"Train Error: {rmse_error_train:0.2f}%")
+
+
+def test_model(models, df_test, n_mimo_final):
+    base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "value",
+                     "forecast", "status", "season", "datetime", "generation_with_24_delay"]
+    base_feature_selector = Feature_selector(df_test, target="generation")
+    base_feature_selector.select(features_to_select=base_features)
+    df_selected = base_feature_selector.df.copy()
+    df_selected.loc[:, "semi_prediction"] = np.float64(0)
+
+    logger.info(f"Test model: Some features have been dropped successfully")
+
+    feature_selector = Feature_selector(df_selected, target="generation")
+    X_test, y_test, _, _ = feature_selector.get_X_and_y(n_mimo=1)
+
+    n_simple_rec = len(models) - 1
+    for i in range(n_simple_rec):
+        model = models[i]
+        y_pred = model.predict(X_test)
+        update_feature_value(X_test, "semi_prediction", y_pred, _, n_mimo=1)
+
+    new_df_selected = df_selected.copy()
+    new_df_selected.loc[:, "semi_prediction"] = X_test["semi_prediction"]
+    new_feature_selector = Feature_selector(new_df_selected, target="generation")
+    Xs_test, ys_test, name_code_df, dic_col = new_feature_selector.get_X_and_y(n_mimo=n_mimo_final)
+
+    model = models[-1]
+
+    ys_pred = model.predict(Xs_test)
+    y_pred = make_y_flatten(df_test, new_feature_selector, name_code_df, n_mimo_final, ys_pred)
+    rmse_error_test = compute_relative_rmse(y_pred, y_test)
+    logger.info(f"Test Error: {rmse_error_test:0.2f}%")
 
 
 def make_y_flatten(df, feature_selector, name_code_df, n_mimo, ys):
@@ -111,16 +155,31 @@ def make_y_flatten(df, feature_selector, name_code_df, n_mimo, ys):
     return y
 
 
+def load_models(path, n):
+    models = []
+    for i in range(n):
+        models.append(load(f"{path}/model{i}.joblib"))
+    return models
+
+
 if __name__ == "__main__":
     csv_semi_processed_path = os.path.join(project_root, "data", "processed", "semi_processed.csv")
     df = pd.read_csv(csv_semi_processed_path, encoding='utf-8')
 
     add_is_test_column(df)
 
-    save_model = True  # Todo : true
+    save_model = True
+    save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
     write_predictions = False
-    n_recursive = 5
+    n_recursive = 2
     n_mimo_final = 4
 
-    train_model(df, n_recursive, n_mimo_final, save_model)
-    test_model()
+    train_test_ds = Data_selector(Data_selector(df).select_peaks(goodness=3))
+    train_df = train_test_ds.select_train_test(is_test=False)
+    test_df = train_test_ds.select_train_test(is_test=True)
+
+    train_model(train_df, n_recursive, n_mimo_final, save_model, save_model_folder)
+
+    models = load_models(save_model_folder, n_recursive)
+
+    test_model(models, test_df, n_mimo_final)
