@@ -1,7 +1,7 @@
 import pandas as pd
 from logs.logger import CustomLogger
 
-logger = CustomLogger(name="data_selector", log_file_name='data_selector.log').get_logger()
+logger = CustomLogger(name="data_selector").get_logger()
 
 
 class Data_selector:
@@ -21,7 +21,6 @@ class Data_selector:
         mask = (df["name"] == name) & (df["code"] == code)
         if get_mask:
             return mask
-        logger.debug(f"Data related to {name}_{code}  has been selected successfully!")
         return df[mask]
 
     def filter_time(self, date1, date2, get_mask=False):
@@ -29,5 +28,7 @@ class Data_selector:
         mask = (df['datetime'] >= date1) & (df['datetime'] <= date2)
         if get_mask:
             return mask
-        logger.debug(f"Data related to {date1}_{date2} has been selected successfully!")
         return df[mask]
+
+    def select_train_test(self, is_test):
+        return self.df[self.df['is_test'] == is_test]

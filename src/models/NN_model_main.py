@@ -8,22 +8,11 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = current_dir[:current_dir.find("src") - 1]
 sys.path.insert(0, project_root)
 
-from src.root import get_root
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import tensorflow as tf
 from tensorflow.keras.layers import Dense, Input,Concatenate
-from tensorflow.keras.models import Sequential,Model
-import tensorflow as tf
-from sklearn.model_selection import train_test_split
+from tensorflow.keras.models import Model
 
-from data_selector import Data_selector
-from feature_adder import Feature_adder
-from feature_selector import Feature_selector
-from logs.logger import CustomLogger
 from main import *
-from models import Random_Forest, Linear, Polynomial, XGBoost, LinearL1,Neural_network
+from models import Neural_network
 
 # تنظیمات نمایش داده‌های pandas
 pd.set_option("display.max_columns", None)

@@ -3,7 +3,7 @@ import yaml
 import psycopg2
 from logs.logger import CustomLogger
 
-logger = CustomLogger(__name__, log_file_name='database.log').get_logger()
+logger = CustomLogger(__name__).get_logger()
 
 
 class Database:

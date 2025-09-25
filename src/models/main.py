@@ -7,12 +7,12 @@ sys.path.insert(0, project_root)
 import pandas as pd
 import numpy as np
 from data_selector import Data_selector
-from feature_adder import Feature_adder
+from src.models.filter_data.feature_adder import Feature_adder
 from feature_selector import Feature_selector
 from logs.logger import CustomLogger
-from models import Random_Forest, Linear, Polynomial, XGBoost, LinearL1, Neural_network
+from models import XGBoost
 
-logger = CustomLogger(name="model_main", log_file_name='model_main.log').get_logger()
+logger = CustomLogger(name="model_main").get_logger()
 
 
 def add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False, write_on_csv=None):
@@ -56,7 +56,7 @@ def select_features_and_get_X_and_y(df, is_mimo=False, number_mimo=None):
                              "status", "season", "temperature_with_5_delay", "datetime"]
     features_to_be_select.append(f"generation_with_{24}_delay")
     feature_selector.select(features_to_select=features_to_be_select)
-    X, y, name_code_df = feature_selector.get_X_and_y(is_mimo=is_mimo, number_mimo=number_mimo)
+    X, y, name_code_df = feature_selector.get_X_and_y(number_mimo=number_mimo)
     return X, y, feature_selector, name_code_df
 
 
@@ -170,7 +170,7 @@ def add_semi_pred(df, semi_iter):
 
 def run_one_model(l_min, max_diff, c_thresh, write_predictions=False):
     do_scale = False
-    number_mimo = 1
+    number_mimo = 4
     is_mimo = number_mimo > 1
     y_is_flat = not is_mimo
     df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False)
@@ -189,9 +189,10 @@ def run_one_model(l_min, max_diff, c_thresh, write_predictions=False):
     model.scale_and_split_data(X, y, y_is_flat=y_is_flat, do_scale=do_scale)
     model.fit()
     logger.info(f"Model has been trained successfully")
-    test_model(model, do_inverse_scale=do_scale)
+    #test_model(model, do_inverse_scale=do_scale)
     if is_mimo:
         y_pred_mimo = model.pred(X, do_scale)
+        print(100)
         dic = fs.name_code_dictionary_index
         y_pred = get_y_inverse_mimo(df_modified, number_mimo, name_code_df, y_pred_mimo, dic)
         y_flat = get_y_inverse_mimo(df_modified, number_mimo, name_code_df, y.to_numpy(), dic)
