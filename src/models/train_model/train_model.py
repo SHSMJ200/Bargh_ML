@@ -117,7 +117,7 @@ def train_model(df_train, n_simple_rec, n_mimo_final, save_model=False, save_mod
         logger.info(f"Train Error: {rmse_error_train:0.2f}%")
 
 
-def test_model(models, df_test, n_mimo_final):
+def test_model(models, df_test, n_mimo_final, Noh):
     base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "value",
                      "forecast", "status", "season", "datetime", "generation_with_24_delay"]
     base_feature_selector = Feature_selector(df_test, target="generation")
@@ -129,6 +129,7 @@ def test_model(models, df_test, n_mimo_final):
 
     feature_selector = Feature_selector(df_selected, target="generation")
     X_test, y_test, _, _ = feature_selector.get_X_and_y(n_mimo=1)
+    #X_test = Noh.normalize_df(X_test)
 
     n_simple_rec = len(models) - 1
     for i in range(n_simple_rec):
@@ -161,6 +162,22 @@ def load_models(path, n):
         models.append(load(f"{path}/model{i}.joblib"))
     return models
 
+class Normalize_one_hot():
+    def __init__(self,df):
+        df_new = df.head(1).drop("generation")
+        categorical_cols = df_new.select_dtypes(include=['object', 'category']).columns
+        df_new = pd.get_dummies(df_new, columns=categorical_cols, drop_first=True)
+        df_new.columns = df_new.columns.astype(str)
+        self.list_columns_name = df_new.columns.to_list()
+
+    def normalize_df(self,df):
+        df_new = df.copy()
+        columns_new = df_new.columns.to_list()
+        for col in self.list_columns_name:
+            if not col in columns_new:
+                df_new[col] = 0
+        return df_new
+
 
 if __name__ == "__main__":
     csv_semi_processed_path = os.path.join(project_root, "data", "processed", "semi_processed.csv")
@@ -175,6 +192,7 @@ if __name__ == "__main__":
     n_mimo_final = 4
 
     train_test_ds = Data_selector(Data_selector(df).select_peaks(goodness=3))
+    Noh = Normalize_one_hot(train_test_ds.df)
     train_df = train_test_ds.select_train_test(is_test=False)
     test_df = train_test_ds.select_train_test(is_test=True)
 
@@ -182,4 +200,4 @@ if __name__ == "__main__":
 
     models = load_models(save_model_folder, n_recursive)
 
-    test_model(models, test_df, n_mimo_final)
+    test_model(models, test_df, n_mimo_final, Noh)
