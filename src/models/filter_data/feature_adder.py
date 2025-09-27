@@ -1,12 +1,11 @@
+import numpy as np
 import pandas as pd
 from scipy.stats import pearsonr
 
-from data_selector import Data_selector
+from src.models.data_selector import Data_selector
 from logs.logger import CustomLogger
-import matplotlib.pyplot as plt
-import numpy as np
 
-logger = CustomLogger(name="feature_adder", log_file_name='feature_adder.log').get_logger()
+logger = CustomLogger(name="feature_adder").get_logger()
 
 
 class Feature_adder:
@@ -16,6 +15,7 @@ class Feature_adder:
         self.add_date_time()
         if add_label_column: self.df["is_good_peak"] = 0
         self.time_ranges_by_name_code = {}
+        self.c_time_ranges_by_name_code = {}
 
     def create_feature_with_delay(self, feature, n_delay, drop_null=True):
         new_feature = f"{feature}_with_{n_delay}_delay"
@@ -36,61 +36,99 @@ class Feature_adder:
         self.df['date'] = pd.to_datetime(self.df['date'])
         self.df['datetime'] = self.df['date'] + pd.to_timedelta(self.df['hour'], unit='h')
 
+        logger.debug(f"Datetime column was created")
+
     def filter1(self):
         start_md = "05-22"
         end_md = "09-22"
         # We assume that start_md < end_md
         statusM_mask = (self.df['datetime'].dt.strftime('%m-%d') >= start_md) & (
                 self.df['datetime'].dt.strftime('%m-%d') <= end_md)
-
         peak_condition = (self.df['value'] == 'P') | (self.df['value'] == 'M') & statusM_mask
         peak_condition = peak_condition & ((self.df['status'] == 'SO') | (self.df['status'] == 'LF1'))
+
         self.df.loc[peak_condition, "is_good_peak"] = 1
 
         self.log_filter_ratio(label=1)
 
     def filter2(self, l_min, max_diff):
-        df_modified = self.df[["name", "code", "datetime", "generation", "is_good_peak"]].copy(deep=True)
+        features = ["name", "code", "datetime", "generation", "is_good_peak"]
+        df_modified = self.df[features].copy(deep=True)
         df_modified = df_modified[df_modified["is_good_peak"] >= 1]
+
         power_plants = df_modified[['name', 'code']].drop_duplicates()
         ds = Data_selector(df_modified)
+
         for _, row in power_plants.iterrows():
-            df_name_code = ds.filter_name_code(row["name"], row["code"])
+            name, code = row['name'], row['code']
+            df_name_code = ds.filter_name_code(name, code)
             time_ranges = get_interval(df_name_code, l_min, max_diff)
-            self.time_ranges_by_name_code[(row["name"], row["code"])] = time_ranges
-            self.label_points(df_name_code, time_ranges, label=2)
+            self.time_ranges_by_name_code[(name, code)] = time_ranges
+
+        self.label_points(ds, power_plants, self.time_ranges_by_name_code, label=2)
 
         self.log_filter_ratio(label=2)
 
-    def filter3(self, feature1, c_thresh=0.9, plot_pearsons_hist=False):
+    def filter3(self, feature1, c_thresh=0.9):
         features = ["name", "code", "datetime", "generation", "is_good_peak"] + [feature1]
         df_modified = self.df[features].copy(deep=True)
         df_modified = df_modified[df_modified["is_good_peak"] >= 2]
 
         corr_pearsons = []
         power_plants = df_modified[['name', 'code']].drop_duplicates()
+        ds = Data_selector(df_modified)
+
         for _, row in power_plants.iterrows():
-            df_name_code = Data_selector(df_modified).filter_name_code(row["name"], row["code"])
-            time_ranges = self.time_ranges_by_name_code[(row["name"], row["code"])]
+            name, code = row['name'], row['code']
+            df_name_code = ds.filter_name_code(name, code)
+            time_ranges = self.time_ranges_by_name_code[(name, code)]
             consistent_time_ranges = find_consistency(df_name_code, feature1, time_ranges, c_thresh, corr_pearsons)
-            self.label_points(df_name_code, consistent_time_ranges, label=3)
+            self.c_time_ranges_by_name_code[(name, code)] = consistent_time_ranges
+
+        self.label_points(ds, power_plants, self.c_time_ranges_by_name_code, label=3)
 
         self.log_filter_ratio(label=3)
 
-        if plot_pearsons_hist:
-            plt.hist(corr_pearsons)
-            plt.show()
+    def label_points(self, ds, power_plants, dates_by_name_code, label):
+        all_indices = []
+        for _, row in power_plants.iterrows():
+            name, code = row['name'], row['code']
+            df_name_code = ds.filter_name_code(name, code)
+            dates = dates_by_name_code[(name, code)]
+
+            interval_ds = Data_selector(df_name_code)
+            for date1, date2 in dates:
+                flag_array = interval_ds.filter_time(date1, date2, get_mask=True)
+                indices = flag_array.index[flag_array]
+                all_indices.extend(indices)
+        self.df.loc[all_indices, "is_good_peak"] = label
+
+    def add_interval_id(self):
+        df_modified = self.df[self.df["is_good_peak"] >= 3]
+
+        power_plants = df_modified[['name', 'code']].drop_duplicates()
+        ds = Data_selector(self.df)
+
+        mapping = {}
+
+        for _, row in power_plants.iterrows():
+            name, code = row['name'], row['code']
+            df_name_code = ds.filter_name_code(name, code)
+            consistent_time_ranges = self.c_time_ranges_by_name_code[(name, code)]
+
+            interval_ds = Data_selector(df_name_code)
+            for interval_id, (date1, date2) in enumerate(consistent_time_ranges):
+                indices = interval_ds.filter_time(date1, date2).index
+                mapping.update({idx: interval_id for idx in indices})
+
+        interval_series = pd.Series(mapping, name="interval_id")
+        self.df = self.df.join(interval_series, how="left")
 
     def log_filter_ratio(self, label):
         count_new_label = len(self.df[self.df["is_good_peak"] == label])
         count_old_label = len(self.df[self.df["is_good_peak"] >= label - 1])
         consistency_percentage = count_new_label / count_old_label * 100
         logger.info(f"{consistency_percentage:0.2f}% of rows have been chosen by filter{label}")
-
-    def label_points(self, df_n_c, dates, label):
-        for date1, date2 in dates:
-            flag_array = Data_selector(df_n_c).filter_time(date1, date2, get_mask=True)
-            self.df.loc[flag_array.index[flag_array], "is_good_peak"] = label
 
     def add_difference_column(self, feature, order=1):
         df = self.df

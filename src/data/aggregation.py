@@ -5,7 +5,7 @@ from psycopg2 import Error as Error
 from dbconnection import Database
 from logs.logger import CustomLogger
 
-logger = CustomLogger(__name__, log_file_name='aggregation.log').get_logger()
+logger = CustomLogger(__name__).get_logger()
 
 db = Database()
 
@@ -16,7 +16,7 @@ class Aggregator:
         self.db = Database()
         db.connect()
         db.__exit__()
-        self.logger = CustomLogger(__name__, log_file_name=f'aggregation({name}).log').get_logger()
+        self.logger = CustomLogger(__name__).get_logger()
         self.query_path = get_root() + '/src/data/queries/'
 
     def integrated_aggregation(self):

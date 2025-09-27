@@ -5,12 +5,13 @@ import coloredlogs
 
 
 class CustomLogger:
-    def __init__(self, name: str, log_file_name: str):
+    def __init__(self, name: str):
         self.logger = logging.getLogger(name=name)
         self.logger.setLevel(logging.DEBUG)
         self.logger.propagate = False
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
+        log_file_name = name + ".log"
         log_file_path = os.path.join(current_dir, log_file_name)
 
         if not self.logger.handlers:

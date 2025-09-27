@@ -8,7 +8,7 @@ from logs.logger import CustomLogger
 from cleaning.data_cleaning import CsvfileManipulation, RawData
 from aggregation import Aggregator
 
-logger = CustomLogger(name="data_main", log_file_name='data_main.log').get_logger()
+logger = CustomLogger(name="data_main").get_logger()
 
 
 def process_all_csv_files():
