@@ -41,7 +41,7 @@ def add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=Fals
 
 
 def test_model(model, do_inverse_scale=True):
-    rmse_error_train, rmse_error_test = model.rescale_and_compute_error(do_inverse_scale, is_relative_rmse=False)
+    rmse_error_train, rmse_error_test = model.rescale_and_compute_error(do_inverse_scale)
     logger.info(f"Train Error: {rmse_error_train:0.2f}%, Test Error: {rmse_error_test:0.2f}%")
 
 
@@ -170,7 +170,7 @@ def add_semi_pred(df, semi_iter):
 
 def run_one_model(l_min, max_diff, c_thresh, write_predictions=False):
     do_scale = False
-    number_mimo = 1
+    number_mimo = 4
     is_mimo = number_mimo > 1
     y_is_flat = not is_mimo
     df = add_features_and_filter(l_min, max_diff, c_thresh, read_from_integrated=False)
@@ -180,11 +180,13 @@ def run_one_model(l_min, max_diff, c_thresh, write_predictions=False):
     logger.info(f"Rows have been selected successfully")
     X, y, fs, name_code_df = select_features_and_get_X_and_y(df_modified, is_mimo=is_mimo, number_mimo=number_mimo)
     logger.info(f"Some features have been dropped successfully")
+
     # model = Random_Forest(n_estimators=100, max_depth=1000)
     # model = Linear()
     # model = Polynomial(degree=2)
     # model = XGBoost(n_estimators=1000, max_depth=5)
     # model = Neural_network(input_dim=X.shape[1], epochs=100, verbose=1)
+
     model = XGBoost(n_estimators=1000, max_depth=5)
     model.scale_and_split_data(X, y, y_is_flat=y_is_flat, do_scale=do_scale)
     model.fit()
@@ -198,9 +200,6 @@ def run_one_model(l_min, max_diff, c_thresh, write_predictions=False):
     else:
         y_pred = model.pred(X, do_scale)
         y_flat = y.to_numpy()
-    from sklearn.metrics import mean_squared_error
-    rmse_train_actual = (mean_squared_error(y_flat, y_pred) ** 0.5 / np.mean(y_flat)) * 100
-    print(rmse_train_actual)
     if write_predictions:
         df.loc[df_modified.index, "prediction"] = y_pred
         write_result(df)
