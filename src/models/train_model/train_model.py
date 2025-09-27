@@ -13,7 +13,7 @@ from logs.logger import CustomLogger
 from joblib import dump, load
 from src.models.utils import *
 
-logger = CustomLogger(name="model_main").get_logger()
+logger = CustomLogger(name="train_model").get_logger()
 
 
 def get_y_inverse_mimo(df, number_mimo, name_code_df, y, dic):
@@ -107,17 +107,20 @@ def train_model(df_train, n_simple_rec, n_mimo_final, save_model=False, save_mod
 
     ys_pred = model.predict(Xs_train)
 
+    y_pred = make_y_flatten(df_train, new_feature_selector, name_code_df, n_mimo_final, ys_pred)
+    rmse_error_train = compute_relative_rmse(y_pred, y_train)
+    logger.info(f"Train Error: {rmse_error_train:0.2f}%")
+
     if save_model and save_model_folder is not None:
+        for filename in os.listdir(save_model_folder):
+            os.remove(os.path.join(save_model_folder, filename))
+
         for i in range(len(models)):
             model = models[i]
             dump(model, f"{save_model_folder}/model{i}.joblib")
-    else:
-        y_pred = make_y_flatten(df_train, new_feature_selector, name_code_df, n_mimo_final, ys_pred)
-        rmse_error_train = compute_relative_rmse(y_pred, y_train)
-        logger.info(f"Train Error: {rmse_error_train:0.2f}%")
 
 
-def test_model(models, df_test, n_mimo_final, Noh):
+def test_model(models, df_test, n_mimo_final):
     base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "value",
                      "forecast", "status", "season", "datetime", "generation_with_24_delay"]
     base_feature_selector = Feature_selector(df_test, target="generation")
@@ -129,7 +132,6 @@ def test_model(models, df_test, n_mimo_final, Noh):
 
     feature_selector = Feature_selector(df_selected, target="generation")
     X_test, y_test, _, _ = feature_selector.get_X_and_y(n_mimo=1)
-    #X_test = Noh.normalize_df(X_test)
 
     n_simple_rec = len(models) - 1
     for i in range(n_simple_rec):
@@ -151,6 +153,8 @@ def test_model(models, df_test, n_mimo_final, Noh):
 
 
 def make_y_flatten(df, feature_selector, name_code_df, n_mimo, ys):
+    if n_mimo == 1:
+        return ys
     dic = feature_selector.name_code_dictionary_index
     y = get_y_inverse_mimo(df, n_mimo, name_code_df, ys, dic)
     return y
@@ -162,22 +166,6 @@ def load_models(path, n):
         models.append(load(f"{path}/model{i}.joblib"))
     return models
 
-class Normalize_one_hot():
-    def __init__(self,df):
-        df_new = df.head(1).drop("generation")
-        categorical_cols = df_new.select_dtypes(include=['object', 'category']).columns
-        df_new = pd.get_dummies(df_new, columns=categorical_cols, drop_first=True)
-        df_new.columns = df_new.columns.astype(str)
-        self.list_columns_name = df_new.columns.to_list()
-
-    def normalize_df(self,df):
-        df_new = df.copy()
-        columns_new = df_new.columns.to_list()
-        for col in self.list_columns_name:
-            if not col in columns_new:
-                df_new[col] = 0
-        return df_new
-
 
 if __name__ == "__main__":
     csv_semi_processed_path = os.path.join(project_root, "data", "processed", "semi_processed.csv")
@@ -188,16 +176,15 @@ if __name__ == "__main__":
     save_model = True
     save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
     write_predictions = False
-    n_recursive = 2
-    n_mimo_final = 4
+    n_recursive = 4
+    n_mimo_final = 1
 
     train_test_ds = Data_selector(Data_selector(df).select_peaks(goodness=3))
-    Noh = Normalize_one_hot(train_test_ds.df)
     train_df = train_test_ds.select_train_test(is_test=False)
     test_df = train_test_ds.select_train_test(is_test=True)
 
     train_model(train_df, n_recursive, n_mimo_final, save_model, save_model_folder)
 
-    models = load_models(save_model_folder, n_recursive)
+    models = load_models(save_model_folder, n_recursive + 1)
 
-    test_model(models, test_df, n_mimo_final, Noh)
+    test_model(models, test_df, n_mimo_final)

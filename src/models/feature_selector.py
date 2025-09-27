@@ -27,15 +27,12 @@ class Feature_selector:
             dic_col = get_index_dictionary(df, n_mimo)
             X = dff.drop(columns=dic_col[self.target])
             y = dff[dic_col[self.target]]
+            name_code_df = X[[0, 1]]
         else:
             dic_col = None
             X = df.drop(columns=[self.target])
             y = df[self.target]
             X.drop(columns=['datetime'], inplace=True)
-
-        if is_mimo:
-            name_code_df = X[[0, 1]]
-        else:
             name_code_df = X[["name", "code"]]
 
         if do_onehot:
@@ -44,9 +41,6 @@ class Feature_selector:
             X.columns = X.columns.astype(str)
 
         return X, y, name_code_df, dic_col
-
-
-import pandas as pd
 
 
 def get_df_rep(df, name, code, n, index_ranges):
