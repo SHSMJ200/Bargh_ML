@@ -8,7 +8,7 @@ from retry_requests import retry
 from logs.logger import CustomLogger
 from src.data.dbconnection import Database
 
-logger = CustomLogger('Crawler', log_file_name='crawler.log').get_logger()
+logger = CustomLogger('Crawler').get_logger()
 
 db = Database()
 

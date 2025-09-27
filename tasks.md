@@ -4,19 +4,19 @@
 * Check accuracy for each (name, code).
 * Fine-tune for each name-code.
 * 
-* kTune hyperparameters.
+* Tune hyperparameters.
 * 
-* clean the code
 * 
 * how to use model for prediction
 * make product
 * 
-* correct accuracy on flat y
 * 
+* is there any name, code which don't have any interval in is_good_peak = 3????
 
   🟨 Doing
   ==========================
 
+* clean the code
 * 
 
   🟥 Done
@@ -59,4 +59,5 @@
 * write predictions with mimo > 1
 * check residual 'y' for new model
 * Define two different accuracy.
+* correct accuracy on flat y
 * 

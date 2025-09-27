@@ -19,7 +19,7 @@ from src.models.customized_ML_models.DelayModel import DelayModel
 from src.models.customized_ML_models.LinearRegressionNorm1 import CustomLinearRegression
 from src.models.customized_ML_models.SampleMeanModel import SampleMeanModel
 
-logger = CustomLogger(name="models", log_file_name='models.log').get_logger()
+logger = CustomLogger(name="models").get_logger()
 
 
 def compute_relative_rmse(y_pred, y):

@@ -12,7 +12,7 @@ from psycopg2 import Error as psyError
 import os
 import yaml
 
-logger = CustomLogger(__name__, log_file_name='cleaning.log').get_logger()
+logger = CustomLogger(__name__).get_logger()
 
 feature_dict = yaml.load(open(get_root() + '/configs/tables_columns.yaml'), Loader=yaml.SafeLoader)
 
