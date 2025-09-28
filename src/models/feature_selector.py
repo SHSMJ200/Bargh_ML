@@ -9,6 +9,7 @@ class Feature_selector:
     def __init__(self, df: pd.DataFrame, target):
         self.df = df
         self.target = target
+        self.name_code_dictionary_index = None
 
     def select(self, features_to_select=None, features_to_drop=None):
 
@@ -23,7 +24,8 @@ class Feature_selector:
         is_mimo = n_mimo > 1
         df = self.df.copy(deep=True)
         if is_mimo:
-            dff, self.name_code_dictionary_index = get_dataframe_block(df, n_mimo)
+            dff, nc_dic_index = get_dataframe_block(df, n_mimo)
+            self.name_code_dictionary_index = nc_dic_index
             dic_col = get_index_dictionary(df, n_mimo)
             X = dff.drop(columns=dic_col[self.target])
             y = dff[dic_col[self.target]]
@@ -41,6 +43,10 @@ class Feature_selector:
             X.columns = X.columns.astype(str)
 
         return X, y, name_code_df, dic_col
+    
+    
+    def get_name_code_dictionary_index(self):
+        return self.name_code_dictionary_index
 
 
 def get_df_rep(df, name, code, n, index_ranges):
@@ -101,8 +107,8 @@ def get_index_dictionary(df, rep):
     n = len(cols)
 
     d = {}
-    d["name"] = 0
-    d["code"] = 1
+    d["name"] = [0]
+    d["code"] = [1]
 
     for i in range(n):
         d[cols[i]] = [2 + i + k * n for k in range(rep)]

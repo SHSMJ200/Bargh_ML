@@ -129,7 +129,7 @@ def test_model(model, df_test, n_mimo):
 def make_y_flatten(df, feature_selector, name_code_df, n_mimo, ys):
     if n_mimo == 1:
         return ys
-    dic = feature_selector.name_code_dictionary_index
+    dic = feature_selector.get_name_code_dictionary_index()
     y = get_y_inverse_mimo(df, n_mimo, name_code_df, ys, dic)
     return y
 
