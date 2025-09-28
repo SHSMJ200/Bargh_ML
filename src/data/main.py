@@ -5,7 +5,7 @@ project_root = current_dir[:current_dir.find("src") - 1]
 sys.path.insert(0, project_root)
 
 from logs.logger import CustomLogger
-from cleaning.data_cleaning import CsvfileManipulation, RawData
+from src.data.data_cleaning import CsvfileManipulation, RawData
 from aggregation import Aggregator
 
 logger = CustomLogger(name="data_main").get_logger()

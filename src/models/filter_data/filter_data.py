@@ -13,17 +13,15 @@ logger = CustomLogger(name="filter_data").get_logger()
 
 
 def add_features_and_filter(l_min, max_diff, c_thresh):
-
     csv_read_path = os.path.join(project_root, "data", "processed", "integrated.csv")
     csv_semi_write_path = os.path.join(project_root, "data", "processed", "semi_processed.csv")
 
     df = pd.read_csv(csv_read_path, encoding='utf-8')
 
     feature_adder = Feature_adder(df)
-    feature_adder.create_feature_with_delay("temperature", 5)
-
-    for hour in range(1, 4):
-        feature_adder.create_feature_with_delay("generation", hour)
+    for feature in ["temperature", "humidity", "dew", "surface_pressure"]:
+        for hour in [1, 5]:
+            feature_adder.create_feature_with_delay(feature, hour)
 
     feature_adder.create_feature_with_delay("generation", 24)
 
