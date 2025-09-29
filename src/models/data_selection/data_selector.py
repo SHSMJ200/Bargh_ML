@@ -29,6 +29,3 @@ class Data_selector:
         if get_mask:
             return mask
         return df[mask]
-
-    def select_train_test(self, is_test):
-        return self.df[self.df['is_test'] == is_test]
