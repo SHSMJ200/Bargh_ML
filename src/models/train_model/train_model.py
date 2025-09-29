@@ -7,6 +7,7 @@ sys.path.insert(0, project_root)
 
 import pandas as pd
 import xgboost as xgb
+from sklearn.ensemble import RandomForestRegressor
 from src.models.data_selection.data_selector import Data_selector
 from src.models.data_selection.feature_selector import Feature_selector
 from logs.logger import CustomLogger
@@ -68,27 +69,22 @@ def add_is_test_column(df, test_fraction=0.2, random_state=42):
     df["is_test"] = pd.Series(rand_values[group_ids] < test_fraction, index=df_selected.index)
 
 
-def select_dataset_features(df, dataset_type):
-    base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "value",
-                     "forecast", "status"]
-    features_with_lag = ["temperature", "humidity", "dew", "surface_pressure"]
-    lag_features = [f"{feature}_with_{hour}_delay" for feature in features_with_lag for hour in [1, 5]]
-    lag_features.append("generation_with_24_delay")
-    time_features = ["hour", "day_of_week", "month", "season", "datetime"]
-    feature_selector = Feature_selector(df, target="generation")
+def select_dataset_features(df, base_features, lag_features, time_features, target):
+    feature_selector = Feature_selector(df, target)
     feature_selector.select(features_to_select=base_features + lag_features + time_features)
     df_selected = feature_selector.df.copy()
-    logger.info(f"{dataset_type} model: Some features have been dropped successfully")
+    logger.info(f"Some features have been dropped successfully")
     return df_selected
 
 
-def train_model(df_train, n_mimo, n_est, m_depth, save_model=False, save_model_folder=None):
-    df_selected = select_dataset_features(df_train, "Train")
-
-    feature_selector = Feature_selector(df_selected, target="generation")
+def train_model(df_train, model_X_cols, n_mimo, save_model=False, save_model_folder=None):
+    feature_selector = Feature_selector(df_train, target="generation")
     Xs_train, ys_train, name_code_df = feature_selector.get_X_and_y(n_mimo=n_mimo)
+    Xs_train = Xs_train.reindex(columns=model_X_cols)
+    Xs_train = Xs_train.fillna(False).infer_objects()
 
-    model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=n_est, max_depth=m_depth, learning_rate=0.1)
+    model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=2000, max_depth=7, learning_rate=0.1)
+    # model = RandomForestRegressor(n_estimators=n_est, max_depth=m_depth, random_state=42)
     model.fit(Xs_train, ys_train)
     logger.info(f"Model has been trained successfully")
 
@@ -111,13 +107,15 @@ def train_model(df_train, n_mimo, n_est, m_depth, save_model=False, save_model_f
             os.remove(os.path.join(save_model_folder, filename))
 
         dump(model, f"{save_model_folder}/model.joblib")
+        with open(f"{save_model_folder}/model_cols.pkl", 'wb') as f:
+            dump(model_X_cols, f)
 
 
-def test_model(model, df_test, n_mimo):
-    df_selected = select_dataset_features(df_test, "Test")
-
-    feature_selector = Feature_selector(df_selected, target="generation")
+def test_model(model, df_test, model_X_cols, n_mimo):
+    feature_selector = Feature_selector(df_test, target="generation")
     Xs_test, ys_test, name_code_df = feature_selector.get_X_and_y(n_mimo=n_mimo)
+    Xs_test = Xs_test.reindex(columns=model_X_cols)
+    Xs_test = Xs_test.fillna(False).infer_objects()
 
     ys_pred = model.predict(Xs_test)
     y_pred = get_y_inverse_mimo(df_test, feature_selector, name_code_df, n_mimo, ys_pred)
@@ -138,6 +136,12 @@ def load_model(path):
     return model
 
 
+def find_after_mimo_cols(df, n_mimo):
+    feature_selector = Feature_selector(df, target="generation")
+    Xs, _, _ = feature_selector.get_X_and_y(n_mimo=n_mimo)
+    return Xs.columns
+
+
 if __name__ == "__main__":
     csv_semi_processed_path = os.path.join(project_root, "data", "processed", "semi_processed.csv")
     df = pd.read_csv(csv_semi_processed_path, encoding='utf-8')
@@ -146,15 +150,27 @@ if __name__ == "__main__":
 
     save_model = True
     save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
-    write_predictions = True  # TODO
     n_mimo = 4
 
-    train_test_ds = Data_selector(Data_selector(df).select_peaks(goodness=3))
-    train_df = train_test_ds.select_train_test(is_test=False)
-    test_df = train_test_ds.select_train_test(is_test=True)
+    df_r_selected = Data_selector(df).select_peaks(goodness=3)
 
-    train_model(train_df, n_mimo, n_est=2000, m_depth=5, save_model=save_model, save_model_folder=save_model_folder)
+    base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "value",
+                     "forecast", "status"]
+    features_with_lag = ["temperature", "humidity", "dew", "surface_pressure"]
+    hours_delay = [1, 5]
+    lag_features = [f"{feature}_with_{hour}_delay" for feature in features_with_lag for hour in hours_delay]
+    # lag_features.append("generation_with_24_delay")
+    time_features = ["hour", "day_of_week", "month", "season", "datetime"]
+    df_f_selected = select_dataset_features(df_r_selected, base_features, lag_features, time_features, "generation")
+
+    model_X_cols = find_after_mimo_cols(df_f_selected, n_mimo)
+
+    train_indices = (df_r_selected['is_test'] == False)
+    train_df = df_f_selected[train_indices]
+    train_model(train_df, model_X_cols, n_mimo, save_model=save_model, save_model_folder=save_model_folder)
 
     model = load_model(save_model_folder)
 
-    test_model(model, test_df, n_mimo)
+    test_indices = (df_r_selected['is_test'] == True)
+    test_df = df_f_selected[test_indices]
+    test_model(model, test_df, model_X_cols, n_mimo)

@@ -181,6 +181,9 @@ class ForecastCrawler(Crawler):
         try:
 
             plants = pd.read_csv(self.file)
+            my_plants = get_plants()
+            plants = plants[plants['DispPlantCode'].isin(my_plants)]
+
 
             logger.info(msg=f'Plants data successfully read from {self.file}')
 
@@ -197,28 +200,29 @@ class ForecastCrawler(Crawler):
 
             data = pd.DataFrame()
 
-            for utm, unitid in zip(plants['UTM'], plants['DispPlantCode']):
+            for utm, unit_id in zip(plants['UTM'], plants['DispPlantCode']):
                 lat, longit = utm.split(',')
+                f_lat, f_longit = float(lat), float(longit)
 
                 params = {
-                    "latitude": float(lat),
-                    "longitude": float(longit),
+                    "latitude": f_lat,
+                    "longitude": f_longit,
                     "hourly": hourly_features,
                     "forecast_days": 2
                 }
-                hourly_dataframe = fetch_hourly_weather_data(openmeteo, params, unitid, url)
+                hourly_dataframe = fetch_hourly_weather_data(openmeteo, params, unit_id, url)
 
-                hourly_dataframe = hourly_dataframe.tail(24).reset_index(drop=True)
-                logger.debug(msg=f"Split the last 24 rows.")
+                hourly_dataframe = hourly_dataframe.tail(36).reset_index(drop=True)
+                logger.debug(msg=f"Split the last 36 rows.")
 
                 data = pd.concat([data, hourly_dataframe], ignore_index=True)
-                logger.info(msg=f'Data with latitude: {lat: 0.2f} and longitude: {longit: 0.2f} added to the dataframe')
+                logger.info(msg=f'Data with latitude: {f_lat: 0.2f} and longitude: {f_longit: 0.2f} added to the dataframe')
 
             data = prepare_datetime_columns(data)
 
             logger.debug(msg=f"Reorder the columns as the id, date and time comes to first.")
 
-            file_path = get_root() + '/data/interim/weather-forecast.csv'
+            file_path = get_root() + '/data/interim/weather_forecast.csv'
 
             data.to_csv(file_path, index=False)
 
