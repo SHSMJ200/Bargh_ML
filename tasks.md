@@ -16,6 +16,9 @@
 * drop null during feature lag
 * 
 * compare with declare
+* 
+* loggers
+* 
 
   🟨 Doing
   ==========================
