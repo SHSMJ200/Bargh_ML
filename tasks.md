@@ -5,18 +5,19 @@
 * Fine-tune for each name-code.
 * 
 * Tune hyperparameters.
+*
+* How to use model for prediction
+* Make product
 * 
+* Clean the code
 * 
-* how to use model for prediction
-* make product
-* 
-* 
-* is there any name, code which don't have any interval in is_good_peak = 3????
+* Is there any name, code which don't have any interval in is_good_peak = 3???? Yes there is but the problem is related to filter1. No problem just mention it.
+*
 
   🟨 Doing
   ==========================
 
-* clean the code
+* Clean the code
 * 
 
   🟥 Done

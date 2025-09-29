@@ -7,8 +7,8 @@ sys.path.insert(0, project_root)
 
 import pandas as pd
 import xgboost as xgb
-from src.models.data_selector import Data_selector
-from src.models.feature_selector import Feature_selector
+from src.models.data_selection.data_selector import Data_selector
+from src.models.data_selection.feature_selector import Feature_selector
 from logs.logger import CustomLogger
 from joblib import dump, load
 from src.models.utils import *
@@ -16,9 +16,13 @@ from src.models.utils import *
 logger = CustomLogger(name="train_model").get_logger()
 
 
-def get_y_inverse_mimo(df, number_mimo, name_code_df, y, dic):
-    y = np.array(y)
-    n = number_mimo
+def get_y_inverse_mimo(df, feature_selector, name_code_df, n_mimo, ys):
+    if n_mimo == 1:
+        return np.array(ys)
+
+    dic = feature_selector.name_code_dictionary_index
+    ys = np.array(ys)
+    n = n_mimo
     ds = Data_selector(df.reset_index(drop=True))
     series_y = pd.Series([np.nan] * len(df))
     name_column = name_code_df.columns[0]
@@ -27,7 +31,7 @@ def get_y_inverse_mimo(df, number_mimo, name_code_df, y, dic):
     power_plants = df[['name', 'code']].drop_duplicates()
     for _, row in power_plants.iterrows():
         df_name_code = ds.filter_name_code(row["name"], row["code"])
-        y_name_code = (y[(name_code_df[name_column] == row["name"]) & (name_code_df[code_column] == row["code"])])
+        y_name_code = (ys[(name_code_df[name_column] == row["name"]) & (name_code_df[code_column] == row["code"])])
         indexes = dic[(row["name"], row["code"])]
 
         ll = []
@@ -64,39 +68,43 @@ def add_is_test_column(df, test_fraction=0.2, random_state=42):
     df["is_test"] = pd.Series(rand_values[group_ids] < test_fraction, index=df_selected.index)
 
 
-def update_feature_value(X_df, feature, new_values, dictionary_columns, n_mimo):
-    if n_mimo > 1:
-        columns = [str(col) for col in dictionary_columns[feature]]
-        X_df.loc[:, columns] = new_values
-    else:
-        X_df.loc[:, feature] = new_values
-
-
-def train_model(df_train, n_mimo, save_model=False, save_model_folder=None):
+def select_dataset_features(df, dataset_type):
     base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "value",
-                     "forecast", "status", "season", "datetime", "generation_with_24_delay"]
-    base_feature_selector = Feature_selector(df_train, target="generation")
-    base_feature_selector.select(features_to_select=base_features)
-    df_selected = base_feature_selector.df.copy()
-    # df_selected.loc[:, "semi_prediction"] = np.float64(0)
+                     "forecast", "status"]
+    features_with_lag = ["temperature", "humidity", "dew", "surface_pressure"]
+    lag_features = [f"{feature}_with_{hour}_delay" for feature in features_with_lag for hour in [1, 5]]
+    lag_features.append("generation_with_24_delay")
+    time_features = ["hour", "day_of_week", "month", "season", "datetime"]
+    feature_selector = Feature_selector(df, target="generation")
+    feature_selector.select(features_to_select=base_features + lag_features + time_features)
+    df_selected = feature_selector.df.copy()
+    logger.info(f"{dataset_type} model: Some features have been dropped successfully")
+    return df_selected
 
-    logger.info(f"Train model: Some features have been dropped successfully")
+
+def train_model(df_train, n_mimo, n_est, m_depth, save_model=False, save_model_folder=None):
+    df_selected = select_dataset_features(df_train, "Train")
 
     feature_selector = Feature_selector(df_selected, target="generation")
-    Xs_train, ys_train, name_code_df, dic_col = feature_selector.get_X_and_y(n_mimo=n_mimo)
+    Xs_train, ys_train, name_code_df = feature_selector.get_X_and_y(n_mimo=n_mimo)
 
-    model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=2000, max_depth=7, learning_rate=0.1)
+    model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=n_est, max_depth=m_depth, learning_rate=0.1)
     model.fit(Xs_train, ys_train)
     logger.info(f"Model has been trained successfully")
 
     ys_pred = model.predict(Xs_train)
 
-    y_pred = make_y_flatten(df_train, feature_selector, name_code_df, n_mimo, ys_pred)
-    y_train = make_y_flatten(df_train, feature_selector, name_code_df, n_mimo, ys_train)
+    y_pred = get_y_inverse_mimo(df_train, feature_selector, name_code_df, n_mimo, ys_pred)
+    y_train = get_y_inverse_mimo(df_train, feature_selector, name_code_df, n_mimo, ys_train)
+
     rmse_error_train = compute_relative_rmse(y_pred, y_train)
     thresh_error_train = compute_threshold_error(y_pred, y_train)
-    logger.info(f"Train rmse error: {rmse_error_train:0.2f}%")
-    logger.info(f"Train threshold error: {thresh_error_train:0.2f}%")
+    rmae_error = compute_relative_mae(y_pred, y_train)
+    r2_score = compute_r2_score(y_pred, y_train)
+    logger.info(f"Train rmse error: {rmse_error_train:0.3f}%")
+    logger.info(f"Train threshold error: {thresh_error_train:0.3f}%")
+    logger.info(f"Train rmae error: {rmae_error:0.3f}%")
+    logger.info(f"R2 score: {r2_score:0.3f}%")
 
     if save_model and save_model_folder is not None:
         for filename in os.listdir(save_model_folder):
@@ -106,32 +114,23 @@ def train_model(df_train, n_mimo, save_model=False, save_model_folder=None):
 
 
 def test_model(model, df_test, n_mimo):
-    base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "value",
-                     "forecast", "status", "season", "datetime", "generation_with_24_delay"]
-    base_feature_selector = Feature_selector(df_test, target="generation")
-    base_feature_selector.select(features_to_select=base_features)
-    df_selected = base_feature_selector.df.copy()
-
-    logger.info(f"Test model: Some features have been dropped successfully")
+    df_selected = select_dataset_features(df_test, "Test")
 
     feature_selector = Feature_selector(df_selected, target="generation")
-    Xs_test, ys_test, name_code_df, dic_col = feature_selector.get_X_and_y(n_mimo=n_mimo)
+    Xs_test, ys_test, name_code_df = feature_selector.get_X_and_y(n_mimo=n_mimo)
 
     ys_pred = model.predict(Xs_test)
-    y_pred = make_y_flatten(df_test, feature_selector, name_code_df, n_mimo, ys_pred)
-    y_test = make_y_flatten(df_test, feature_selector, name_code_df, n_mimo, ys_test)
+    y_pred = get_y_inverse_mimo(df_test, feature_selector, name_code_df, n_mimo, ys_pred)
+    y_test = get_y_inverse_mimo(df_test, feature_selector, name_code_df, n_mimo, ys_test)
+
     rmse_error_test = compute_relative_rmse(y_pred, y_test)
-    thresh_error_test = compute_threshold_error(y_pred, y_test)
-    logger.info(f"test rmse error: {rmse_error_test:0.2f}%")
-    logger.info(f"test threshold error: {thresh_error_test:0.2f}%")
-
-
-def make_y_flatten(df, feature_selector, name_code_df, n_mimo, ys):
-    if n_mimo == 1:
-        return ys
-    dic = feature_selector.get_name_code_dictionary_index()
-    y = get_y_inverse_mimo(df, n_mimo, name_code_df, ys, dic)
-    return y
+    thresh_error_test = compute_threshold_error(y_pred, y_test, threshold=0.05)
+    rmae_error = compute_relative_mae(y_pred, y_test)
+    r2_score = compute_r2_score(y_pred, y_test)
+    logger.info(f"Test rmse error: {rmse_error_test:0.3f}%")
+    logger.info(f"Test threshold error: {thresh_error_test:0.3f}%")
+    logger.info(f"Test rmae error: {rmae_error:0.3f}%")
+    logger.info(f"R2 score: {r2_score:0.3f}%")
 
 
 def load_model(path):
@@ -143,19 +142,19 @@ if __name__ == "__main__":
     csv_semi_processed_path = os.path.join(project_root, "data", "processed", "semi_processed.csv")
     df = pd.read_csv(csv_semi_processed_path, encoding='utf-8')
 
-    add_is_test_column(df)
+    add_is_test_column(df, random_state=42)
 
     save_model = True
     save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
-    write_predictions = False
+    write_predictions = True  # TODO
     n_mimo = 4
 
     train_test_ds = Data_selector(Data_selector(df).select_peaks(goodness=3))
     train_df = train_test_ds.select_train_test(is_test=False)
     test_df = train_test_ds.select_train_test(is_test=True)
 
-    train_model(train_df, n_mimo, save_model, save_model_folder)
+    train_model(train_df, n_mimo, n_est=2000, m_depth=5, save_model=save_model, save_model_folder=save_model_folder)
 
-    models = load_model(save_model_folder)
+    model = load_model(save_model_folder)
 
-    test_model(models, test_df, n_mimo)
+    test_model(model, test_df, n_mimo)

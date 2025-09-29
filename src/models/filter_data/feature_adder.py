@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import pearsonr
 
-from src.models.data_selector import Data_selector
+from src.models.data_selection.data_selector import Data_selector
 from logs.logger import CustomLogger
 
 logger = CustomLogger(name="feature_adder").get_logger()
@@ -11,8 +11,7 @@ logger = CustomLogger(name="feature_adder").get_logger()
 class Feature_adder:
     def __init__(self, df: pd.DataFrame, add_label_column=True):
         self.df = df
-        self.add_season()
-        self.add_date_time()
+        self.add_time_features()
         if add_label_column: self.df["is_good_peak"] = 0
         self.time_ranges_by_name_code = {}
         self.c_time_ranges_by_name_code = {}
@@ -26,17 +25,14 @@ class Feature_adder:
 
         logger.debug(f"A new column created: {feature} with {n_delay} hours delay")
 
-    def add_season(self):
-        self.df['date'] = pd.to_datetime(self.df['date'])
-        self.df['season'] = self.df['date'].apply(get_season)
-
-        logger.debug(f"Season column was created")
-
-    def add_date_time(self):
+    def add_time_features(self):
         self.df['date'] = pd.to_datetime(self.df['date'])
         self.df['datetime'] = self.df['date'] + pd.to_timedelta(self.df['hour'], unit='h')
+        self.df['season'] = self.df['date'].apply(get_season)
+        self.df['day_of_week'] = self.df['datetime'].dt.dayofweek
+        self.df['month'] = self.df['datetime'].dt.month
 
-        logger.debug(f"Datetime column was created")
+        logger.debug(f"Season column was created")
 
     def filter1(self):
         start_md = "05-22"
