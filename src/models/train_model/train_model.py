@@ -124,7 +124,7 @@ def test_model(model, df_test, n_mimo):
     y_test = get_y_inverse_mimo(df_test, feature_selector, name_code_df, n_mimo, ys_test)
 
     rmse_error_test = compute_relative_rmse(y_pred, y_test)
-    thresh_error_test = compute_threshold_error(y_pred, y_test, threshold=0.05)
+    thresh_error_test = compute_threshold_error(y_pred, y_test)
     rmae_error = compute_relative_mae(y_pred, y_test)
     r2_score = compute_r2_score(y_pred, y_test)
     logger.info(f"Test rmse error: {rmse_error_test:0.3f}%")
