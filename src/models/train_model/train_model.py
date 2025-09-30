@@ -77,13 +77,13 @@ def select_dataset_features(df, base_features, lag_features, time_features, targ
     return df_selected
 
 
-def train_model(df_train, model_X_cols, n_mimo, save_model=False, save_model_folder=None):
+def train_model(df_train, model_X_cols, n_mimo, n_est, m_depth, save_model=False, save_model_folder=None):
     feature_selector = Feature_selector(df_train, target="generation")
     Xs_train, ys_train, name_code_df = feature_selector.get_X_and_y(n_mimo=n_mimo)
     Xs_train = Xs_train.reindex(columns=model_X_cols)
     Xs_train = Xs_train.fillna(False).infer_objects()
 
-    model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=2000, max_depth=7, learning_rate=0.1)
+    model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=n_est, max_depth=m_depth, learning_rate=0.1)
     # model = RandomForestRegressor(n_estimators=n_est, max_depth=m_depth, random_state=42)
     model.fit(Xs_train, ys_train)
     logger.info(f"Model has been trained successfully")
@@ -98,7 +98,7 @@ def train_model(df_train, model_X_cols, n_mimo, save_model=False, save_model_fol
     rmae_error = compute_relative_mae(y_pred, y_train)
     r2_score = compute_r2_score(y_pred, y_train)
     logger.info(f"Train rmse error: {rmse_error_train:0.3f}%")
-    logger.info(f"Train threshold error: {thresh_error_train:0.3f}%")
+    # logger.info(f"Train threshold error: {thresh_error_train:0.3f}%")
     logger.info(f"Train rmae error: {rmae_error:0.3f}%")
     logger.info(f"R2 score: {r2_score:0.3f}%")
 
@@ -126,7 +126,7 @@ def test_model(model, df_test, model_X_cols, n_mimo):
     rmae_error = compute_relative_mae(y_pred, y_test)
     r2_score = compute_r2_score(y_pred, y_test)
     logger.info(f"Test rmse error: {rmse_error_test:0.3f}%")
-    logger.info(f"Test threshold error: {thresh_error_test:0.3f}%")
+    # logger.info(f"Test threshold error: {thresh_error_test:0.3f}%")
     logger.info(f"Test rmae error: {rmae_error:0.3f}%")
     logger.info(f"R2 score: {r2_score:0.3f}%")
 
@@ -146,7 +146,7 @@ if __name__ == "__main__":
     csv_semi_processed_path = os.path.join(project_root, "data", "processed", "semi_processed.csv")
     df = pd.read_csv(csv_semi_processed_path, encoding='utf-8')
 
-    add_is_test_column(df, random_state=42)
+    add_is_test_column(df, random_state=25)
 
     save_model = True
     save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
@@ -167,7 +167,8 @@ if __name__ == "__main__":
 
     train_indices = (df_r_selected['is_test'] == False)
     train_df = df_f_selected[train_indices]
-    train_model(train_df, model_X_cols, n_mimo, save_model=save_model, save_model_folder=save_model_folder)
+    train_model(train_df, model_X_cols, n_mimo, n_est=2000, m_depth=7, save_model=save_model,
+                save_model_folder=save_model_folder)
 
     model = load_model(save_model_folder)
 
