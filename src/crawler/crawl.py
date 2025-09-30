@@ -60,7 +60,7 @@ def fetch_hourly_weather_data(openmeteo, params, unitid, url):
     responses = openmeteo.weather_api(url, params=params)
     # Process first location. Add a for-loop for multiple locations or weather models
     response = responses[0]
-    logger.debug(f"\nCoordinates {response.Latitude()}°N {response.Longitude()}°E\n"
+    logger.info(f"\nCoordinates {response.Latitude()}°N {response.Longitude()}°E\n"
                 f"Elevation {response.Elevation()} m asl\n"
                 f"Timezone {response.Timezone()} {response.TimezoneAbbreviation()}\n"
                 f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
