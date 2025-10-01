@@ -16,12 +16,10 @@ class Feature_adder:
         self.time_ranges_by_name_code = {}
         self.c_time_ranges_by_name_code = {}
 
-    def create_feature_with_delay(self, feature, n_delay, drop_null=True):
+    def create_feature_with_delay(self, feature, n_delay):
         new_feature = f"{feature}_with_{n_delay}_delay"
         temp = self.df.sort_values(by=['code', 'name', 'date', 'hour'])
         self.df[new_feature] = temp.groupby(['code', 'name'])[feature].shift(n_delay)
-        if drop_null:
-            self.df.dropna(inplace=True)
 
         logger.debug(f"A new column created: {feature} with {n_delay} hours delay")
 

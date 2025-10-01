@@ -4,26 +4,28 @@
 * Check accuracy for each (name, code).
 * Fine-tune for each name-code. (X)
 * 
-* Tune hyperparameters. 
 *
 * Make product
 * 
 * Is there any name, code which don't have any interval in is_good_peak = 3???? Yes there is but the problem is related to filter1. No problem just mention it.
 *
 * 
-* time = 24? meaning?
+* time = 24? meaning? (?)
 * 
-* drop null during feature lag
 * 
-* compare with declare
-* 
-* loggers
+* Output & input format (?)
+* LF1-FO (?)
+
 * 
 
   🟨 Doing
   ==========================
 
+* Tune hyperparameters.
+* Compare with declare
+* Loggers
 * Clean the code
+* Presentation
 * 
 
   🟥 Done

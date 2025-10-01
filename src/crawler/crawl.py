@@ -131,7 +131,8 @@ class HistoryCrawler(Crawler):
                     "longitude": f_longit,
                     "start_date": start_date,
                     "end_date": end_date,
-                    "hourly": hourly_features
+                    "hourly": hourly_features,
+                    "timezone": "auto"
                 }
                 hourly_dataframe = fetch_hourly_weather_data(openmeteo, params, unitid, url)
 
@@ -208,7 +209,9 @@ class ForecastCrawler(Crawler):
                     "latitude": f_lat,
                     "longitude": f_longit,
                     "hourly": hourly_features,
-                    "forecast_days": 2
+                    "forecast_days": 2,
+                    "timezone": "auto"
+
                 }
                 hourly_dataframe = fetch_hourly_weather_data(openmeteo, params, unit_id, url)
 
