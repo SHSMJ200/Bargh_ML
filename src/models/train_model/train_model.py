@@ -167,6 +167,8 @@ if __name__ == "__main__":
 
     train_indices = (df_r_selected['is_test'] == False)
     train_df = df_f_selected[train_indices]
+    
+    
     train_model(train_df, model_X_cols, n_mimo, n_est=2000, m_depth=7, save_model=save_model,
                 save_model_folder=save_model_folder)
 

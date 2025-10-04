@@ -9,6 +9,8 @@ class CustomLinearRegression:
         self.epochs = epochs
 
     def fit(self, X, y, verbose=False):
+        X = np.array(X)
+        y = np.array(y)
         n_samples, n_features = X.shape
         self.w = np.zeros(n_features)
 
