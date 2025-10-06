@@ -100,7 +100,10 @@ class UnitPlotter:
     def generation_and_mean_generation_and_generation_with_24_delay_flag_marker_over_time(self, name, code):
         self.features_over_time(name, code, ["generation", "mean_generation", "generation_with_24_delay"], ["red", "green","blue"],
                                 flag_marker=True)
-    
+
+    def prediction_and_declare_and_generation_flag_marker_over_time(self, name, code):
+        self.features_over_time(name, code, ["prediction", "declare", "generation"], ["blue", "red", "purple"], flag_marker=True)
+
     def features_over_time(self, name, code, features, colors, flag_marker=False):
 
         sample = self.df.loc[(self.df['name'] == name) & (self.df['code'] == code)]
@@ -126,7 +129,7 @@ class UnitPlotter:
                 marker=color_marker,
                 line=dict(color=color, dash="solid"),
                 legendgroup=str(name),
-                hovertemplate=f"Label: {name}<br> feature : %{{y}}<br>Time: %{{x}}<extra></extra>"
+                hovertemplate=f"Label: {name}<br> {feature} : %{{y}}<br>Time: %{{x}}<extra></extra>"
             ))
 
         fig.update_layout(

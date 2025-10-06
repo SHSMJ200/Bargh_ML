@@ -16,16 +16,20 @@
 * Output & input format (?)
 * LF1-FO (?)
 
+* Tune hyperparameters.
+* Compare with declare
+* Loggers
+* Clean the code
+* 
+* Generation vs sen_temperature was good. How about other features?
+* How about filter when generation is equal to declare?
+* چرا بازه‌ها رو افراز می‌کنی؟
+* مگه batch ها نباید بر اساس تاریخ باشه؟
 * 
 
   🟨 Doing
   ==========================
 
-* Tune hyperparameters.
-* Compare with declare
-* Loggers
-* Clean the code
-* Presentation
 * 
 
   🟥 Done
@@ -70,4 +74,5 @@
 * Define two different accuracy.
 * correct accuracy on flat y
 * How to use model for prediction
+* Presentation
 * 

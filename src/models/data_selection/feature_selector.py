@@ -32,7 +32,8 @@ class Feature_selector:
             X = df.drop(columns=[self.target])
             y = df[self.target]
             X.drop(columns=['datetime'], inplace=True)
-            name_code_df = X[["name", "code"]]
+            # name_code_df = X[["name", "code"]]
+            name_code_df = None
 
         if do_onehot:
             categorical_cols = X.select_dtypes(include=['object', 'category']).columns

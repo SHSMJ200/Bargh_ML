@@ -150,7 +150,8 @@ if __name__ == "__main__":
 
     save_model = True
     save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
-    n_mimo = 4
+    n_mimo = 1
+
 
     df_r_selected = Data_selector(df).select_peaks(goodness=3)
 
