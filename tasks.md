@@ -1,30 +1,18 @@
 🟩 To-Do
 ==========================
 
-* Check accuracy for each (name, code).
-* Fine-tune for each name-code. (X)
-* 
-*
 * Make product
-* 
 * Is there any name, code which don't have any interval in is_good_peak = 3???? Yes there is but the problem is related to filter1. No problem just mention it.
-*
-* 
-* time = 24? meaning? (?)
-* 
-* 
+* Why LF1?
+* time = 24? meaning? (?) 
 * Output & input format (?)
 * LF1-FO (?)
-
 * Tune hyperparameters.
 * Compare with declare
 * Loggers
 * Clean the code
-* 
 * Generation vs sen_temperature was good. How about other features?
 * How about filter when generation is equal to declare?
-* چرا بازه‌ها رو افراز می‌کنی؟
-* مگه batch ها نباید بر اساس تاریخ باشه؟
 * 
 
   🟨 Doing
