@@ -29,6 +29,7 @@ class Feature_adder:
         self.df['season'] = self.df['date'].apply(get_season)
         self.df['day_of_week'] = self.df['datetime'].dt.dayofweek
         self.df['month'] = self.df['datetime'].dt.month
+        self.df.sort_values(by=['name','code','datetime'],inplace=True)
 
         logger.debug(f"Season column was created")
 
@@ -109,7 +110,6 @@ class Feature_adder:
             name, code = row['name'], row['code']
             df_name_code = ds.filter_name_code(name, code)
             consistent_time_ranges = self.c_time_ranges_by_name_code[(name, code)]
-
             interval_ds = Data_selector(df_name_code)
             for interval_id, (date1, date2) in enumerate(consistent_time_ranges):
                 indices = interval_ds.filter_time(date1, date2).index
