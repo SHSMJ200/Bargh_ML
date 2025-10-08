@@ -49,6 +49,7 @@ class Database:
 
         except Exception as e:
             logger.error(f"Couldn't execute query: \n{query}\n on the DB. Exception \n{e}\n occurred.")
+            raise
 
     def commit(self):
         try:

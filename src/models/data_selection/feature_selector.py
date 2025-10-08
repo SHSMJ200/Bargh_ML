@@ -83,12 +83,10 @@ def get_dataframe_block(df, n):
     power_plants = df_modified[['name', 'code']].drop_duplicates()
     name_code_dictionary_index = {}
     for _, row in power_plants.iterrows():
-        # logger.info("df.columns " + str("datetime" in list(df.columns)))
         df_name_code = ds.filter_name_code(row["name"], row["code"])
         df_name_code.reset_index(drop=True, inplace=True)
         index_range = get_interval(df_name_code, l_min=n)
         rowss, indexes = get_df_rep(df_name_code, row["name"], row["code"], n, index_range)
-        # print(type(name_code_dictionary_index),(row["name"], row["code"]),len(indexes))
         name_code_dictionary_index[(row["name"], row["code"])] = indexes
         rows += rowss
     df_new = pd.DataFrame(rows)
@@ -99,9 +97,7 @@ def get_index_dictionary(df, rep):
     cols = df.drop(columns=["name", "code", "datetime"]).columns
     n = len(cols)
 
-    d = {}
-    d["name"] = 0
-    d["code"] = 1
+    d = {"name": 0, "code": 1}
 
     for i in range(n):
         d[cols[i]] = [2 + i + k * n for k in range(rep)]

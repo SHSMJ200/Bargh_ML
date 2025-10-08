@@ -5,6 +5,16 @@ SELECT c.id,
        c.date,
        c.hour,
 
+       b.load_level,
+       l.forecasted_load,
+       c.required,
+       s.declared,
+       st.status,
+       e.generation,
+
+       t.temp_sens,
+       t.scadaf,
+
        w.temperature,
        w.humidity,
        w.dew,
@@ -13,16 +23,10 @@ SELECT c.id,
        w.rain,
        w.snow,
        w.surface_pressure,
-       w.evapotransporation,
+       w.evapotranspiration,
        w.wind_speed,
-       w.wind_direction,
+       w.wind_direction
 
-       b.value,
-       l.forecast,
-       e.generation,
-       s.declare,
-       st.status,
-       c.require
 
 FROM commitment c
 
@@ -42,4 +46,7 @@ FROM commitment c
                    ON c.id = s.id AND c.code = s.code AND c.date = s.date AND c.hour = s.hour
 
          LEFT JOIN status st
-                   ON c.id = st.id AND c.code = st.code AND c.date = st.date AND c.hour = st.hour;
+                   ON c.id = st.id AND c.code = st.code AND c.date = st.date AND c.hour = st.hour
+
+         LEFT JOIN plant_temp t
+                   ON c.id = t.id AND c.date = t.date AND c.hour = t.hour;

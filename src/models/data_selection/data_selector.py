@@ -8,9 +8,6 @@ class Data_selector:
     def __init__(self, df: pd.DataFrame):
         self.df = df
 
-    def select_good_peaks(self, goodness):
-        return self.df[self.df["is_good_peak"] == goodness]
-
     def select_peaks(self, goodness):
         peak_condition = (self.df['is_good_peak'] >= goodness)
         logger.debug(f"Rows of data has been selected successfully!")

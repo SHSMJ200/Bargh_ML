@@ -83,8 +83,6 @@ def preprocess_weather_df(df):
     new_col_order = ['UnitId', 'Date', 'Hour'] + [col for col in df.columns if col not in ['UnitId', 'Date', 'Hour']]
     df = df.reindex(columns=new_col_order)
 
-    df.dropna(inplace=True)
-
     return df
 
 
@@ -109,7 +107,7 @@ def crawl_history(start_date: str, end_date: str):
         weather_df = pd.concat(hourly_df_list, ignore_index=True)
         weather_df = preprocess_weather_df(weather_df)
         weather_path = get_root() + '/data/interim/weather.csv'
-        weather_df.to_csv(weather_path, index=False)
+        weather_df.to_csv(weather_path, index=False, na_rep='NULL')
 
         with Database() as db:
             db.create_table(table_name='weather', col_names_and_types=feature_dict['weather'])
@@ -142,7 +140,7 @@ def crawl_future():
         w_forecast_df = pd.concat(hourly_df_list, ignore_index=True)
         w_forecast_df = preprocess_weather_df(w_forecast_df)
         w_forecast_path = get_root() + '/data/interim/weather_forecast.csv'
-        w_forecast_df.to_csv(w_forecast_path, index=False)
+        w_forecast_df.to_csv(w_forecast_path, index=False, na_rep='NULL')
 
         with Database() as db:
             db.create_table(table_name='forecast', col_names_and_types=feature_dict['weather'])

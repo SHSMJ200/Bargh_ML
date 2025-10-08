@@ -1,7 +1,7 @@
 bar:
   date: text
   hour: int
-  value: varchar(10)
+  load_level: varchar(10)
 
 plant_data:
   id: varchar(50)
@@ -14,7 +14,8 @@ plant_temp:
   name: varchar(100)
   date: text
   hour: int
-  temperature: float
+  scadaf: float
+  temp_sens: float
 
 energy:
   id: varchar(50)
@@ -30,7 +31,7 @@ selleroffer:
   code: varchar(50)
   date: text
   hour: int
-  declare: float
+  declared: float
 
 factors:
   id: varchar(50)
@@ -50,7 +51,7 @@ status:
 load:
   date: text
   hour: int
-  forecast: float
+  forecasted_load: float
 
 commitment:
   id: varchar(10)
@@ -58,7 +59,7 @@ commitment:
   code: varchar(10)
   date: text
   hour: int
-  require: float
+  required: float
 
 weather:
   id: varchar(50)
@@ -72,7 +73,7 @@ weather:
   rain: float
   snow: float
   surface_pressure: float
-  evapotransporation: float
+  evapotranspiration: float
   wind_speed: float
   wind_direction: float
 
@@ -85,5 +86,5 @@ declaration_check:
   a: float
   b: float
   temperature: float
-  declare: float
+  declared: float
   calculated: float

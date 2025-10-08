@@ -24,12 +24,13 @@ def add_features_and_filter(l_min, max_diff, c_thresh):
             feature_adder.create_feature_with_delay(feature, hour)
 
     feature_adder.create_feature_with_delay("generation", 24)
-    feature_adder.df.dropna(inplace=True)
+    # feature_adder.df.dropna(inplace=True)
 
     feature_adder.filter1()
     feature_adder.filter2(l_min=l_min, max_diff=max_diff)
-    feature_adder.filter3("temperature_with_5_delay", c_thresh=c_thresh)
+    feature_adder.filter3("temperature", c_thresh=c_thresh)
     feature_adder.add_interval_id()
+    feature_adder.filter5()
 
     feature_adder.df.to_csv(csv_semi_write_path, index=False)
 
