@@ -2,7 +2,7 @@ import pandas as pd
 from src.models.data_selection.data_selector import Data_selector
 from logs.logger import CustomLogger
 
-logger = CustomLogger(name="feature_selector").get_logger()
+logger = CustomLogger(__name__).get_logger()
 
 
 class Feature_selector:

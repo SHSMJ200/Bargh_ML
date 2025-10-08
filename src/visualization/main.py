@@ -1,4 +1,5 @@
-import sys, os
+import os
+import sys
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = current_dir[:current_dir.find("src") - 1]
@@ -12,16 +13,10 @@ if __name__ == "__main__":
     csv_path = os.path.join(project_root, "data", "processed", "data_for_plot.csv")
     df = pd.read_csv(csv_path, encoding='utf-8')
 
-    # Modify date column and create datetime column:
-    df['date'] = pd.to_datetime(df['date'])
-    df['datetime'] = df['date'] + pd.to_timedelta(df['hour'], unit='h')
-
-    # Draw Customize plot
     up = UnitPlotter(df)
 
     power_plants = df[['name', 'code']].drop_duplicates()
     for _, row in power_plants.iterrows():
-        if row['name'] != "پرند" : continue
         # up.temperature_and_generation_flag_marker_over_time(name=row["name"], code=row["code"])
         # up.temperature_change_and_generation_change_flag_marker_over_time(name = row["name"], code = row["code"])
         # up.temperature_and_generation_over_time(name=row["name"], code=row["code"])

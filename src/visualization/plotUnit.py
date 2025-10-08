@@ -1,9 +1,8 @@
-from src.root import get_root
-import os
-
 import matplotlib
 import pandas as pd
 import plotly.graph_objects as go
+
+from src.root import get_root
 
 matplotlib.use('TkAgg')
 
@@ -70,6 +69,10 @@ class UnitPlotter:
 
     def __init__(self, df):
         self.df = df
+
+        # Modify date column and create datetime column:
+        self.df['date'] = pd.to_datetime(self.df['date'])
+        self.df['datetime'] = self.df['date'] + pd.to_timedelta(self.df['hour'], unit='h')
 
     def generation_over_time(self, name, code):
         self.features_over_time(name, code, ["generation"], ["red"])

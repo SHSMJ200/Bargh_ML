@@ -1,5 +1,5 @@
-dbname: bargh
-user: postgres
-password: Seyed200
 host: localhost
 port: 5432
+user: postgres
+password: Seyed200
+dbname: bargh

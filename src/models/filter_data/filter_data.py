@@ -9,7 +9,7 @@ import pandas as pd
 from src.models.filter_data.feature_adder import Feature_adder
 from logs.logger import CustomLogger
 
-logger = CustomLogger(name="filter_data").get_logger()
+logger = CustomLogger(__name__).get_logger()
 
 
 def add_features_and_filter(l_min, max_diff, c_thresh):

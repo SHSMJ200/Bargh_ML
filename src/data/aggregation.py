@@ -1,60 +1,28 @@
-from src.root import get_root
-import yaml
-from psycopg2 import Error as Error
-
 from dbconnection import Database
 from logs.logger import CustomLogger
+from src.root import get_root
 
 logger = CustomLogger(__name__).get_logger()
 
-db = Database()
 
+def integrated_aggregation():
+    try:
+        sql_path = get_root() + '/src/data/queries/integrated.sql'
+        with open(sql_path, 'r') as f:
+            sql_query = f.read()
+        logger.info(f'Successfully loaded sql template.')
 
-class Aggregator:
-    def __init__(self, name: str):
-        self.user = name
-        self.db = Database()
-        db.connect()
-        db.__exit__()
-        self.logger = CustomLogger(__name__).get_logger()
-        self.query_path = get_root() + '/src/data/queries/'
+        with Database() as db:
 
-    def integrated_aggregation(self):
-        try:
-            sql_query = self.load_sql_query(get_root() + '/src/data/queries/integrated.sql')
-            logger.info(msg=f'Successfully loaded table configs and sql template.')
-
-            db.__enter__()
-            db.execute(
-                query=sql_query,
-                do_return=False
-            )
+            db.execute(query=sql_query, do_return=False)
             db.commit()
 
-            logger.info(msg=f'Successfully applied the query:\n{sql_query}\n on database.')
+            logger.info(f'Successfully applied the query:\n{sql_query}\n on database.')
 
-            target_table = 'integrated_data'
-
-            db.lazy_copy_expert(
-                table_name=target_table,
-                file=get_root() + '/data/processed/integrated.csv',
-                mode='w',
-                into_local=True
-            )
+            integrated_path = get_root() + '/data/processed/integrated.csv'
+            db.copy_expert(table_name='integrated_data', file=integrated_path, into_db=False)
 
             db.commit()
 
-            db.__exit__()
-
-        except Error as e:
-            logger.error(f"Couldn't apply the query:\n{sql_query}\n Exception:\n{e}\n occurred.")
-        except Exception as exc:
-            logger.error(f"Couldn't apply the query:\n{sql_query}\n Exception:\n{exc}\n occurred.")
-
-    def load_sql_query(self, filename):
-        with open(filename, 'r') as f:
-            return f.read()
-
-    def load_tables_configs(self, filename):
-        with open(filename, 'r') as f:
-            return yaml.safe_load(f)
+    except Exception as exc:
+        logger.error(f"Couldn't apply the query:\n{sql_query}\n Exception:\n{exc}\n occurred.")

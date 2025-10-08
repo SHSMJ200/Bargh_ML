@@ -5,7 +5,7 @@ from scipy.stats import pearsonr
 from src.models.data_selection.data_selector import Data_selector
 from logs.logger import CustomLogger
 
-logger = CustomLogger(name="feature_adder").get_logger()
+logger = CustomLogger(__name__).get_logger()
 
 
 class Feature_adder:

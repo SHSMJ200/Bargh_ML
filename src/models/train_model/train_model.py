@@ -14,7 +14,7 @@ from logs.logger import CustomLogger
 from joblib import dump, load
 from src.models.utils import *
 
-logger = CustomLogger(name="train_model").get_logger()
+logger = CustomLogger(__name__).get_logger()
 
 
 def get_y_inverse_mimo(df, feature_selector, name_code_df, n_mimo, ys):

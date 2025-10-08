@@ -13,6 +13,12 @@
 * Clean the code
 * Generation vs sen_temperature was good. How about other features?
 * How about filter when generation is equal to declare?
+* We have a and b of each plant
+* try/ except
+* generation = 250???
+* time = 25???
+* فرض: در جداول آن‌ها تغییر ساعت لحاظ نشده و همیشه +3:30 نوشته شده است
+* فرض : ساعت ۱۵ یعنی از ساعت ۱۴ تا ۱۵
 * 
 
   🟨 Doing

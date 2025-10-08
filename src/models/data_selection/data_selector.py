@@ -1,7 +1,7 @@
 import pandas as pd
 from logs.logger import CustomLogger
 
-logger = CustomLogger(name="data_selector").get_logger()
+logger = CustomLogger(__name__).get_logger()
 
 
 class Data_selector:
