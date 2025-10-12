@@ -23,9 +23,11 @@ class Data_selector:
             return mask
         return df[mask]
 
-    def filter_time(self, date1, date2, get_mask=False):
+    def filter_time(self, date1, date2, get_mask=False, close_open = False):
         df = self.df
-        mask = (df['datetime'] >= date1) & (df['datetime'] <= date2)
+        
+        if close_open: mask = (df['datetime'] >= date1) & (df['datetime'] < date2)
+        else :         mask = (df['datetime'] >= date1) & (df['datetime'] <= date2)
         if get_mask:
             return mask
         return df[mask]
