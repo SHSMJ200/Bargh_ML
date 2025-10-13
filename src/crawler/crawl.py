@@ -1,252 +1,152 @@
-from src.root import get_root
 import openmeteo_requests
-import pandas as pd
 import requests_cache
+import retry_requests
+import pandas as pd
 import yaml
-from retry_requests import retry
 
 from logs.logger import CustomLogger
+from src.data.data_cleaner import RawDataConfig
 from src.data.dbconnection import Database
+from src.root import get_root
 
-logger = CustomLogger('Crawler').get_logger()
+logger = CustomLogger(__name__).get_logger()
 
-db = Database()
+tables_config_path = get_root() + '/configs/tables_columns.yaml'
+feature_dict = yaml.load(open(tables_config_path), Loader=yaml.SafeLoader)
 
-feature_dict = yaml.load(open(get_root() + '/configs/tables_columns.yaml'), Loader=yaml.SafeLoader)
-
-
-def get_innermost_dict(nested_dict: dict):
-    if not isinstance(nested_dict, dict):
-        return None
-
-    if not nested_dict:
-        return None
-
-    first_value = next(iter(nested_dict.values()))
-
-    if isinstance(first_value, dict):
-        return get_innermost_dict(first_value)
-    else:
-        return nested_dict
+crawl_config_path = get_root() + '/configs/crawling.yaml'
+crawl_config = yaml.safe_load(open(crawl_config_path, 'r'))
 
 
-def get_plants():
-    data = pd.read_csv(get_root() + '/data/raw/PlantsTemperature_View.csv')
-    plants = list(map(str, list(data['PowerPlantCode'].drop_duplicates())))
-    return plants
+def get_plants_info():
+    plants_temperature_path = RawDataConfig.TEMPERATURE.value["file_path"]
+    temperature_df = pd.read_csv(plants_temperature_path)
+    all_plants = temperature_df['PowerPlantCode'].astype(str).drop_duplicates().tolist()
+
+    plants_data_path = RawDataConfig.PLANT.value["file_path"]
+    plants_df = pd.read_csv(plants_data_path)
+    available_plants_df = plants_df[plants_df['DispPlantCode'].isin(all_plants)]
+    return available_plants_df[['DispPlantCode', 'UTM']]
 
 
-def prepare_datetime_columns(data):
-    data['date'] = pd.to_datetime(data['date'])
-    logger.debug(msg=f"Date column converted to datetime type")
-    data['date_only'] = data['date'].dt.date
-    data['time'] = data['date'].dt.time
-    data['time'] = data['time'].apply(lambda x: int(str(x).split(':')[0]))
-    logger.debug(msg=f"Create the date and time columns from date column")
-    data.loc[data['time'] == 0, 'time'] = 24
-    data.loc[data['time'] == 24, 'date_only'] = data['date_only'] - pd.Timedelta(days=1)
-    logger.debug(msg=f"Time column corrected")
-    data.drop(columns=['date'], axis=1, inplace=True)
-    logger.debug(msg=f"Column date deleted")
-    logger.debug(msg=f"Date column converted from Ad to Persian")
-    data.rename(columns={'date_only': 'date'}, inplace=True)
-    columns_to_move = ['unitid', 'date', 'time']
-    new_columns = columns_to_move + [col for col in data.columns if col not in columns_to_move]
-    data = data[new_columns]
-    return data
+def create_open_meteo_client():
+    cache_session = requests_cache.CachedSession('.cache', expire_after=3600)
+    retry_session = retry_requests.retry(cache_session, retries=5, backoff_factor=0.2)
+    open_meteo = openmeteo_requests.Client(session=retry_session)
+    return open_meteo
 
 
-def fetch_hourly_weather_data(openmeteo, params, unitid, url):
-    responses = openmeteo.weather_api(url, params=params)
-    # Process first location. Add a for-loop for multiple locations or weather models
-    response = responses[0]
-    logger.info(f"\nCoordinates {response.Latitude()}°N {response.Longitude()}°E\n"
-                f"Elevation {response.Elevation()} m asl\n"
-                f"Timezone {response.Timezone()} {response.TimezoneAbbreviation()}\n"
-                f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
+def fetch_hourly_weather_data(open_meteo, params, url):
+    response = open_meteo.weather_api(url, params=params)[0]
+    logger.debug(f"Target location info:\n"
+                 f"Coordinates {response.Latitude()}°N {response.Longitude()}°E\n"
+                 f"Elevation {response.Elevation()} m asl\n"
+                 f"Timezone {response.Timezone()} {response.TimezoneAbbreviation()}\n"
+                 f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
 
+    return response.Hourly()
+
+
+def parse_hourly_weather(hourly, unit_id):
     # Process hourly data. The order of variables needs to be the same as requested.
-    hourly = response.Hourly()
-    hourly_temperature_2m = hourly.Variables(0).ValuesAsNumpy()
-    hourly_relative_humidity_2m = hourly.Variables(1).ValuesAsNumpy()
-    hourly_dew_point_2m = hourly.Variables(2).ValuesAsNumpy()
-    hourly_apparent_temperature = hourly.Variables(3).ValuesAsNumpy()
-    hourly_precipitation = hourly.Variables(5).ValuesAsNumpy()
-    hourly_rain = hourly.Variables(6).ValuesAsNumpy()
-    hourly_snowfall = hourly.Variables(7).ValuesAsNumpy()
-    hourly_surface_pressure = hourly.Variables(8).ValuesAsNumpy()
-    hourly_evapotranspiration = hourly.Variables(9).ValuesAsNumpy()
-    hourly_wind_speed_10m = hourly.Variables(10).ValuesAsNumpy()
-    hourly_wind_direction_10m = hourly.Variables(11).ValuesAsNumpy()
-    hourly_data = {"date": pd.date_range(
+    variable_names = ["Temperature", "Humidity", "Dew", "ApparentTemperature",
+                      "Precipitation", "Rain", "Snow", "SurfacePressure",
+                      "Evapotranspiration", "WindSpeed", "WindDirection"]
+    hourly_data = {var_name: hourly.Variables(i).ValuesAsNumpy() for i, var_name in enumerate(variable_names)}
+
+    date_range = pd.date_range(
         start=pd.to_datetime(hourly.Time(), unit="s", utc=True),
         end=pd.to_datetime(hourly.TimeEnd(), unit="s", utc=True),
         freq=pd.Timedelta(seconds=hourly.Interval()),
         inclusive="left"
-    ), "temperature_2m": hourly_temperature_2m, "relative_humidity_2m": hourly_relative_humidity_2m,
-        "dew_point_2m": hourly_dew_point_2m, "apparent_temperature": hourly_apparent_temperature,
-        "precipitation": hourly_precipitation, "rain": hourly_rain, "snowfall": hourly_snowfall,
-        "surface_pressure": hourly_surface_pressure, "evapotranspiration": hourly_evapotranspiration,
-        "wind_speed_10m": hourly_wind_speed_10m, "wind_direction_10m": hourly_wind_direction_10m,
-        'unitid': [unitid for _ in range(len(hourly_temperature_2m))]}
-    hourly_dataframe = pd.DataFrame(data=hourly_data)
-    return hourly_dataframe
+    )
+    hourly_data["Datetime"] = date_range
+    hourly_data["UnitId"] = [unit_id] * len(date_range)
+
+    return pd.DataFrame(data=hourly_data)
 
 
-class Crawler:
-    def __init__(self, file: str):
-        self.file = file
+def extract_hour(full_time):
+    hour = int(str(full_time).split(':')[0])
+    return hour + 1  # Add 1 hour to adjust values where h is used for the interval (h-1, h]
 
 
-class HistoryCrawler(Crawler):
+def preprocess_weather_df(df):
+    df['Datetime'] = pd.to_datetime(df['Datetime'])
+    df['Datetime'] = df['Datetime'] + pd.to_timedelta("3:30:00")  # Because of GMT: +3:30
 
-    def crawl(self, start_date: str, end_date: str):
+    df['Date'] = df['Datetime'].dt.date
+    df['Hour'] = df['Datetime'].dt.time.apply(extract_hour)
 
-        try:
-            plants = pd.read_csv(filepath_or_buffer=self.file)
-            my_plants = get_plants()
-            plants = plants[plants['DispPlantCode'].isin(my_plants)]
+    df.drop(columns=['Datetime'], axis=1, inplace=True)
 
-            logger.info(msg=f'Plants data successfully read from {self.file}')
-            logger.info(msg=f"Plants to crawl:\n{plants['PlantName'].drop_duplicates()}")
+    new_col_order = ['UnitId', 'Date', 'Hour'] + [col for col in df.columns if col not in ['UnitId', 'Date', 'Hour']]
+    df = df.reindex(columns=new_col_order)
 
-            with open(get_root() + '/configs/crawling.yaml', 'r') as file:
-                data = yaml.safe_load(file)
-                url = data['url-historical']
-                hourly_features = data['hourly']
+    return df
 
-            logger.info(msg=f'Successfully read data from crawling config file')
 
-            cache_session = requests_cache.CachedSession('.cache', expire_after=3600)
-            retry_session = retry(cache_session, retries=5, backoff_factor=0.2)
-            openmeteo = openmeteo_requests.Client(session=retry_session)
+def crawl_history(start_date: str, end_date: str):
+    try:
+        open_meteo = create_open_meteo_client()
 
-            data = pd.DataFrame()
+        hourly_df_list = []
+        plants_info_df = get_plants_info()
 
-            for utm, unitid in zip(plants['UTM'], plants['DispPlantCode']):
-                lat, longit = utm.split(',')
-                f_lat, f_longit = float(lat), float(longit)
-                params = {
-                    "latitude": f_lat,
-                    "longitude": f_longit,
-                    "start_date": start_date,
-                    "end_date": end_date,
-                    "hourly": hourly_features,
-                    "timezone": "auto"
-                }
-                hourly_dataframe = fetch_hourly_weather_data(openmeteo, params, unitid, url)
+        for row in plants_info_df.itertuples(index=False):
+            hourly_features = crawl_config['hourly_features']
+            f_lat, f_longit = map(float, row.UTM.split(','))
+            url = crawl_config['url_historical']
+            params = {"latitude": f_lat, "longitude": f_longit, "start_date": start_date, "end_date": end_date,
+                      "hourly": hourly_features, "timezone": "auto"}
+            hourly = fetch_hourly_weather_data(open_meteo, params, url)
+            hourly_df = parse_hourly_weather(hourly, row.DispPlantCode)
+            hourly_df_list.append(hourly_df)
+            logger.info(f'Crawling the data with latitude:{f_lat: 0.2f} & longitude:{f_longit: 0.2f} done')
 
-                data = pd.concat([data, hourly_dataframe], ignore_index=True)
-                logger.info(f'Data with latitude: {f_lat: 0.2f} and longitude: {f_longit: 0.2f} added to the dataframe')
+        weather_df = pd.concat(hourly_df_list, ignore_index=True)
+        weather_df = preprocess_weather_df(weather_df)
+        weather_path = get_root() + '/data/interim/weather.csv'
+        weather_df.to_csv(weather_path, index=False, na_rep='NULL')
 
-            data = prepare_datetime_columns(data)
-
-            length = len(data.index)
-
-            data.dropna(inplace=True)
-
-            logger.debug(f"{length - len(data.index)} number of data removed because of being null.")
-
-            logger.debug(msg=f"Reorder the columns as the id, date and time comes to first.")
-
-            file_path = get_root() + '/data/interim/weather.csv'
-
-            data.to_csv(file_path, index=False)
-
-            logger.info(msg=f"Number of columns of dataframe is: {len(data.columns)}")
-
-            db.connect()
-
-            db.create_table(
-                table_name='weather',
-                columns=get_innermost_dict(feature_dict['weather'])
-            )
+        with Database() as db:
+            db.create_table(table_name='weather', col_names_and_types=feature_dict['weather'])
+            db.commit()
+            db.copy_expert(table_name='weather', file=weather_path, into_db=True)
             db.commit()
 
-            db.lazy_copy_expert(
-                table_name='weather',
-                file=file_path,
-                mode='r',
-                into_db=True
-            )
+    except Exception as e:
+        logger.error(f"Couldn't complete the crawling due to below Exception:\n{e}\n")
+
+
+def crawl_future():
+    try:
+        open_meteo = create_open_meteo_client()
+
+        hourly_df_list = []
+        plants_info_df = get_plants_info()
+
+        for row in plants_info_df.itertuples(index=False):
+            hourly_features = crawl_config['hourly_features']
+            f_lat, f_longit = map(float, row.UTM.split(','))
+            url = crawl_config['url_forecast']
+            params = {"latitude": f_lat, "longitude": f_longit, "hourly": hourly_features, "forecast_days": 2,
+                      "timezone": "auto"}
+            hourly = fetch_hourly_weather_data(open_meteo, params, url)
+            hourly_df = parse_hourly_weather(hourly, row.DispPlantCode)
+            hourly_df_list.append(hourly_df)
+            logger.info(f'Crawling the data with latitude:{f_lat: 0.2f} & longitude:{f_longit: 0.2f} done')
+
+        w_forecast_df = pd.concat(hourly_df_list, ignore_index=True)
+        w_forecast_df = preprocess_weather_df(w_forecast_df)
+        w_forecast_path = get_root() + '/data/interim/weather_forecast.csv'
+        w_forecast_df.to_csv(w_forecast_path, index=False, na_rep='NULL')
+
+        with Database() as db:
+            db.create_table(table_name='forecast', col_names_and_types=feature_dict['weather'])
             db.commit()
-            db.close()
-
-        except Exception as e:
-            logger.error(msg=f"Couldn't complete the crawling due to below Exception:\n{e}\n")
-
-
-class ForecastCrawler(Crawler):
-
-    def crawl(self):
-        try:
-
-            plants = pd.read_csv(self.file)
-            my_plants = get_plants()
-            plants = plants[plants['DispPlantCode'].isin(my_plants)]
-
-
-            logger.info(msg=f'Plants data successfully read from {self.file}')
-
-            with open(get_root() + '/configs/crawling.yaml', 'r') as file:
-                data = yaml.safe_load(file)
-                url = data['url-forecast']
-                hourly_features = data['hourly']
-
-            logger.info(msg=f'Successfully read data from crawling config file')
-
-            cache_session = requests_cache.CachedSession('.cache', expire_after=3600)
-            retry_session = retry(cache_session, retries=5, backoff_factor=0.2)
-            openmeteo = openmeteo_requests.Client(session=retry_session)
-
-            data = pd.DataFrame()
-
-            for utm, unit_id in zip(plants['UTM'], plants['DispPlantCode']):
-                lat, longit = utm.split(',')
-                f_lat, f_longit = float(lat), float(longit)
-
-                params = {
-                    "latitude": f_lat,
-                    "longitude": f_longit,
-                    "hourly": hourly_features,
-                    "forecast_days": 2,
-                    "timezone": "auto"
-
-                }
-                hourly_dataframe = fetch_hourly_weather_data(openmeteo, params, unit_id, url)
-
-                hourly_dataframe = hourly_dataframe.tail(36).reset_index(drop=True)
-                logger.debug(msg=f"Split the last 36 rows.")
-
-                data = pd.concat([data, hourly_dataframe], ignore_index=True)
-                logger.info(msg=f'Data with latitude: {f_lat: 0.2f} and longitude: {f_longit: 0.2f} added to the dataframe')
-
-            data = prepare_datetime_columns(data)
-
-            logger.debug(msg=f"Reorder the columns as the id, date and time comes to first.")
-
-            file_path = get_root() + '/data/interim/weather_forecast.csv'
-
-            data.to_csv(file_path, index=False)
-
-            logger.info(msg=f"Number of columns of dataframe is: {len(data.columns)}")
-
-            db.connect()
-
-            db.create_table(
-                table_name='forecast',
-                columns=get_innermost_dict(feature_dict['weather'])
-            )
+            db.copy_expert(table_name='forecast', file=w_forecast_path, into_db=True)
             db.commit()
 
-            db.lazy_copy_expert(
-                table_name='forecast',
-                file=file_path,
-                mode='r',
-                into_db=True
-            )
-            db.commit()
-            db.close()
-
-        except Exception as e:
-            logger.error(msg=f"Couldn't complete the crawling due to below Exception:\n{e}\n")
+    except Exception as e:
+        logger.error(f"Couldn't complete the crawling due to below Exception:\n{e}\n")

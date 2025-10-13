@@ -1,9 +1,8 @@
-from src.root import get_root
-import os
-
 import matplotlib
 import pandas as pd
 import plotly.graph_objects as go
+
+from src.root import get_root
 
 matplotlib.use('TkAgg')
 
@@ -71,6 +70,10 @@ class UnitPlotter:
     def __init__(self, df):
         self.df = df
 
+        # Modify date column and create datetime column:
+        self.df['date'] = pd.to_datetime(self.df['date'])
+        self.df['datetime'] = self.df['date'] + pd.to_timedelta(self.df['hour'], unit='h')
+
     def generation_over_time(self, name, code):
         self.features_over_time(name, code, ["generation"], ["red"])
 
@@ -100,7 +103,10 @@ class UnitPlotter:
     def generation_and_mean_generation_and_generation_with_24_delay_flag_marker_over_time(self, name, code):
         self.features_over_time(name, code, ["generation", "mean_generation", "generation_with_24_delay"], ["red", "green","blue"],
                                 flag_marker=True)
-    
+
+    def prediction_and_declare_and_generation_flag_marker_over_time(self, name, code):
+        self.features_over_time(name, code, ["prediction", "declare", "generation"], ["blue", "red", "purple"], flag_marker=True)
+
     def features_over_time(self, name, code, features, colors, flag_marker=False):
 
         sample = self.df.loc[(self.df['name'] == name) & (self.df['code'] == code)]
@@ -126,7 +132,7 @@ class UnitPlotter:
                 marker=color_marker,
                 line=dict(color=color, dash="solid"),
                 legendgroup=str(name),
-                hovertemplate=f"Label: {name}<br> feature : %{{y}}<br>Time: %{{x}}<extra></extra>"
+                hovertemplate=f"Label: {name}<br> {feature} : %{{y}}<br>Time: %{{x}}<extra></extra>"
             ))
 
         fig.update_layout(

@@ -1,11 +1,12 @@
 import numpy as np
 import pandas as pd
 from scipy.stats import pearsonr
+from sklearn.linear_model import LinearRegression
 
 from src.models.data_selection.data_selector import Data_selector
 from logs.logger import CustomLogger
 
-logger = CustomLogger(name="feature_adder").get_logger()
+logger = CustomLogger(__name__).get_logger()
 
 
 class Feature_adder:
@@ -39,7 +40,7 @@ class Feature_adder:
         # We assume that start_md < end_md
         statusM_mask = (self.df['datetime'].dt.strftime('%m-%d') >= start_md) & (
                 self.df['datetime'].dt.strftime('%m-%d') <= end_md)
-        peak_condition = (self.df['value'] == 'P') | (self.df['value'] == 'M') & statusM_mask
+        peak_condition = (self.df['load_level'] == 'P') | (self.df['load_level'] == 'M') & statusM_mask
         peak_condition = peak_condition & ((self.df['status'] == 'SO') | (self.df['status'] == 'LF1'))
 
         self.df.loc[peak_condition, "is_good_peak"] = 1
@@ -83,6 +84,48 @@ class Feature_adder:
         self.label_points(ds, power_plants, self.c_time_ranges_by_name_code, label=3)
 
         self.log_filter_ratio(label=3)
+
+    def filter5(self):
+        features = ["name", "code", "generation", "temp_sens", "is_good_peak"]
+        df_modified = self.df[features].copy(deep=True)
+        df_modified = df_modified[df_modified["is_good_peak"] >= 3]  # TODO: should be 4
+        df_modified = df_modified.dropna()
+        power_plants = df_modified[['name', 'code']].drop_duplicates()
+        gas_plants = power_plants[power_plants['code'].str.startswith("G")]
+        for row in gas_plants.itertuples():
+            name = row.name
+            code = row.code
+            one_unit_df = df_modified[(df_modified['name'] == name) & (df_modified['code'] == code)]
+
+            senstemps = one_unit_df['temp_sens'].values
+            gens = one_unit_df['generation'].values
+
+            sorted_idx = np.argsort(senstemps)
+            senstemps, gens = senstemps[sorted_idx], gens[sorted_idx]
+
+            hist, bin_edges = np.histogram(senstemps, bins=101)
+            group_indices = np.digitize(senstemps, bin_edges) - 1
+            tuples = []
+
+            for g in np.unique(group_indices):
+                mask = group_indices == g
+                tuples.append((senstemps[mask].mean(), find_95_max(gens[mask])))
+
+            X = np.array([a for a, b in tuples]).reshape(-1, 1)
+            y = np.array([b for a, b in tuples])
+            model = LinearRegression()
+            model.fit(X, y)
+
+            X_all = senstemps.reshape(-1, 1)
+            y_pred_all = model.predict(X_all)
+
+            alpha = 2
+            beta = 5
+            is_in_area = (y_pred_all + alpha >= gens) & (gens >= y_pred_all - beta)
+
+            good_indices = one_unit_df[is_in_area].index
+            self.df.loc[good_indices, "is_good_peak"] = 5
+
 
     def label_points(self, ds, power_plants, dates_by_name_code, label):
         all_indices = []
@@ -201,3 +244,10 @@ def are_trends_similar(arr1, arr2, threshold, opposite_trend=False):
     if not opposite_trend:
         return corr_pearson, (corr_pearson > threshold)
     return corr_pearson, (corr_pearson < -threshold)
+
+
+def find_95_max(array):
+    array = np.array(array)
+    sorted_array = np.sort(array)
+    idx = int(len(array) * 0.95)
+    return sorted_array[idx]

@@ -8,28 +8,36 @@ logger = CustomLogger(__name__).get_logger()
 
 class Database:
     def __init__(self):
-        self.connection_parameters = {
-            key: value for key, value in
-            yaml.load(open(get_root() + '/configs/database.yaml'), Loader=yaml.SafeLoader).items()
-        }
+        db_config_path = get_root() + '/configs/database.yaml'
+        with open(db_config_path, "r", encoding="utf-8") as f:
+            self.connection_parameters = yaml.load(f, Loader=yaml.SafeLoader)
+
         self.connection = None
 
-    def connect(self):
-        if self.connection is None:
-            try:
+    def __enter__(self):
+        try:
+            if self.connection is None:
                 self.connection = psycopg2.connect(**self.connection_parameters)
-                logger.debug(f'a user connected to DB.')
-            except Exception as e:
-                logger.error(f'Couldnt connect to the DB. Exception: \n{e}\n occurred.')
+            logger.debug('User connected to the DB')
+            return self
+        except Exception as e:
+            logger.error(f"Couldn't connect to the DB. Exception: \n{e}\n occurred.")
+            raise
 
-    def close(self):
-        if self.connection:
-            try:
+    def __exit__(self, exc_type, exc_value, traceback):
+        try:
+            if self.connection:
+                if exc_type is None:
+                    self.connection.commit()
+                else:
+                    self.connection.rollback()
                 self.connection.close()
                 self.connection = None
-                logger.debug(f'Connection to the DB cloesd.')
-            except Exception as e:
-                logger.error(f'Couldnt disconnect, Exception \n{e}\n occurred.')
+            logger.debug(f'Connection to the DB was closed.')
+        except Exception as e:
+            logger.error(f"Couldn't exit the DB. Exception\n{e}\n occurred.")
+
+        return False  # to raise error again
 
     def execute(self, query: str, params=None, do_return=False):
         try:
@@ -40,16 +48,8 @@ class Database:
                     return cursor.fetchall()
 
         except Exception as e:
-            logger.error(f'Couldnt execute query: \n{query}\n on the DB. Exception \n{e}\n occurred.')
-
-    def copy_expert(self, query: str, file, mode: str):
-        try:
-            with self.connection.cursor() as cursor:
-                with open(file, mode, encoding='utf-8') as f:
-                    cursor.copy_expert(query, f)
-                logger.debug(f'Successfully copied file {file}')
-        except Exception as e:
-            logger.error(f"Couldn't copy the file with query:\n{query}\n because the Exception\n{e}\n occurred.")
+            logger.error(f"Couldn't execute query: \n{query}\n on the DB. Exception \n{e}\n occurred.")
+            raise
 
     def commit(self):
         try:
@@ -65,44 +65,29 @@ class Database:
                 self.connection.rollback()
                 logger.debug('Rollback successfully applied.')
         except Exception as e:
-            logger.error(f'Rollback couldnt apply. Exception\n{e}\n occurred.')
+            logger.error(f"Rollback couldn't be applied. Exception\n{e}\n occurred.")
 
-    def __enter__(self):
-        try:
-            self.connect()
-            logger.debug('User reconnected to the DB')
-            return self
-        except Exception as e:
-            logger.error('Can not Enter the DB. Exception\n{e}\n occurred.')
-
-    def __exit__(self):
-        try:
-            self.close()
-            logger.debug('User exited from DB.')
-        except Exception as e:
-            logger.error('Can not exit the DB. Exception\n{e}\n occurred.')
-
-    def get_cursor(self):
-        return self.connection.cursor()
-
-    def create_table(self, table_name: str, columns: dict[str: str]):
-        features = [f'{col_name} {col_type}' for col_name, col_type in columns.items()]
-        converted = ', '.join(features)
+    def create_table(self, table_name: str, col_names_and_types: dict[str: str]):
+        features = [f'{col_name} {col_type}' for col_name, col_type in col_names_and_types.items()]
+        columns_defs = ', '.join(features)
         self.execute(
-            query=f'create table if not exists {table_name} ({converted})',
+            query=f'create table if not exists {table_name} ({columns_defs})',
             do_return=False
         )
 
-    def lazy_copy_expert(self, table_name: str, file: str, mode: str, into_db=False, into_local=False):
-        if into_db:
-            self.copy_expert(
-                query=f"copy {table_name} from stdin with delimiter ',' csv header NULL as 'NULL'",
-                file=file,
-                mode=mode
-            )
-        if into_local:
-            self.copy_expert(
-                query=f"copy {table_name} to stdout with delimiter ',' csv header NULL as 'NULL'",
-                file=file,
-                mode=mode
-            )
+    def copy_expert(self, table_name: str, file: str, into_db=False):
+        try:
+            if into_db:
+                query = f"copy {table_name} from stdin with delimiter ',' csv header NULL as 'NULL'"
+                mode = 'r'
+            else:
+                query = f"copy {table_name} to stdout with delimiter ',' csv header NULL as 'NULL'"
+                mode = 'w'
+
+            with self.connection.cursor() as cursor:
+                with open(file, mode, encoding='utf-8') as f:
+                    cursor.copy_expert(query, f)
+                logger.debug(f'Successfully copied file {file}')
+
+        except Exception as e:
+            logger.error(f"Couldn't copy the file with query:\n{query}\n because the Exception\n{e}\n occurred.")

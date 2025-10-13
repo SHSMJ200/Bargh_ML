@@ -26,7 +26,7 @@ class CustomLinearRegression:
 
             if verbose and epoch % 100 == 0:
                 loss = np.mean(np.abs(error))
-                # print(f"Epoch {epoch}: L1 loss = {loss:.4f}")
+                print(f"Epoch {epoch}: L1 loss = {loss:.4f}")
 
     def predict(self, X):
         return X.dot(self.w) + self.b

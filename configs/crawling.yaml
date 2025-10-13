@@ -1,6 +1,6 @@
-url-historical: "https://historical-forecast-api.open-meteo.com/v1/forecast"
-url-forecast: "https://api.open-meteo.com/v1/forecast"
-hourly:
+url_historical: "https://historical-forecast-api.open-meteo.com/v1/forecast"
+url_forecast: "https://api.open-meteo.com/v1/forecast"
+hourly_features:
   - temperature_2m
   - relative_humidity_2m
   - dew_point_2m

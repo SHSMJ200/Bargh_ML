@@ -1,8 +1,7 @@
 import os
 import sys
 
-from src.crawler.crawl import ForecastCrawler
-from src.data.data_cleaning import RawData
+from src.crawler.crawl import crawl_future
 from src.models.data_selection.feature_selector import Feature_selector
 from src.models.filter_data.feature_adder import Feature_adder
 from src.models.train_model.train_model import select_dataset_features, get_y_inverse_mimo
@@ -81,7 +80,7 @@ def predict(Xs, meta_data):
 
 
 if __name__ == "__main__":
-    ForecastCrawler(file=RawData.PLANT.value).crawl()
+    crawl_future()
 
     n_mimo = 4
     model, model_X_cols = load_model()

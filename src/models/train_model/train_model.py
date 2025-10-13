@@ -14,7 +14,7 @@ from logs.logger import CustomLogger
 from joblib import dump, load
 from src.models.utils import *
 
-logger = CustomLogger(name="train_model").get_logger()
+logger = CustomLogger(__name__).get_logger()
 
 
 def get_y_inverse_mimo(df, feature_selector, name_code_df, n_mimo, ys):
@@ -150,7 +150,8 @@ if __name__ == "__main__":
 
     save_model = True
     save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
-    n_mimo = 4
+    n_mimo = 1
+
 
     df_r_selected = Data_selector(df).select_peaks(goodness=3)
 

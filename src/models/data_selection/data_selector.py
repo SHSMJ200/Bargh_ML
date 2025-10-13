@@ -1,15 +1,12 @@
 import pandas as pd
 from logs.logger import CustomLogger
 
-logger = CustomLogger(name="data_selector").get_logger()
+logger = CustomLogger(__name__).get_logger()
 
 
 class Data_selector:
     def __init__(self, df: pd.DataFrame):
         self.df = df
-
-    def select_good_peaks(self, goodness):
-        return self.df[self.df["is_good_peak"] == goodness]
 
     def select_peaks(self, goodness):
         peak_condition = (self.df['is_good_peak'] >= goodness)
