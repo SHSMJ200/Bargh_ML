@@ -85,6 +85,37 @@ class Feature_adder:
 
         self.log_filter_ratio(label=3)
 
+    def filter4(self,th = 0.9,k_filter = 6,n_filter = 4,l_min = 3):
+        feature = ['name','code',"datetime", "generation","temperature", "is_good_peak"]
+        df_modified = self.df[feature].copy(deep=True)
+        df_modified = df_modified[df_modified['is_good_peak']>=3]
+        df_modified['datetime'] = pd.to_datetime(df_modified['datetime'])
+
+        power_plants = df_modified[['name', 'code']].drop_duplicates()
+        ds = Data_selector(df_modified)
+
+        dates_by_name_code={}
+        for _, row in power_plants.iterrows():
+            name, code = row['name'], row['code']
+            
+            if code.startswith("S"):
+                dates_by_name_code[(name,code)] = []
+                continue
+            
+            df_name_code = ds.filter_name_code(name,code)
+            if len(df_name_code) == 0:
+                dates_by_name_code[(name,code)] = []
+                continue
+            
+            df_year_month,min_date,max_date = get_df_of_year_and_month(df_name_code)
+            weigth,accuracies,dates = compare_months(df_name_code,df_year_month)
+            dates_by_name_code[(name,code)] = get_date_interval(accuracies,dates,weigth,min_date,max_date,th,k_filter,n_filter,l_min)
+            
+        self.label_points(ds, power_plants, dates_by_name_code, label=4)
+
+        self.log_filter_ratio(label=3)
+
+        
     def filter5(self):
         features = ["name", "code", "generation", "temp_sens", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
@@ -251,3 +282,167 @@ def find_95_max(array):
     sorted_array = np.sort(array)
     idx = int(len(array) * 0.95)
     return sorted_array[idx]
+
+
+
+
+
+
+
+def get_df_of_year_and_month(df):
+    datetime = pd.to_datetime(df['datetime'])
+    start = datetime.min().replace(day=1)
+    end = datetime.max().replace(day=1)
+    
+    full_range = pd.date_range(start=start, end=end, freq='MS')
+    df_full_range = pd.DataFrame({'year_month': full_range})['year_month']
+    df_year_month =  pd.DataFrame({'year': df_full_range.dt.year, 'month': df_full_range.dt.month})
+    
+    return df_year_month,start,end
+
+
+def get_date_interval(result,dates,weigth,min_date,max_date,th,k_filter=6,n_filter=1,l_min=3):
+    result1 = f_n(result,k=k_filter,n=n_filter,weigth=weigth)
+    result2 = np.array([my_func(x,th) for x in result1])
+    intervals = find_intervals(result2, k=l_min)
+    dates_interval = find_time_intervals(intervals,dates)
+    
+    time_e = [min_date] + dates_interval + [max_date+pd.DateOffset(months=1)]
+    time_intervals = [(time_e[i],time_e[i+1]) for i in range(len(time_e)-1)]
+    
+    if time_intervals != [] : time_intervals = [time_intervals[-1]]
+    return time_intervals
+
+def f_n(result,k,n,weigth=None):
+    for ii in range(n):
+        result = np.array([normal_filter(result,i,k=k,weigth=weigth) for i in range(len(result))])
+    return result
+
+def normal_filter(array,index,k,weigth=None):
+    k = min(index+1,k)
+    k = min(len(array)-index,k)
+    m = 0
+    n = 0
+    for i in range(index-k,index+k+1):
+        mm,nn = get_el(array,i,i==index,weigth)
+        m += mm
+        n += nn
+        
+    return m/n if n != 0 else None
+
+def get_el(a,i,f,weigth):
+    
+    if i < 0 or i >= len(a):
+        return 0,0
+    if a[i] == None:
+        return 0,0
+    
+    if type(weigth) != np.ndarray: w = 1
+    else: w = weigth[i]
+    
+    return a[i]*w,w
+
+def my_func(x,th):
+    if x == None:
+        return None
+    if x > th:
+        return 1
+    return 0
+
+def find_intervals(arr, k):
+    start = None
+    count = 0
+    intervals = []
+    for i, num in enumerate(arr):
+        if num == 1:
+            if start is None:
+                start = i
+            count += 1
+        elif num == 0:
+            if count > k:
+                intervals.append((start, i))
+            start = None
+            count = 0
+
+    if count >= k or count == len(arr):
+        intervals.append((start, len(arr)))
+    
+    return intervals
+
+def find_time_intervals(intervals,dates):
+        
+    end = len(dates)
+    last_time = max(dates)
+    k = []
+    y1 = np.timedelta64(1,'Y').astype('timedelta64[ns]')#pd.DateOffset(years=1)#np.datesdelta64(1,'M').astype('datesdelta64[ns]')
+    m1 = np.timedelta64(1,'M').astype('timedelta64[ns]')
+    for i1,i2 in intervals:
+        if i2 != end:
+            k.append(dates[i2-1]+m1)
+        else :
+            k.append(min(dates[i1],last_time)+y1)
+    return k
+
+
+
+
+from sklearn.metrics import classification_report
+def compare_months(df_name_code,df_year_month):
+    weigth = []
+    accuracies = []
+    dates = []
+    
+    df_year_month = df_year_month.iloc[0:-12]
+    for _,row in df_year_month.drop_duplicates().iterrows():
+        month = row['month']
+        year = row['year']
+        year1 = year
+        year2 = year + 1     
+        datetime = pd.to_datetime({'year': [year], 'month': [month], 'day': [1]})
+        
+        df_month,n1,n2 = select_month(df_name_code,month,month,year1,year2)
+        weigth.append(n1+n2)
+    
+        if n1 != 0 and n2 != 0:    
+            X = df_month[["generation"]+["temperature"]]
+            y = df_month["label_month"]
+            y_pred = check(X,y)
+            d = classification_report(y, y_pred,output_dict=True,zero_division=0)
+            accuracies.append(d['accuracy'])
+            dates.append(datetime[0])
+        else:
+            accuracies.append(None)
+            dates.append(datetime[0])
+            
+    accuracies = np.array(accuracies)
+    dates = np.array(dates)
+    weigth = np.array(weigth)/sum(weigth)
+    return weigth,accuracies,dates
+
+def select_month(df,m1,m2,y1,y2):
+    df["datetime"] = pd.to_datetime(df["datetime"])
+    year_s  = df["datetime"].dt.year
+    month_s = df["datetime"].dt.month
+    mask1 = (year_s == y1) & (month_s == m1)
+    mask2 = (year_s == y2) & (month_s == m2)
+    df_month = df[mask1|mask2]
+    df_month["label_month"] = 1
+    mm1 = mask1[mask1]
+    mm2 = mask2[mask2]
+    df_month.loc[mm1.index,"label_month"] = 1
+    df_month.loc[mm2.index,"label_month"] = 2
+    return df_month,len(mm1),len(mm2)
+
+from sklearn.svm import SVC
+def check(X,y):
+    model = SVC(kernel='linear')
+    model.fit(X, y)
+    y_pred = model.predict(X)
+    return y_pred
+
+
+
+
+
+
+
