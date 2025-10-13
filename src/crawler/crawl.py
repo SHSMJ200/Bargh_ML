@@ -26,7 +26,7 @@ def get_plants_info():
     plants_data_path = RawDataConfig.PLANT.value["file_path"]
     plants_df = pd.read_csv(plants_data_path)
     available_plants_df = plants_df[plants_df['DispPlantCode'].isin(all_plants)]
-    return available_plants_df[['DispPlantCode', 'UTM']]
+    return available_plants_df[['DispPlantCode', 'PlantName', 'UTM']]
 
 
 def create_open_meteo_client():
@@ -47,7 +47,7 @@ def fetch_hourly_weather_data(open_meteo, params, url):
     return response.Hourly()
 
 
-def parse_hourly_weather(hourly, unit_id):
+def parse_hourly_weather(hourly, unit_id, unit_name):
     # Process hourly data. The order of variables needs to be the same as requested.
     variable_names = ["Temperature", "Humidity", "Dew", "ApparentTemperature",
                       "Precipitation", "Rain", "Snow", "SurfacePressure",
@@ -62,6 +62,7 @@ def parse_hourly_weather(hourly, unit_id):
     )
     hourly_data["Datetime"] = date_range
     hourly_data["UnitId"] = [unit_id] * len(date_range)
+    hourly_data["Name"] = [unit_name] * len(date_range)
 
     return pd.DataFrame(data=hourly_data)
 
@@ -80,7 +81,8 @@ def preprocess_weather_df(df):
 
     df.drop(columns=['Datetime'], axis=1, inplace=True)
 
-    new_col_order = ['UnitId', 'Date', 'Hour'] + [col for col in df.columns if col not in ['UnitId', 'Date', 'Hour']]
+    primary_cols = ['UnitId', 'Name', 'Date', 'Hour']
+    new_col_order = primary_cols + [col for col in df.columns if col not in primary_cols]
     df = df.reindex(columns=new_col_order)
 
     return df
@@ -100,7 +102,7 @@ def crawl_history(start_date: str, end_date: str):
             params = {"latitude": f_lat, "longitude": f_longit, "start_date": start_date, "end_date": end_date,
                       "hourly": hourly_features, "timezone": "auto"}
             hourly = fetch_hourly_weather_data(open_meteo, params, url)
-            hourly_df = parse_hourly_weather(hourly, row.DispPlantCode)
+            hourly_df = parse_hourly_weather(hourly, row.DispPlantCode, row.PlantName)
             hourly_df_list.append(hourly_df)
             logger.info(f'Crawling the data with latitude:{f_lat: 0.2f} & longitude:{f_longit: 0.2f} done')
 
@@ -133,7 +135,7 @@ def crawl_future():
             params = {"latitude": f_lat, "longitude": f_longit, "hourly": hourly_features, "forecast_days": 2,
                       "timezone": "auto"}
             hourly = fetch_hourly_weather_data(open_meteo, params, url)
-            hourly_df = parse_hourly_weather(hourly, row.DispPlantCode)
+            hourly_df = parse_hourly_weather(hourly, row.DispPlantCode, row.PlantName)
             hourly_df_list.append(hourly_df)
             logger.info(f'Crawling the data with latitude:{f_lat: 0.2f} & longitude:{f_longit: 0.2f} done')
 
@@ -143,9 +145,9 @@ def crawl_future():
         w_forecast_df.to_csv(w_forecast_path, index=False, na_rep='NULL')
 
         with Database() as db:
-            db.create_table(table_name='forecast', col_names_and_types=feature_dict['weather'])
+            db.create_table(table_name='weather_forecast', col_names_and_types=feature_dict['weather'])
             db.commit()
-            db.copy_expert(table_name='forecast', file=w_forecast_path, into_db=True)
+            db.copy_expert(table_name='weather_forecast', file=w_forecast_path, into_db=True)
             db.commit()
 
     except Exception as e:

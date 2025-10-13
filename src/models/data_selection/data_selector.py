@@ -10,8 +10,9 @@ class Data_selector:
 
     def select_peaks(self, goodness):
         peak_condition = (self.df['is_good_peak'] >= goodness)
+        selected_df = self.df[peak_condition]
         logger.debug(f"Rows of data has been selected successfully!")
-        return self.df[peak_condition]
+        return selected_df
 
     def filter_name_code(self, name, code, get_mask=False):
         df = self.df
@@ -20,11 +21,14 @@ class Data_selector:
             return mask
         return df[mask]
 
-    def filter_time(self, date1, date2, get_mask=False, close_open = False):
+    def filter_time(self, date1, date2, get_mask=False, include_end=True):
         df = self.df
-        
-        if close_open: mask = (df['datetime'] >= date1) & (df['datetime'] < date2)
-        else :         mask = (df['datetime'] >= date1) & (df['datetime'] <= date2)
+
+        if include_end:
+            mask = (df['datetime'] >= date1) & (df['datetime'] <= date2)
+        else:
+            mask = (df['datetime'] >= date1) & (df['datetime'] < date2)
+
         if get_mask:
             return mask
         return df[mask]

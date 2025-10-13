@@ -19,19 +19,12 @@ def add_features_and_filter(l_min, max_diff, c_thresh):
     df = pd.read_csv(csv_read_path, encoding='utf-8')
 
     feature_adder = Feature_adder(df)
-    for feature in ["temperature", "humidity", "dew", "surface_pressure"]:
-        for hour in [1, 5]:
-            feature_adder.create_feature_with_delay(feature, hour)
-
-    feature_adder.create_feature_with_delay("generation", 24)
-    # feature_adder.df.dropna(inplace=True)
-
     feature_adder.filter1()
-    feature_adder.filter2(l_min=l_min, max_diff=max_diff)
-    feature_adder.filter3("temperature", c_thresh=c_thresh)
-    feature_adder.add_interval_id()
-    feature_adder.filter4()
-    feature_adder.filter5()
+    feature_adder.filter2(l_min=l_min, max_diff=max_diff, initial_label=1)
+    feature_adder.filter3("temperature", c_thresh=c_thresh, initial_label=2)
+    feature_adder.add_interval_id(initial_label=3)
+    feature_adder.filter4(initial_label=3)
+    feature_adder.filter5(initial_label=4)
 
     feature_adder.df.to_csv(csv_semi_write_path, index=False)
 

@@ -1,99 +1,111 @@
 import os
 import sys
 
-from src.crawler.crawl import crawl_future
-from src.models.data_selection.feature_selector import Feature_selector
+import yaml
+
+from src.models.data_selection.data_selector import Data_selector
 from src.models.filter_data.feature_adder import Feature_adder
-from src.models.train_model.train_model import select_dataset_features, get_y_inverse_mimo
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = current_dir[:current_dir.find("src") - 1]
 sys.path.insert(0, project_root)
 
+from src.crawler.crawl import crawl_future
+from src.models.data_selection.feature_selector import Feature_selector
+from src.root import get_root
+
 import pandas as pd
+import re
 from joblib import load
 
-
-def load_model():
-    save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
-    with open(f"{save_model_folder}/model_cols.pkl", 'rb') as f:
-        model_X_cols = load(f)
-    model = load(f"{save_model_folder}/model.joblib")
-    return model, model_X_cols
-
-
-def convert_df_to_Xs(final_input_df, model_X_cols, n_mimo):
-    feature_adder = Feature_adder(final_input_df, add_label_column=False)
-    features_with_lag = ["temperature", "humidity", "dew", "surface_pressure"]
-    hours_delay = [1, 5]
-    for feature in features_with_lag:
-        for hour in hours_delay:
-            feature_adder.create_feature_with_delay(feature, hour, drop_null=False)
-    final_input_df.dropna(inplace=True)
-    base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "value",
-                     "forecast", "status"]
-    lag_features = [f"{feature}_with_{hour}_delay" for feature in features_with_lag for hour in hours_delay]
-    time_features = ["hour", "day_of_week", "month", "season", "datetime"]
-    final_input_df["generation"] = 0
-    df_f_selected = select_dataset_features(final_input_df, base_features, lag_features, time_features, "generation")
-    feature_selector = Feature_selector(df_f_selected, target="generation")
-    Xs, ys, name_code_df = feature_selector.get_X_and_y(n_mimo=n_mimo)
-    Xs = Xs.reindex(columns=model_X_cols)
-    Xs = Xs.fillna(False).infer_objects(copy=False)
-    meta_data = {}
-    meta_data["df_f_selected"] = df_f_selected
-    meta_data["feature_selector"] = feature_selector
-    meta_data["name_code_df"] = name_code_df
-    return Xs, meta_data
-
-
-def preprocess_and_merge_dfs(commitment_df, input_df, weather_forecast_df):
-    name_code_id_df = commitment_df[["id", "name", "code"]].drop_duplicates()
-    weather_forecast_df = weather_forecast_df.rename(
-        columns={'temperature_2m': 'temperature', 'relative_humidity_2m': 'humidity', 'dew_point_2m': 'dew',
-                 "time": 'hour', 'unitid': 'id'})
-    weather_forecast_df['date'] = pd.to_datetime(weather_forecast_df['date'])
-    input_df['date'] = pd.to_datetime(input_df['date'])
-    input_df = input_df.sort_values(by=["date", "hour"])
-    weather_forecast_df = pd.merge(weather_forecast_df, name_code_id_df, on='id', how='left')
-    final_input_df = pd.merge(input_df, weather_forecast_df, on=['name', 'code', 'date', 'hour'], how='outer')
-    return final_input_df
+tables_config_path = get_root() + '/configs/tables_columns.yaml'
+feature_dict = yaml.load(open(tables_config_path), Loader=yaml.SafeLoader)
 
 
 def read_dfs():
-    commitment_path = os.path.join(project_root, "data", "interim", "commitment.csv")
     weather_forecast_path = os.path.join(project_root, "data", "interim", "weather_forecast.csv")
     xlsx_input_path = os.path.join(project_root, "src", "models", "prediction", "one_day_input.xlsx")
-    commitment_df = pd.read_csv(commitment_path)
     weather_forecast_df = pd.read_csv(weather_forecast_path)
     input_df = pd.read_excel(xlsx_input_path)
-    return commitment_df, input_df, weather_forecast_df
+    return input_df, weather_forecast_df
 
 
-def predict(Xs, meta_data):
-    df_f_selected = meta_data["df_f_selected"]
-    feature_selector = meta_data["feature_selector"]
-    name_code_df = meta_data["name_code_df"]
-    ys_pred = model.predict(Xs)
-    y_pred = get_y_inverse_mimo(df_f_selected, feature_selector, name_code_df, n_mimo, ys_pred)
-    return y_pred
+def preprocess_and_merge_dfs(input_df, weather_forecast_df):
+    new_cols = ["id", "name", "date", "hour", "temperature", "humidity", "dew",
+                "apparent_temperature", "precipitation", "rain", "snow",
+                "surface_pressure", "evapotranspiration", "wind_speed", "wind_direction"]
+    weather_forecast_df.columns = new_cols
+    weather_forecast_df['date'] = pd.to_datetime(weather_forecast_df['date'])
+    input_df['date'] = pd.to_datetime(input_df['date'])
+    final_input_df = pd.merge(input_df, weather_forecast_df, on=['name', 'date', 'hour'], how='left')
+    final_input_df = Feature_adder(final_input_df, add_label_column=False).df
+    return final_input_df
+
+
+def select_needed_features(final_input_df):
+    final_input_df["generation"] = 0
+
+    base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "temp_sens"]
+    time_features = ["hour", "day_of_week", "month"]
+    feature_selector = Feature_selector(final_input_df, "generation")
+    feature_selector.filter_features(features_to_select=base_features + time_features)
+    df_f_selected = feature_selector.df
+    return df_f_selected
+
+
+def extract_name_code_from_filename(filename):
+    # We assume that filename is : model_{name}_{code}.joblib
+    pattern = r"model_(.+)_(.+)\.joblib"
+
+    match = re.match(pattern, filename)
+    if match:
+        name = match.group(1)
+        code = match.group(2)
+    else:
+        name, code = None, None
+
+    return name, code
+
+
+def load_models(folder_path):
+    models_dict = {}
+    for filename in os.listdir(folder_path):
+        name, code = extract_name_code_from_filename(filename)
+        if name and code:
+            model = load(f"{folder_path}/{filename}")
+            models_dict[name, code] = model
+
+    return models_dict
 
 
 if __name__ == "__main__":
     crawl_future()
 
-    n_mimo = 4
-    model, model_X_cols = load_model()
+    save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
+    models_dict = load_models(save_model_folder)
 
-    commitment_df, input_df, weather_forecast_df = read_dfs()
+    input_df, weather_forecast_df = read_dfs()
 
-    final_input_df = preprocess_and_merge_dfs(commitment_df, input_df, weather_forecast_df)
+    final_input_df = preprocess_and_merge_dfs(input_df, weather_forecast_df)
 
-    Xs, meta_data = convert_df_to_Xs(final_input_df, model_X_cols, n_mimo)
+    df_selected = select_needed_features(final_input_df)
 
-    y_pred = predict(Xs, meta_data)
+    ds_n_c = Data_selector(df_selected)
+    ds_n_c.df = ds_n_c.df.dropna()
+    power_plants = ds_n_c.df[['name', 'code']].drop_duplicates()
+    for row in power_plants.itertuples():
+        name, code = row.name, row.code
 
-    input_df["prediction"] = y_pred
+        df_n_c = ds_n_c.filter_name_code(name, code)
+
+        fs_n_c = Feature_selector(df_n_c, "generation")
+        fs_n_c.filter_features(features_to_drop=["name", "code"])
+        X, _ = fs_n_c.get_X_and_y()
+        # X = make_onehot(X)
+
+        model = models_dict[name, code]
+        y_pred = model.predict(X)
+        input_df.loc[X.index, "prediction"] = y_pred
+
     xlsx_output_path = os.path.join(project_root, "src", "models", "prediction", "one_day_output.xlsx")
-
     input_df.to_excel(xlsx_output_path)

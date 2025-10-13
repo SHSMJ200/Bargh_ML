@@ -63,6 +63,7 @@ commitment:
 
 weather:
   id: varchar(50)
+  name: varchar(100)
   date: text
   hour: int
   temperature: float
