@@ -17,7 +17,8 @@ def add_features_and_filter(l_min, max_diff, c_thresh):
     csv_semi_write_path = os.path.join(project_root, "data", "processed", "semi_processed.csv")
 
     df = pd.read_csv(csv_read_path, encoding='utf-8')
-
+    df.dropna(subset=["generation"],inplace=True)
+    
     feature_adder = Feature_adder(df)
     feature_adder.filter1()
     feature_adder.filter2(l_min=l_min, max_diff=max_diff, initial_label=1)
