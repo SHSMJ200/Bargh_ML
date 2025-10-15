@@ -36,7 +36,7 @@ def select_features(df_r_selected):
     return df_f_selected
 
 
-def train_and_test_model(X, y, folder_path):
+def train_and_test_model(X, y, folder_path,name,code):
     X_train, X_test, y_train, y_test = split_X_and_y(X, y, test_size=0.2, shuffle=False)
 
     # model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=100, max_depth=3, learning_rate=0.1)
@@ -65,6 +65,7 @@ if __name__ == "__main__":
     power_plants = ds_n_c.df[['name', 'code']].drop_duplicates()
     train_errors = []
     test_errors = []
+    num = []
     for row in power_plants.itertuples():
         name, code = row.name, row.code
         logger.info(f"Train and test data related to {name}_{code}:")
@@ -76,10 +77,16 @@ if __name__ == "__main__":
         X, y = fs_n_c.get_X_and_y()
         # X = make_onehot(X)
 
-        train_error, test_error = train_and_test_model(X, y, save_model_folder)
-        logger.info(f"Train rmse error: {train_error:.3f}%, Test rmse error: {test_error:.3f}%")
+        train_error, test_error = train_and_test_model(X, y, save_model_folder,name,code)
+        logger.info(f"Train rmse error: {train_error:.3f}%, Test rmse error: {test_error:.3f}% , Number of data: {len(y)}")
         train_errors.append(train_error)
         test_errors.append(test_error)
-
-    print(np.mean(train_errors))
-    print(np.mean(test_errors))
+        num.append(len(y))
+    
+    num = np.array(num)
+    train_errors = np.array(train_errors)
+    test_errors = np.array(test_errors)
+    print(np.average(train_errors,weights=num))
+    print(np.average(test_errors,weights=num))
+    print(num)
+    

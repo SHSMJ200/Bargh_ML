@@ -135,22 +135,23 @@ class Feature_adder:
             sens_temps = one_unit_df['temp_sens'].values
             gens = one_unit_df['generation'].values
 
-            sorted_idx = np.argsort(sens_temps)
-            sens_temps, gens = sens_temps[sorted_idx], gens[sorted_idx]
 
-            hist, bin_edges = np.histogram(sens_temps, bins=101)
-            group_indices = np.digitize(sens_temps, bin_edges) - 1
+            sorted_idx = np.argsort(sens_temps)
+            sens_temps_sorted, gens_sorted = sens_temps[sorted_idx], gens[sorted_idx]
+
+            hist, bin_edges = np.histogram(sens_temps_sorted, bins=101)
+            group_indices = np.digitize(sens_temps_sorted, bin_edges) - 1
             tuples = []
 
             for g in np.unique(group_indices):
                 mask = group_indices == g
-                tuples.append((sens_temps[mask].mean(), find_95_max(gens[mask])))
+                tuples.append((sens_temps_sorted[mask].mean(), find_95_max(gens_sorted[mask])))
 
             X = np.array([a for a, b in tuples]).reshape(-1, 1)
             y = np.array([b for a, b in tuples])
             model = LinearRegression()
             model.fit(X, y)
-
+            
             X_all = sens_temps.reshape(-1, 1)
             y_pred_all = model.predict(X_all)
 
