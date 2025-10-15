@@ -6,7 +6,8 @@ project_root = current_dir[:current_dir.find("src") - 1]
 sys.path.insert(0, project_root)
 
 import xgboost as xgb
-from joblib import dump, load
+from sklearn.linear_model import LinearRegression
+from joblib import dump
 
 from src.models.data_selection.data_selector import Data_selector
 from src.models.data_selection.feature_selector import Feature_selector
@@ -38,7 +39,8 @@ def select_features(df_r_selected):
 def train_and_test_model(X, y, folder_path):
     X_train, X_test, y_train, y_test = split_X_and_y(X, y, test_size=0.2, shuffle=False)
 
-    model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=100, max_depth=3, learning_rate=0.1)
+    # model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=100, max_depth=3, learning_rate=0.1)
+    model = LinearRegression()
     model.fit(X_train, y_train)
     dump(model, f"{folder_path}/model_{name}_{code}.joblib")
 
@@ -51,7 +53,7 @@ def train_and_test_model(X, y, folder_path):
 
 
 if __name__ == "__main__":
-    goodness_to_select = 3
+    goodness_to_select = 5
     save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
 
     df_r_selected = select_data(goodness_to_select)

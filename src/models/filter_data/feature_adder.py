@@ -428,13 +428,12 @@ def compare_months(df_name_code, df_year_month):
 
 
 def select_month(df, m1, m2, y1, y2):
-    df["datetime"] = pd.to_datetime(df["datetime"])
     year_s = df["datetime"].dt.year
     month_s = df["datetime"].dt.month
     mask1 = (year_s == y1) & (month_s == m1)
     mask2 = (year_s == y2) & (month_s == m2)
-    df_month = df[mask1 | mask2]
-    df_month["label_month"] = 1
+    df_month = df[mask1 | mask2].copy()
+    df_month["label_month"] = 0
     mm1 = mask1[mask1]
     mm2 = mask2[mask2]
     df_month.loc[mm1.index, "label_month"] = 1

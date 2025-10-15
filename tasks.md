@@ -4,13 +4,11 @@
 * Make product
 * Is there any name, code which don't have any interval in is_good_peak = 3???? Yes there is but the problem is related to filter1. No problem just mention it.
 * Why LF1?
-* time = 24? meaning? (?) 
 * Output & input format (?)
 * LF1-FO (?)
 * Tune hyperparameters.
 * Compare with declare
 * Loggers
-* Clean the code
 * Generation vs sen_temperature was good. How about other features?
 * How about filter when generation is equal to declare?
 * We have a and b of each plant
@@ -19,15 +17,16 @@
 * time = 25???
 * فرض: در جداول آن‌ها تغییر ساعت لحاظ نشده و همیشه +3:30 نوشته شده است
 * فرض : ساعت ۱۵ یعنی از ساعت ۱۴ تا ۱۵
+* time = 24? meaning? (?)
 * We delete data that doesn't have "SCADAF" temp
 * چرا درصد فیلتر ۳ افت کرد؟
 * چرا درصد فیلتر ۲ زیاد شد؟
 * آیا دقت این ایده‌ی آخری خوب هست?
 * I have removed "season" column
-* چرا طول داده دو برابر شد؟
 
   🟨 Doing
   ==========================
+* Clean the code
 
 * 
 
