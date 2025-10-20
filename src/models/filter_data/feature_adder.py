@@ -14,15 +14,19 @@ logger = CustomLogger(__name__).get_logger()
 class Feature_adder:
     def __init__(self, df: pd.DataFrame, add_label_column=True):
         self.df = df
-        self.add_time_features()
-        if add_label_column: self.df["is_good_peak"] = 0
         self.time_ranges_by_name_code = {}
         self.c_time_ranges_by_name_code = {}
 
+        self.add_time_features()
+        self.df.sort_values(by=['name', 'code', 'datetime'], inplace=True)
+
+        if add_label_column:
+            self.df["is_good_peak"] = 0
+
     def create_feature_with_delay(self, feature, n_delay):
         new_feature = f"{feature}_with_{n_delay}_delay"
-        temp = self.df.sort_values(by=['code', 'name', 'date', 'hour'])
-        self.df[new_feature] = temp.groupby(['code', 'name'])[feature].shift(n_delay)
+        sorted_df = self.df.sort_values(by=['code', 'name', 'datetime'])
+        self.df[new_feature] = sorted_df.groupby(['code', 'name'])[feature].shift(n_delay)
 
         logger.debug(f"A new column created: {feature} with {n_delay} hours delay")
 
@@ -32,16 +36,18 @@ class Feature_adder:
         self.df['season'] = self.df['date'].apply(get_season)
         self.df['day_of_week'] = self.df['datetime'].dt.dayofweek
         self.df['month'] = self.df['datetime'].dt.month
-        self.df.sort_values(by=['name', 'code', 'datetime'], inplace=True)
 
-        logger.debug(f"Season column was created")
+        logger.debug(f"Temporal columns were created")
+
+    def select_gas_plants(self):
+        self.df = self.df[self.df['code'].str.startswith("G")]
 
     def filter1(self):
+        # We assume that start_md < end_md
         start_md = "05-22"
         end_md = "09-22"
-        # We assume that start_md < end_md
-        statusM_mask = (self.df['datetime'].dt.strftime('%m-%d') >= start_md) & (
-                self.df['datetime'].dt.strftime('%m-%d') <= end_md)
+        statusM_mask = (self.df['date'].dt.strftime('%m-%d') >= start_md) & (
+                self.df['date'].dt.strftime('%m-%d') <= end_md)
         peak_condition = (self.df['load_level'] == 'P') | (self.df['load_level'] == 'M') & statusM_mask
         peak_condition = peak_condition & ((self.df['status'] == 'SO') | (self.df['status'] == 'LF1'))
 
@@ -67,8 +73,8 @@ class Feature_adder:
 
         self.log_filter_ratio(label=2)
 
-    def filter3(self, feature1, initial_label, c_thresh=0.9):
-        features = ["name", "code", "datetime", "generation", "is_good_peak"] + [feature1]
+    def filter3(self, feature, initial_label, c_thresh=0.9):
+        features = ["name", "code", "datetime", "generation", "is_good_peak"] + [feature]
         df_modified = self.df[features].copy(deep=True)
         df_modified = df_modified[df_modified["is_good_peak"] >= initial_label]
 
@@ -80,39 +86,34 @@ class Feature_adder:
             name, code = row['name'], row['code']
             df_name_code = ds.filter_name_code(name, code)
             time_ranges = self.time_ranges_by_name_code[(name, code)]
-            consistent_time_ranges = find_consistency(df_name_code, feature1, time_ranges, c_thresh, corr_pearsons)
+            consistent_time_ranges = find_consistency(df_name_code, feature, time_ranges, c_thresh, corr_pearsons)
             self.c_time_ranges_by_name_code[(name, code)] = consistent_time_ranges
 
         self.label_points(ds, power_plants, self.c_time_ranges_by_name_code, label=3)
 
         self.log_filter_ratio(label=3)
 
-    def filter4(self, initial_label, th=0.9, k_filter=6, n_filter=4, l_min=3):
-        # TODO: this function should be cleaned
-        feature = ['name', 'code', "datetime", "generation", "temperature", "is_good_peak"]
-        df_modified = self.df[feature].copy(deep=True)
+    def filter4(self, initial_label, thresh=0.9, k_filter=6, n_filter=4, l_min=3):
+        self.add_interval_id(initial_label)
+
+        features = ['name', 'code', "datetime", "generation", "temperature", "is_good_peak"]
+        df_modified = self.df[features].copy(deep=True)
         df_modified = df_modified[df_modified['is_good_peak'] >= initial_label]
-        df_modified['datetime'] = pd.to_datetime(df_modified['datetime'])
 
         power_plants = df_modified[['name', 'code']].drop_duplicates()
         ds = Data_selector(df_modified)
-
         dates_by_name_code = {}
-        for _, row in power_plants.iterrows():
-            name, code = row['name'], row['code']
-
-            if code.startswith("S"):
-                dates_by_name_code[(name, code)] = []
-                continue
-
+        for row in power_plants.itertuples():
+            name, code = row.name, row.code
             df_name_code = ds.filter_name_code(name, code)
-            if len(df_name_code) == 0:
-                dates_by_name_code[(name, code)] = []
-                continue
 
-            df_year_month, min_date, max_date = get_df_of_year_and_month(df_name_code)
-            weight, accuracies, dates = compare_months(df_name_code, df_year_month)
-            dates_by_name_code[(name, code)] = get_date_interval(accuracies, dates, weight, min_date, max_date, th,
+            df_year_month, min_date, max_date = get_df_year_month(df_name_code)
+
+            weights, accuracies, dates = compare_months(df_name_code, df_year_month)
+            if len(dates) == 0:
+                print(name, code)
+                print(len(df_year_month), min_date, max_date)
+            dates_by_name_code[(name, code)] = get_date_interval(accuracies, dates, weights, min_date, max_date, thresh,
                                                                  k_filter, n_filter, l_min)
 
         self.label_points(ds, power_plants, dates_by_name_code, label=4)
@@ -120,47 +121,26 @@ class Feature_adder:
         self.log_filter_ratio(label=4)
 
     def filter5(self, initial_label):
-        # TODO: this function should be cleaned
         features = ["name", "code", "generation", "temp_sens", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
         df_modified = df_modified[df_modified["is_good_peak"] >= initial_label]
-        df_modified = df_modified.dropna()
+        ds = Data_selector(df_modified)
+
+        all_indices = []
         power_plants = df_modified[['name', 'code']].drop_duplicates()
-        gas_plants = power_plants[power_plants['code'].str.startswith("G")]
-        for row in gas_plants.itertuples():
-            name = row.name
-            code = row.code
-            one_unit_df = df_modified[(df_modified['name'] == name) & (df_modified['code'] == code)]
+        for row in power_plants.itertuples():
+            name, code = row.name, row.code
+            one_unit_df = ds.filter_name_code(name, code)
 
             sens_temps = one_unit_df['temp_sens'].values
             gens = one_unit_df['generation'].values
 
+            X, y = find_points_on_envelope(gens, sens_temps)
 
-            sorted_idx = np.argsort(sens_temps)
-            sens_temps_sorted, gens_sorted = sens_temps[sorted_idx], gens[sorted_idx]
+            near_envelope_indices = select_envelope_neighbors_indices(X, y, one_unit_df, alpha=2, beta=5)
+            all_indices.extend(near_envelope_indices)
 
-            hist, bin_edges = np.histogram(sens_temps_sorted, bins=101)
-            group_indices = np.digitize(sens_temps_sorted, bin_edges) - 1
-            tuples = []
-
-            for g in np.unique(group_indices):
-                mask = group_indices == g
-                tuples.append((sens_temps_sorted[mask].mean(), find_95_max(gens_sorted[mask])))
-
-            X = np.array([a for a, b in tuples]).reshape(-1, 1)
-            y = np.array([b for a, b in tuples])
-            model = LinearRegression()
-            model.fit(X, y)
-            
-            X_all = sens_temps.reshape(-1, 1)
-            y_pred_all = model.predict(X_all)
-
-            alpha = 2
-            beta = 5
-            is_in_area = (y_pred_all + alpha >= gens) & (gens >= y_pred_all - beta)
-
-            good_indices = one_unit_df[is_in_area].index
-            self.df.loc[good_indices, "is_good_peak"] = 5
+        self.df.loc[all_indices, "is_good_peak"] = 5
 
         self.log_filter_ratio(label=5)
 
@@ -203,18 +183,6 @@ class Feature_adder:
         count_old_label = len(self.df[self.df["is_good_peak"] >= label - 1])
         consistency_percentage = count_new_label / count_old_label * 100
         logger.info(f"{consistency_percentage:0.2f}% of rows have been chosen by filter{label}")
-
-    def add_difference_column(self, feature, order=1):
-        df = self.df
-
-        new_feature = f"{feature}_difference_{order}_order"
-        df[new_feature] = None
-        power_plants = df[['name', 'code']].drop_duplicates()
-        for _, row in power_plants.iterrows():
-            df_name_code = Data_selector(df).filter_name_code(row["name"], row["code"])
-            df.loc[df_name_code.index, new_feature] = df_name_code[feature].diff()
-
-        df[new_feature] = df[new_feature].astype(float)
 
 
 def get_season(date):
@@ -283,86 +251,69 @@ def are_trends_similar(arr1, arr2, threshold, opposite_trend=False):
     return corr_pearson, (corr_pearson < -threshold)
 
 
-def find_95_max(array):
+def get_percentile(array, p):
     array = np.array(array)
     sorted_array = np.sort(array)
-    idx = int(len(array) * 0.95)
+    idx = int(len(array) * p)
     return sorted_array[idx]
 
 
-def get_df_of_year_and_month(df):
-    datetime = pd.to_datetime(df['datetime'])
-    start = datetime.min().replace(day=1)
-    end = datetime.max().replace(day=1)
+def get_df_year_month(df):
+    start = df['datetime'].min().replace(day=1)
+    end = df['datetime'].max().replace(day=1)
 
     full_range = pd.date_range(start=start, end=end, freq='MS')
-    df_full_range = pd.DataFrame({'year_month': full_range})['year_month']
-    df_year_month = pd.DataFrame({'year': df_full_range.dt.year, 'month': df_full_range.dt.month})
+    df_year_month = pd.DataFrame({'year': full_range.year, 'month': full_range.month})
 
     return df_year_month, start, end
 
 
-def get_date_interval(result, dates, weight, min_date, max_date, th, k_filter=6, n_filter=1, l_min=3):
-    result1 = f_n(result, k=k_filter, n=n_filter, weight=weight)
-    result2 = np.array([my_func(x, th) for x in result1])
-    intervals = find_intervals(result2, k=l_min)
-    dates_interval = find_time_intervals(intervals, dates)
+def get_date_interval(accuracies, dates, weights, min_date, max_date, thresh, k_filter=6, n_filter=1, l_min=3):
 
-    time_e = [min_date] + dates_interval + [max_date + pd.DateOffset(months=1)]
-    time_intervals = [(time_e[i], time_e[i + 1]) for i in range(len(time_e) - 1)]
+    normalized_accuracies = iterative_normal_filter(accuracies, k=k_filter, n=n_filter, weights=weights)
 
-    if time_intervals: time_intervals = [time_intervals[-1]]
-    return time_intervals
+    binary_accuracies = [None if x is None else int(x > thresh) for x in normalized_accuracies]
 
+    intervals = find_1_intervals(binary_accuracies, k=l_min)
+    dates_cut_offs = find_time_cut_offs(intervals, dates)
+    dates_cut_offs = [min_date] + dates_cut_offs
+    if max_date + pd.DateOffset(months=1) not in dates_cut_offs:
+        dates_cut_offs.append(max_date + pd.DateOffset(months=1))
 
-def f_n(result, k, n, weight=None):
-    # TODO: this function should be cleaned
-
-    for ii in range(n):
-        result = np.array([normal_filter(result, i, k=k, weight=weight) for i in range(len(result))])
-    return result
+    date_intervals = [(dates_cut_offs[i], dates_cut_offs[i + 1]) for i in range(len(dates_cut_offs) - 1)]
+    return [date_intervals[-1]]
 
 
-def normal_filter(array, index, k, weight=None):
-    k = min(index + 1, k)
-    k = min(len(array) - index, k)
-    m = 0
-    n = 0
-    for i in range(index - k, index + k + 1):
-        mm, nn = get_el(array, i, weight)
-        m += mm
-        n += nn
-
-    return m / n if n != 0 else None
+def iterative_normal_filter(result, k, n, weights):
+    for _ in range(n):
+        result = [normal_filter(result, i, n_neighbors=k, weights=weights) for i in range(len(result))]
+    return np.array(result)
 
 
-def get_el(a, i, weight):
-    if i < 0 or i >= len(a):
-        return 0, 0
-    if a[i] is None:
-        return 0, 0
+def normal_filter(array, index, n_neighbors, weights):
+    n_neighbors = min(n_neighbors, index + 1, len(array) - index)
+    sum = 0
+    num = 0
+    for j in range(index - n_neighbors, index + n_neighbors + 1):
+        d_sum, d_num = get_element(array, j, weights)
+        sum += d_sum
+        num += d_num
 
-    if not isinstance(weight, np.ndarray):
-        w = 1
-    else:
-        w = weight[i]
-
-    return a[i] * w, w
+    return sum / num if num != 0 else None
 
 
-def my_func(x, th):
-    if x is None:
-        return None
-    if x > th:
-        return 1
-    return 0
+def get_element(array, i, weights):
+    if 0 <= i < len(array):
+        if array[i] is not None:
+            return array[i] * weights[i], weights[i]
+    return 0, 0
 
 
-def find_intervals(arr, k):
+def find_1_intervals(b_accuracies, k):
     start = None
     count = 0
     intervals = []
-    for i, num in enumerate(arr):
+    for i, num in enumerate(b_accuracies):
         if num == 1:
             if start is None:
                 start = i
@@ -373,77 +324,109 @@ def find_intervals(arr, k):
             start = None
             count = 0
 
-    if count >= k or count == len(arr):
-        intervals.append((start, len(arr)))
+    if count >= k or count == len(b_accuracies):
+        intervals.append((start, len(b_accuracies)))
 
     return intervals
 
 
-def find_time_intervals(intervals, dates):
+def find_time_cut_offs(intervals, dates):
     end = len(dates)
-    last_time = max(dates)
-    k = []
-    y1 = np.timedelta64(1, 'Y').astype('timedelta64[ns]')
-    # pd.DateOffset(years=1)
-    # np.datesdelta64(1,'M').astype('datesdelta64[ns]')
-    m1 = np.timedelta64(1, 'M').astype('timedelta64[ns]')
+    if end == 0:
+        return []
+
+    cut_offs = []
+    one_year = np.timedelta64(1, 'Y').astype('timedelta64[ns]')
+    one_month = np.timedelta64(1, 'M').astype('timedelta64[ns]')
     for i1, i2 in intervals:
         if i2 != end:
-            k.append(dates[i2 - 1] + m1)
+            cut_offs.append(dates[i2 - 1] + one_month)
         else:
-            k.append(min(dates[i1], last_time) + y1)
-    return k
+            cut_offs.append(dates[i1] + one_year)
+    return cut_offs
 
 
 def compare_months(df_name_code, df_year_month):
-    weight = []
+    weights = []
     accuracies = []
     dates = []
 
     df_year_month = df_year_month.iloc[0:-12]
-    for _, row in df_year_month.drop_duplicates().iterrows():
-        month = row['month']
-        year = row['year']
-        year1 = year
-        year2 = year + 1
-        datetime = pd.to_datetime({'year': [year], 'month': [month], 'day': [1]})
+    for _, row in df_year_month.iterrows():
+        month, year = row['month'], row['year']
 
-        df_month, n1, n2 = select_month(df_name_code, month, month, year1, year2)
-        weight.append(n1 + n2)
+        df_two_months, n_df1, n_df2 = select_df_two_months(df_name_code, month, month, year, year + 1)
+        weights.append(n_df1 + n_df2)
 
-        if n1 != 0 and n2 != 0:
-            X = df_month[["generation"] + ["temperature"]]
-            y = df_month["label_month"]
-            y_pred = check(X, y)
-            d = classification_report(y, y_pred, output_dict=True, zero_division=0)
-            accuracies.append(d['accuracy'])
-            dates.append(datetime[0])
+        dates_array = pd.to_datetime({'year': [year], 'month': [month], 'day': [1]})
+        if n_df1 != 0 and n_df2 != 0:
+            X = df_two_months[["generation", "temp_sens"]]
+            y = df_two_months["label_month"]
+            sep_acc = linear_separability_check(X, y)
+            accuracies.append(sep_acc)
         else:
             accuracies.append(None)
-            dates.append(datetime[0])
+        dates.append(dates_array[0])
 
     accuracies = np.array(accuracies)
     dates = np.array(dates)
-    weight = np.array(weight) / sum(weight)
-    return weight, accuracies, dates
+    weights = np.array(weights) / sum(weights)
+
+    return weights, accuracies, dates
 
 
-def select_month(df, m1, m2, y1, y2):
-    year_s = df["datetime"].dt.year
-    month_s = df["datetime"].dt.month
-    mask1 = (year_s == y1) & (month_s == m1)
-    mask2 = (year_s == y2) & (month_s == m2)
-    df_month = df[mask1 | mask2].copy()
-    df_month["label_month"] = 0
-    mm1 = mask1[mask1]
-    mm2 = mask2[mask2]
-    df_month.loc[mm1.index, "label_month"] = 1
-    df_month.loc[mm2.index, "label_month"] = 2
-    return df_month, len(mm1), len(mm2)
+def select_df_two_months(df, m1, m2, y1, y2):
+    years = df["datetime"].dt.year
+    months = df["datetime"].dt.month
+
+    mask1 = (years == y1) & (months == m1)
+    df1 = df[mask1].copy()
+    df1["label_month"] = 1
+
+    mask2 = (years == y2) & (months == m2)
+    df2 = df[mask2].copy()
+    df2["label_month"] = 2
+
+    df_two_months = pd.concat([df1, df2])
+
+    return df_two_months, len(df1), len(df2)
 
 
-def check(X, y):
+def linear_separability_check(X, y):
     model = SVC(kernel='linear')
     model.fit(X, y)
     y_pred = model.predict(X)
-    return y_pred
+
+    report = classification_report(y, y_pred, output_dict=True, zero_division=0)
+
+    return report['accuracy']
+
+
+def find_points_on_envelope(gens, sens_temps):
+    sorted_idx = np.argsort(sens_temps)
+    sens_temps_sorted, gens_sorted = sens_temps[sorted_idx], gens[sorted_idx]
+
+    hist, bin_edges = np.histogram(sens_temps_sorted, bins=101)
+    group_indices = np.digitize(sens_temps_sorted, bin_edges) - 1
+
+    points = []
+    for g in np.unique(group_indices):
+        mask = group_indices == g
+        points.append((sens_temps_sorted[mask].mean(), get_percentile(gens_sorted[mask], p=0.95)))
+
+    X = np.array([a for a, b in points]).reshape(-1, 1)
+    y = np.array([b for a, b in points])
+    return X, y
+
+
+def select_envelope_neighbors_indices(X, y, one_unit_df, alpha, beta):
+    model = LinearRegression()
+    model.fit(X, y)
+
+    sens_temps = one_unit_df['temp_sens'].values
+    gens = one_unit_df['generation'].values
+    X_all = sens_temps.reshape(-1, 1)
+    y_pred_all = model.predict(X_all)
+
+    is_in_area = (y_pred_all + alpha >= gens) & (gens >= y_pred_all - beta)
+    return one_unit_df[is_in_area].index
