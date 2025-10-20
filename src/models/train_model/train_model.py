@@ -89,4 +89,9 @@ if __name__ == "__main__":
     print(np.average(train_errors,weights=num))
     print(np.average(test_errors,weights=num))
     print(num)
+    print(train_errors)
+    print(test_errors)
+    
+    
+    
     
