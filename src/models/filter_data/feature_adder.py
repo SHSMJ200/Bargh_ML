@@ -96,7 +96,7 @@ class Feature_adder:
     def filter4(self, initial_label, thresh=0.9, k_filter=6, n_filter=4, l_min=3):
         self.add_interval_id(initial_label)
 
-        features = ['name', 'code', "datetime", "generation", "temperature", "is_good_peak"]
+        features = ['name', 'code', "datetime", "generation", "temp_sens", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
         df_modified = df_modified[df_modified['is_good_peak'] >= initial_label]
 
