@@ -37,22 +37,4 @@ class CustomLogger:
             self.logger.addHandler(console_handler)
 
     def get_logger(self):
-        return LoggerAdapter(self.logger)
-
-
-class LoggerAdapter(logging.LoggerAdapter):
-
-    def debug(self, msg: str, *args, **kwargs):
-        super().debug(msg, *args, **{**kwargs, "stacklevel": 2})
-
-    def info(self, msg: str, *args, **kwargs):
-        super().info(msg, *args, **{**kwargs, "stacklevel": 2})
-
-    def warning(self, msg: str, *args, **kwargs):
-        super().warning(msg, *args, **{**kwargs, "stacklevel": 2})
-
-    def error(self, msg: str, *args, **kwargs):
-        super().error(msg, *args, **{**kwargs, "stacklevel": 2})
-
-    def critical(self, msg: str, *args, **kwargs):
-        super().critical(msg, *args, **{**kwargs, "stacklevel": 2})
+        return logging.LoggerAdapter(self.logger)

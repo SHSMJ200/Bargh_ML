@@ -2,3 +2,4 @@
 data/
 src/visualization/unit_figs/
 .idea
+src/models/fitted_models/*.joblib

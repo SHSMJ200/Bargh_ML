@@ -2,7 +2,6 @@
 ==========================
 
 * Make product
-* Is there any name, code which don't have any interval in is_good_peak = 3???? Yes there is but the problem is related to filter1. No problem just mention it.
 * Why LF1?
 * Output & input format (?)
 * LF1-FO (?)
@@ -17,16 +16,15 @@
 * time = 25???
 * فرض: در جداول آن‌ها تغییر ساعت لحاظ نشده و همیشه +3:30 نوشته شده است
 * فرض : ساعت ۱۵ یعنی از ساعت ۱۴ تا ۱۵
-* time = 24? meaning? (?)
-* We delete data that doesn't have "SCADAF" temp
-* چرا درصد فیلتر ۳ افت کرد؟
-* چرا درصد فیلتر ۲ زیاد شد؟
-* آیا دقت این ایده‌ی آخری خوب هست?
+* We delete data that doesn't have "SCADAF" temp in cleaning
+* We delete row that have even just one null value
 * I have removed "season" column
+* We have different set of (id, code) in different files some are "S" but شهدای پیروز G13 and G14 aren't in all files.
+* visualize
+* 
 
   🟨 Doing
   ==========================
-* Clean the code
 
 * 
 
@@ -73,4 +71,6 @@
 * correct accuracy on flat y
 * How to use model for prediction
 * Presentation
+* Is there any name, code which don't have any interval in is_good_peak = 3???? Yes there is but the problem is related to filter1. No problem just mention it.
+* Clean the code
 * 
