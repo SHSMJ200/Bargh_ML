@@ -1,9 +1,16 @@
+🟦 To-Ask
+==========================
+* فرض: در جداول آن‌ها تغییر ساعت لحاظ نشده و همیشه +3:30 نوشته شده است
+* time = 25???
+* فرض : ساعت ۱۵ یعنی از ساعت ۱۴ تا ۱۵
+* We have different set of (id, code) in different files some are "S" but شهدای پیروز G13 and G14 aren't in all files.
+* Output & input format (?)
+* 
+
 🟩 To-Do
 ==========================
 
 * Make product
-* Why LF1?
-* Output & input format (?)
 * LF1-FO (?)
 * Tune hyperparameters.
 * Compare with declare
@@ -13,23 +20,19 @@
 * We have a and b of each plant
 * try/ except
 * generation = 250???
-* time = 25???
-* فرض: در جداول آن‌ها تغییر ساعت لحاظ نشده و همیشه +3:30 نوشته شده است
-* فرض : ساعت ۱۵ یعنی از ساعت ۱۴ تا ۱۵
 * We delete data that doesn't have "SCADAF" temp in cleaning
 * We delete row that have even just one null value
 * I have removed "season" column
-* We have different set of (id, code) in different files some are "S" but شهدای پیروز G13 and G14 aren't in all files.
 * visualize
 * 
 
-  🟨 Doing
-  ==========================
+🟨 Doing
+==========================
 
 * 
 
-  🟥 Done
-  ==========================
+🟥 Done
+==========================
 
 * Installing postgres
 * Connecting postgres to my project

@@ -26,17 +26,15 @@ def select_data(goodness):
     return df_r_selected
 
 
-def select_features(df_r_selected):
-    base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "temp_sens"]
-    time_features = ["hour", "day_of_week", "month"]  # TODO: I have removed "season"
+def select_features(df_r_selected, features):
     feature_selector = Feature_selector(df_r_selected, "generation")
-    feature_selector.filter_features(features_to_select=base_features + time_features)
+    feature_selector.filter_features(features_to_select=features)
     df_f_selected = feature_selector.df
     logger.info(f"Features have been selected successfully")
     return df_f_selected
 
 
-def train_and_test_model(X, y, folder_path,name,code):
+def train_and_test_model(X, y, folder_path, name, code):
     X_train, X_test, y_train, y_test = split_X_and_y(X, y, test_size=0.2, shuffle=False)
 
     # model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=100, max_depth=3, learning_rate=0.1)
@@ -52,20 +50,32 @@ def train_and_test_model(X, y, folder_path,name,code):
     return rmse_error_train, rmse_error_test
 
 
+def print_report(data_sizes, train_errors, test_errors):
+    data_sizes = np.array(data_sizes)
+    train_errors = np.array(train_errors)
+    test_errors = np.array(test_errors)
+
+    weighted_train_error = np.average(train_errors, weights=data_sizes)
+    weighted_test_error = np.average(test_errors, weights=data_sizes)
+
+    logger.info(f"Weighted train error: {weighted_train_error:0.3f}")
+    logger.info(f"Weighted test error: {weighted_test_error:0.3f}")
+
+
 if __name__ == "__main__":
     goodness_to_select = 5
     save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
 
     df_r_selected = select_data(goodness_to_select)
 
-    df_f_selected = select_features(df_r_selected)
+    base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "temp_sens"]
+    time_features = ["hour", "day_of_week", "month"]  # TODO: I have removed "season"
+    df_f_selected = select_features(df_r_selected, base_features + time_features)
 
     ds_n_c = Data_selector(df_f_selected)
     ds_n_c.df = ds_n_c.df.dropna()
     power_plants = ds_n_c.df[['name', 'code']].drop_duplicates()
-    train_errors = []
-    test_errors = []
-    num = []
+    train_errors, test_errors, data_sizes = [], [], []
     for row in power_plants.itertuples():
         name, code = row.name, row.code
         logger.info(f"Train and test data related to {name}_{code}:")
@@ -77,21 +87,12 @@ if __name__ == "__main__":
         X, y = fs_n_c.get_X_and_y()
         # X = make_onehot(X)
 
-        train_error, test_error = train_and_test_model(X, y, save_model_folder,name,code)
-        logger.info(f"Train rmse error: {train_error:.3f}%, Test rmse error: {test_error:.3f}% , Number of data: {len(y)}")
+        train_error, test_error = train_and_test_model(X, y, save_model_folder, name, code)
+        logger.info(
+            f"Train rmse error: {train_error:.3f}%, Test rmse error: {test_error:.3f}% , Size of data: {len(y)}")
+
         train_errors.append(train_error)
         test_errors.append(test_error)
-        num.append(len(y))
-    
-    num = np.array(num)
-    train_errors = np.array(train_errors)
-    test_errors = np.array(test_errors)
-    print(np.average(train_errors,weights=num))
-    print(np.average(test_errors,weights=num))
-    print(num)
-    print(train_errors)
-    print(test_errors)
-    
-    
-    
-    
+        data_sizes.append(len(y))
+
+    print_report(data_sizes, train_errors, test_errors)
