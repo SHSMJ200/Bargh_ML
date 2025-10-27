@@ -427,7 +427,7 @@ def find_points_on_envelope(gens, sens_temps, bin_length=30):
 def select_envelope_neighbors_indices(X, y, one_unit_df, alpha, beta):
     model = LinearRegression()
     model.fit(X, y)
-
+    
     sens_temps = one_unit_df['temp_sens'].values
     gens = one_unit_df['generation'].values
     X_all = sens_temps.reshape(-1, 1)
