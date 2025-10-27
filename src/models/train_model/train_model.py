@@ -26,8 +26,8 @@ def select_data(goodness):
     return df_r_selected
 
 
-def select_features(df_r_selected, features):
-    feature_selector = Feature_selector(df_r_selected, "generation")
+def select_features(df_r_selected, features, target="generation"):
+    feature_selector = Feature_selector(df_r_selected, target=target)
     feature_selector.filter_features(features_to_select=features)
     df_f_selected = feature_selector.df
     logger.info(f"Features have been selected successfully")
@@ -68,9 +68,8 @@ if __name__ == "__main__":
 
     df_r_selected = select_data(goodness_to_select)
 
-    base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "temp_sens"]
-    time_features = ["hour", "day_of_week", "month"]  # TODO: I have removed "season"
-    df_f_selected = select_features(df_r_selected, base_features + time_features)
+    features = ["name", "code", "temp_sens"]
+    df_f_selected = select_features(df_r_selected, features)
 
     ds_n_c = Data_selector(df_f_selected)
     ds_n_c.df = ds_n_c.df.dropna()
@@ -85,7 +84,6 @@ if __name__ == "__main__":
         fs_n_c = Feature_selector(df_n_c, "generation")
         fs_n_c.filter_features(features_to_drop=["name", "code"])
         X, y = fs_n_c.get_X_and_y()
-        # X = make_onehot(X)
 
         train_error, test_error = train_and_test_model(X, y, save_model_folder, name, code)
         logger.info(

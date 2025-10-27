@@ -12,24 +12,28 @@
 
 * Make product
 * LF1-FO (?)
-* Tune hyperparameters.
-* Compare with declare
-* Loggers
-* Generation vs sen_temperature was good. How about other features?
-* How about filter when generation is equal to declare?
-* We have a and b of each plant
+* 
 * try/ except
-* generation = 250???
+* Loggers
+* 
 * We delete data that doesn't have "SCADAF" temp in cleaning
 * We delete row that have even just one null value
-* I have removed "season" column
-* visualize
+* sys.path.insert add redundant element to list
 * 
+* How about filter when generation is equal to declare?
+* We have a and b of each plant
+* 
+* alpha = 2 and beta = 5 constant
+* why line filter 5?
+* آیا فیلتر ۵ خوب کار می‌کند؟
+* 
+* دلیل کمبود داده در بعضی واحدها
+* what should we do if data is less than 12 month?
 
 🟨 Doing
 ==========================
 
-* 
+* visualize
 
 🟥 Done
 ==========================
@@ -76,4 +80,7 @@
 * Presentation
 * Is there any name, code which don't have any interval in is_good_peak = 3???? Yes there is but the problem is related to filter1. No problem just mention it.
 * Clean the code
+* generation = 250???
+* Compare with declare
+* do_we_sort_data?
 * 

@@ -70,18 +70,16 @@ class Database:
     def create_table(self, table_name: str, col_names_and_types: dict[str: str]):
         features = [f'{col_name} {col_type}' for col_name, col_type in col_names_and_types.items()]
         columns_defs = ', '.join(features)
-        self.execute(
-            query=f'create table if not exists {table_name} ({columns_defs})',
-            do_return=False
-        )
+        self.execute(f"DROP TABLE IF EXISTS {table_name}")
+        self.execute(f"CREATE TABLE {table_name} ({columns_defs})")
 
     def copy_expert(self, table_name: str, file: str, into_db=False):
         try:
             if into_db:
-                query = f"copy {table_name} from stdin with delimiter ',' csv header NULL as 'NULL'"
+                query = f"COPY {table_name} FROM STDIN WITH DELIMITER ',' CSV HEADER NULL AS 'NULL'"
                 mode = 'r'
             else:
-                query = f"copy {table_name} to stdout with delimiter ',' csv header NULL as 'NULL'"
+                query = f"COPY {table_name} TO STDOUT WITH DELIMITER ',' CSV HEADER NULL AS 'NULL'"
                 mode = 'w'
 
             with self.connection.cursor() as cursor:

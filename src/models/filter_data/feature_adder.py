@@ -120,7 +120,7 @@ class Feature_adder:
 
         self.log_filter_ratio(label=4)
 
-    def filter5(self, initial_label):
+    def filter5(self, initial_label, bin_length):
         features = ["name", "code", "generation", "temp_sens", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
         df_modified = df_modified[df_modified["is_good_peak"] >= initial_label]
@@ -135,7 +135,7 @@ class Feature_adder:
             sens_temps = one_unit_df['temp_sens'].values
             gens = one_unit_df['generation'].values
 
-            X, y = find_points_on_envelope(gens, sens_temps)
+            X, y = find_points_on_envelope(gens, sens_temps, bin_length=bin_length)
 
             near_envelope_indices = select_envelope_neighbors_indices(X, y, one_unit_df, alpha=2, beta=5)
             all_indices.extend(near_envelope_indices)
@@ -269,7 +269,6 @@ def get_df_year_month(df):
 
 
 def get_date_interval(accuracies, dates, weights, min_date, max_date, thresh, k_filter=6, n_filter=1, l_min=3):
-
     normalized_accuracies = iterative_normal_filter(accuracies, k=k_filter, n=n_filter, weights=weights)
 
     binary_accuracies = [None if x is None else int(x > thresh) for x in normalized_accuracies]
@@ -402,20 +401,26 @@ def linear_separability_check(X, y):
     return report['accuracy']
 
 
-def find_points_on_envelope(gens, sens_temps):
+def find_points_on_envelope(gens, sens_temps, bin_length=30):
     sorted_idx = np.argsort(sens_temps)
     sens_temps_sorted, gens_sorted = sens_temps[sorted_idx], gens[sorted_idx]
 
-    hist, bin_edges = np.histogram(sens_temps_sorted, bins=101)
-    group_indices = np.digitize(sens_temps_sorted, bin_edges) - 1
-
+    n = len(sens_temps_sorted)
     points = []
-    for g in np.unique(group_indices):
-        mask = group_indices == g
-        points.append((sens_temps_sorted[mask].mean(), get_percentile(gens_sorted[mask], p=0.95)))
+    for start in range(0, n, bin_length):
+        end = start + bin_length
+        if end + bin_length > n:
+            end = n
+        x = sens_temps_sorted[start: end].mean()
+        y = get_percentile(gens_sorted[start: end], p=0.95)
+        points.append((x, y))
+
+        if end == n:
+            break
 
     X = np.array([a for a, b in points]).reshape(-1, 1)
     y = np.array([b for a, b in points])
+
     return X, y
 
 
