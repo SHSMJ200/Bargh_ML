@@ -27,6 +27,8 @@
 * why line filter 5?
 * آیا فیلتر ۵ خوب کار می‌کند؟
 * 
+* اشتراک روش بین فیتر ۵ و مدل
+* 
 * دلیل کمبود داده در بعضی واحدها
 * what should we do if data is less than 12 month?
 
