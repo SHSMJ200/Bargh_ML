@@ -47,11 +47,12 @@ class Feature_adder:
         # We assume that start_md < end_md
         start_md = "05-22"
         end_md = "09-22"
-        statusM_mask = (self.df['date'].dt.strftime('%m-%d') >= start_md) & (
-                self.df['date'].dt.strftime('%m-%d') <= end_md)
-        peak_condition = (self.df['load_level'] == 'P') | (self.df['load_level'] == 'M') & statusM_mask
-        peak_condition = peak_condition & ((self.df['status'] == 'SO') | (self.df['status'] == 'LF1'))
-
+        # statusM_mask = (self.df['date'].dt.strftime('%m-%d') >= start_md) & (
+                # self.df['date'].dt.strftime('%m-%d') <= end_md)
+        # peak_condition = (self.df['load_level'] == 'P') | (self.df['load_level'] == 'M') & statusM_mask
+        # peak_condition = peak_condition & ((self.df['status'] == 'SO') | (self.df['status'] == 'LF1'))
+        
+        peak_condition = ((self.df['status'] == 'SO') | (self.df['status'] == 'LF1'))
         self.df.loc[peak_condition, "is_good_peak"] = 1
 
         self.log_filter_ratio(label=1)
@@ -96,7 +97,7 @@ class Feature_adder:
         self.log_filter_ratio(label=3, old_label=initial_label)
 
     def filter4(self, initial_label, thresh=0.9, k_filter=6, n_filter=4, l_min=3):
-        self.add_interval_id(initial_label)
+        #self.add_interval_id(initial_label)
 
         features = ['name', 'code', "datetime", "generation", f"{self.temp_feature}", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
