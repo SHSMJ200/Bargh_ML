@@ -68,7 +68,8 @@ if __name__ == "__main__":
 
     df_r_selected = select_data(goodness_to_select)
 
-    features = ["name", "code", "temp_sens"]
+    temp_feature = "temp_sens"
+    features = ["name", "code", f"{temp_feature}"]
     df_f_selected = select_features(df_r_selected, features)
 
     ds_n_c = Data_selector(df_f_selected)

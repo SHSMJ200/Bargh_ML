@@ -16,7 +16,6 @@
 * try/ except
 * Loggers
 * 
-* We delete data that doesn't have "SCADAF" temp in cleaning
 * We delete row that have even just one null value
 * sys.path.insert add redundant element to list
 * 
@@ -29,8 +28,14 @@
 * 
 * اشتراک روش بین فیتر ۵ و مدل
 * 
-* دلیل کمبود داده در بعضی واحدها
 * what should we do if data is less than 12 month?
+* 
+* 71 or 72 plants?
+* 
+* How about other features except temp???
+* 
+* overall accuracy is good but each plant should be seen
+* 
 
 🟨 Doing
 ==========================
@@ -85,4 +90,5 @@
 * generation = 250???
 * Compare with declare
 * do_we_sort_data?
-* 
+* We delete data that doesn't have "SCADAF" temp in cleaning
+

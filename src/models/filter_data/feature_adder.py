@@ -12,8 +12,9 @@ logger = CustomLogger(__name__).get_logger()
 
 
 class Feature_adder:
-    def __init__(self, df: pd.DataFrame, add_label_column=True):
+    def __init__(self, df: pd.DataFrame, temp_feature, add_label_column=True):
         self.df = df
+        self.temp_feature = temp_feature
         self.time_ranges_by_name_code = {}
         self.c_time_ranges_by_name_code = {}
 
@@ -71,10 +72,10 @@ class Feature_adder:
 
         self.label_points(ds, power_plants, self.time_ranges_by_name_code, label=2)
 
-        self.log_filter_ratio(label=2)
+        self.log_filter_ratio(label=2, old_label=initial_label)
 
-    def filter3(self, feature, initial_label, c_thresh=0.9):
-        features = ["name", "code", "datetime", "generation", "is_good_peak"] + [feature]
+    def filter3(self, initial_label, c_thresh=0.9):
+        features = ["name", "code", "datetime", f"{self.temp_feature}", "generation", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
         df_modified = df_modified[df_modified["is_good_peak"] >= initial_label]
 
@@ -86,17 +87,18 @@ class Feature_adder:
             name, code = row['name'], row['code']
             df_name_code = ds.filter_name_code(name, code)
             time_ranges = self.time_ranges_by_name_code[(name, code)]
-            consistent_time_ranges = find_consistency(df_name_code, feature, time_ranges, c_thresh, corr_pearsons)
+            consistent_time_ranges = find_consistency(df_name_code, self.temp_feature, time_ranges, c_thresh,
+                                                      corr_pearsons)
             self.c_time_ranges_by_name_code[(name, code)] = consistent_time_ranges
 
         self.label_points(ds, power_plants, self.c_time_ranges_by_name_code, label=3)
 
-        self.log_filter_ratio(label=3)
+        self.log_filter_ratio(label=3, old_label=initial_label)
 
     def filter4(self, initial_label, thresh=0.9, k_filter=6, n_filter=4, l_min=3):
         self.add_interval_id(initial_label)
 
-        features = ['name', 'code', "datetime", "generation", "temp_sens", "is_good_peak"]
+        features = ['name', 'code', "datetime", "generation", f"{self.temp_feature}", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
         df_modified = df_modified[df_modified['is_good_peak'] >= initial_label]
 
@@ -109,7 +111,7 @@ class Feature_adder:
 
             df_year_month, min_date, max_date = get_df_year_month(df_name_code)
 
-            weights, accuracies, dates = compare_months(df_name_code, df_year_month)
+            weights, accuracies, dates = compare_months(df_name_code, df_year_month, self.temp_feature)
             if len(dates) == 0:
                 print(name, code)
                 print(len(df_year_month), min_date, max_date)
@@ -118,10 +120,10 @@ class Feature_adder:
 
         self.label_points(ds, power_plants, dates_by_name_code, label=4)
 
-        self.log_filter_ratio(label=4)
+        self.log_filter_ratio(label=4, old_label=initial_label)
 
-    def filter5(self, initial_label, bin_length):
-        features = ["name", "code", "generation", "temp_sens", "is_good_peak"]
+    def filter5(self, bin_length, initial_label):
+        features = ["name", "code", "generation", f"{self.temp_feature}", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
         df_modified = df_modified[df_modified["is_good_peak"] >= initial_label]
         ds = Data_selector(df_modified)
@@ -132,17 +134,31 @@ class Feature_adder:
             name, code = row.name, row.code
             one_unit_df = ds.filter_name_code(name, code)
 
-            sens_temps = one_unit_df['temp_sens'].values
+            sens_temps = one_unit_df[self.temp_feature].values
             gens = one_unit_df['generation'].values
 
             X, y = find_points_on_envelope(gens, sens_temps, bin_length=bin_length)
 
-            near_envelope_indices = select_envelope_neighbors_indices(X, y, one_unit_df, alpha=2, beta=5)
+            near_envelope_indices = select_envelope_neighbors_indices(X, y, one_unit_df, self.temp_feature, alpha=2,
+                                                                      beta=5)
             all_indices.extend(near_envelope_indices)
 
         self.df.loc[all_indices, "is_good_peak"] = 5
 
-        self.log_filter_ratio(label=5)
+        self.log_filter_ratio(label=5, old_label=initial_label)
+
+    def filter6(self, initial_label, thresh=5):
+        features = ["name", "code", "generation", "declared", "is_good_peak"]
+        df_modified = self.df[features].copy(deep=True)
+        df_modified = df_modified[df_modified["is_good_peak"] >= initial_label]
+
+        gens, decs = df_modified["generation"], df_modified["declared"]
+        diff = gens - decs
+
+        all_indices = diff[np.abs(diff) < thresh].index
+        self.df.loc[all_indices, "is_good_peak"] = 6
+
+        self.log_filter_ratio(label=6, old_label=initial_label)
 
     def label_points(self, ds, power_plants, dates_by_name_code, label):
         all_indices = []
@@ -166,21 +182,30 @@ class Feature_adder:
 
         mapping = {}
 
+        if initial_label == 2:
+            dates_by_name_code = self.time_ranges_by_name_code
+        elif initial_label == 3:
+            dates_by_name_code = self.c_time_ranges_by_name_code
+        else:
+            dates_by_name_code = {}
+
         for _, row in power_plants.iterrows():
             name, code = row['name'], row['code']
             df_name_code = ds.filter_name_code(name, code)
-            consistent_time_ranges = self.c_time_ranges_by_name_code[(name, code)]
+            time_ranges = dates_by_name_code[(name, code)]
             interval_ds = Data_selector(df_name_code)
-            for interval_id, (date1, date2) in enumerate(consistent_time_ranges):
+            for interval_id, (date1, date2) in enumerate(time_ranges):
                 indices = interval_ds.filter_time(date1, date2).index
                 mapping.update({idx: interval_id for idx in indices})
 
         interval_series = pd.Series(mapping, name="interval_id")
         self.df = self.df.join(interval_series, how="left")
 
-    def log_filter_ratio(self, label):
+    def log_filter_ratio(self, label, old_label=None):
+        if old_label is None: old_label = label - 1
+
         count_new_label = len(self.df[self.df["is_good_peak"] == label])
-        count_old_label = len(self.df[self.df["is_good_peak"] >= label - 1])
+        count_old_label = len(self.df[self.df["is_good_peak"] >= old_label])
         consistency_percentage = count_new_label / count_old_label * 100
         logger.info(f"{consistency_percentage:0.2f}% of rows have been chosen by filter{label}")
 
@@ -254,7 +279,7 @@ def are_trends_similar(arr1, arr2, threshold, opposite_trend=False):
 def get_percentile(array, p):
     array = np.array(array)
     sorted_array = np.sort(array)
-    idx = int(len(array) * p)
+    idx = int(len(array) * p) - 1
     return sorted_array[idx]
 
 
@@ -345,7 +370,7 @@ def find_time_cut_offs(intervals, dates):
     return cut_offs
 
 
-def compare_months(df_name_code, df_year_month):
+def compare_months(df_name_code, df_year_month, temp_feature):
     weights = []
     accuracies = []
     dates = []
@@ -359,7 +384,7 @@ def compare_months(df_name_code, df_year_month):
 
         dates_array = pd.to_datetime({'year': [year], 'month': [month], 'day': [1]})
         if n_df1 != 0 and n_df2 != 0:
-            X = df_two_months[["generation", "temp_sens"]]
+            X = df_two_months[["generation", f"{temp_feature}"]]
             y = df_two_months["label_month"]
             sep_acc = linear_separability_check(X, y)
             accuracies.append(sep_acc)
@@ -424,11 +449,11 @@ def find_points_on_envelope(gens, sens_temps, bin_length=30):
     return X, y
 
 
-def select_envelope_neighbors_indices(X, y, one_unit_df, alpha, beta):
+def select_envelope_neighbors_indices(X, y, one_unit_df, temp_feature, alpha, beta):
     model = LinearRegression()
     model.fit(X, y)
-    
-    sens_temps = one_unit_df['temp_sens'].values
+
+    sens_temps = one_unit_df[temp_feature].values
     gens = one_unit_df['generation'].values
     X_all = sens_temps.reshape(-1, 1)
     y_pred_all = model.predict(X_all)

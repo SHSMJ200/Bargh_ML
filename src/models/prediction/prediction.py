@@ -45,7 +45,8 @@ def preprocess_and_merge_dfs(input_df, weather_forecast_df):
 def select_needed_features(final_input_df):
     final_input_df["generation"] = 0
 
-    base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", "temp_sens"]
+    temp_feature = "temp_sens"
+    base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", f"{temp_feature}"]
     time_features = ["hour", "day_of_week", "month"]
     feature_selector = Feature_selector(final_input_df, "generation")
     feature_selector.filter_features(features_to_select=base_features + time_features)
