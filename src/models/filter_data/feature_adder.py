@@ -44,20 +44,26 @@ class Feature_adder:
         self.df = self.df[self.df['code'].str.startswith("G")]
 
     def filter1(self):
-        # We assume that start_md < end_md
-        start_md = "05-22"
-        end_md = "09-22"
-        # statusM_mask = (self.df['date'].dt.strftime('%m-%d') >= start_md) & (
-                # self.df['date'].dt.strftime('%m-%d') <= end_md)
-        # peak_condition = (self.df['load_level'] == 'P') | (self.df['load_level'] == 'M') & statusM_mask
-        # peak_condition = peak_condition & ((self.df['status'] == 'SO') | (self.df['status'] == 'LF1'))
-        
-        peak_condition = ((self.df['status'] == 'SO') | (self.df['status'] == 'LF1'))
+        peak_condition = (self.df['status'] == 'SO') | (self.df['status'] == 'LF1')
         self.df.loc[peak_condition, "is_good_peak"] = 1
 
         self.log_filter_ratio(label=1)
 
-    def filter2(self, l_min, max_diff, initial_label):
+    def filter2(self, initial_label):
+        df_modified = self.df[self.df["is_good_peak"] >= initial_label]
+
+        # We assume that start_md < end_md
+        start_md = "05-22"
+        end_md = "09-22"
+        statusM_mask = (df_modified['date'].dt.strftime('%m-%d') >= start_md) & (
+        df_modified['date'].dt.strftime('%m-%d') <= end_md)
+        peak_condition = (df_modified['load_level'] == 'P') | (df_modified['load_level'] == 'M') & statusM_mask
+
+        self.df.loc[peak_condition[peak_condition].index, "is_good_peak"] = 2
+
+        self.log_filter_ratio(label=2)
+
+    def filter3(self, l_min, max_diff, initial_label):
         features = ["name", "code", "datetime", "generation", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
         df_modified = df_modified[df_modified["is_good_peak"] >= initial_label]
@@ -71,11 +77,11 @@ class Feature_adder:
             time_ranges = get_interval(df_name_code, l_min, max_diff)
             self.time_ranges_by_name_code[(name, code)] = time_ranges
 
-        self.label_points(ds, power_plants, self.time_ranges_by_name_code, label=2)
+        self.label_points(ds, power_plants, self.time_ranges_by_name_code, label=3)
 
-        self.log_filter_ratio(label=2, old_label=initial_label)
+        self.log_filter_ratio(label=3, old_label=initial_label)
 
-    def filter3(self, initial_label, c_thresh=0.9):
+    def filter4(self, initial_label, c_thresh=0.9):
         features = ["name", "code", "datetime", f"{self.temp_feature}", "generation", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
         df_modified = df_modified[df_modified["is_good_peak"] >= initial_label]
@@ -92,16 +98,16 @@ class Feature_adder:
                                                       corr_pearsons)
             self.c_time_ranges_by_name_code[(name, code)] = consistent_time_ranges
 
-        self.label_points(ds, power_plants, self.c_time_ranges_by_name_code, label=3)
+        self.label_points(ds, power_plants, self.c_time_ranges_by_name_code, label=4)
 
-        self.log_filter_ratio(label=3, old_label=initial_label)
+        self.log_filter_ratio(label=4, old_label=initial_label)
 
-    def filter4(self, initial_label, thresh=0.9, k_filter=6, n_filter=4, l_min=3):
+    def filter5(self, initial_label, thresh=0.9, k_filter=6, n_filter=4, l_min=3):
         #self.add_interval_id(initial_label)
 
         features = ['name', 'code', "datetime", "generation", f"{self.temp_feature}", "is_good_peak"]
-        df_modified = self.df[features].copy(deep=True)
-        df_modified = df_modified[df_modified['is_good_peak'] >= initial_label]
+        df_modified_orginal = self.df[features].copy(deep=True)
+        df_modified = df_modified_orginal[df_modified_orginal['is_good_peak'] >= initial_label]
 
         power_plants = df_modified[['name', 'code']].drop_duplicates()
         ds = Data_selector(df_modified)
@@ -119,11 +125,12 @@ class Feature_adder:
             dates_by_name_code[(name, code)] = get_date_interval(accuracies, dates, weights, min_date, max_date, thresh,
                                                                  k_filter, n_filter, l_min)
 
-        self.label_points(ds, power_plants, dates_by_name_code, label=4)
+        ds_label_1 = Data_selector(df_modified_orginal[df_modified_orginal['is_good_peak'] >= 1])
+        self.label_points(ds_label_1, power_plants, dates_by_name_code, label=5)
 
-        self.log_filter_ratio(label=4, old_label=initial_label)
+        self.log_filter_ratio(label=5, old_label=initial_label)
 
-    def filter5(self, bin_length, initial_label):
+    def filter6(self, bin_length, initial_label):
         features = ["name", "code", "generation", f"{self.temp_feature}", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
         df_modified = df_modified[df_modified["is_good_peak"] >= initial_label]
@@ -144,19 +151,6 @@ class Feature_adder:
                                                                       beta=5)
             all_indices.extend(near_envelope_indices)
 
-        self.df.loc[all_indices, "is_good_peak"] = 5
-
-        self.log_filter_ratio(label=5, old_label=initial_label)
-
-    def filter6(self, initial_label, thresh=5):
-        features = ["name", "code", "generation", "declared", "is_good_peak"]
-        df_modified = self.df[features].copy(deep=True)
-        df_modified = df_modified[df_modified["is_good_peak"] >= initial_label]
-
-        gens, decs = df_modified["generation"], df_modified["declared"]
-        diff = gens - decs
-
-        all_indices = diff[np.abs(diff) < thresh].index
         self.df.loc[all_indices, "is_good_peak"] = 6
 
         self.log_filter_ratio(label=6, old_label=initial_label)

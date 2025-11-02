@@ -35,7 +35,7 @@
 * How about other features except temp???
 * 
 * overall accuracy is good but each plant should be seen
-* 
+* 238??
 
 🟨 Doing
 ==========================

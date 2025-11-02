@@ -16,10 +16,11 @@ def add_features_and_filter(df, l_min, max_diff, c_thresh, bin_length, temp_feat
     feature_adder = Feature_adder(df, temp_feature)
     feature_adder.select_gas_plants()
     feature_adder.filter1()
-    # feature_adder.filter2(l_min=l_min, max_diff=max_diff, initial_label=1)
-    # feature_adder.filter3(c_thresh=c_thresh, initial_label=2)
-    feature_adder.filter4(initial_label=1)
-    feature_adder.filter5(bin_length, initial_label=4)
+    feature_adder.filter2(initial_label=1)
+    feature_adder.filter3(l_min=l_min, max_diff=max_diff, initial_label=2)
+    feature_adder.filter4(c_thresh=c_thresh, initial_label=3)
+    feature_adder.filter5(initial_label=4)
+    feature_adder.filter6(bin_length, initial_label=5)
     # feature_adder.filter6(initial_label=4)
 
     return feature_adder.df
