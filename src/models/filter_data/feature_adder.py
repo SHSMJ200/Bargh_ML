@@ -1,9 +1,10 @@
 import numpy as np
 import pandas as pd
 from scipy.stats import pearsonr
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import RANSACRegressor, LinearRegression
 from sklearn.metrics import classification_report
 from sklearn.svm import SVC
+from scipy.interpolate import make_interp_spline
 
 from logs.logger import CustomLogger
 from src.models.data_selection.data_selector import Data_selector
@@ -56,7 +57,7 @@ class Feature_adder:
         start_md = "05-22"
         end_md = "09-22"
         statusM_mask = (df_modified['date'].dt.strftime('%m-%d') >= start_md) & (
-        df_modified['date'].dt.strftime('%m-%d') <= end_md)
+                df_modified['date'].dt.strftime('%m-%d') <= end_md)
         peak_condition = (df_modified['load_level'] == 'P') | (df_modified['load_level'] == 'M') & statusM_mask
 
         self.df.loc[peak_condition[peak_condition].index, "is_good_peak"] = 2
@@ -103,7 +104,7 @@ class Feature_adder:
         self.log_filter_ratio(label=4, old_label=initial_label)
 
     def filter5(self, initial_label, thresh=0.9, k_filter=6, n_filter=4, l_min=3):
-        #self.add_interval_id(initial_label)
+        # self.add_interval_id(initial_label)
 
         features = ['name', 'code', "datetime", "generation", f"{self.temp_feature}", "is_good_peak"]
         df_modified_orginal = self.df[features].copy(deep=True)
@@ -124,9 +125,9 @@ class Feature_adder:
                 print(len(df_year_month), min_date, max_date)
             dates_by_name_code[(name, code)] = get_date_interval(accuracies, dates, weights, min_date, max_date, thresh,
                                                                  k_filter, n_filter, l_min)
-
+        print(dates_by_name_code)
         ds_label_1 = Data_selector(df_modified_orginal[df_modified_orginal['is_good_peak'] >= 1])
-        self.label_points(ds_label_1, power_plants, dates_by_name_code, label=5)
+        self.label_points(ds, power_plants, dates_by_name_code, label=5)
 
         self.log_filter_ratio(label=5, old_label=initial_label)
 
@@ -145,11 +146,72 @@ class Feature_adder:
             sens_temps = one_unit_df[self.temp_feature].values
             gens = one_unit_df['generation'].values
 
-            X, y = find_points_on_envelope(gens, sens_temps, bin_length=bin_length)
+            X, y = find_points_on_envelope(gens, sens_temps, bin_length=bin_length, p=0.98)
 
             near_envelope_indices = select_envelope_neighbors_indices(X, y, one_unit_df, self.temp_feature, alpha=2,
                                                                       beta=5)
             all_indices.extend(near_envelope_indices)
+
+        self.df.loc[all_indices, "is_good_peak"] = 6
+
+        self.log_filter_ratio(label=6, old_label=initial_label)
+
+    def new_filter_5(self, split_dates_by_name_code, initial_label):
+        features = ['name', 'code', "datetime", "is_good_peak"]
+        df_modified = self.df[features].copy(deep=True)
+        df_modified = df_modified[df_modified['is_good_peak'] >= initial_label]
+
+        power_plants = df_modified[['name', 'code']].drop_duplicates()
+        ds = Data_selector(df_modified)
+        all_chosen_indices = []
+        for row in power_plants.itertuples():
+            name, code = row.name, row.code
+            df_name_code = ds.filter_name_code(name, code)
+            split_date = split_dates_by_name_code.get((name, code))
+            if split_date is None:
+                chosen_indices = df_name_code.index
+            else:
+                chosen_indices = df_name_code.loc[df_name_code['datetime'] > split_date].index
+            all_chosen_indices.extend(chosen_indices)
+
+        self.df.loc[all_chosen_indices, "is_good_peak"] = 5
+
+        self.log_filter_ratio(label=5, old_label=initial_label)
+
+    def new_filter_6(self, bin_length, initial_label):
+        features = ["name", "code", "generation", f"{self.temp_feature}", "is_good_peak"]
+        df_modified = self.df[features].copy(deep=True)
+        df_modified = df_modified[df_modified["is_good_peak"] >= initial_label]
+        ds = Data_selector(df_modified)
+
+        all_indices = []
+        power_plants = df_modified[['name', 'code']].drop_duplicates()
+        for row in power_plants.itertuples():
+            name, code = row.name, row.code
+            one_unit_df = ds.filter_name_code(name, code)
+
+            try:
+                sens_temps = one_unit_df[self.temp_feature].values
+                gens = one_unit_df['generation'].values
+
+                X_upper, y_upper = find_points_on_envelope(gens, sens_temps, p=1, bin_length=bin_length,
+                                                           reshape_X=False)
+                X_lower, y_lower = find_points_on_envelope(gens, sens_temps, p=0.8, bin_length=bin_length,
+                                                           reshape_X=False)
+
+                X_upper, y_upper = keep_max_y(X_upper, y_upper)
+                X_lower, y_lower = keep_max_y(X_lower, y_lower)
+
+                curve_upper = make_interp_spline(X_upper, y_upper, k=2)
+                curve_lower = make_interp_spline(X_lower, y_lower, k=2)
+
+                between_curves_indices = select_points_between_curves(curve_upper, curve_lower, one_unit_df,
+                                                                      X=sens_temps, y=gens, alpha=2, beta=2)
+            except:
+                print(name, code)
+                between_curves_indices = one_unit_df.index
+
+            all_indices.extend(between_curves_indices)
 
         self.df.loc[all_indices, "is_good_peak"] = 6
 
@@ -421,7 +483,7 @@ def linear_separability_check(X, y):
     return report['accuracy']
 
 
-def find_points_on_envelope(gens, sens_temps, bin_length=30):
+def find_points_on_envelope(gens, sens_temps, p, bin_length=30, reshape_X=True):
     sorted_idx = np.argsort(sens_temps)
     sens_temps_sorted, gens_sorted = sens_temps[sorted_idx], gens[sorted_idx]
 
@@ -432,26 +494,127 @@ def find_points_on_envelope(gens, sens_temps, bin_length=30):
         if end + bin_length > n:
             end = n
         x = sens_temps_sorted[start: end].mean()
-        y = get_percentile(gens_sorted[start: end], p=0.95)
+        y = get_percentile(gens_sorted[start: end], p=p)
         points.append((x, y))
 
         if end == n:
             break
 
-    X = np.array([a for a, b in points]).reshape(-1, 1)
+    X = np.array([a for a, b in points])
     y = np.array([b for a, b in points])
 
+    if reshape_X:
+        X = X.reshape(-1, 1)
     return X, y
 
 
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+
+
+class PolynomialModel:
+    def __init__(self, degree=2):
+        """
+        کلاس مدل چندجمله‌ای
+
+        پارامترها:
+        degree : int
+            درجه چندجمله‌ای
+        """
+        self.degree = degree
+        self.poly_features = PolynomialFeatures(degree=self.degree, include_bias=False)
+        self.model = LinearRegression()
+        self.is_fitted = False
+
+    def fit(self, X, y):
+        """
+        فیت کردن مدل
+
+        X : array-like, shape (n_samples,) or (n_samples, 1)
+        y : array-like, shape (n_samples,)
+        """
+        X = np.array(X).reshape(-1, 1)
+        y = np.array(y)**2
+        X_poly = self.poly_features.fit_transform(X)
+        self.model.fit(X_poly, y)
+        self.is_fitted = True
+
+    def predict(self, X):
+        """
+        پیش‌بینی y برای X داده شده
+
+        X : array-like
+        """
+        if not self.is_fitted:
+            raise ValueError("Model is not fitted yet.")
+        X = np.array(X).reshape(-1, 1)
+        X_poly = self.poly_features.transform(X)
+        return np.maximum(self.model.predict(X_poly), 0)**0.5
+
+    def plot(self, X, y, num_points=100):
+        """
+        رسم داده‌ها و منحنی فیت شده
+        """
+        if not self.is_fitted:
+            raise ValueError("Model is not fitted yet.")
+
+        X = np.array(X).reshape(-1, 1)
+        y = np.array(y)
+        X_fit = np.linspace(X.min(), X.max(), num_points).reshape(-1, 1)
+        y_fit = self.predict(X_fit)
+
+        plt.scatter(X, y, color='red', label='Data points')
+        plt.plot(X_fit, y_fit, color='blue', label=f'Polynomial degree {self.degree}')
+        plt.legend()
+        plt.show()
+
+
 def select_envelope_neighbors_indices(X, y, one_unit_df, temp_feature, alpha, beta):
-    model = LinearRegression()
-    model.fit(X, y)
+    # model = LinearRegression()#PolynomialModel(degree=2)
+    # model.fit(X, y)
+
+    model = RANSACRegressor(estimator=LinearRegression(), min_samples=0.9)
 
     sens_temps = one_unit_df[temp_feature].values
     gens = one_unit_df['generation'].values
-    X_all = sens_temps.reshape(-1, 1)
-    y_pred_all = model.predict(X_all)
 
-    is_in_area = (y_pred_all + alpha >= gens) & (gens >= y_pred_all - beta)
+    try:
+        model.fit(X, y)
+        X_all = sens_temps.reshape(-1, 1)
+        y_pred_all = model.predict(X_all)
+        is_in_area = (y_pred_all + alpha >= gens) & (gens >= y_pred_all - beta)
+    except:
+        print(one_unit_df["name"].iloc[0],one_unit_df["code"].iloc[0])
+        is_in_area = (gens == gens)
     return one_unit_df[is_in_area].index
+
+
+def select_points_between_curves(curve_upper, curve_lower, one_unit_df, X, y, alpha=2, beta=2):
+    y_upper_bounds = curve_upper(X)
+    y_lower_bounds = curve_lower(X)
+
+    is_in_area = (y_upper_bounds + alpha >= y) & (y >= y_lower_bounds - beta)
+    return one_unit_df[is_in_area].index
+
+
+def keep_max_y(X, y):
+    X_modified = []
+    y_modified = []
+
+    prev_i, prev_j = None, None
+    for i, j in zip(X, y):
+        if prev_i is None:
+            prev_i, prev_j = i, j
+        elif i != prev_i:
+            X_modified.append(prev_i)
+            y_modified.append(prev_j)
+            prev_i, prev_j = i, j
+
+        else:
+            prev_j = max(prev_j, j)
+    X_modified.append(prev_i)
+    y_modified.append(prev_j)
+
+    return X_modified, y_modified

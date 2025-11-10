@@ -63,7 +63,7 @@ def print_report(data_sizes, train_errors, test_errors):
 
 
 if __name__ == "__main__":
-    goodness_to_select = 5
+    goodness_to_select = 6
     save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
 
     df_r_selected = select_data(goodness_to_select)
@@ -81,6 +81,7 @@ if __name__ == "__main__":
         logger.info(f"Train and test data related to {name}_{code}:")
 
         df_n_c = ds_n_c.filter_name_code(name, code)
+        if len(df_n_c) < 100: continue  # TODO: Must be deleted
 
         fs_n_c = Feature_selector(df_n_c, "generation")
         fs_n_c.filter_features(features_to_drop=["name", "code"])

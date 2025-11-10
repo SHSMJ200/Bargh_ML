@@ -26,8 +26,6 @@
 * why line filter 5?
 * آیا فیلتر ۵ خوب کار می‌کند؟
 * 
-* اشتراک روش بین فیتر ۵ و مدل
-* 
 * what should we do if data is less than 12 month?
 * 
 * 71 or 72 plants?
@@ -35,15 +33,20 @@
 * How about other features except temp???
 * 
 * overall accuracy is good but each plant should be seen
-* 238??
+* 
+* Use id instead of name
+* filling new_filter5 dict manually
+* شازند کجاست؟
+* 
+* 
 
-🟨 Doing
-==========================
+  🟨 Doing
+  ==========================
 
 * visualize
 
-🟥 Done
-==========================
+  🟥 Done
+  ==========================
 
 * Installing postgres
 * Connecting postgres to my project
@@ -91,4 +94,5 @@
 * Compare with declare
 * do_we_sort_data?
 * We delete data that doesn't have "SCADAF" temp in cleaning
+* Why generation = 238??
 

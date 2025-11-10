@@ -1,4 +1,5 @@
-CREATE TABLE if not exists integrated_data AS
+DROP TABLE IF EXISTS integrated_data;
+CREATE TABLE integrated_data AS
 SELECT c.id,
        c.name,
        c.code,
