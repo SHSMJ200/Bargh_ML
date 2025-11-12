@@ -194,24 +194,21 @@ class Feature_adder:
                 sens_temps = one_unit_df[self.temp_feature].values
                 gens = one_unit_df['generation'].values
 
-                X_upper, y_upper = find_points_on_envelope(gens, sens_temps, p=1, bin_length=bin_length,
-                                                           reshape_X=False)
                 X_lower, y_lower = find_points_on_envelope(gens, sens_temps, p=0.8, bin_length=bin_length,
                                                            reshape_X=False)
 
-                X_upper, y_upper = keep_max_y(X_upper, y_upper)
                 X_lower, y_lower = keep_max_y(X_lower, y_lower)
 
-                curve_upper = make_interp_spline(X_upper, y_upper, k=2)
                 curve_lower = make_interp_spline(X_lower, y_lower, k=2)
 
-                between_curves_indices = select_points_between_curves(curve_upper, curve_lower, one_unit_df,
-                                                                      X=sens_temps, y=gens, alpha=2, beta=2)
+                above_curve_indices = select_points_above_curve(curve_lower, one_unit_df, X=sens_temps, y=gens,
+                                                                beta=0.98)
+
             except:
                 print(name, code)
-                between_curves_indices = one_unit_df.index
+                above_curve_indices = one_unit_df.index
 
-            all_indices.extend(between_curves_indices)
+            all_indices.extend(above_curve_indices)
 
         self.df.loc[all_indices, "is_good_peak"] = 6
 
@@ -536,7 +533,7 @@ class PolynomialModel:
         y : array-like, shape (n_samples,)
         """
         X = np.array(X).reshape(-1, 1)
-        y = np.array(y)**2
+        y = np.array(y) ** 2
         X_poly = self.poly_features.fit_transform(X)
         self.model.fit(X_poly, y)
         self.is_fitted = True
@@ -551,7 +548,7 @@ class PolynomialModel:
             raise ValueError("Model is not fitted yet.")
         X = np.array(X).reshape(-1, 1)
         X_poly = self.poly_features.transform(X)
-        return np.maximum(self.model.predict(X_poly), 0)**0.5
+        return np.maximum(self.model.predict(X_poly), 0) ** 0.5
 
     def plot(self, X, y, num_points=100):
         """
@@ -586,17 +583,15 @@ def select_envelope_neighbors_indices(X, y, one_unit_df, temp_feature, alpha, be
         y_pred_all = model.predict(X_all)
         is_in_area = (y_pred_all + alpha >= gens) & (gens >= y_pred_all - beta)
     except:
-        print(one_unit_df["name"].iloc[0],one_unit_df["code"].iloc[0])
+        print(one_unit_df["name"].iloc[0], one_unit_df["code"].iloc[0])
         is_in_area = (gens == gens)
     return one_unit_df[is_in_area].index
 
 
-def select_points_between_curves(curve_upper, curve_lower, one_unit_df, X, y, alpha=2, beta=2):
-    y_upper_bounds = curve_upper(X)
-    y_lower_bounds = curve_lower(X)
+def select_points_above_curve(curve, one_unit_df, X, y, beta):
+    y_lower_bounds = curve(X)
 
-    is_in_area = (y_upper_bounds + alpha >= y) & (y >= y_lower_bounds - beta)
-    return one_unit_df[is_in_area].index
+    return one_unit_df[y >= y_lower_bounds * beta].index
 
 
 def keep_max_y(X, y):
