@@ -44,8 +44,8 @@ def add_features_and_filter(df, l_min, max_diff, c_thresh, bin_length, temp_feat
     # feature_adder.filter4(c_thresh=c_thresh, initial_label=3)
     # feature_adder.filter5(initial_label=4)
     feature_adder.new_filter_5(split_dates_by_name_code, initial_label=1)
-    feature_adder.filter6(bin_length, initial_label=5)
-    # feature_adder.new_filter_6(bin_length, initial_label=5)
+    # feature_adder.filter6(bin_length, initial_label=5)
+    feature_adder.new_filter_6(bin_length, initial_label=5)
 
     return feature_adder.df
 
