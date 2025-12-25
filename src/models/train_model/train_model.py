@@ -1,27 +1,31 @@
 import os
 import sys
 
+from sklearn.preprocessing import PolynomialFeatures
+
+from src.models.customized_ML_models.SeparateQuantilePiecewiseLinear import SeparateQuantilePiecewiseLinear
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = current_dir[:current_dir.find("src") - 1]
 sys.path.insert(0, project_root)
 
-import xgboost as xgb
-from sklearn.linear_model import LinearRegression
 from joblib import dump
 
 from src.models.data_selection.data_selector import Data_selector
 from src.models.data_selection.feature_selector import Feature_selector
 from logs.logger import CustomLogger
+from sklearn.linear_model import LinearRegression
+from sklearn.pipeline import make_pipeline
 from src.models.utils import *
 
 logger = CustomLogger(__name__).get_logger()
 
 
-def select_data(goodness):
+def select_data(goodness, is_tight):
     csv_semi_processed_path = os.path.join(project_root, "data", "processed", "semi_processed.csv")
     df = pd.read_csv(csv_semi_processed_path, encoding='utf-8')
 
-    df_r_selected = Data_selector(df).select_peaks(goodness)
+    df_r_selected = Data_selector(df).select_peaks(goodness, is_tight=is_tight)
     logger.info(f"Rows with goodness={goodness} have been selected")
     return df_r_selected
 
@@ -34,14 +38,26 @@ def select_features(df_r_selected, features, target="generation"):
     return df_f_selected
 
 
-def train_and_test_model(X, y, folder_path, name, code):
+def train_and_test_model(X, y, folder_path, name, code, is_turbo=False):
     X_train, X_test, y_train, y_test = split_X_and_y(X, y, test_size=0.2, shuffle=False)
+    if name == "عسلویه":
+        pass
+    if is_turbo:
+        model = make_pipeline(PolynomialFeatures(degree=2), LinearRegression())
+    else:
+        # model = LinearRegression()
 
-    # model = xgb.XGBRegressor(n_estimators=200, learning_rate=0.1, max_depth=4, subsample=0.8, colsample_bytree=0.8,
-    #                          random_state=42)
-    model = LinearRegression()
+        # model = QuantileRegressor(quantile=0.8, alpha=0)
+        # model.fit(X_train, y_train)
+
+        # model = PiecewiseLinearWrapper(n_segments=2)
+        # model = QuantilePiecewiseLinear(n_segments=1, quantile=0.85, break_bound_temp=20)
+        # model = SmartQuantilePiecewiseLinear(break_bound_temp=20)
+        model = SeparateQuantilePiecewiseLinear(quantiles=[0.98, 0.85], break_bound_temp=25)
+
     model.fit(X_train, y_train)
-    dump(model, f"{folder_path}/model_{name}_{code}.joblib")
+    model_path = f"{folder_path}/{'turbo' if is_turbo else 'normal10'}/{name}_{code}.joblib"
+    dump(model, model_path)
 
     y_pred_train = model.predict(X_train)
     rmse_error_train = compute_relative_rmse(y_pred_train, y_train)
@@ -64,17 +80,19 @@ def print_report(data_sizes, train_errors, test_errors):
 
 
 if __name__ == "__main__":
-    goodness_to_select = 6
     save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
 
-    df_r_selected = select_data(goodness_to_select)
+    goodness_to_select = 6
+    is_turbo = (goodness_to_select == 7)
+    df_r_selected = select_data(goodness_to_select, is_tight=True)
 
-    temp_feature = "temp_sens"
+    temp_feature = "temperature"
     features = ["name", "code", f"{temp_feature}"]
     df_f_selected = select_features(df_r_selected, features)
 
     ds_n_c = Data_selector(df_f_selected)
     ds_n_c.df = ds_n_c.df.dropna()
+
     power_plants = ds_n_c.df[['name', 'code']].drop_duplicates()
     train_errors, test_errors, data_sizes = [], [], []
     for row in power_plants.itertuples():
@@ -82,13 +100,13 @@ if __name__ == "__main__":
         logger.info(f"Train and test data related to {name}_{code}:")
 
         df_n_c = ds_n_c.filter_name_code(name, code)
-        if len(df_n_c) < 100: continue  # TODO: Must be deleted
+        if len(df_n_c) < 50: continue  # TODO: Must be deleted
 
         fs_n_c = Feature_selector(df_n_c, "generation")
         fs_n_c.filter_features(features_to_drop=["name", "code"])
         X, y = fs_n_c.get_X_and_y()
 
-        train_error, test_error = train_and_test_model(X, y, save_model_folder, name, code)
+        train_error, test_error = train_and_test_model(X, y, save_model_folder, name, code, is_turbo)
         logger.info(
             f"Train rmse error: {train_error:.3f}%, Test rmse error: {test_error:.3f}% , Size of data: {len(y)}")
 

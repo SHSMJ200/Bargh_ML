@@ -1,7 +1,8 @@
-from src.root import get_root
-import yaml
 import psycopg2
+import yaml
+
 from logs.logger import CustomLogger
+from src.root import get_root
 
 logger = CustomLogger(__name__).get_logger()
 

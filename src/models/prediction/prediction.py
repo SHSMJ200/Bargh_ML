@@ -38,25 +38,24 @@ def preprocess_and_merge_dfs(input_df, weather_forecast_df):
     weather_forecast_df['date'] = pd.to_datetime(weather_forecast_df['date'])
     input_df['date'] = pd.to_datetime(input_df['date'])
     final_input_df = pd.merge(input_df, weather_forecast_df, on=['name', 'date', 'hour'], how='left')
-    final_input_df = Feature_adder(final_input_df, add_label_column=False).df
+    final_input_df = Feature_adder(final_input_df, temp_feature="temperature", add_label_column=False).df
     return final_input_df
 
 
 def select_needed_features(final_input_df):
     final_input_df["generation"] = 0
 
-    temp_feature = "temp_sens"
-    base_features = ["name", "code", "temperature", "humidity", "dew", "surface_pressure", f"{temp_feature}"]
-    time_features = ["hour", "day_of_week", "month"]
+    temp_feature = "temperature"
+    features = ["name", "code", f"{temp_feature}"]
     feature_selector = Feature_selector(final_input_df, "generation")
-    feature_selector.filter_features(features_to_select=base_features + time_features)
+    feature_selector.filter_features(features_to_select=features)
     df_f_selected = feature_selector.df
     return df_f_selected
 
 
 def extract_name_code_from_filename(filename):
-    # We assume that filename is : model_{name}_{code}.joblib
-    pattern = r"model_(.+)_(.+)\.joblib"
+    # We assume that filename is : {name}_{code}.joblib
+    pattern = r"(.+)_(.+)\.joblib"
 
     match = re.match(pattern, filename)
     if match:
@@ -82,8 +81,10 @@ def load_models(folder_path):
 if __name__ == "__main__":
     crawl_future()
 
-    save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
-    models_dict = load_models(save_model_folder)
+    normal_models_folder = os.path.join(project_root, "src", "models", "fitted_models", "normal")
+    turbo_models_folder = os.path.join(project_root, "src", "models", "fitted_models", "turbo")
+    normal_models = load_models(normal_models_folder)
+    turbo_models = load_models(normal_models_folder)
 
     input_df, weather_forecast_df = read_dfs()
 
@@ -104,9 +105,14 @@ if __name__ == "__main__":
         X, _ = fs_n_c.get_X_and_y()
         # X = make_onehot(X)
 
-        model = models_dict[name, code]
-        y_pred = model.predict(X)
+        normal_model = normal_models[name, code]
+        y_pred = normal_model.predict(X)
         input_df.loc[X.index, "prediction"] = y_pred
+
+        turbo_model = turbo_models[name, code]
+        if turbo_model:
+            y_pred = turbo_model.predict(X)
+            input_df.loc[X.index, "prediction_turbo"] = y_pred
 
     xlsx_output_path = os.path.join(project_root, "src", "models", "prediction", "one_day_output.xlsx")
     input_df.to_excel(xlsx_output_path)
