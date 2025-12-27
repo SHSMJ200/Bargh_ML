@@ -42,7 +42,7 @@ class SeparateQuantilePiecewiseLinear(BaseEstimator, RegressorMixin):
 
         x_temp = np.linspace(self.breakpoints[0], self.breakpoints[2], 100)
 
-        y0_temp = model0.predict(x_temp.reshape(-1, 1))
+        y0_temp = model0.predict(x_temp.reshape(-1, 1)) - 1
         y1_temp = model1.predict(x_temp.reshape(-1, 1))
 
         slope0 = model0.coef_[0]

@@ -4,6 +4,7 @@ import sys
 from sklearn.preprocessing import PolynomialFeatures
 
 from src.models.customized_ML_models.SeparateQuantilePiecewiseLinear import SeparateQuantilePiecewiseLinear
+from src.models.customized_ML_models.SmartOneTwoLine import SmartOneTwoQuantileLine
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = current_dir[:current_dir.find("src") - 1]
@@ -53,10 +54,11 @@ def train_and_test_model(X, y, folder_path, name, code, is_turbo=False):
         # model = PiecewiseLinearWrapper(n_segments=2)
         # model = QuantilePiecewiseLinear(n_segments=1, quantile=0.85, break_bound_temp=20)
         # model = SmartQuantilePiecewiseLinear(break_bound_temp=20)
-        model = SeparateQuantilePiecewiseLinear(quantiles=[0.98, 0.85], break_bound_temp=25)
+        # model = SeparateQuantilePiecewiseLinear(quantiles=[0.98, 0.85], break_bound_temp=25)
+        model = SmartOneTwoQuantileLine()
 
     model.fit(X_train, y_train)
-    model_path = f"{folder_path}/{'turbo' if is_turbo else 'normal10'}/{name}_{code}.joblib"
+    model_path = f"{folder_path}/{'turbo' if is_turbo else 'normal11'}/{name}_{code}.joblib"
     dump(model, model_path)
 
     y_pred_train = model.predict(X_train)
