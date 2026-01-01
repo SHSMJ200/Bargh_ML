@@ -1,7 +1,6 @@
 import numpy as np
 from sklearn.linear_model import QuantileRegressor
 
-from src.models.customized_ML_models.QuantilePiecewiseLinear import QuantilePiecewiseLinear
 from src.models.customized_ML_models.SeparateQuantilePiecewiseLinear import SeparateQuantilePiecewiseLinear
 
 
@@ -21,7 +20,9 @@ class SmartOneTwoQuantileLine:
         xp = model2.info["inter_point"][0]
         x1 = model2.breakpoints[0]
         x2 = model2.breakpoints[2]
-        z2 = int(len(X[X > model2.breakpoints[1]]) / len(X) * 100)
+
+        temp = np.array(X).flatten()
+        z2 = int((len(temp[temp > model2.breakpoints[1]]) / len(X)) * 100)
 
         cc = (0 > s1 > s2) and (x1 < xp < x2) and 2.5 > abs(s1 - s2) >= 0.25 and z2 > 5
 

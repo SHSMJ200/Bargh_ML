@@ -134,7 +134,8 @@ class Feature_adder:
                 print(name, code)
                 print(len(one_unit_df))
             g_ceil = a * t + b
-
+            if name == "قم" and code == "G11":
+                print(name,code,a,b)
             upper_line_indices = (g[g > g_ceil + delta]).index
 
             all_indices.extend(upper_line_indices)

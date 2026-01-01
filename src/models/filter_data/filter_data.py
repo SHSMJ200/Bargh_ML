@@ -139,8 +139,7 @@ def add_features_and_filter(df, l_min, max_diff, temp_feature):
     feature_adder.select_gas_plants()
     feature_adder.select_active_hours(init_label=0, final_label=1)
     feature_adder.select_peak_level_hours(init_label=1, final_label=2)
-    #feature_adder.select_normal_change_hours(l_min=l_min, max_diff=max_diff, init_label=2, final_label=3)
-    feature_adder.select_last_updated_plants_generation_function(split_dates_by_name_code, init_label=2, final_label=4)
+    feature_adder.select_last_updated_plants_generation_function(split_dates_by_name_code, init_label=2, final_label=3)
 
     csv_read_path = os.path.join(project_root, "data", "interim", "factors.csv")
     df_factors = pd.read_csv(csv_read_path)
@@ -149,10 +148,10 @@ def add_features_and_filter(df, l_min, max_diff, temp_feature):
     delta = 1
     interval = (0, 20)
     feature_adder.select_turbo_hours(df_factors, turbo_dict, p_min=p_min, p_max=p_max, delta=delta, interval=interval,
-                                     init_label=4, final_label=5)
+                                     init_label=3, final_label=4)
 
-    feature_adder.select_envelope(init_label=4, final_label=6, p=2, q=0.02, dt=1)
-    feature_adder.select_envelope(init_label=5, final_label=7, p=2, q=0.02, dt=1, min_temp=20)
+    feature_adder.select_envelope(init_label=3, final_label=5, p=2, q=0.02, dt=1)
+    feature_adder.select_envelope(init_label=4, final_label=6, p=2, q=0.02, dt=1, min_temp=20)
 
     return feature_adder.df
 
