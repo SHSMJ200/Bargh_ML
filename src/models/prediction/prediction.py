@@ -38,15 +38,14 @@ def preprocess_and_merge_dfs(input_df, weather_forecast_df):
     weather_forecast_df['date'] = pd.to_datetime(weather_forecast_df['date'])
     input_df['date'] = pd.to_datetime(input_df['date'])
     final_input_df = pd.merge(input_df, weather_forecast_df, on=['name', 'date', 'hour'], how='left')
-    final_input_df = Feature_adder(final_input_df, temp_feature="temperature", add_label_column=False).df
+    final_input_df = Feature_adder(final_input_df, add_label_column=False).df
     return final_input_df
 
 
 def select_needed_features(final_input_df):
     final_input_df["generation"] = 0
 
-    temp_feature = "temperature"
-    features = ["name", "code", f"{temp_feature}"]
+    features = ["name", "code", "temperature"]
     feature_selector = Feature_selector(final_input_df, "generation")
     feature_selector.filter_features(features_to_select=features)
     df_f_selected = feature_selector.df
