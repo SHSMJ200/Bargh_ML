@@ -149,6 +149,7 @@ FEATURE_SELECTION_CONFIG = {
     }
 }
 
+
 def get_coefs(df_factors):
     df_factors["Date"] = pd.to_datetime(df_factors["Date"])
     coefs = {}
@@ -157,6 +158,7 @@ def get_coefs(df_factors):
         latest_row = g.sort_values("Date", ascending=False).iloc[0]
         coefs[(pp_name, unit_code)] = (latest_row["a1IndexGas"], latest_row["b1IndexGas"])
     return coefs
+
 
 def add_features_and_filter(df, coefs):
     feature_adder = Feature_adder(df)
@@ -180,7 +182,6 @@ def add_features_and_filter(df, coefs):
         final_label=4
     )
 
-    # انتخاب envelope ها
     feature_adder.select_envelope(
         init_label=3,
         final_label=5,
@@ -201,12 +202,7 @@ def add_features_and_filter(df, coefs):
     return feature_adder.df
 
 
-if __name__ == "__main__":
-    l_min = 4
-    max_diff = 3
-    c_thresh = 0.9
-    bin_length = 100
-
+def filter_data():
     csv_read_path = os.path.join(project_root, "data", "processed", "integrated.csv")
     df = pd.read_csv(csv_read_path, encoding='utf-8')
 
@@ -221,3 +217,7 @@ if __name__ == "__main__":
 
     csv_semi_write_path = os.path.join(project_root, "data", "processed", "semi_processed.csv")
     filtered_df.to_csv(csv_semi_write_path, index=False)
+
+
+if __name__ == "__main__":
+    filter_data()

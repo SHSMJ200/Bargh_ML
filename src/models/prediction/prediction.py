@@ -22,9 +22,8 @@ tables_config_path = get_root() + '/configs/tables_columns.yaml'
 feature_dict = yaml.load(open(tables_config_path), Loader=yaml.SafeLoader)
 
 
-def read_dfs():
+def read_dfs(xlsx_input_path):
     weather_forecast_path = os.path.join(project_root, "data", "interim", "weather_forecast.csv")
-    xlsx_input_path = os.path.join(project_root, "src", "models", "prediction", "one_day_input.xlsx")
     weather_forecast_df = pd.read_csv(weather_forecast_path)
     input_df = pd.read_excel(xlsx_input_path)
     return input_df, weather_forecast_df
@@ -43,7 +42,8 @@ def preprocess_and_merge_dfs(input_df, weather_forecast_df):
 
 
 def select_needed_features(final_input_df):
-    final_input_df["generation"] = 0
+    if "generation" not in list(final_input_df.columns):
+        final_input_df["generation"] = 0
 
     features = ["name", "code", "temperature"]
     feature_selector = Feature_selector(final_input_df, "generation")
@@ -77,15 +77,15 @@ def load_models(folder_path):
     return models_dict
 
 
-if __name__ == "__main__":
-    crawl_future()
+def predict_generation(xlsx_input_path, xlsx_output_path):
+    #crawl_future()
 
     normal_models_folder = os.path.join(project_root, "src", "models", "fitted_models", "normal")
     turbo_models_folder = os.path.join(project_root, "src", "models", "fitted_models", "turbo")
     normal_models = load_models(normal_models_folder)
-    turbo_models = load_models(normal_models_folder)
+    turbo_models = load_models(turbo_models_folder)
 
-    input_df, weather_forecast_df = read_dfs()
+    input_df, weather_forecast_df = read_dfs(xlsx_input_path)
 
     final_input_df = preprocess_and_merge_dfs(input_df, weather_forecast_df)
 
@@ -102,16 +102,21 @@ if __name__ == "__main__":
         fs_n_c = Feature_selector(df_n_c, "generation")
         fs_n_c.filter_features(features_to_drop=["name", "code"])
         X, _ = fs_n_c.get_X_and_y()
-        # X = make_onehot(X)
 
         normal_model = normal_models[name, code]
         y_pred = normal_model.predict(X)
         input_df.loc[X.index, "prediction"] = y_pred
 
-        turbo_model = turbo_models[name, code]
+        turbo_model = turbo_models.get((name, code))
         if turbo_model:
             y_pred = turbo_model.predict(X)
             input_df.loc[X.index, "prediction_turbo"] = y_pred
 
-    xlsx_output_path = os.path.join(project_root, "src", "models", "prediction", "one_day_output.xlsx")
     input_df.to_excel(xlsx_output_path)
+
+
+if __name__ == "__main__":
+    xlsx_input_path = os.path.join(project_root, "src", "models", "prediction", "one_day_input.xlsx")
+    xlsx_output_path = os.path.join(project_root, "src", "models", "prediction", "one_day_output.xlsx")
+
+    predict_generation(xlsx_input_path, xlsx_output_path)

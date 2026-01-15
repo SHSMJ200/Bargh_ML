@@ -39,7 +39,7 @@ class AdaptiveQuantileRegressor:
         first_slope = piecewise_model.info["slopes"][0]
         second_slope = piecewise_model.info["slopes"][1]
 
-        intersection_x = piecewise_model.info["inter_point"][0]
+        intersection_x = piecewise_model.info["intersection_x"]
         left_breakpoint = piecewise_model.breakpoints[0]
         right_breakpoint = piecewise_model.breakpoints[2]
 

@@ -38,7 +38,7 @@ def select_features(df_r_selected, features, target="generation"):
     return df_f_selected
 
 
-def train_model(X, y, folder_path, name, code, is_turbo=False):
+def train_unit_model(X, y, folder_path, name, code, is_turbo=False):
     X_train = X
     y_train = y
 
@@ -65,7 +65,7 @@ def print_report(data_sizes, train_errors):
     logger.info(f"Weighted train error: {weighted_train_error:0.3f}")
 
 
-def train_all_unit_models(df_f_selected, is_turbo):
+def train_all_unit_models(df_f_selected, is_turbo, save_model_folder):
     ds_n_c = Data_selector(df_f_selected)
     ds_n_c.df = ds_n_c.df.dropna()
 
@@ -81,7 +81,7 @@ def train_all_unit_models(df_f_selected, is_turbo):
         fs_n_c.filter_features(features_to_drop=["name", "code"])
         X, y = fs_n_c.get_X_and_y()
 
-        train_error = train_model(X, y, save_model_folder, name, code, is_turbo)
+        train_error = train_unit_model(X, y, save_model_folder, name, code, is_turbo)
         logger.info(f"Train rmse error: {train_error:.3f}% , Size of data: {len(y)}")
 
         train_errors.append(train_error)
@@ -90,7 +90,7 @@ def train_all_unit_models(df_f_selected, is_turbo):
     print_report(data_sizes, train_errors)
 
 
-if __name__ == "__main__":
+def train_model():
     save_model_folder = os.path.join(project_root, "src", "models", "fitted_models")
     features = ["name", "code", "temperature"]
 
@@ -99,11 +99,15 @@ if __name__ == "__main__":
     is_turbo = False
     df_row_selected = select_data(goodness_to_select)
     df_feature_selected = select_features(df_row_selected, features)
-    train_all_unit_models(df_feature_selected, is_turbo)
+    train_all_unit_models(df_feature_selected, is_turbo, save_model_folder)
 
     logger.info(f"\n****************\ntrain models on turbo data:")
     goodness_to_select = 6
     is_turbo = True
     df_row_selected = select_data(goodness_to_select)
     df_feature_selected = select_features(df_row_selected, features)
-    train_all_unit_models(df_feature_selected, is_turbo)
+    train_all_unit_models(df_feature_selected, is_turbo, save_model_folder)
+
+
+if __name__ == "__main__":
+    train_model()

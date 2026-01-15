@@ -68,7 +68,6 @@ class Feature_adder:
         self.log_filter_ratio(new_label=final_label, old_label=init_label)
 
     def select_turbo_hours(self, coefs, turbo_dict, p_min, p_max, delta, interval, init_label, final_label):
-
         features = ["name", "code", "generation", "temperature", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
         df_modified = Data_selector(df_modified).select_peaks(init_label)
@@ -93,7 +92,7 @@ class Feature_adder:
         self.df.loc[all_indices, "is_good_peak"] = final_label
         self.log_filter_ratio(new_label=final_label, old_label=init_label)
 
-    def select_envelope(self, init_label, final_label, p, q, dt, min_temp):
+    def select_envelope(self, init_label, final_label, p, q, dt, min_temp=None):
         features = ["name", "code", "generation", "temperature", "is_good_peak"]
         df_filtered = self.df[features].copy(deep=True)
         df_filtered = Data_selector(df_filtered).select_peaks(init_label)
@@ -108,7 +107,9 @@ class Feature_adder:
             temperatures = unit_df["temperature"]
             generation = unit_df["generation"]
 
-            temp_min = max(min_temp, int(np.floor(temperatures.min())))
+            temp_min = int(np.floor(temperatures.min()))
+            if min_temp:
+                temp_min = max(min_temp, temp_min)
             temp_max = int(np.ceil(temperatures.max()))
 
             unit_selected_indices = []
@@ -148,9 +149,7 @@ def find_best_gap_line_given_slope(x, y, a, p_min, p_max, delta, interval):
     temp_min = get_intercept_for_quantile(x, y, a, p_min, interval) / np.sqrt(a ** 2 + 1)
     temp_max = (get_intercept_for_quantile(x, y, a, p_max, interval) + delta) / np.sqrt(a ** 2 + 1)
 
-    valley_position = find_valley_on_projection(
-        normalized_residuals, temp_min, temp_max
-    )
+    valley_position = find_valley_on_projection(normalized_residuals, temp_min, temp_max)
 
     if valley_position is None:
         return a, np.inf

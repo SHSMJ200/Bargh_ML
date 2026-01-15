@@ -5,11 +5,6 @@ from sklearn.linear_model import QuantileRegressor
 
 
 class TwoSegmentQuantileRegressor(BaseEstimator, RegressorMixin):
-    """
-    Two-segment piecewise linear model built from separate quantile regressions.
-    Breakpoint is estimated using pwlf on high-temperature data.
-    """
-
     def __init__(self, quantiles, break_bound_temp):
         self.n_segments = 2
         self.quantiles = quantiles
