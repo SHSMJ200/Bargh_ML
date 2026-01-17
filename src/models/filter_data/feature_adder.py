@@ -80,6 +80,11 @@ class Feature_adder:
             coef = coefs.get((name, code))
             if turbo_dict.get(name, {}).get(code) and coef:
                 one_unit_df = ds.filter_name_code(name, code)
+                print(name, code)
+                if len(one_unit_df) == 0:
+                    print("zero")
+                else:
+                    print("good")
                 t = one_unit_df["temperature"]
                 g = one_unit_df['generation']
                 a, _ = coef
@@ -146,8 +151,15 @@ class Feature_adder:
 def find_best_gap_line_given_slope(x, y, a, p_min, p_max, delta, interval):
     normalized_residuals = (y - a * x) / np.sqrt(a ** 2 + 1)
 
-    temp_min = get_intercept_for_quantile(x, y, a, p_min, interval) / np.sqrt(a ** 2 + 1)
-    temp_max = (get_intercept_for_quantile(x, y, a, p_max, interval) + delta) / np.sqrt(a ** 2 + 1)
+    value_min = get_intercept_for_quantile(x, y, a, p_min, interval)
+    if value_min is None:
+        value_min = -200
+    temp_min = value_min / np.sqrt(a ** 2 + 1)
+
+    value_max = get_intercept_for_quantile(x, y, a, p_max, interval)
+    if value_max is None:
+        value_max = 200
+    temp_max = (value_max + delta) / np.sqrt(a ** 2 + 1)
 
     valley_position = find_valley_on_projection(normalized_residuals, temp_min, temp_max)
 
@@ -162,7 +174,8 @@ def get_intercept_for_quantile(x, y, slope, quantile, interval):
     mask = (interval[0] <= x) & (x <= interval[1])
     x_filtered = x[mask]
     y_filtered = y[mask]
-
+    if len(x_filtered) == 0:
+        return None
     residuals = y_filtered - slope * x_filtered
     b = np.quantile(residuals, quantile)
     return b

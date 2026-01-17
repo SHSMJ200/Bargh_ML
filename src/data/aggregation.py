@@ -40,3 +40,5 @@ def integrated_aggregation():
     df_final = df7.rename(columns={"final_name": "name"}).drop(columns=["name_x", "name_y"])
 
     df_final.to_csv(get_root() + "/data/processed/integrated.csv")
+
+    logger.info(f"Aggregation has been successfully done")

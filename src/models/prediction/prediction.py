@@ -3,6 +3,7 @@ import sys
 
 import yaml
 
+from logs.logger import CustomLogger
 from src.models.data_selection.data_selector import Data_selector
 from src.models.filter_data.feature_adder import Feature_adder
 
@@ -17,6 +18,8 @@ from src.root import get_root
 import pandas as pd
 import re
 from joblib import load
+
+logger = CustomLogger(__name__).get_logger()
 
 tables_config_path = get_root() + '/configs/tables_columns.yaml'
 feature_dict = yaml.load(open(tables_config_path), Loader=yaml.SafeLoader)
@@ -78,7 +81,7 @@ def load_models(folder_path):
 
 
 def predict_generation(xlsx_input_path, xlsx_output_path):
-    #crawl_future()
+    # crawl_future()
 
     normal_models_folder = os.path.join(project_root, "src", "models", "fitted_models", "normal")
     turbo_models_folder = os.path.join(project_root, "src", "models", "fitted_models", "turbo")
@@ -113,6 +116,8 @@ def predict_generation(xlsx_input_path, xlsx_output_path):
             input_df.loc[X.index, "prediction_turbo"] = y_pred
 
     input_df.to_excel(xlsx_output_path)
+
+    logger.info(f"The prediction of generation is written in the file below:\n{xlsx_output_path}")
 
 
 if __name__ == "__main__":
