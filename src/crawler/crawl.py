@@ -4,9 +4,8 @@ import requests_cache
 import retry_requests
 import yaml
 
-from logs.logger import CustomLogger
+from src.logs.logger import CustomLogger
 from src.data.data_cleaner import RawDataConfig
-from src.data.dbconnection import Database
 from src.root import get_root
 
 logger = CustomLogger(__name__).get_logger()
@@ -111,12 +110,6 @@ def crawl_history(start_date: str, end_date: str):
         weather_path = get_root() + '/data/interim/weather.csv'
         weather_df.to_csv(weather_path, index=False, na_rep='NULL')
 
-        with Database() as db:
-            db.create_table(table_name='weather', col_names_and_types=feature_dict['weather'])
-            db.commit()
-            db.copy_expert(table_name='weather', file=weather_path, into_db=True)
-            db.commit()
-
     except Exception as e:
         logger.error(f"Couldn't complete the crawling due to below Exception:\n{e}\n")
 
@@ -143,12 +136,6 @@ def crawl_future():
         w_forecast_df = preprocess_weather_df(w_forecast_df)
         w_forecast_path = get_root() + '/data/interim/weather_forecast.csv'
         w_forecast_df.to_csv(w_forecast_path, index=False, na_rep='NULL')
-
-        with Database() as db:
-            db.create_table(table_name='weather_forecast', col_names_and_types=feature_dict['weather'])
-            db.commit()
-            db.copy_expert(table_name='weather_forecast', file=w_forecast_path, into_db=True)
-            db.commit()
 
     except Exception as e:
         logger.error(f"Couldn't complete the crawling due to below Exception:\n{e}\n")

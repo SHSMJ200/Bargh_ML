@@ -3,38 +3,23 @@ import pandas as pd
 from scipy.signal import find_peaks
 from scipy.stats import gaussian_kde
 
-from logs.logger import CustomLogger
+from src.logs import CustomLogger
 from src.models.data_selection.data_selector import Data_selector
 
 logger = CustomLogger(__name__).get_logger()
 
 
 class Feature_adder:
-    def __init__(self, df: pd.DataFrame, temp_feature, add_label_column=True):
+    def __init__(self, df: pd.DataFrame, add_label_column=True):
         self.df = df
-        self.temp_feature = temp_feature
-        self.time_ranges_by_name_code = {}
-        self.c_time_ranges_by_name_code = {}
-
         self.add_time_features()
         self.df.sort_values(by=['name', 'code', 'datetime'], inplace=True)
-
         if add_label_column:
             self.df["is_good_peak"] = 0
-
-    def create_feature_with_delay(self, feature, n_delay):
-        new_feature = f"{feature}_with_{n_delay}_delay"
-        sorted_df = self.df.sort_values(by=['code', 'name', 'datetime'])
-        self.df[new_feature] = sorted_df.groupby(['code', 'name'])[feature].shift(n_delay)
-
-        logger.debug(f"A new column created: {feature} with {n_delay} hours delay")
 
     def add_time_features(self):
         self.df['date'] = pd.to_datetime(self.df['date'])
         self.df['datetime'] = self.df['date'] + pd.to_timedelta(self.df['hour'], unit='h')
-        self.df['season'] = self.df['date'].apply(get_season)
-        self.df['day_of_week'] = self.df['datetime'].dt.dayofweek
-        self.df['month'] = self.df['datetime'].dt.month
 
         logger.debug(f"Temporal columns were created")
 
@@ -44,14 +29,13 @@ class Feature_adder:
     def select_active_hours(self, init_label, final_label):
         df_modified = Data_selector(self.df).select_peaks(init_label)
         peak_condition = (df_modified['status'] == 'SO') | (df_modified['status'] == 'LF1')
-        self.df.loc[peak_condition, "is_good_peak"] = final_label
 
-        self.log_filter_ratio(label=final_label, old_label=init_label)
+        self.df.loc[peak_condition, "is_good_peak"] = final_label
+        self.log_filter_ratio(new_label=final_label, old_label=init_label)
 
     def select_peak_level_hours(self, init_label, final_label):
         df_modified = Data_selector(self.df).select_peaks(init_label)
 
-        # We assume that start_md < end_md
         start_md = "05-22"
         end_md = "09-22"
         statusM_mask = (df_modified['date'].dt.strftime('%m-%d') >= start_md) & (
@@ -60,33 +44,15 @@ class Feature_adder:
 
         self.df.loc[peak_condition[peak_condition].index, "is_good_peak"] = final_label
 
-        self.log_filter_ratio(label=final_label, old_label=init_label)
-
-    def select_normal_change_hours(self, l_min, max_diff, init_label, final_label):
-        features = ["name", "code", "datetime", "generation", "is_good_peak"]
-        df_modified = self.df[features].copy(deep=True)
-        df_modified = Data_selector(df_modified).select_peaks(init_label)
-
-        power_plants = df_modified[['name', 'code']].drop_duplicates()
-        ds = Data_selector(df_modified)
-
-        for _, row in power_plants.iterrows():
-            name, code = row['name'], row['code']
-            df_name_code = ds.filter_name_code(name, code)
-            time_ranges = get_interval(df_name_code, l_min, max_diff)
-            self.time_ranges_by_name_code[(name, code)] = time_ranges
-
-        self.label_points(ds, power_plants, self.time_ranges_by_name_code, label=final_label)
-
-        self.log_filter_ratio(label=final_label, old_label=init_label)
+        self.log_filter_ratio(new_label=final_label, old_label=init_label)
 
     def select_last_updated_plants_generation_function(self, split_dates_by_name_code, init_label, final_label):
         features = ['name', 'code', "datetime", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
         df_modified = Data_selector(df_modified).select_peaks(init_label)
-
         power_plants = df_modified[['name', 'code']].drop_duplicates()
         ds = Data_selector(df_modified)
+
         all_chosen_indices = []
         for row in power_plants.itertuples():
             name, code = row.name, row.code
@@ -99,220 +65,143 @@ class Feature_adder:
             all_chosen_indices.extend(chosen_indices)
 
         self.df.loc[all_chosen_indices, "is_good_peak"] = final_label
+        self.log_filter_ratio(new_label=final_label, old_label=init_label)
 
-        self.log_filter_ratio(label=final_label, old_label=init_label)
-
-    def select_turbo_hours(self, df_factors, turbo_dict, p_min, p_max, delta, interval, init_label, final_label):
-
-        features = ["name", "code", "generation", f"{self.temp_feature}", "is_good_peak"]
+    def select_turbo_hours(self, coefs, turbo_dict, p_min, p_max, delta, interval, init_label, final_label):
+        features = ["name", "code", "generation", "temperature", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
         df_modified = Data_selector(df_modified).select_peaks(init_label)
-
         ds = Data_selector(df_modified)
-
-        coefs = self.get_coefs(df_factors)
-
         power_plants = df_modified[['name', 'code']].drop_duplicates()
 
         all_indices = []
         for row in power_plants.itertuples():
             name, code = row.name, row.code
-            one_unit_df = ds.filter_name_code(name, code)
-
-            t = one_unit_df[self.temp_feature]
-            g = one_unit_df['generation']
-
             coef = coefs.get((name, code))
-            if coef is None:
-                continue
-            a, b = coef
-            if not turbo_dict.get(name, {}).get(code):
-                continue
-            try:
-                a, b = find_best_gap_line_given_a(t, g, a, p_min, p_max, delta, interval)
-            except Exception as e:
+            if turbo_dict.get(name, {}).get(code) and coef:
+                one_unit_df = ds.filter_name_code(name, code)
                 print(name, code)
-                print(len(one_unit_df))
-            g_ceil = a * t + b
+                if len(one_unit_df) == 0:
+                    print("zero")
+                else:
+                    print("good")
+                t = one_unit_df["temperature"]
+                g = one_unit_df['generation']
+                a, _ = coef
+                a, b = find_best_gap_line_given_slope(t, g, a, p_min, p_max, delta, interval)
+                g_ceil = a * t + b
+                upper_line_indices = (g[g > g_ceil + delta]).index
 
-            upper_line_indices = (g[g > g_ceil + delta]).index
-
-            all_indices.extend(upper_line_indices)
+                all_indices.extend(upper_line_indices)
 
         self.df.loc[all_indices, "is_good_peak"] = final_label
+        self.log_filter_ratio(new_label=final_label, old_label=init_label)
 
-        self.log_filter_ratio(label=final_label, old_label=init_label)
+    def select_envelope(self, init_label, final_label, p, q, dt, min_temp=None):
+        features = ["name", "code", "generation", "temperature", "is_good_peak"]
+        df_filtered = self.df[features].copy(deep=True)
+        df_filtered = Data_selector(df_filtered).select_peaks(init_label)
+        data_selector = Data_selector(df_filtered)
+        plant_units = df_filtered[['name', 'code']].drop_duplicates()
 
-    def select_envelope(self, init_label, final_label, p=0.98, q=0.01, dt=1, min_temp=None):
-        features = ["name", "code", "generation", f"{self.temp_feature}", "is_good_peak"]
-        df_modified = self.df[features].copy(deep=True)
-        df_modified = Data_selector(df_modified).select_peaks(init_label, is_tight=True)
+        all_selected_indices = []
+        for unit in plant_units.itertuples():
+            plant_name, plant_code = unit.name, unit.code
+            unit_df = data_selector.filter_name_code(plant_name, plant_code)
 
-        ds = Data_selector(df_modified)
+            temperatures = unit_df["temperature"]
+            generation = unit_df["generation"]
 
-        all_indices = []
-        power_plants = df_modified[['name', 'code']].drop_duplicates()
-        for row in power_plants.itertuples():
-            name, code = row.name, row.code
-            one_unit_df = ds.filter_name_code(name, code)
-
-            sens_temps = one_unit_df[self.temp_feature]
-            gens = one_unit_df['generation']
-
-            tmin = int(np.floor(min(sens_temps)))
+            temp_min = int(np.floor(temperatures.min()))
             if min_temp:
-                tmin = max(min_temp, tmin)
+                temp_min = max(min_temp, temp_min)
+            temp_max = int(np.ceil(temperatures.max()))
 
-            tmax = int(np.ceil(max(sens_temps)))
-            above_curve_indices = []
+            unit_selected_indices = []
 
-            temp = tmin
-            temp2 = tmin + dt
-            while temp < tmax:
-                mask = (sens_temps >= temp) & (sens_temps <= temp2)
-                y = gens[mask]
-                if len(y) <= 10:
-                    print(name, code, temp, "-", temp2)
-                    #if temp2 > tmax:
-                    #    temp = temp2 #break
-                    #temp2 += dt
+            for temp in range(temp_min, temp_max, dt):
+                temp_mask = (temperatures >= temp) & (temperatures <= temp + dt)
+                y_values = generation[temp_mask]
 
-                    temp = temp2
-                    temp2 += dt
+                if len(y_values) <= 10:
                     continue
 
                 if p >= 1:
-                    index_sorted = np.argsort(y.values)
-                    index = index_sorted[-p]
-                    y_th = y.values[index]
+                    sorted_indices = np.argsort(y_values.values)
+                    threshold_index = sorted_indices[-p]
+                    y_threshold = y_values.values[threshold_index]
                 else:
-                    y_th = np.quantile(y, p=p)
-                mask_y = (y >= y_th * (1 - q)) & (y <= y_th * (1 + q))
+                    y_threshold = np.quantile(y_values, p=p)
 
-                above_curve_indices.extend(mask_y[mask_y].index)
+                envelope_mask = (y_values >= y_threshold * (1 - q)) & (y_values <= y_threshold * (1 + q))
+                unit_selected_indices.extend(envelope_mask[envelope_mask].index)
 
-                temp = temp2
-                temp2 += dt
+            all_selected_indices.extend(unit_selected_indices)
 
-            all_indices.extend(above_curve_indices)
+        self.df.loc[all_selected_indices, "is_good_peak"] = final_label
+        self.log_filter_ratio(new_label=final_label, old_label=init_label)
 
-        self.df.loc[all_indices, "is_good_peak"] = final_label
-
-        self.log_filter_ratio(label=final_label, old_label=init_label)
-
-    def label_points(self, ds, power_plants, dates_by_name_code, label):
-        all_indices = []
-        for _, row in power_plants.iterrows():
-            name, code = row['name'], row['code']
-            df_name_code = ds.filter_name_code(name, code)
-            dates = dates_by_name_code[(name, code)]
-
-            interval_ds = Data_selector(df_name_code)
-            for date1, date2 in dates:
-                flag_array = interval_ds.filter_time(date1, date2, get_mask=True)
-                indices = flag_array.index[flag_array]
-                all_indices.extend(indices)
-        self.df.loc[all_indices, "is_good_peak"] = label
-
-    def get_coefs(self, df_factors):
-        df_factors["Date"] = pd.to_datetime(df_factors["Date"])
-        coefs = {}
-        grouped = df_factors.groupby(['PowerPlantCode', 'PowerPlantName', "UnitCode"])
-        for (pp_code, pp_name, unit_code), g in grouped:
-            latest_row = g.sort_values("Date", ascending=False).iloc[0]
-            coefs[(pp_name, unit_code)] = (latest_row["a1IndexGas"], latest_row["b1IndexGas"])
-        return coefs
-
-    def log_filter_ratio(self, label, old_label=None):
-        if old_label is None: old_label = label - 1
-
-        count_new_label = len(self.df[self.df["is_good_peak"] == label])
-        count_old_label = len(self.df[self.df["is_good_peak"] >= old_label])
-        consistency_percentage = count_new_label / count_old_label * 100
-        logger.info(f"{consistency_percentage:0.2f}% of rows have been chosen by filter{label}")
+    def log_filter_ratio(self, new_label, old_label):
+        count_new_label = len(Data_selector(self.df).select_peaks(new_label))
+        count_old_label = len(Data_selector(self.df).select_peaks(old_label))
+        consistency_percentage = count_new_label / (count_new_label + count_old_label) * 100
+        logger.info(f"{consistency_percentage:0.2f}% of rows have been chosen by filter{new_label}")
 
 
-def get_season(date):
-    month = date.month
-    if month in [12, 1, 2]:
-        return 'winter'
-    elif month in [3, 4, 5]:
-        return 'spring'
-    elif month in [6, 7, 8]:
-        return 'summer'
-    else:
-        return 'fall'
+def find_best_gap_line_given_slope(x, y, a, p_min, p_max, delta, interval):
+    value_min = get_intercept_for_quantile(x, y, a, p_min, interval)
+    if value_min is None:
+        value_min = -200
+    temp_min = value_min / np.sqrt(a ** 2 + 1)
+
+    value_max = get_intercept_for_quantile(x, y, a, p_max, interval)
+    if value_max is None:
+        value_max = 200
+    temp_max = (value_max + delta) / np.sqrt(a ** 2 + 1)
+
+    normalized_residuals = (y - a * x) / np.sqrt(a ** 2 + 1)
+    valley_position = find_valley_on_projection(normalized_residuals, temp_min, temp_max)
+
+    if valley_position is None:
+        return a, np.inf
+
+    b = valley_position * np.sqrt(a ** 2 + 1)
+    return a, b
 
 
-def get_interval(df, l_min, max_diff):
-    df_s = df.reset_index(drop=True)
-    gap_mask_time = df_s['datetime'].diff() != pd.Timedelta(hours=1)
-    gap_mask_generation_up = (df_s['generation'].diff() > max_diff) & (~gap_mask_time)
-    gap_mask_generation_down = (df_s['generation'].diff() < -max_diff) & (~gap_mask_time)
-    gap_mask = gap_mask_time | gap_mask_generation_up | gap_mask_generation_down
-
-    start_indices = df_s.index[gap_mask].tolist()
-    if 0 not in start_indices: start_indices = [0] + start_indices
-    end_indices = [i for i in start_indices[1:]] + [df_s.index[-1]]
-
-    index_ranges = []
-    for i in range(len(start_indices)):
-        if end_indices[i] - start_indices[i] >= l_min:
-            if not gap_mask_generation_down[start_indices[i]] and not gap_mask_generation_up[end_indices[i]]:
-                index_ranges.append((start_indices[i], end_indices[i] - 1))
-
-    time_ranges = [(df_s.loc[i1, 'datetime'], df_s.loc[i2, 'datetime']) for i1, i2 in index_ranges]
-
-    return time_ranges
-
-
-def find_best_gap_line_given_a(x, y, a, p_min, p_max, delta, interval):
-    t = (y - a * x) / np.sqrt(a * a + 1)
-    temp_min = get_b_c(x, y, a, p_min, interval) / np.sqrt(a * a + 1)
-    temp_max = (get_b_c(x, y, a, p_max, interval) + delta) / np.sqrt(a * a + 1)
-    t0, density_min = find_valley_on_projection(t, temp_min, temp_max)
-    if t0 is None:
-        return None
-
-    b = t0 * np.sqrt(a * a + 1)
-    print(b, ":", get_b_c(x, y, a, p_min, interval), (get_b_c(x, y, a, p_max, interval) + delta))
-    best_params = (a, b)
-
-    return best_params
-
-
-def get_b_c(x, y, a, p, interval=(0, 25)):
+def get_intercept_for_quantile(x, y, slope, quantile, interval):
     mask = (interval[0] <= x) & (x <= interval[1])
-    x = x[mask]
-    y = y[mask]
+    x_filtered = x[mask]
+    y_filtered = y[mask]
+    if len(x_filtered) == 0:
+        return None
+    residuals = y_filtered - slope * x_filtered
+    b = np.quantile(residuals, quantile)
+    return b
 
-    r = y - a * x
-    b_c = np.quantile(r, p)
-    return b_c
 
+def find_valley_on_projection(values, temp_min, temp_max):
+    kde = gaussian_kde(values)
+    grid = np.linspace(values.min(), values.max(), 500)
 
-def find_valley_on_projection(t, temp_min=-1000, temp_max=1000):
-    kde = gaussian_kde(t)
-    t_grid = np.linspace(t.min(), t.max(), 500)
-    left_1 = np.searchsorted(t_grid, temp_min, side='left')
-    right_1 = np.searchsorted(t_grid, temp_max, side='left')
+    left_idx = np.searchsorted(grid, temp_min, side='left')
+    right_idx = np.searchsorted(grid, temp_max, side='left')
 
-    density = kde(t_grid)
+    density = kde(grid)
     peaks, _ = find_peaks(density)
     if len(peaks) < 2:
-        return None, None
+        return None
 
-    peaks = peaks[np.argsort(density[peaks])[-2:]]
-    left_0, right_0 = np.sort(peaks)
-    print(left_0, left_1, "---", right_0, right_1)
-    if right_1 <= left_0:
-        valley_idx = right_1
-    elif left_1 >= right_0:
-        valley_idx = left_1
+    top_two_peaks = peaks[np.argsort(density[peaks])[-2:]]
+    left_peak, right_peak = np.sort(top_two_peaks)
+
+    if right_idx <= left_peak:
+        valley_idx = right_idx
+    elif left_idx >= right_peak:
+        valley_idx = left_idx
     else:
-        left = max(left_0, left_1)
-        right = min(right_0, right_1)
-        valley_idx = left + np.argmin(density[left:right])
+        left_bound = max(left_peak, left_idx)
+        right_bound = min(right_peak, right_idx)
+        valley_idx = left_bound + np.argmin(density[left_bound:right_bound])
 
-    # plot_callback(t_grid, density, (left_0, left_1, right_0, right_1, valley_idx))
-    return t_grid[valley_idx], density[valley_idx]
+    return grid[valley_idx]

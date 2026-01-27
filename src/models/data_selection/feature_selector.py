@@ -1,6 +1,5 @@
 import pandas as pd
-
-from logs.logger import CustomLogger
+from src.logs.logger import CustomLogger
 
 logger = CustomLogger(__name__).get_logger()
 
