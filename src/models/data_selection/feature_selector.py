@@ -11,7 +11,7 @@ class Feature_selector:
 
     def filter_features(self, features_to_select=None, features_to_drop=None):
         if features_to_drop:
-            self.df = self.df.drop(columns=features_to_drop, axis=1)
+            self.df = self.df.drop(columns=features_to_drop)
         if features_to_select:
             self.df = self.df[features_to_select + [self.target]]
         logger.debug(f"Selected features : \n{self.df.columns}")
