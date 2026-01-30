@@ -3,6 +3,8 @@ import sys
 
 import yaml
 
+from src.crawler.crawl import crawl_future
+from src.data.data_cleaner import jalali_to_gregorian
 from src.logs.logger import CustomLogger
 from src.models.data_selection.data_selector import Data_selector
 from src.models.filter_data.feature_adder import Feature_adder
@@ -23,12 +25,8 @@ logger = CustomLogger(__name__).get_logger()
 tables_config_path = get_root() + '/configs/tables_columns.yaml'
 feature_dict = yaml.load(open(tables_config_path), Loader=yaml.SafeLoader)
 
-
-def read_dfs(xlsx_input_path):
-    weather_forecast_path = os.path.join(project_root, "data", "interim", "weather_forecast.csv")
-    weather_forecast_df = pd.read_csv(weather_forecast_path)
-    input_df = pd.read_excel(xlsx_input_path)
-    return input_df, weather_forecast_df
+prediction_config_path = get_root() + '/configs/raw_data.yaml'
+prediction_config = yaml.safe_load(open(prediction_config_path, 'r', encoding='utf-8'))
 
 
 def preprocess_and_merge_dfs(input_df, weather_forecast_df):
@@ -37,6 +35,9 @@ def preprocess_and_merge_dfs(input_df, weather_forecast_df):
                 "surface_pressure", "evapotranspiration", "wind_speed", "wind_direction"]
     weather_forecast_df.columns = new_cols
     weather_forecast_df['date'] = pd.to_datetime(weather_forecast_df['date'])
+    if prediction_config["is_jalali"]:
+        weather_forecast_df['Date'] = weather_forecast_df['Date'].apply(jalali_to_gregorian)
+
     input_df['date'] = pd.to_datetime(input_df['date'])
     final_input_df = pd.merge(input_df, weather_forecast_df, on=['name', 'date', 'hour'], how='left')
     final_input_df = Feature_adder(final_input_df, add_label_column=False).df
@@ -80,16 +81,20 @@ def load_models(folder_path):
 
 
 def predict_generation(xlsx_input_path, xlsx_output_path):
-    # crawl_future()
-
     normal_models_folder = os.path.join(project_root, "src", "models", "fitted_models", "normal")
     turbo_models_folder = os.path.join(project_root, "src", "models", "fitted_models", "turbo")
     normal_models = load_models(normal_models_folder)
     turbo_models = load_models(turbo_models_folder)
 
-    input_df, weather_forecast_df = read_dfs(xlsx_input_path)
+    input_df = pd.read_excel(xlsx_input_path)
 
-    final_input_df = preprocess_and_merge_dfs(input_df, weather_forecast_df)
+    if prediction_config_path["has_temperature_column"]:
+        crawl_future()
+        weather_forecast_path = os.path.join(project_root, "data", "interim", "weather_forecast.csv")
+        weather_forecast_df = pd.read_csv(weather_forecast_path)
+        final_input_df = preprocess_and_merge_dfs(input_df, weather_forecast_df)
+    else:
+        final_input_df = input_df
 
     df_selected = select_needed_features(final_input_df)
 

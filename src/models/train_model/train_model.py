@@ -42,35 +42,16 @@ def select_features(df_r_selected, features, target="generation"):
 def train_unit_model(X, y, folder_path, name, code, is_turbo=False):
     X_train = X
     y_train = y
-    '''
     
     if is_turbo:
         model = make_pipeline(PolynomialFeatures(degree=2), LinearRegression())
     else:
-
         model = AdaptiveQuantileRegressor()
     
     model.fit(X_train, y_train)
     model_path = f"{folder_path}/{'turbo' if is_turbo else 'normal'}/{name}_{code}.joblib"
     dump(model, model_path)
     
-    '''
-    model = QuantileRegressor(quantile=0.85,solver="highs",alpha=0)
-    model.fit(X_train, y_train)
-    model_path = f"{folder_path}/{'QuantileRegressor'}/{name}_{code}.joblib"
-    dump(model, model_path)
-    
-    model = TwoSegmentQuantileRegressor(quantiles=[0.98,0.85],break_bound_temp=25)
-    model.fit(X_train, y_train)
-    model_path = f"{folder_path}/{'TwoSegmentQuantileRegressor'}/{name}_{code}.joblib"
-    dump(model, model_path)
-    
-    model = LinearRegression()
-    model.fit(X_train, y_train)
-    model_path = f"{folder_path}/{'LinearRegression'}/{name}_{code}.joblib"
-    dump(model, model_path)
-    
-
     y_pred_train = model.predict(X_train)
     rmse_error_train = compute_relative_rmse(y_pred_train, y_train)
 
@@ -119,14 +100,12 @@ def train_model():
     df_feature_selected = select_features(df_row_selected, features)
     train_all_unit_models(df_feature_selected, is_turbo, save_model_folder)
 
-    '''
     logger.info(f"\n****************\ntrain models on turbo data:")
     goodness_to_select = 6
     is_turbo = True
     df_row_selected = select_data(goodness_to_select)
     df_feature_selected = select_features(df_row_selected, features)
     train_all_unit_models(df_feature_selected, is_turbo, save_model_folder)
-    '''
 
 if __name__ == "__main__":
     train_model()

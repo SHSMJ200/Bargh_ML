@@ -5,8 +5,8 @@
 * try/ except
 * Loggers
 * sys.path.insert add redundant element to list
-* How about other features except temp??? 
 * Use id instead of name
+* design interface for project
 
 
   🟨 Doing

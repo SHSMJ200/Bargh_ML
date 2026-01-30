@@ -1,0 +1,128 @@
+split_dates_by_name_code:
+  سبلان:
+    G11: '2021-10-31'
+    G14: '2022-05-01'
+
+  سیکل ترکیبی ارومیه:
+    G11: '2022-01-31'
+
+  سیکل ترکیبی یزد:
+    G11: '2021-08-01'
+    G15: '2022-03-01'
+
+  شهدای پاکدشت - دماوند:
+    G13: '2022-01-01'
+    G22: '2022-07-01'
+
+  عسلویه:
+    G11: '2023-07-01'
+    G12: '2022-03-01'
+
+  قم:
+    G11: '2021-06-01'
+
+  پرند:
+    G11: '2022-03-31'
+    G12: '2022-05-01'
+
+  گیلان:
+    G15: '2022-05-01'
+
+
+turbo_dict:
+  قم:
+    G11: true
+    G12: true
+    G13: true
+    G14: true
+  سیکل ترکیبی ارومیه:
+    G11: false
+    G12: false
+    G13: false
+    G14: false
+    G15: false
+    G16: false
+  سیکل ترکیبی شیروان:
+    G11: true
+    G12: true
+    G13: true
+    G14: true
+    G15: true
+    G16: true
+  سیکل ترکیبی یزد:
+    G11: false
+    G12: false
+    G13: false
+    G14: true
+    G15: true
+    G16: true
+  شهدای پاکدشت - دماوند:
+    G11: true
+    G12: true
+    G13: true
+    G14: true
+    G15: true
+    G16: true
+    G17: true
+    G18: true
+    G19: true
+    G20: true
+    G21: true
+    G22: true
+  شهدای پیروز - بهبهان:
+    G11: false
+    G12: false
+  سبلان:
+    G11: false
+    G12: false
+    G13: false
+    G14: false
+    G15: false
+    G16: false
+  حافظ:
+    G11: false
+    G12: false
+    G13: false
+    G14: false
+    G15: false
+    G16: false
+  عسلویه:
+    G11: false
+    G12: false
+    G13: false
+    G14: false
+    G15: false
+    G16: false
+  گیلان:
+    G11: false
+    G12: false
+    G13: false
+    G14: false
+    G15: false
+    G16: false
+  جنوب اصفهان - چهلستون:
+    G11: false
+    G12: false
+    G13: false
+    G14: false
+    G15: false
+    G16: false
+  پرند:
+    G11: false
+    G12: false
+    G13: false
+    G14: false
+    G15: false
+    G16: false
+
+feature_selection_config:
+  turbo_hours:
+    p_min: 0.8
+    p_max: 0.99
+    delta: 1
+    interval: [0, 20]
+  envelope:
+    p: 2
+    q: 0.02
+    dt: 1
+    min_turbo_temp: 20

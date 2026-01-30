@@ -57,7 +57,7 @@ class Feature_adder:
         for row in power_plants.itertuples():
             name, code = row.name, row.code
             df_name_code = ds.filter_name_code(name, code)
-            split_date = split_dates_by_name_code.get((name, code))
+            split_date = split_dates_by_name_code.get(name, {}).get(code)
             if split_date is None:
                 chosen_indices = df_name_code.index
             else:
@@ -71,6 +71,9 @@ class Feature_adder:
         features = ["name", "code", "generation", "temperature", "is_good_peak"]
         df_modified = self.df[features].copy(deep=True)
         df_modified = Data_selector(df_modified).select_peaks(init_label)
+
+        df_modified = remove_units_with_insufficient_data(df_modified, thresh=10)
+
         ds = Data_selector(df_modified)
         power_plants = df_modified[['name', 'code']].drop_duplicates()
 
@@ -80,16 +83,10 @@ class Feature_adder:
             coef = coefs.get((name, code))
             if turbo_dict.get(name, {}).get(code) and coef:
                 one_unit_df = ds.filter_name_code(name, code)
-                print(name, code)
-                if len(one_unit_df) == 0:
-                    print("zero")
-                else:
-                    print("good")
                 t = one_unit_df["temperature"]
                 g = one_unit_df['generation']
                 a, _ = coef
                 a, b = find_best_gap_line_given_slope(t, g, a, p_min, p_max, delta, interval)
-                print("f4",name,"|",code,"|",a,"|",b)
                 g_ceil = a * t + b
                 upper_line_indices = (g[g > g_ceil + delta]).index
 
@@ -149,6 +146,12 @@ class Feature_adder:
         logger.info(f"{consistency_percentage:0.2f}% of rows have been chosen by filter{new_label}")
 
 
+def remove_units_with_insufficient_data(df, thresh):
+    selected_units = df.groupby(['name', 'code']).filter(lambda x: len(x) >= thresh)
+
+    return selected_units
+
+
 def find_best_gap_line_given_slope(x, y, a, p_min, p_max, delta, interval):
     value_min = get_intercept_for_quantile(x, y, a, p_min, interval)
     if value_min is None:
@@ -160,8 +163,8 @@ def find_best_gap_line_given_slope(x, y, a, p_min, p_max, delta, interval):
         value_max = 200
     temp_max = (value_max + delta) / np.sqrt(a ** 2 + 1)
 
-    projected_residuals = (y - a * x) / np.sqrt(a ** 2 + 1)
-    valley_position = find_valley_on_projection(projected_residuals, temp_min, temp_max)
+    normalized_residuals = (y - a * x) / np.sqrt(a ** 2 + 1)
+    valley_position = find_valley_on_projection(normalized_residuals, temp_min, temp_max)
 
     if valley_position is None:
         return a, np.inf

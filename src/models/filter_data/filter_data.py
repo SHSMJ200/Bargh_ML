@@ -6,135 +6,29 @@ project_root = current_dir[:current_dir.find("src") - 1]
 sys.path.insert(0, project_root)
 
 import pandas as pd
+import yaml
+from src.root import get_root
 
 from src.logs.logger import CustomLogger
 from src.models.filter_data.feature_adder import Feature_adder
 
 logger = CustomLogger(__name__).get_logger()
 
+filter_data_config_path = get_root() + '/configs/filter_data.yaml'
+filter_data_config = yaml.safe_load(open(filter_data_config_path, 'r', encoding='utf-8'))
 
+split_dates_by_name_code = filter_data_config["split_dates_by_name_code"]
+turbo_dict = filter_data_config["turbo_dict"]
+FEATURE_SELECTION_CONFIG = filter_data_config["feature_selection_config"]
 
-split_dates_by_name_code = {
-    ('سبلان', 'G11'): pd.Timestamp('2021-10-31'),
-    ('سبلان', 'G14'): pd.Timestamp('2022-05-01'),
-
-    ('سیکل ترکیبی ارومیه', 'G11'): pd.Timestamp('2022-01-31'),
-
-    ('سیکل ترکیبی یزد', 'G11'): pd.Timestamp('2021-08-01'),
-    ('سیکل ترکیبی یزد', 'G15'): pd.Timestamp('2022-03-01'),
-
-    ('شهدای پاکدشت - دماوند', 'G13'): pd.Timestamp('2022-01-01'),
-    ('شهدای پاکدشت - دماوند', 'G22'): pd.Timestamp('2022-07-01'),
-
-    ('عسلویه', 'G11'): pd.Timestamp('2023-07-01'),
-    ('عسلویه', 'G12'): pd.Timestamp('2022-03-01'),
-
-    ('قم', 'G11'): pd.Timestamp('2021-06-01'),
-
-    ('پرند', 'G11'): pd.Timestamp('2022-03-31'),
-    ('پرند', 'G12'): pd.Timestamp('2022-05-01'),
-
-    ('گیلان', 'G15'): pd.Timestamp('2022-05-01'),
-}
-
-turbo_dict = {
-    "قم": {
-        "G11": True,
-        "G12": True,
-        "G13": True,
-        "G14": True
-    },
-    "سیکل ترکیبی ارومیه": {
-        "G11": False,
-        "G12": False,
-        "G13": False,
-        "G14": False,
-        "G15": False,
-        "G16": False
-    },
-    "سیکل ترکیبی شیروان": {
-        "G11": True,
-        "G12": True,
-        "G13": True,
-        "G14": True,
-        "G15": True,
-        "G16": True
-    },
-    "سیکل ترکیبی یزد": {
-        "G11": False,
-        "G12": False,
-        "G13": False,
-        "G14": True,
-        "G15": True,
-        "G16": True
-    },
-    "شهدای پاکدشت - دماوند": {
-        "G11": True,
-        "G12": True,
-        "G13": True,
-        "G14": True,
-        "G15": True,
-        "G16": True,
-        "G17": True,
-        "G18": True,
-        "G19": True,
-        "G20": True,
-        "G21": True,
-        "G22": True
-    },
-    "شهدای پیروز - بهبهان": {
-        "G11": False,
-        "G12": False
-    },
-    "سبلان": {
-        "G11": False,
-        "G12": False,
-        "G13": False,
-        "G14": False,
-        "G15": False,
-        "G16": False
-    },
-    "حافظ": {
-        "G11": False,
-        "G12": False,
-        "G13": False,
-        "G14": False,
-        "G15": False,
-        "G16": False
-    },
-    "عسلویه": {
-        "G11": False,
-        "G12": False,
-        "G13": False,
-        "G14": False,
-        "G15": False,
-        "G16": False
-    },
-    "گیلان": {
-        "G11": False,
-        "G12": False,
-        "G13": False,
-        "G14": False,
-        "G15": False,
-        "G16": False
-    },
-    "جنوب اصفهان - چهلستون": {
-        "G11": False,
-        "G12": False,
-        "G13": False,
-        "G14": False,
-        "G15": False,
-        "G16": False
-    },
-    "پرند": {
-        "G11": False,
-        "G12": False,
-        "G13": False,
-        "G14": False,
-        "G15": False,
-        "G16": False
-    }
-}
+def get_coefs(df_factors):
+    df_factors["Date"] = pd.to_datetime(df_factors["Date"])
+    coefs = {}
+    grouped = df_factors.groupby(['PowerPlantCode', 'PowerPlantName', "UnitCode"])
+    for (pp_code, pp_name, unit_code), g in grouped:
+        latest_row = g.sort_values("Date", ascending=False).iloc[0]
+        coefs[(pp_name, unit_code)] = (latest_row["a1IndexGas"], latest_row["b1IndexGas"])
+    return coefs
 
 FEATURE_SELECTION_CONFIG = {
     "turbo_hours": {

@@ -85,20 +85,11 @@ def add_model_prediction(fig, x_line, name, code, model_subdir, trace_name, dash
         folder_path = os.path.join(project_root, "src", "models", "fitted_models")
         model_path = f"{folder_path}/{model_subdir}/{name}_{code}.joblib"
         model = load(model_path)
-        if model_subdir == "turbo" and model.steps[1][1].coef_[2] > 0:
-            print("##################################")
-            print("##################################")
-            print("##################################")
-            print("##################################")
-            print("##################################")
-            
-            print(name, code,model.steps[1][1].coef_[2])
-            
         df_line = pd.DataFrame(x_line, columns=["temperature"])
         y_line = model.predict(df_line)
         fig.add_trace(
             go.Scatter(x=df_line["temperature"], y=y_line, mode="lines", name=trace_name, line=dict(dash=dash, width=width),
                        visible="legendonly"))
     except Exception as e:
-        print(e)
+        pass
 

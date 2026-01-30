@@ -4,16 +4,11 @@ from sklearn.linear_model import QuantileRegressor
 from src.models.customized_ML_models.TwoSegmentQuantileRegressor import (
     TwoSegmentQuantileRegressor
 )
+from src.root import get_root
+import yaml
 
-CONFIG = {
-    "linear_quantile": 0.85,
-    "piecewise_quantiles": [0.98, 0.85],
-    "breakpoint_temperature_bound": 25,
-
-    "min_slope_diff": 0.25,
-    "max_slope_diff": 2.5,
-    "min_high_segment_ratio": 5
-}
+train_model_config_path = get_root() + '/configs/train_model.yaml'
+train_model_config = yaml.safe_load(open(train_model_config_path, 'r', encoding='utf-8'))
 
 
 class AdaptiveQuantileRegressor:
@@ -23,15 +18,15 @@ class AdaptiveQuantileRegressor:
     def fit(self, X, y):
         # ---------- linear quantile model ----------
         linear_model = QuantileRegressor(solver='highs',
-            quantile=CONFIG["linear_quantile"],
-            alpha=0
-        )
+                                         quantile=train_model_config["linear_quantile"],
+                                         alpha=0
+                                         )
         linear_model.fit(X, y)
 
         # ---------- piecewise quantile model ----------
         piecewise_model = TwoSegmentQuantileRegressor(
-            quantiles=CONFIG["piecewise_quantiles"],
-            break_bound_temp=CONFIG["breakpoint_temperature_bound"]
+            quantiles=train_model_config["piecewise_quantiles"],
+            break_bound_temp=train_model_config["breakpoint_temperature_bound"]
         )
         piecewise_model.fit(X, y)
 
@@ -51,10 +46,10 @@ class AdaptiveQuantileRegressor:
 
         # ---------- selection condition ----------
         use_piecewise_model = (
-            0 > first_slope > second_slope and
-            left_breakpoint < intersection_x < right_breakpoint and
-            CONFIG["max_slope_diff"] > abs(first_slope - second_slope) >= CONFIG["min_slope_diff"] and
-            high_segment_ratio > CONFIG["min_high_segment_ratio"]
+                0 > first_slope > second_slope and
+                left_breakpoint < intersection_x < right_breakpoint and
+                train_model_config["max_slope_diff"] > abs(first_slope - second_slope) >= train_model_config["min_slope_diff"] and
+                high_segment_ratio > train_model_config["min_high_segment_ratio"]
         )
 
         self.model = piecewise_model if use_piecewise_model else linear_model

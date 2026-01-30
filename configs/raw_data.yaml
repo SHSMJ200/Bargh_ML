@@ -1,0 +1,41 @@
+BAR:
+  file_path: "LowMiddlePeakLoadHours_View.csv"
+  table_name: "bar"
+
+PLANT:
+  file_path: "PlantData.csv"
+  table_name: "plant_data"
+
+TEMPERATURE:
+  file_path: "PlantsTemperature_View.csv"
+  table_name: "plant_temp"
+  clean_func: "custom_clean_temperature"
+
+ENERGY:
+  file_path: "PowerplantUnitEnergy_View.csv"
+  table_name: "energy"
+  clean_func: "custom_clean_energy"
+
+SELLEROFFER:
+  file_path: "SellerOffer_View.csv"
+  table_name: "selleroffer"
+  latest_revision_col: "Declared"
+
+FACTORS:
+  file_path: "TemperatureFactors_View.csv"
+  table_name: "factors"
+
+STATUS:
+  file_path: "UnitsStatusChangeLastRev_Hourly_View.csv"
+  table_name: "status"
+  clean_func: "custom_clean_status"
+
+LOAD:
+  file_path: "LoadPredictionNetwork.csv"
+  table_name: "load"
+  latest_revision_col: "ForecastedValue"
+
+COMMITMENT:
+  file_path: "UnitCommitment.csv"
+  table_name: "commitment"
+  latest_revision_col: "Required"

@@ -5,7 +5,6 @@ import retry_requests
 import yaml
 
 from src.logs.logger import CustomLogger
-from src.data.data_cleaner import RawDataConfig
 from src.root import get_root
 
 logger = CustomLogger(__name__).get_logger()
@@ -14,15 +13,17 @@ tables_config_path = get_root() + '/configs/tables_columns.yaml'
 feature_dict = yaml.load(open(tables_config_path), Loader=yaml.SafeLoader)
 
 crawl_config_path = get_root() + '/configs/crawling.yaml'
-crawl_config = yaml.safe_load(open(crawl_config_path, 'r'))
+crawl_config = yaml.safe_load(open(crawl_config_path, 'r', encoding='utf-8'))
 
+raw_data_config_path = get_root() + '/configs/raw_data.yaml'
+Raw_Data_Config = yaml.safe_load(open(raw_data_config_path, 'r', encoding='utf-8'))
 
 def get_plants_info():
-    plants_temperature_path = RawDataConfig.TEMPERATURE.value["file_path"]
+    plants_temperature_path = get_root() + "/data/raw/" + Raw_Data_Config["TEMPERATURE"].get("file_path")
     temperature_df = pd.read_csv(plants_temperature_path)
     all_plants = temperature_df['PowerPlantCode'].astype(str).drop_duplicates().tolist()
 
-    plants_data_path = RawDataConfig.PLANT.value["file_path"]
+    plants_data_path = get_root() + "/data/raw/" + Raw_Data_Config["PLANT"].get("file_path")
     plants_df = pd.read_csv(plants_data_path)
     available_plants_df = plants_df[plants_df['DispPlantCode'].isin(all_plants)]
     return available_plants_df[['DispPlantCode', 'PlantName', 'UTM']]
