@@ -88,59 +88,59 @@ def load_models(folder_path):
 
 
 def predict_generation(xlsx_input_path, xlsx_output_path):
-    normal_models_folder = os.path.join(project_root, "src", "models", "fitted_models", "normal")
-    turbo_models_folder = os.path.join(project_root, "src", "models", "fitted_models", "turbo")
-    normal_models = load_models(normal_models_folder)
-    turbo_models = load_models(turbo_models_folder)
-
-    input_df = pd.read_excel(xlsx_input_path)
-    input_df_copy = input_df.copy(deep=True)
-    input_df_copy["name"] = input_df_copy["id"].map(prediction_config["power_units"])
-
-    if prediction_config["has_temperature_column"]:
-        final_input_df = input_df_copy
-    else:
-        crawl_future()
-        weather_forecast_path = os.path.join(project_root, "data", "interim", "weather_forecast.csv")
-        weather_forecast_df = pd.read_csv(weather_forecast_path)
-        final_input_df = preprocess_and_merge_dfs(input_df_copy, weather_forecast_df)
-
-    df_selected = select_needed_features(final_input_df)
-
-    ds_n_c = Data_selector(df_selected)
-    power_plants = ds_n_c.df[['name', 'code']].drop_duplicates()
-    for row in power_plants.itertuples():
-        name, code = row.name, row.code
-
-        df_n_c = ds_n_c.filter_name_code(name, code)
-
-        fs_n_c = Feature_selector(df_n_c, "generation")
-        fs_n_c.filter_features(features_to_drop=["name", "code"])
-        X, _ = fs_n_c.get_X_and_y()
-
-        normal_model = normal_models[name, code]
-        y_pred = normal_model.predict(X)
-        input_df.loc[X.index, "prediction"] = y_pred.round(2)
-
-        turbo_model = turbo_models.get((name, code))
-        if turbo_model:
-            y_pred = turbo_model.predict(X)
-            input_df.loc[X.index, "prediction_turbo"] = y_pred.round(2)
-
-    input_df.to_excel(xlsx_output_path)
-
-    logger.info(f"Prediction is written in the file below:\n{xlsx_output_path}")
-
-
-if __name__ == "__main__":
-    xlsx_input_path = prediction_config["xlsx_input_path"]
-    xlsx_output_path = prediction_config["xlsx_output_path"]
-
     try:
-        predict_generation(xlsx_input_path, xlsx_output_path)
+        normal_models_folder = os.path.join(project_root, "src", "models", "fitted_models", "normal")
+        turbo_models_folder = os.path.join(project_root, "src", "models", "fitted_models", "turbo")
+        normal_models = load_models(normal_models_folder)
+        turbo_models = load_models(turbo_models_folder)
+
+        input_df = pd.read_excel(xlsx_input_path)
+        input_df_copy = input_df.copy(deep=True)
+        input_df_copy["name"] = input_df_copy["id"].map(prediction_config["power_units"])
+
+        if prediction_config["has_temperature_column"]:
+            final_input_df = input_df_copy
+        else:
+            crawl_future()
+            weather_forecast_path = os.path.join(project_root, "data", "interim", "weather_forecast.csv")
+            weather_forecast_df = pd.read_csv(weather_forecast_path)
+            final_input_df = preprocess_and_merge_dfs(input_df_copy, weather_forecast_df)
+
+        df_selected = select_needed_features(final_input_df)
+
+        ds_n_c = Data_selector(df_selected)
+        power_plants = ds_n_c.df[['name', 'code']].drop_duplicates()
+        for row in power_plants.itertuples():
+            name, code = row.name, row.code
+
+            df_n_c = ds_n_c.filter_name_code(name, code)
+
+            fs_n_c = Feature_selector(df_n_c, "generation")
+            fs_n_c.filter_features(features_to_drop=["name", "code"])
+            X, _ = fs_n_c.get_X_and_y()
+
+            normal_model = normal_models[name, code]
+            y_pred = normal_model.predict(X)
+            input_df.loc[X.index, "prediction"] = y_pred.round(2)
+
+            turbo_model = turbo_models.get((name, code))
+            if turbo_model:
+                y_pred = turbo_model.predict(X)
+                input_df.loc[X.index, "prediction_turbo"] = y_pred.round(2)
+
+        input_df.to_excel(xlsx_output_path)
+
+        logger.info(f"Prediction is written in the file below:\n{xlsx_output_path}")
     except Exception as e:
         logger.error(f"Prediction error occurred:\n{e}\nPossible causes:\n"
                      "- Column names are incorrect\n"
                      "- Dates do not correspond to tomorrow\n"
                      "- Date format is not yyyy/mm/dd\n"
                      "- Output Excel file is open in another program")
+
+if __name__ == "__main__":
+    xlsx_input_path = prediction_config["xlsx_input_path"]
+    xlsx_output_path = prediction_config["xlsx_output_path"]
+
+    predict_generation(xlsx_input_path, xlsx_output_path)
+

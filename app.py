@@ -19,11 +19,4 @@ if __name__ == "__main__":
     xlsx_input_path = prediction_config["xlsx_input_path"]
     xlsx_output_path = prediction_config["xlsx_output_path"]
 
-    try:
-        predict_generation(xlsx_input_path, xlsx_output_path)
-    except Exception as e:
-        logger.error(f"Prediction error occurred:\n{e}\nPossible causes:\n"
-                     "- Column names are incorrect\n"
-                     "- Dates do not correspond to tomorrow\n"
-                     "- Date format is not yyyy/mm/dd\n"
-                     "- Output Excel file is open in another program")
+    predict_generation(xlsx_input_path, xlsx_output_path)

@@ -19,14 +19,10 @@ raw_data_config_path = get_root() + '/configs/raw_data.yaml'
 Raw_Data_Config = yaml.safe_load(open(raw_data_config_path, 'r', encoding='utf-8'))
 
 def get_plants_info():
-    plants_temperature_path = get_root() + "/data/raw/" + Raw_Data_Config["TEMPERATURE"].get("file_path")
-    temperature_df = pd.read_csv(plants_temperature_path)
-    all_plants = temperature_df['PowerPlantCode'].astype(str).drop_duplicates().tolist()
+    available_plants_data_path = get_root() + "/data/raw/AvailablePlantData.csv"
+    available_plants_df = pd.read_csv(available_plants_data_path)
 
-    plants_data_path = get_root() + "/data/raw/" + Raw_Data_Config["PLANT"].get("file_path")
-    plants_df = pd.read_csv(plants_data_path)
-    available_plants_df = plants_df[plants_df['DispPlantCode'].isin(all_plants)]
-    return available_plants_df[['DispPlantCode', 'PlantName', 'UTM']]
+    return available_plants_df
 
 
 def create_open_meteo_client():
