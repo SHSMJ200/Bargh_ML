@@ -1,85 +1,104 @@
-import pandas as pd
-import plotly.graph_objects as go
-
+import os
+from src.models.data_selection.data_selector import Data_selector
 from src.root import get_root
 
+import pandas as pd
+import plotly.graph_objects as go
+import numpy as np
+from joblib import load
 
-class UnitPlotter:
+import plotly.express as px
 
-    def __init__(self, df):
-        self.df = df
-        self.df['date'] = pd.to_datetime(self.df['date'])
-        self.df['datetime'] = self.df['date'] + pd.to_timedelta(self.df['hour'], unit='h')
 
-    def generation_over_time(self, name, code):
-        self.features_over_time(name, code, ["generation"], ["red"])
+color_map = {
+    0: "purple",
+    1: "orange",
+    2: "pink",
+    3: "blue",
+    4: "black",
+    5: "red",
+    6: "green"
+}
 
-    def prediction_and_generation_over_time(self, name, code):
-        self.features_over_time(name, code, ["prediction", "generation"], ["blue", "red"])
+def draw_gen_temp_plot(df, coefs, name, code):
+    
+    fig = go.Figure()
+    
+    for peak_value, color in color_map.items():
+        df_subset = Data_selector(df).select_peaks(goodness=peak_value)
+        fig.add_trace(go.Scatter(
+            x=df_subset["temperature"],
+            y=df_subset["generation"],
+            mode="markers",
+            marker=dict(size=4, color=color),
+            name=f"is_good_peak = {peak_value}",
+            hovertext=df_subset["datetime"]
+        ))
+        
+    fig.update_traces(marker=dict(size=4, sizemode="diameter", sizeref=1, opacity=0.7))
 
-    def prediction_and_generation_flag_marker_over_time(self, name, code):
-        self.features_over_time(name, code, ["prediction", "generation"], ["blue", "red"], flag_marker=True)
 
-    def temperature_and_prediction_and_generation_flag_marker_over_time(self, name, code):
-        self.features_over_time(name, code, ["temperature", "prediction", "generation"], ["yellow", "blue", "red"],
-                                flag_marker=True)
+    a, b = coefs.get((name, code))
+    x_line = np.linspace(df["temperature"].min(), df["temperature"].max(), 100)
+    y_line = a * x_line + b
+    fig.add_trace(go.Scatter(
+        x=x_line,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+        y=y_line,
+        mode="lines",
+        name=f"y = {a:.3f}x + {b:.3f}",
+        line=dict(dash="dash", width=2)
+    ))
 
-    def temperature_and_generation_over_time(self, name, code):
-        self.features_over_time(name, code, ["temperature", "generation"], ["blue", "red"])
+    add_model_prediction(fig, x_line, name, code, "normal", "predict")
+    add_model_prediction(fig, x_line, name, code, "turbo", "turbo predict")
+    #add_model_prediction(fig, x_line, name, code, "LinearRegression", "linear predict")
+    #add_model_prediction(fig, x_line, name, code, "QuantileRegressor", "quantile predict")
+    #add_model_prediction(fig, x_line, name, code, "TwoSegmentQuantileRegressor", "two segment quantile predict")
+    
+    project_root = get_root()
+    save_path = f"{project_root}/src/visualization/unit_figs/test_models/{name}-{code}_temp.html"
+    fig.write_html(save_path)
 
-    def temperature_and_generation_flag_marker_over_time(self, name, code):
-        self.features_over_time(name, code, ["temperature", "generation"], ["blue", "red"], flag_marker=True)
 
-    def temperature_change_and_generation_change_flag_marker_over_time(self, name, code):
-        self.features_over_time(name, code, ["temperature_change", "generation_change"], ["blue", "red"],
-                                flag_marker=True)
+def draw_gen_date_plot(df, name, code):
 
-    def generation_and_generation_with_24_delay_flag_marker_over_time(self, name, code):
-        self.features_over_time(name, code, ["generation", "generation_with_24_delay"], ["red", "blue"],
-                                flag_marker=True)
+    fig = px.scatter(
+        df,
+        x="datetime",
+        y='generation',
+        color='is_good_peak',
+        title='Generation over Time',
+        labels={'generation': 'Generation', 'datetime': 'Time'},
+        hover_data=['datetime', 'generation', "temperature"]
+    )
 
-    def generation_and_mean_generation_and_generation_with_24_delay_flag_marker_over_time(self, name, code):
-        self.features_over_time(name, code, ["generation", "mean_generation", "generation_with_24_delay"],
-                                ["red", "green", "blue"],
-                                flag_marker=True)
+    project_root = get_root()
+    path = f"{project_root}/src/visualization/unit_figs/test_models/{name}-{code}_date.html"
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    fig.write_html(path)
 
-    def prediction_and_declare_and_generation_flag_marker_over_time(self, name, code):
-        self.features_over_time(name, code, ["prediction", "declare", "generation"], ["blue", "red", "purple"],
-                                flag_marker=True)
 
-    def features_over_time(self, name, code, features, colors, flag_marker=False):
-        sample = self.df.loc[(self.df['name'] == name) & (self.df['code'] == code)]
-        sample = sample.sort_values(by='datetime')
-        features_string = "_and_".join(features)
 
-        fig = go.Figure()
-
-        for color, feature in zip(colors, features):
-
-            color_marker = None
-            mode = 'lines'
-            if feature in ["generation", "generation_change"] and flag_marker:
-                color_pick = {0: "red", 1: "blue", 2: "black", 3: "green", 4: "yellow", 5: "orange"}
-                color_marker = dict(color=[color_pick[value] for value in sample["is_good_peak"]], size=5)
-                mode = 'lines+markers'
-
-            fig.add_trace(go.Scatter(
-                x=sample['datetime'],
-                y=sample[feature],
-                mode=mode,
-                name=f"{feature}",
-                marker=color_marker,
-                line=dict(color=color, dash="solid"),
-                hovertemplate=f"{feature} : %{{y}}<br>Time: %{{x}}<extra></extra>"
-            ))
-
-        fig.update_layout(
-            title=f'{features_string} over time',
-            xaxis_title='Time',
-            yaxis_title=f'{features_string}',
-            hovermode='x unified'
-        )
-
+def add_model_prediction(fig, x_line, name, code, model_subdir, trace_name, dash="solid", width=2):
+    try:
         project_root = get_root()
-        folder_path = f"{features_string}_flag_marker_over_time" if flag_marker else f"{features_string}_over_time"
-        fig.write_html(f"{project_root}/src/visualization/unit_figs/{folder_path}/{name}-{code}.html")
+        folder_path = os.path.join(project_root, "src", "models", "fitted_models")
+        model_path = f"{folder_path}/{model_subdir}/{name}_{code}.joblib"
+        model = load(model_path)
+        if model_subdir == "turbo" and model.steps[1][1].coef_[2] > 0:
+            print("##################################")
+            print("##################################")
+            print("##################################")
+            print("##################################")
+            print("##################################")
+            
+            print(name, code,model.steps[1][1].coef_[2])
+            
+        df_line = pd.DataFrame(x_line, columns=["temperature"])
+        y_line = model.predict(df_line)
+        fig.add_trace(
+            go.Scatter(x=df_line["temperature"], y=y_line, mode="lines", name=trace_name, line=dict(dash=dash, width=width),
+                       visible="legendonly"))
+    except Exception as e:
+        print(e)
+

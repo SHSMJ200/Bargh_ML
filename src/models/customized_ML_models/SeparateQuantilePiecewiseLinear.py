@@ -32,11 +32,11 @@ class SeparateQuantilePiecewiseLinear(BaseEstimator, RegressorMixin):
 
         breakpoint = self.breakpoints[1]
 
-        model0 = QuantileRegressor(quantile=self.quantiles[0], alpha=0.0)
+        model0 = QuantileRegressor(solver='highs',quantile=self.quantiles[0], alpha=0.0)
         mask = X < breakpoint
         model0.fit(X[mask].reshape(-1, 1), y[mask])
 
-        model1 = QuantileRegressor(quantile=self.quantiles[1], alpha=0.0)
+        model1 = QuantileRegressor(solver='highs',quantile=self.quantiles[1], alpha=0.0)
         mask = X >= breakpoint
         model1.fit(X[mask].reshape(-1, 1), y[mask])
 

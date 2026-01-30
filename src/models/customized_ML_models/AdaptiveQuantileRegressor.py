@@ -22,7 +22,7 @@ class AdaptiveQuantileRegressor:
 
     def fit(self, X, y):
         # ---------- linear quantile model ----------
-        linear_model = QuantileRegressor(
+        linear_model = QuantileRegressor(solver='highs',
             quantile=CONFIG["linear_quantile"],
             alpha=0
         )

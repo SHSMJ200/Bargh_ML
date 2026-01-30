@@ -1,6 +1,10 @@
 import os
 import sys
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = current_dir[:current_dir.find("src") - 1]
+sys.path.insert(0, project_root)
+
 import pandas as pd
 
 from src.logs.logger import CustomLogger
@@ -8,9 +12,7 @@ from src.models.filter_data.feature_adder import Feature_adder
 
 logger = CustomLogger(__name__).get_logger()
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = current_dir[:current_dir.find("src") - 1]
-sys.path.insert(0, project_root)
+
 
 split_dates_by_name_code = {
     ('سبلان', 'G11'): pd.Timestamp('2021-10-31'),

@@ -3,7 +3,7 @@ import pandas as pd
 from scipy.signal import find_peaks
 from scipy.stats import gaussian_kde
 
-from src.logs import CustomLogger
+from src.logs.logger import CustomLogger
 from src.models.data_selection.data_selector import Data_selector
 
 logger = CustomLogger(__name__).get_logger()
@@ -89,6 +89,7 @@ class Feature_adder:
                 g = one_unit_df['generation']
                 a, _ = coef
                 a, b = find_best_gap_line_given_slope(t, g, a, p_min, p_max, delta, interval)
+                print("f4",name,"|",code,"|",a,"|",b)
                 g_ceil = a * t + b
                 upper_line_indices = (g[g > g_ceil + delta]).index
 
@@ -159,8 +160,8 @@ def find_best_gap_line_given_slope(x, y, a, p_min, p_max, delta, interval):
         value_max = 200
     temp_max = (value_max + delta) / np.sqrt(a ** 2 + 1)
 
-    normalized_residuals = (y - a * x) / np.sqrt(a ** 2 + 1)
-    valley_position = find_valley_on_projection(normalized_residuals, temp_min, temp_max)
+    projected_residuals = (y - a * x) / np.sqrt(a ** 2 + 1)
+    valley_position = find_valley_on_projection(projected_residuals, temp_min, temp_max)
 
     if valley_position is None:
         return a, np.inf

@@ -46,7 +46,7 @@ class QuantilePiecewiseLinear(BaseEstimator, RegressorMixin):
         X_hinge = self._hinge_features(X)
 
         # مرحله 3: فیت QuantileRegressor
-        self.model = QuantileRegressor(quantile=self.quantile, alpha=0.0)
+        self.model = QuantileRegressor(solver='highs',quantile=self.quantile, alpha=0.0)
         self.model.fit(X_hinge, y)
         self.fitted = True
         return self

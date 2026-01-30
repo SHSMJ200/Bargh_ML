@@ -38,14 +38,14 @@ class TwoSegmentQuantileRegressor(BaseEstimator, RegressorMixin):
         # --------------------------------------------------
         # 2) Fit separate quantile regressions
         # --------------------------------------------------
-        left_model = QuantileRegressor(
+        left_model = QuantileRegressor(solver='highs',
             quantile=self.quantiles[0],
             alpha=0.0
         )
         left_mask = X < breakpoint_x
         left_model.fit(X[left_mask].reshape(-1, 1), y[left_mask])
 
-        right_model = QuantileRegressor(
+        right_model = QuantileRegressor(solver='highs',
             quantile=self.quantiles[1],
             alpha=0.0
         )
