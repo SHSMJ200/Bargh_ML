@@ -25,7 +25,7 @@ logger = CustomLogger(__name__).get_logger()
 tables_config_path = get_root() + '/configs/tables_columns.yaml'
 feature_dict = yaml.load(open(tables_config_path), Loader=yaml.SafeLoader)
 
-prediction_config_path = get_root() + '/configs/raw_data.yaml'
+prediction_config_path = get_root() + '/configs/prediction.yaml'
 prediction_config = yaml.safe_load(open(prediction_config_path, 'r', encoding='utf-8'))
 
 
@@ -34,12 +34,19 @@ def preprocess_and_merge_dfs(input_df, weather_forecast_df):
                 "apparent_temperature", "precipitation", "rain", "snow",
                 "surface_pressure", "evapotranspiration", "wind_speed", "wind_direction"]
     weather_forecast_df.columns = new_cols
-    weather_forecast_df['date'] = pd.to_datetime(weather_forecast_df['date'])
-    if prediction_config["is_jalali"]:
-        weather_forecast_df['Date'] = weather_forecast_df['Date'].apply(jalali_to_gregorian)
 
+    if prediction_config["is_jalali"]:
+        input_df['date'] = input_df['date'].apply(jalali_to_gregorian)
     input_df['date'] = pd.to_datetime(input_df['date'])
-    final_input_df = pd.merge(input_df, weather_forecast_df, on=['name', 'date', 'hour'], how='left')
+    weather_forecast_df['date'] = pd.to_datetime(weather_forecast_df['date'])
+
+    final_input_df = pd.merge(
+        input_df,
+        weather_forecast_df,
+        on=['id', 'date', 'hour'],
+        how='left',
+        suffixes=('_input', '')
+    )
     final_input_df = Feature_adder(final_input_df, add_label_column=False).df
     return final_input_df
 
@@ -87,14 +94,16 @@ def predict_generation(xlsx_input_path, xlsx_output_path):
     turbo_models = load_models(turbo_models_folder)
 
     input_df = pd.read_excel(xlsx_input_path)
+    input_df_copy = input_df.copy(deep=True)
+    input_df_copy["name"] = input_df_copy["id"].map(prediction_config["power_units"])
 
-    if prediction_config_path["has_temperature_column"]:
+    if prediction_config["has_temperature_column"]:
+        final_input_df = input_df_copy
+    else:
         crawl_future()
         weather_forecast_path = os.path.join(project_root, "data", "interim", "weather_forecast.csv")
         weather_forecast_df = pd.read_csv(weather_forecast_path)
-        final_input_df = preprocess_and_merge_dfs(input_df, weather_forecast_df)
-    else:
-        final_input_df = input_df
+        final_input_df = preprocess_and_merge_dfs(input_df_copy, weather_forecast_df)
 
     df_selected = select_needed_features(final_input_df)
 
@@ -111,20 +120,27 @@ def predict_generation(xlsx_input_path, xlsx_output_path):
 
         normal_model = normal_models[name, code]
         y_pred = normal_model.predict(X)
-        input_df.loc[X.index, "prediction"] = y_pred
+        input_df.loc[X.index, "prediction"] = y_pred.round(2)
 
         turbo_model = turbo_models.get((name, code))
         if turbo_model:
             y_pred = turbo_model.predict(X)
-            input_df.loc[X.index, "prediction_turbo"] = y_pred
+            input_df.loc[X.index, "prediction_turbo"] = y_pred.round(2)
 
     input_df.to_excel(xlsx_output_path)
 
-    logger.info(f"The prediction of generation is written in the file below:\n{xlsx_output_path}")
+    logger.info(f"Prediction is written in the file below:\n{xlsx_output_path}")
 
 
 if __name__ == "__main__":
-    xlsx_input_path = os.path.join(project_root, "src", "models", "prediction", "one_day_input.xlsx")
-    xlsx_output_path = os.path.join(project_root, "src", "models", "prediction", "one_day_output.xlsx")
+    xlsx_input_path = prediction_config["xlsx_input_path"]
+    xlsx_output_path = prediction_config["xlsx_output_path"]
 
-    predict_generation(xlsx_input_path, xlsx_output_path)
+    try:
+        predict_generation(xlsx_input_path, xlsx_output_path)
+    except Exception as e:
+        logger.error(f"Prediction error occurred:\n{e}\nPossible causes:\n"
+                     "- Column names are incorrect\n"
+                     "- Dates do not correspond to tomorrow\n"
+                     "- Date format is not yyyy/mm/dd\n"
+                     "- Output Excel file is open in another program")

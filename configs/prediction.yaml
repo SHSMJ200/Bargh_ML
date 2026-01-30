@@ -1,2 +1,18 @@
-is_jalali: False
-has_temperature_column: False
+is_jalali: True
+has_temperature_column: True
+xlsx_input_path: "U:/ML_project/Bargh_ML/src/models/prediction/one_day_input.xlsx"
+xlsx_output_path: "U:/ML_project/Bargh_ML/src/models/prediction/one_day_output.xlsx"
+
+power_units:
+  406: "جنوب اصفهان - چهلستون"
+  917: "حافظ"
+  503: "سبلان"
+  515: "سیکل ترکیبی ارومیه"
+  715: "سیکل ترکیبی شیروان"
+  636: "سیکل ترکیبی یزد"
+  111: "شهدای پاکدشت - دماوند"
+  365: "شهدای پیروز - بهبهان"
+  902: "عسلویه"
+  149: "قم"
+  104: "پرند"
+  232: "گیلان"

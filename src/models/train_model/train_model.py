@@ -5,7 +5,6 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = current_dir[:current_dir.find("src") - 1]
 sys.path.insert(0, project_root)
 
-from src.models.customized_ML_models.TwoSegmentQuantileRegressor import TwoSegmentQuantileRegressor
 from sklearn.preprocessing import PolynomialFeatures
 from src.models.customized_ML_models.AdaptiveQuantileRegressor import AdaptiveQuantileRegressor
 
@@ -15,7 +14,7 @@ from joblib import dump
 from src.models.data_selection.data_selector import Data_selector
 from src.models.data_selection.feature_selector import Feature_selector
 from src.logs.logger import CustomLogger
-from sklearn.linear_model import LinearRegression, QuantileRegressor
+from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import make_pipeline
 from src.models.utils import *
 

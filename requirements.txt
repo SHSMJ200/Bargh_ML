@@ -1,0 +1,13 @@
+pandas
+pyyaml
+openmeteo_requests
+requests_cache
+retry_requests
+jdatetime
+numpy
+scipy
+scikit-learn
+pwlf
+joblib
+coloredlogs
+plotly
