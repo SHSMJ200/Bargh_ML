@@ -1,19 +1,20 @@
 import os
 import sys
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = current_dir[:current_dir.find("src") - 1]
+sys.path.insert(0, project_root)
+
 from sklearn.preprocessing import PolynomialFeatures
 
 from src.models.customized_ML_models.AdaptiveQuantileRegressor import AdaptiveQuantileRegressor
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = current_dir[:current_dir.find("src") - 1]
-sys.path.insert(0, project_root)
 
 from joblib import dump
 
 from src.models.data_selection.data_selector import Data_selector
 from src.models.data_selection.feature_selector import Feature_selector
-from logs.logger import CustomLogger
+from src.logs.logger import CustomLogger
 from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import make_pipeline
 from src.models.utils import *
@@ -67,7 +68,6 @@ def print_report(data_sizes, train_errors):
 
 def train_all_unit_models(df_f_selected, is_turbo, save_model_folder):
     ds_n_c = Data_selector(df_f_selected)
-    ds_n_c.df = ds_n_c.df.dropna()
 
     power_plants = ds_n_c.df[['name', 'code']].drop_duplicates()
     train_errors = []

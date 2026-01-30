@@ -1,6 +1,6 @@
 import os
 
-from logs.logger import CustomLogger
+from src.logs.logger import CustomLogger
 from src.root import get_root
 
 logger = CustomLogger(__name__).get_logger()

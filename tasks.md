@@ -1,52 +1,16 @@
-🟦 To-Ask
-==========================
-* فرض: در جداول آن‌ها تغییر ساعت لحاظ نشده و همیشه +3:30 نوشته شده است
-* time = 25???
-* فرض : ساعت ۱۵ یعنی از ساعت ۱۴ تا ۱۵
-* We have different set of (id, code) in different files some are "S" but شهدای پیروز G13 and G14 aren't in all files.
-* Output & input format (?)
-* 
 
 🟩 To-Do
 ==========================
 
-* Make product
-* LF1-FO (?)
-* 
 * try/ except
 * Loggers
-* 
-* We delete row that have even just one null value
 * sys.path.insert add redundant element to list
-* 
-* How about filter when generation is equal to declare?
-* We have a and b of each plant
-* 
-* alpha = 2 and beta = 5 constant
-* why line filter 5?
-* آیا فیلتر ۵ خوب کار می‌کند؟
-* 
-* what should we do if data is less than 12 month?
-* 
-* 71 or 72 plants?
-* 
-* How about other features except temp???
-* 
-* overall accuracy is good but each plant should be seen
-* 
 * Use id instead of name
-* filling new_filter5 dict manually
-* شازند کجاست؟
-* 
-* Are filter 5 dates correctly chosen?
-* راه جدید برای filter 5. آیا اگر ۲۰ درصد بالایی تولید را انتخاب کنیم، در سراسر نمودار زمان انتخاب کردیم؟
-* سیکل ترکیبی یزد G13
-* از a,b ,خودشون برای فیلتر ۵ استفاده کنیم؟؟؟
+* design interface for project
+
 
   🟨 Doing
   ==========================
-
-* visualize
 
   🟥 Done
   ==========================

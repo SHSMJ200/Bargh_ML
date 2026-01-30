@@ -1,0 +1,8 @@
+linear_quantile: 0.85
+
+piecewise_quantiles: [0.98, 0.85]
+breakpoint_temperature_bound: 25
+
+min_slope_diff: 0.25
+max_slope_diff: 2.5
+min_high_segment_ratio: 5
